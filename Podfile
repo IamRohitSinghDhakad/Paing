@@ -6,5 +6,13 @@ target 'Paing' do
   use_frameworks!
 
   # Pods for Paing
+  pod 'Alamofire'
+  pod 'SVProgressHUD'
+  pod 'SDWebImage/MapKit'
+  pod 'IQKeyboardManagerSwift'
+  pod 'Firebase/Messaging'
+  pod 'iOSDropDown'
+  pod 'FBSDKLoginKit'
+  pod 'GoogleSignIn'
 
 end

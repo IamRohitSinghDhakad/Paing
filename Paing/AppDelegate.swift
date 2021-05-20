@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import IQKeyboardManagerSwift
 
 
 let ObjAppdelegate = UIApplication.shared.delegate as! AppDelegate
@@ -26,6 +27,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
+        IQKeyboardManager.shared.enable = true
+        IQKeyboardManager.shared.enableAutoToolbar = true
+        IQKeyboardManager.shared.shouldResignOnTouchOutside = true
+        
+        
+        (UIApplication.shared.delegate as? AppDelegate)?.self.window = window
         // Override point for customization after application launch.
         return true
     }
@@ -55,3 +63,59 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+
+//Manage AutoLogin
+extension AppDelegate{
+    
+    func LoginNavigation(){
+        let sb = UIStoryboard(name: "Main", bundle: Bundle.main)
+        navController = sb.instantiateViewController(withIdentifier: "LoginNav") as? UINavigationController
+        self.window?.rootViewController = navController
+        self.window?.makeKeyAndVisible()
+    }
+    
+    func HomeNavigation() {
+        let storyboard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let navigationController = storyboard.instantiateViewController(withIdentifier: "Reveal")
+        self.window?.rootViewController = navigationController
+        self.window?.makeKeyAndVisible()
+    }
+    
+}
+
+
+public extension UIWindow {
+
+    var visibleViewController: UIViewController? {
+
+        return UIWindow.getVisibleViewControllerFrom(vc: self.rootViewController)
+
+    }
+
+    static func getVisibleViewControllerFrom(vc: UIViewController?) -> UIViewController? {
+
+        if let nc = vc as? UINavigationController {
+
+            return UIWindow.getVisibleViewControllerFrom(vc: nc.visibleViewController)
+
+        } else if let tc = vc as? UITabBarController {
+
+            return UIWindow.getVisibleViewControllerFrom(vc: tc.selectedViewController)
+
+        } else {
+
+            if let pvc = vc?.presentedViewController {
+
+                return UIWindow.getVisibleViewControllerFrom(vc: pvc)
+
+            } else {
+
+                return vc
+
+            }
+
+        }
+
+    }
+
+}

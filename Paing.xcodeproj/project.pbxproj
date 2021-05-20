@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -14,6 +14,29 @@
 		F9F808A92656CD8A00F320FF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F9F808A72656CD8A00F320FF /* Main.storyboard */; };
 		F9F808AB2656CD8C00F320FF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F9F808AA2656CD8C00F320FF /* Assets.xcassets */; };
 		F9F808AE2656CD8C00F320FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F9F808AC2656CD8C00F320FF /* LaunchScreen.storyboard */; };
+		F9F808C22656F1A000F320FF /* WebServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F808B82656F1A000F320FF /* WebServiceManager.swift */; };
+		F9F808C32656F1A000F320FF /* WebServiceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F808B92656F1A000F320FF /* WebServiceHelper.swift */; };
+		F9F808C42656F1A000F320FF /* RDTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F808BB2656F1A000F320FF /* RDTextView.swift */; };
+		F9F808C52656F1A000F320FF /* RevealViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F808BD2656F1A000F320FF /* RevealViewController.swift */; };
+		F9F808C62656F1A000F320FF /* SWRevealViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F808BF2656F1A000F320FF /* SWRevealViewController+Extensions.swift */; };
+		F9F808C72656F1A000F320FF /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9F808C02656F1A000F320FF /* SWRevealViewController.m */; };
+		F9F808D42656F1EF00F320FF /* LocationSearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F808CA2656F1EF00F320FF /* LocationSearchResultsViewController.swift */; };
+		F9F808D52656F1EF00F320FF /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F808CB2656F1EF00F320FF /* Location.swift */; };
+		F9F808D62656F1EF00F320FF /* LocationPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F808CC2656F1EF00F320FF /* LocationPickerViewController.swift */; };
+		F9F808D72656F1EF00F320FF /* SearchHistoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F808CD2656F1EF00F320FF /* SearchHistoryManager.swift */; };
+		F9F808D82656F1EF00F320FF /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F808CE2656F1EF00F320FF /* AlertViewController.swift */; };
+		F9F808D92656F1EF00F320FF /* MessageConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F808CF2656F1EF00F320FF /* MessageConstant.swift */; };
+		F9F808DA2656F1EF00F320FF /* ValidationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F808D02656F1EF00F320FF /* ValidationManager.swift */; };
+		F9F808DB2656F1EF00F320FF /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F808D12656F1EF00F320FF /* Extensions.swift */; };
+		F9F808DC2656F1EF00F320FF /* CustomUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F808D32656F1EF00F320FF /* CustomUIView.swift */; };
+		F9F808DF2656F20F00F320FF /* LocationPicker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F9F808DD2656F20F00F320FF /* LocationPicker.storyboard */; };
+		F9F808E32656F26400F320FF /* UserDefaultExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F808E12656F26400F320FF /* UserDefaultExtension.swift */; };
+		F9F808E42656F26400F320FF /* AppSharedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F808E22656F26400F320FF /* AppSharedData.swift */; };
+		F9F808EE2656F46600F320FF /* SignUpModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F808E92656F46600F320FF /* SignUpModel.swift */; };
+		F9F808EF2656F46600F320FF /* CategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F808EA2656F46600F320FF /* CategoryModel.swift */; };
+		F9F808F02656F46600F320FF /* ServiceImagesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F808EB2656F46600F320FF /* ServiceImagesModel.swift */; };
+		F9F808F12656F46600F320FF /* DetailsSubCategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F808EC2656F46600F320FF /* DetailsSubCategoryModel.swift */; };
+		F9F808F22656F46600F320FF /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F808ED2656F46600F320FF /* UserModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +51,32 @@
 		F9F808AA2656CD8C00F320FF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F9F808AD2656CD8C00F320FF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F9F808AF2656CD8C00F320FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F9F808B82656F1A000F320FF /* WebServiceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebServiceManager.swift; sourceTree = "<group>"; };
+		F9F808B92656F1A000F320FF /* WebServiceHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebServiceHelper.swift; sourceTree = "<group>"; };
+		F9F808BB2656F1A000F320FF /* RDTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RDTextView.swift; sourceTree = "<group>"; };
+		F9F808BD2656F1A000F320FF /* RevealViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RevealViewController.swift; sourceTree = "<group>"; };
+		F9F808BE2656F1A000F320FF /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
+		F9F808BF2656F1A000F320FF /* SWRevealViewController+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SWRevealViewController+Extensions.swift"; sourceTree = "<group>"; };
+		F9F808C02656F1A000F320FF /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
+		F9F808C12656F1A000F320FF /* FillNow-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FillNow-Bridging-Header.h"; sourceTree = "<group>"; };
+		F9F808CA2656F1EF00F320FF /* LocationSearchResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSearchResultsViewController.swift; sourceTree = "<group>"; };
+		F9F808CB2656F1EF00F320FF /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		F9F808CC2656F1EF00F320FF /* LocationPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationPickerViewController.swift; sourceTree = "<group>"; };
+		F9F808CD2656F1EF00F320FF /* SearchHistoryManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchHistoryManager.swift; sourceTree = "<group>"; };
+		F9F808CE2656F1EF00F320FF /* AlertViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
+		F9F808CF2656F1EF00F320FF /* MessageConstant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageConstant.swift; sourceTree = "<group>"; };
+		F9F808D02656F1EF00F320FF /* ValidationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidationManager.swift; sourceTree = "<group>"; };
+		F9F808D12656F1EF00F320FF /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		F9F808D32656F1EF00F320FF /* CustomUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomUIView.swift; sourceTree = "<group>"; };
+		F9F808DE2656F20F00F320FF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LocationPicker.storyboard; sourceTree = "<group>"; };
+		F9F808E12656F26400F320FF /* UserDefaultExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultExtension.swift; sourceTree = "<group>"; };
+		F9F808E22656F26400F320FF /* AppSharedData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSharedData.swift; sourceTree = "<group>"; };
+		F9F808E72656F36100F320FF /* BridgingHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
+		F9F808E92656F46600F320FF /* SignUpModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpModel.swift; sourceTree = "<group>"; };
+		F9F808EA2656F46600F320FF /* CategoryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryModel.swift; sourceTree = "<group>"; };
+		F9F808EB2656F46600F320FF /* ServiceImagesModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceImagesModel.swift; sourceTree = "<group>"; };
+		F9F808EC2656F46600F320FF /* DetailsSubCategoryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsSubCategoryModel.swift; sourceTree = "<group>"; };
+		F9F808ED2656F46600F320FF /* UserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,7 +105,6 @@
 				2262E74C98E4C3C6487D1989 /* Pods-Paing.debug.xcconfig */,
 				C80448757C3B46ED0A908570 /* Pods-Paing.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -81,15 +129,129 @@
 		F9F808A02656CD8A00F320FF /* Paing */ = {
 			isa = PBXGroup;
 			children = (
+				F9F808E52656F2DE00F320FF /* BridgeHeader */,
+				F9F808E02656F26400F320FF /* AppSharedClass */,
+				F9F808C82656F1EF00F320FF /* Extensions */,
+				F9F808B62656F1A000F320FF /* Resorces */,
+				F9F808B52656F17200F320FF /* Classes */,
 				F9F808A12656CD8A00F320FF /* AppDelegate.swift */,
 				F9F808A32656CD8A00F320FF /* SceneDelegate.swift */,
 				F9F808A52656CD8A00F320FF /* ViewController.swift */,
 				F9F808A72656CD8A00F320FF /* Main.storyboard */,
+				F9F808DD2656F20F00F320FF /* LocationPicker.storyboard */,
 				F9F808AA2656CD8C00F320FF /* Assets.xcassets */,
 				F9F808AC2656CD8C00F320FF /* LaunchScreen.storyboard */,
 				F9F808AF2656CD8C00F320FF /* Info.plist */,
 			);
 			path = Paing;
+			sourceTree = "<group>";
+		};
+		F9F808B52656F17200F320FF /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				F9F808E82656F46600F320FF /* ModelClass */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		F9F808B62656F1A000F320FF /* Resorces */ = {
+			isa = PBXGroup;
+			children = (
+				F9F808B72656F1A000F320FF /* WebServiceManager */,
+				F9F808BA2656F1A000F320FF /* RDTextView */,
+				F9F808BC2656F1A000F320FF /* SWRevealController */,
+			);
+			path = Resorces;
+			sourceTree = "<group>";
+		};
+		F9F808B72656F1A000F320FF /* WebServiceManager */ = {
+			isa = PBXGroup;
+			children = (
+				F9F808B82656F1A000F320FF /* WebServiceManager.swift */,
+				F9F808B92656F1A000F320FF /* WebServiceHelper.swift */,
+			);
+			path = WebServiceManager;
+			sourceTree = "<group>";
+		};
+		F9F808BA2656F1A000F320FF /* RDTextView */ = {
+			isa = PBXGroup;
+			children = (
+				F9F808BB2656F1A000F320FF /* RDTextView.swift */,
+			);
+			path = RDTextView;
+			sourceTree = "<group>";
+		};
+		F9F808BC2656F1A000F320FF /* SWRevealController */ = {
+			isa = PBXGroup;
+			children = (
+				F9F808BD2656F1A000F320FF /* RevealViewController.swift */,
+				F9F808BE2656F1A000F320FF /* SWRevealViewController.h */,
+				F9F808BF2656F1A000F320FF /* SWRevealViewController+Extensions.swift */,
+				F9F808C02656F1A000F320FF /* SWRevealViewController.m */,
+				F9F808C12656F1A000F320FF /* FillNow-Bridging-Header.h */,
+			);
+			path = SWRevealController;
+			sourceTree = "<group>";
+		};
+		F9F808C82656F1EF00F320FF /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				F9F808C92656F1EF00F320FF /* LocationPicker */,
+				F9F808CE2656F1EF00F320FF /* AlertViewController.swift */,
+				F9F808CF2656F1EF00F320FF /* MessageConstant.swift */,
+				F9F808D02656F1EF00F320FF /* ValidationManager.swift */,
+				F9F808D12656F1EF00F320FF /* Extensions.swift */,
+				F9F808D22656F1EF00F320FF /* IBDesignableClassesView */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		F9F808C92656F1EF00F320FF /* LocationPicker */ = {
+			isa = PBXGroup;
+			children = (
+				F9F808CA2656F1EF00F320FF /* LocationSearchResultsViewController.swift */,
+				F9F808CB2656F1EF00F320FF /* Location.swift */,
+				F9F808CC2656F1EF00F320FF /* LocationPickerViewController.swift */,
+				F9F808CD2656F1EF00F320FF /* SearchHistoryManager.swift */,
+			);
+			path = LocationPicker;
+			sourceTree = "<group>";
+		};
+		F9F808D22656F1EF00F320FF /* IBDesignableClassesView */ = {
+			isa = PBXGroup;
+			children = (
+				F9F808D32656F1EF00F320FF /* CustomUIView.swift */,
+			);
+			path = IBDesignableClassesView;
+			sourceTree = "<group>";
+		};
+		F9F808E02656F26400F320FF /* AppSharedClass */ = {
+			isa = PBXGroup;
+			children = (
+				F9F808E12656F26400F320FF /* UserDefaultExtension.swift */,
+				F9F808E22656F26400F320FF /* AppSharedData.swift */,
+			);
+			path = AppSharedClass;
+			sourceTree = "<group>";
+		};
+		F9F808E52656F2DE00F320FF /* BridgeHeader */ = {
+			isa = PBXGroup;
+			children = (
+				F9F808E72656F36100F320FF /* BridgingHeader.h */,
+			);
+			path = BridgeHeader;
+			sourceTree = "<group>";
+		};
+		F9F808E82656F46600F320FF /* ModelClass */ = {
+			isa = PBXGroup;
+			children = (
+				F9F808E92656F46600F320FF /* SignUpModel.swift */,
+				F9F808EA2656F46600F320FF /* CategoryModel.swift */,
+				F9F808EB2656F46600F320FF /* ServiceImagesModel.swift */,
+				F9F808EC2656F46600F320FF /* DetailsSubCategoryModel.swift */,
+				F9F808ED2656F46600F320FF /* UserModel.swift */,
+			);
+			path = ModelClass;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -103,6 +265,8 @@
 				F9F8089A2656CD8A00F320FF /* Sources */,
 				F9F8089B2656CD8A00F320FF /* Frameworks */,
 				F9F8089C2656CD8A00F320FF /* Resources */,
+				7E52578AB54D13BB2EF4D9C5 /* [CP] Embed Pods Frameworks */,
+				0C8BD2448154C6A7C4A7E714 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -153,12 +317,47 @@
 				F9F808AE2656CD8C00F320FF /* LaunchScreen.storyboard in Resources */,
 				F9F808AB2656CD8C00F320FF /* Assets.xcassets in Resources */,
 				F9F808A92656CD8A00F320FF /* Main.storyboard in Resources */,
+				F9F808DF2656F20F00F320FF /* LocationPicker.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		0C8BD2448154C6A7C4A7E714 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Paing/Pods-Paing-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Paing/Pods-Paing-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Paing/Pods-Paing-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7E52578AB54D13BB2EF4D9C5 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Paing/Pods-Paing-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Paing/Pods-Paing-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Paing/Pods-Paing-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		E5BEA981A52BDA6F57EBCC2D /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -188,9 +387,31 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F9F808D42656F1EF00F320FF /* LocationSearchResultsViewController.swift in Sources */,
+				F9F808D82656F1EF00F320FF /* AlertViewController.swift in Sources */,
+				F9F808D52656F1EF00F320FF /* Location.swift in Sources */,
+				F9F808C22656F1A000F320FF /* WebServiceManager.swift in Sources */,
+				F9F808C42656F1A000F320FF /* RDTextView.swift in Sources */,
+				F9F808D72656F1EF00F320FF /* SearchHistoryManager.swift in Sources */,
+				F9F808C32656F1A000F320FF /* WebServiceHelper.swift in Sources */,
+				F9F808F12656F46600F320FF /* DetailsSubCategoryModel.swift in Sources */,
+				F9F808F22656F46600F320FF /* UserModel.swift in Sources */,
+				F9F808F02656F46600F320FF /* ServiceImagesModel.swift in Sources */,
+				F9F808EF2656F46600F320FF /* CategoryModel.swift in Sources */,
+				F9F808DC2656F1EF00F320FF /* CustomUIView.swift in Sources */,
 				F9F808A62656CD8A00F320FF /* ViewController.swift in Sources */,
+				F9F808DA2656F1EF00F320FF /* ValidationManager.swift in Sources */,
+				F9F808E32656F26400F320FF /* UserDefaultExtension.swift in Sources */,
 				F9F808A22656CD8A00F320FF /* AppDelegate.swift in Sources */,
+				F9F808D62656F1EF00F320FF /* LocationPickerViewController.swift in Sources */,
+				F9F808C72656F1A000F320FF /* SWRevealViewController.m in Sources */,
+				F9F808C62656F1A000F320FF /* SWRevealViewController+Extensions.swift in Sources */,
+				F9F808EE2656F46600F320FF /* SignUpModel.swift in Sources */,
 				F9F808A42656CD8A00F320FF /* SceneDelegate.swift in Sources */,
+				F9F808E42656F26400F320FF /* AppSharedData.swift in Sources */,
+				F9F808DB2656F1EF00F320FF /* Extensions.swift in Sources */,
+				F9F808D92656F1EF00F320FF /* MessageConstant.swift in Sources */,
+				F9F808C52656F1A000F320FF /* RevealViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -211,6 +432,14 @@
 				F9F808AD2656CD8C00F320FF /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		F9F808DD2656F20F00F320FF /* LocationPicker.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F9F808DE2656F20F00F320FF /* Base */,
+			);
+			name = LocationPicker.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -346,6 +575,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ios.Paing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/rohit/Rohit's WorkSpace/Freelance/Paing/Paing/BridgeHeader/BridgingHeader.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -365,6 +595,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ios.Paing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/rohit/Rohit's WorkSpace/Freelance/Paing/Paing/BridgeHeader/BridgingHeader.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
