@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		734E019F70F6ACEA4AE1BBE5 /* Pods_Paing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA208F8E3138D5B243E7AD6E /* Pods_Paing.framework */; };
+		F950BC2B2658D34000D844AD /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F950BC2A2658D34000D844AD /* HomeViewController.swift */; };
+		F950BC2D2658D46D00D844AD /* OverlayViewCard.xib in Resources */ = {isa = PBXBuildFile; fileRef = F950BC2C2658D46D00D844AD /* OverlayViewCard.xib */; };
+		F950BC302658D5C500D844AD /* OverLayCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F950BC2F2658D5C500D844AD /* OverLayCard.swift */; };
+		F950BC332658DC2600D844AD /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F950BC322658DC2600D844AD /* HomeModel.swift */; };
+		F99DF1FB2658F4A4006734BF /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99DF1FA2658F4A4006734BF /* DetailViewController.swift */; };
 		F9F808A22656CD8A00F320FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F808A12656CD8A00F320FF /* AppDelegate.swift */; };
 		F9F808A42656CD8A00F320FF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F808A32656CD8A00F320FF /* SceneDelegate.swift */; };
 		F9F808A62656CD8A00F320FF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F808A52656CD8A00F320FF /* ViewController.swift */; };
@@ -43,6 +48,11 @@
 		2262E74C98E4C3C6487D1989 /* Pods-Paing.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Paing.debug.xcconfig"; path = "Target Support Files/Pods-Paing/Pods-Paing.debug.xcconfig"; sourceTree = "<group>"; };
 		C80448757C3B46ED0A908570 /* Pods-Paing.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Paing.release.xcconfig"; path = "Target Support Files/Pods-Paing/Pods-Paing.release.xcconfig"; sourceTree = "<group>"; };
 		CA208F8E3138D5B243E7AD6E /* Pods_Paing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Paing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F950BC2A2658D34000D844AD /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		F950BC2C2658D46D00D844AD /* OverlayViewCard.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OverlayViewCard.xib; sourceTree = "<group>"; };
+		F950BC2F2658D5C500D844AD /* OverLayCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverLayCard.swift; sourceTree = "<group>"; };
+		F950BC322658DC2600D844AD /* HomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
+		F99DF1FA2658F4A4006734BF /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		F9F8089E2656CD8A00F320FF /* Paing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Paing.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9F808A12656CD8A00F320FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F9F808A32656CD8A00F320FF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -108,6 +118,22 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		F950BC2E2658D59F00D844AD /* OverLay */ = {
+			isa = PBXGroup;
+			children = (
+				F950BC2F2658D5C500D844AD /* OverLayCard.swift */,
+			);
+			path = OverLay;
+			sourceTree = "<group>";
+		};
+		F950BC312658DC0B00D844AD /* ModelClasses */ = {
+			isa = PBXGroup;
+			children = (
+				F950BC322658DC2600D844AD /* HomeModel.swift */,
+			);
+			path = ModelClasses;
+			sourceTree = "<group>";
+		};
 		F9F808952656CD8A00F320FF = {
 			isa = PBXGroup;
 			children = (
@@ -142,6 +168,7 @@
 				F9F808AA2656CD8C00F320FF /* Assets.xcassets */,
 				F9F808AC2656CD8C00F320FF /* LaunchScreen.storyboard */,
 				F9F808AF2656CD8C00F320FF /* Info.plist */,
+				F950BC2C2658D46D00D844AD /* OverlayViewCard.xib */,
 			);
 			path = Paing;
 			sourceTree = "<group>";
@@ -149,7 +176,11 @@
 		F9F808B52656F17200F320FF /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				F950BC312658DC0B00D844AD /* ModelClasses */,
+				F950BC2E2658D59F00D844AD /* OverLay */,
 				F9F808E82656F46600F320FF /* ModelClass */,
+				F950BC2A2658D34000D844AD /* HomeViewController.swift */,
+				F99DF1FA2658F4A4006734BF /* DetailViewController.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -317,6 +348,7 @@
 				F9F808AE2656CD8C00F320FF /* LaunchScreen.storyboard in Resources */,
 				F9F808AB2656CD8C00F320FF /* Assets.xcassets in Resources */,
 				F9F808A92656CD8A00F320FF /* Main.storyboard in Resources */,
+				F950BC2D2658D46D00D844AD /* OverlayViewCard.xib in Resources */,
 				F9F808DF2656F20F00F320FF /* LocationPicker.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -396,8 +428,10 @@
 				F9F808C32656F1A000F320FF /* WebServiceHelper.swift in Sources */,
 				F9F808F12656F46600F320FF /* DetailsSubCategoryModel.swift in Sources */,
 				F9F808F22656F46600F320FF /* UserModel.swift in Sources */,
+				F99DF1FB2658F4A4006734BF /* DetailViewController.swift in Sources */,
 				F9F808F02656F46600F320FF /* ServiceImagesModel.swift in Sources */,
 				F9F808EF2656F46600F320FF /* CategoryModel.swift in Sources */,
+				F950BC2B2658D34000D844AD /* HomeViewController.swift in Sources */,
 				F9F808DC2656F1EF00F320FF /* CustomUIView.swift in Sources */,
 				F9F808A62656CD8A00F320FF /* ViewController.swift in Sources */,
 				F9F808DA2656F1EF00F320FF /* ValidationManager.swift in Sources */,
@@ -408,7 +442,9 @@
 				F9F808C62656F1A000F320FF /* SWRevealViewController+Extensions.swift in Sources */,
 				F9F808EE2656F46600F320FF /* SignUpModel.swift in Sources */,
 				F9F808A42656CD8A00F320FF /* SceneDelegate.swift in Sources */,
+				F950BC302658D5C500D844AD /* OverLayCard.swift in Sources */,
 				F9F808E42656F26400F320FF /* AppSharedData.swift in Sources */,
+				F950BC332658DC2600D844AD /* HomeModel.swift in Sources */,
 				F9F808DB2656F1EF00F320FF /* Extensions.swift in Sources */,
 				F9F808D92656F1EF00F320FF /* MessageConstant.swift in Sources */,
 				F9F808C52656F1A000F320FF /* RevealViewController.swift in Sources */,

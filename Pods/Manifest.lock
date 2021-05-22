@@ -80,11 +80,14 @@ PODS:
     - GTMSessionFetcher/Core (= 1.4.0)
   - iOSDropDown (0.3.4)
   - IQKeyboardManagerSwift (6.5.6)
+  - Koloda (5.0.1):
+    - pop (~> 1.0)
   - nanopb (1.30906.0):
     - nanopb/decode (= 1.30906.0)
     - nanopb/encode (= 1.30906.0)
   - nanopb/decode (1.30906.0)
   - nanopb/encode (1.30906.0)
+  - pop (1.0.12)
   - PromisesObjC (1.2.12)
   - Protobuf (3.17.0)
   - SDWebImage/Core (5.8.4)
@@ -99,6 +102,7 @@ DEPENDENCIES:
   - GoogleSignIn
   - iOSDropDown
   - IQKeyboardManagerSwift
+  - Koloda
   - SDWebImage/MapKit
   - SVProgressHUD
 
@@ -121,7 +125,9 @@ SPEC REPOS:
     - GTMSessionFetcher
     - iOSDropDown
     - IQKeyboardManagerSwift
+    - Koloda
     - nanopb
+    - pop
     - PromisesObjC
     - Protobuf
     - SDWebImage
@@ -145,12 +151,14 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 6f5c8abbab8a9bce4bb3f057e317728ec6182b10
   iOSDropDown: c10a761f9a00c3f1cc9d3bce43ae504628e2f692
   IQKeyboardManagerSwift: c7df9d2deb356c04522f5c4b7b6e4ce4d8ed94fe
+  Koloda: d07b9199a383abc5898b62aa945a599f5e7c0c4b
   nanopb: 59317e09cf1f1a0af72f12af412d54edf52603fc
+  pop: d582054913807fd11fd50bfe6a539d91c7e1a55a
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
   Protobuf: 7327d4444215b5f18e560a97f879ff5503c4581c
   SDWebImage: cf6922231e95550934da2ada0f20f2becf2ceba9
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
-PODFILE CHECKSUM: 1915a8a9ed1f6958e562e0134ba6117458007adf
+PODFILE CHECKSUM: a99c926a812b3314e90595c2cd7d1d3ea67bd064
 
 COCOAPODS: 1.10.1

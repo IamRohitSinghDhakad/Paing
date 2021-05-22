@@ -14,5 +14,6 @@ target 'Paing' do
   pod 'iOSDropDown'
   pod 'FBSDKLoginKit'
   pod 'GoogleSignIn'
+  pod "Koloda"
 
 end

@@ -27,7 +27,10 @@ class ViewController: UIViewController {
 
 
     }
-
+    @IBAction func btnNext(_ sender: Any) {
+        self.pushVc(viewConterlerId: "HomeViewController")
+    }
+    
     func bottom()  {
 
         UIView.animate(withDuration: 3.0, delay: 0.2, options: [.curveEaseInOut], animations: {
