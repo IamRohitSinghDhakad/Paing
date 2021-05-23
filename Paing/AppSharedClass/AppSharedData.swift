@@ -28,7 +28,14 @@ class AppSharedData: NSObject {
     //MARK:- Variables
     var UserDetail = userDetailModel(dict: [:])
     
-    
+    open var isLoggedIn: Bool {
+        get {
+            return UserDefaults.standard.bool(forKey: "loggedIn")
+        }
+        set(userLoggedIn) {
+            UserDefaults.standard.set(userLoggedIn, forKey: "loggedIn")
+        }
+    }
     
     // MARK: - saveUpdateUserInfoFromAppshareData ---------------------
     func SaveUpdateUserInfoFromAppshareData(userDetail:[String:Any])
@@ -55,4 +62,15 @@ class AppSharedData: NSObject {
         }
         return mutableDict
     }
+    
+    //MARK: - Sign Out
+    
+    func signOut() {
+        self.isLoggedIn = false
+        let vc = (UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginViewController") as? LoginViewController)!
+        let navController = UINavigationController(rootViewController: vc)
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.window?.rootViewController = navController
+    }
+    
 }

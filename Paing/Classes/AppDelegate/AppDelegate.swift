@@ -35,6 +35,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         (UIApplication.shared.delegate as? AppDelegate)?.self.window = window
         // Override point for customization after application launch.
+        
+        
+        self.settingRootController()
+        
         return true
     }
 
@@ -65,7 +69,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
 //Manage AutoLogin
-extension AppDelegate{
+extension AppDelegate {
     
     func LoginNavigation(){
         let sb = UIStoryboard(name: "Main", bundle: Bundle.main)
@@ -79,6 +83,13 @@ extension AppDelegate{
         let navigationController = storyboard.instantiateViewController(withIdentifier: "Reveal")
         self.window?.rootViewController = navigationController
         self.window?.makeKeyAndVisible()
+    }
+    
+    func settingRootController() {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ViewController") as! ViewController
+        //        let navController = UINavigationController(rootViewController: setViewController)
+        appDelegate.window?.rootViewController = vc
     }
     
 }
