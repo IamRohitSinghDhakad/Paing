@@ -13,6 +13,8 @@
 		F950BC302658D5C500D844AD /* OverLayCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F950BC2F2658D5C500D844AD /* OverLayCard.swift */; };
 		F950BC332658DC2600D844AD /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F950BC322658DC2600D844AD /* HomeModel.swift */; };
 		F99DF1FB2658F4A4006734BF /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99DF1FA2658F4A4006734BF /* DetailViewController.swift */; };
+		F99DF1FE26594F8E006734BF /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99DF1FD26594F8E006734BF /* UserProfileViewController.swift */; };
+		F99DF20026598FFB006734BF /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99DF1FF26598FFB006734BF /* EditProfileViewController.swift */; };
 		F9F808A22656CD8A00F320FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F808A12656CD8A00F320FF /* AppDelegate.swift */; };
 		F9F808A42656CD8A00F320FF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F808A32656CD8A00F320FF /* SceneDelegate.swift */; };
 		F9F808A62656CD8A00F320FF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F808A52656CD8A00F320FF /* ViewController.swift */; };
@@ -53,6 +55,8 @@
 		F950BC2F2658D5C500D844AD /* OverLayCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverLayCard.swift; sourceTree = "<group>"; };
 		F950BC322658DC2600D844AD /* HomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
 		F99DF1FA2658F4A4006734BF /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		F99DF1FD26594F8E006734BF /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
+		F99DF1FF26598FFB006734BF /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		F9F8089E2656CD8A00F320FF /* Paing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Paing.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9F808A12656CD8A00F320FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F9F808A32656CD8A00F320FF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -181,6 +185,8 @@
 				F9F808E82656F46600F320FF /* ModelClass */,
 				F950BC2A2658D34000D844AD /* HomeViewController.swift */,
 				F99DF1FA2658F4A4006734BF /* DetailViewController.swift */,
+				F99DF1FD26594F8E006734BF /* UserProfileViewController.swift */,
+				F99DF1FF26598FFB006734BF /* EditProfileViewController.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -420,8 +426,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				F9F808D42656F1EF00F320FF /* LocationSearchResultsViewController.swift in Sources */,
+				F99DF1FE26594F8E006734BF /* UserProfileViewController.swift in Sources */,
 				F9F808D82656F1EF00F320FF /* AlertViewController.swift in Sources */,
 				F9F808D52656F1EF00F320FF /* Location.swift in Sources */,
+				F99DF20026598FFB006734BF /* EditProfileViewController.swift in Sources */,
 				F9F808C22656F1A000F320FF /* WebServiceManager.swift in Sources */,
 				F9F808C42656F1A000F320FF /* RDTextView.swift in Sources */,
 				F9F808D72656F1EF00F320FF /* SearchHistoryManager.swift in Sources */,

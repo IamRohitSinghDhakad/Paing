@@ -28,7 +28,7 @@ class ViewController: UIViewController {
 
     }
     @IBAction func btnNext(_ sender: Any) {
-        self.pushVc(viewConterlerId: "HomeViewController")
+        self.pushVc(viewConterlerId: "UserProfileViewController")
     }
     
     func bottom()  {
