@@ -9,8 +9,8 @@ import Foundation
 import UIKit
 
 
-
-let BASE_URL = "http://ambitious.in.net/Shubham/tech/index.php/api/"
+//http://ambitious.in.net/Shubham/paing/index.php/api/get_profile?user_id=2
+let BASE_URL = "http://ambitious.in.net/Shubham/paing/index.php/api/"
 
 struct WsUrl{
     
