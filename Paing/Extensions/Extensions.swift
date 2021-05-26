@@ -335,6 +335,18 @@ extension String {
     }
 }
 
+extension UIViewController {
+
+    var mainStoryboard: UIStoryboard {
+        return UIStoryboard(name: "Main", bundle: nil)
+    }
+
+    var authStoryboard: UIStoryboard {
+        return UIStoryboard(name: "Auth", bundle: nil)
+    }
+
+}
+
 
 //Animk,ations
 extension UIView {

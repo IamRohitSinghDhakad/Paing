@@ -24,6 +24,10 @@
 		8C5E2D49265804FC004A7D92 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5E2D48265804FC004A7D92 /* NotificationViewController.swift */; };
 		8C5E2D4C26580507004A7D92 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5E2D4B26580507004A7D92 /* ChatViewController.swift */; };
 		8C5E2D4F26580513004A7D92 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5E2D4E26580513004A7D92 /* ProfileViewController.swift */; };
+		8C74A9F2265A6E5200FC9F9E /* Auth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C74A9F1265A6E5200FC9F9E /* Auth.storyboard */; };
+		8C74AA13265A7B7500FC9F9E /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C74AA12265A7B7500FC9F9E /* WelcomeViewController.swift */; };
+		8C74AA18265A913300FC9F9E /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C74AA17265A913300FC9F9E /* RegistrationViewController.swift */; };
+		8C74AA1E265AB13A00FC9F9E /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C74AA1D265AB13A00FC9F9E /* ForgotPasswordViewController.swift */; };
 		8C897CF6265817C0009B0677 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C897CF5265817C0009B0677 /* LoginViewController.swift */; };
 		8C897CFD265818BD009B0677 /* MembershipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C897CFC265818BD009B0677 /* MembershipViewController.swift */; };
 		8C897D01265818C6009B0677 /* BlockedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C897D00265818C6009B0677 /* BlockedViewController.swift */; };
@@ -91,6 +95,10 @@
 		8C5E2D48265804FC004A7D92 /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		8C5E2D4B26580507004A7D92 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		8C5E2D4E26580513004A7D92 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		8C74A9F1265A6E5200FC9F9E /* Auth.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Auth.storyboard; sourceTree = "<group>"; };
+		8C74AA12265A7B7500FC9F9E /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
+		8C74AA17265A913300FC9F9E /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
+		8C74AA1D265AB13A00FC9F9E /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		8C897CF5265817C0009B0677 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		8C897CFC265818BD009B0677 /* MembershipViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MembershipViewController.swift; sourceTree = "<group>"; };
 		8C897D00265818C6009B0677 /* BlockedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockedViewController.swift; sourceTree = "<group>"; };
@@ -168,9 +176,9 @@
 		8C5E2D162657F662004A7D92 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				8C897CF226581790009B0677 /* Authentication */,
 				8C897D0926582CDA009B0677 /* SettingsOption */,
 				8C897CF32658179C009B0677 /* PaingView */,
-				8C897CF226581790009B0677 /* Authentication */,
 				8C5E2D182657F690004A7D92 /* LoaderViewController */,
 			);
 			path = Controllers;
@@ -297,6 +305,7 @@
 		8C74A9A0265A5FE800FC9F9E /* Interface */ = {
 			isa = PBXGroup;
 			children = (
+				8C74A9F1265A6E5200FC9F9E /* Auth.storyboard */,
 				F9F808A72656CD8A00F320FF /* Main.storyboard */,
 				F9F808DD2656F20F00F320FF /* LocationPicker.storyboard */,
 				F9F808AC2656CD8C00F320FF /* LaunchScreen.storyboard */,
@@ -304,9 +313,36 @@
 			path = Interface;
 			sourceTree = "<group>";
 		};
+		8C74AA11265A7AD100FC9F9E /* Welcome */ = {
+			isa = PBXGroup;
+			children = (
+				8C74AA12265A7B7500FC9F9E /* WelcomeViewController.swift */,
+			);
+			path = Welcome;
+			sourceTree = "<group>";
+		};
+		8C74AA16265A912100FC9F9E /* Registration */ = {
+			isa = PBXGroup;
+			children = (
+				8C74AA17265A913300FC9F9E /* RegistrationViewController.swift */,
+			);
+			path = Registration;
+			sourceTree = "<group>";
+		};
+		8C74AA1C265AB06100FC9F9E /* ForgotPassword */ = {
+			isa = PBXGroup;
+			children = (
+				8C74AA1D265AB13A00FC9F9E /* ForgotPasswordViewController.swift */,
+			);
+			path = ForgotPassword;
+			sourceTree = "<group>";
+		};
 		8C897CF226581790009B0677 /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
+				8C74AA11265A7AD100FC9F9E /* Welcome */,
+				8C74AA1C265AB06100FC9F9E /* ForgotPassword */,
+				8C74AA16265A912100FC9F9E /* Registration */,
 				8C897CF4265817B2009B0677 /* Login */,
 			);
 			path = Authentication;
@@ -490,8 +526,8 @@
 		F9F808B52656F17200F320FF /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				8C74A99D265A5FD200FC9F9E /* CustomSplash */,
 				8C74A99C265A5FC900FC9F9E /* AppDelegate */,
+				8C74A99D265A5FD200FC9F9E /* CustomSplash */,
 				F950BC312658DC0B00D844AD /* ModelClasses */,
 				8C5E2D162657F662004A7D92 /* Controllers */,
 				F9F808E82656F46600F320FF /* ModelClass */,
@@ -662,6 +698,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C74A9F2265A6E5200FC9F9E /* Auth.storyboard in Resources */,
 				F9F808AE2656CD8C00F320FF /* LaunchScreen.storyboard in Resources */,
 				F9F808AB2656CD8C00F320FF /* Assets.xcassets in Resources */,
 				F9F808A92656CD8A00F320FF /* Main.storyboard in Resources */,
@@ -744,6 +781,7 @@
 				F9F808C22656F1A000F320FF /* WebServiceManager.swift in Sources */,
 				8C5E2D302657F827004A7D92 /* TransitionContext.swift in Sources */,
 				F9F808C42656F1A000F320FF /* RDTextView.swift in Sources */,
+				8C74AA1E265AB13A00FC9F9E /* ForgotPasswordViewController.swift in Sources */,
 				F9F808D72656F1EF00F320FF /* SearchHistoryManager.swift in Sources */,
 				8C897D04265818D1009B0677 /* SettingsViewController.swift in Sources */,
 				F9F808C32656F1A000F320FF /* WebServiceHelper.swift in Sources */,
@@ -751,6 +789,7 @@
 				F9F808F12656F46600F320FF /* DetailsSubCategoryModel.swift in Sources */,
 				F9F808F22656F46600F320FF /* UserModel.swift in Sources */,
 				F99DF1FB2658F4A4006734BF /* DetailViewController.swift in Sources */,
+				8C74AA18265A913300FC9F9E /* RegistrationViewController.swift in Sources */,
 				F9F808F02656F46600F320FF /* ServiceImagesModel.swift in Sources */,
 				8C897CFD265818BD009B0677 /* MembershipViewController.swift in Sources */,
 				F9F808EF2656F46600F320FF /* CategoryModel.swift in Sources */,
@@ -766,6 +805,7 @@
 				8C897D01265818C6009B0677 /* BlockedViewController.swift in Sources */,
 				F9927611265A6C4800E8492A /* EditProfileViewController.swift in Sources */,
 				F9F808DA2656F1EF00F320FF /* ValidationManager.swift in Sources */,
+				8C74AA13265A7B7500FC9F9E /* WelcomeViewController.swift in Sources */,
 				8C5E2D342657F827004A7D92 /* SideMenuController.swift in Sources */,
 				8C5E2D2F2657F827004A7D92 /* Delegate.swift in Sources */,
 				8C897D1026582DDC009B0677 /* SettingsTableViewCell.swift in Sources */,

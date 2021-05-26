@@ -87,7 +87,7 @@ extension AppDelegate {
     
     func settingRootController() {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ViewController") as! ViewController
+        let vc = UIStoryboard(name: "Auth", bundle: nil).instantiateViewController(withIdentifier: "ViewController") as! ViewController
         //        let navController = UINavigationController(rootViewController: setViewController)
         appDelegate.window?.rootViewController = vc
     }

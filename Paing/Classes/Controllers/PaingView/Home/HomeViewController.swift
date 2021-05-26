@@ -12,24 +12,25 @@ import SDWebImage
 private var numberOfCards: Int = 5
 
 class HomeViewController: UIViewController {
-
+    
     @IBOutlet var swipeView: KolodaView!
     @IBOutlet var subVwFilter: UIView!
     
     var arrUsers = [HomeModel]()
     var dictSampleData = [String:Any]()
-
+    
+    //MARK: - Override Methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         self.subVwFilter.isHidden = true
         swipeView.dataSource = self
         swipeView.delegate = self
         
-//        for dataa in dictSampleData{
-//            let obj = HomeModel.init(dict: dataa)
-//        }
+        //        for dataa in dictSampleData{
+        //            let obj = HomeModel.init(dict: dataa)
+        //        }
         self.call_GetUsers()
         self.modalTransitionStyle = UIModalTransitionStyle.flipHorizontal
         // Do any additional setup after loading the view.
@@ -44,11 +45,11 @@ class HomeViewController: UIViewController {
         }
         self.sideMenuController?.revealMenu()
     }
-   
+    
     @IBAction func actionOpenFilterView(_ sender: Any) {
         
-    //( self.subVwFilter.isHidden) : self.subVwFilter.fadeIn() ? self.subVwFilter.fadeOut()
-
+        //( self.subVwFilter.isHidden) : self.subVwFilter.fadeIn() ? self.subVwFilter.fadeOut()
+        
         if self.subVwFilter.isHidden{
             self.subVwFilter.isHidden = false
             self.subVwFilter.fadeIn()
@@ -57,10 +58,10 @@ class HomeViewController: UIViewController {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 self.subVwFilter.isHidden = true
             }
-           
+            
         }
         
-       
+        
     }
 }
 
@@ -74,9 +75,9 @@ extension HomeViewController: KolodaViewDelegate {
     
     func koloda(_ koloda: KolodaView, didSelectCardAt index: Int) {
         pushVc(viewConterlerId: "DetailViewController")
-      //  UIApplication.shared.openURL(URL(string: "https://yalantis.com/")!)
+        //  UIApplication.shared.openURL(URL(string: "https://yalantis.com/")!)
     }
-
+    
 }
 
 
@@ -114,23 +115,23 @@ extension HomeViewController: KolodaViewDataSource {
         let myView = UIView.init()
         return myView
         
-     //   let objCard = self.arrUsers[index]
+        //   let objCard = self.arrUsers[index]
         
-       // print(objCard.strName)
+        // print(objCard.strName)
         
-//        vw.lblName.text = objCard.strName
-//        vw.lblAge.text = objCard.strAge
-//
-//
-//        let profilePic = objCard.strImageUrl
-//        if profilePic != "" {
-//            let url = URL(string: profilePic)
-//            vw.imgVw.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "logo"))
-//        }
+        //        vw.lblName.text = objCard.strName
+        //        vw.lblAge.text = objCard.strAge
+        //
+        //
+        //        let profilePic = objCard.strImageUrl
+        //        if profilePic != "" {
+        //            let url = URL(string: profilePic)
+        //            vw.imgVw.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "logo"))
+        //        }
         
         
         
-       // return UIImageView(image: dataSource[Int(index)])
+        // return UIImageView(image: dataSource[Int(index)])
     }
     
     func koloda(_ koloda: KolodaView, viewForCardOverlayAt index: Int) -> OverlayView? {
@@ -154,7 +155,7 @@ extension HomeViewController{
             objAlert.showAlert(message: "No Internet Connection", title: "Alert", controller: self)
             return
         }
-    
+        
         objWebServiceManager.showIndicator()
         
         let parameter = ["user_id":"1"]as [String:Any]
@@ -180,13 +181,13 @@ extension HomeViewController{
                 objAlert.showAlert(message: message ?? "", title: "Alert", controller: self)
                 
             }
-           
+            
             
         } failure: { (Error) in
             print(Error)
             objWebServiceManager.hideIndicator()
         }
-   }
+    }
     
     
     

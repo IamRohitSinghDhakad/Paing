@@ -44,7 +44,7 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let row = indexPath.row
         if (row == 0) {
-            let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "BasicInformationViewController") as! BasicInformationViewController
+            let vc = self.mainStoryboard.instantiateViewController(withIdentifier: "BasicInformationViewController") as! BasicInformationViewController
 //            let navigationController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SettingNavigation") as! UINavigationController
             self.navigationController?.pushViewController(vc, animated: true)
         }

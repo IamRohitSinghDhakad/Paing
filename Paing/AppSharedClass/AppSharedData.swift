@@ -67,7 +67,7 @@ class AppSharedData: NSObject {
     
     func signOut() {
         self.isLoggedIn = false
-        let vc = (UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginViewController") as? LoginViewController)!
+        let vc = (UIStoryboard(name: "Auth", bundle: nil).instantiateViewController(withIdentifier: "WelcomeViewController") as? WelcomeViewController)!
         let navController = UINavigationController(rootViewController: vc)
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.window?.rootViewController = navController
