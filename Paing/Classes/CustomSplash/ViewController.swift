@@ -11,7 +11,6 @@ class ViewController: UIViewController {
     
     @IBOutlet var imgVwAnimation: UIImageView!
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
 

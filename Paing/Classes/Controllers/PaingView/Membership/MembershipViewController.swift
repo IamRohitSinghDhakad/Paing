@@ -19,6 +19,8 @@ class MembershipViewController: UIViewController {
     
     //MARK: - Action Methods
     @IBAction func actionSideMenu(_ sender: Any) {
+        self.sideMenuController?.revealMenu()
     }
     
+   
 }

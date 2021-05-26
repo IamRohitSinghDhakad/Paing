@@ -21,7 +21,7 @@ struct WsUrl{
     static let url_AddPost = BASE_URL + "add_post"
     static let url_GetPost = BASE_URL + "get_post?"
     static let url_forgotPassword = BASE_URL + "forgot_password"
-    static let url_GetUserList = BASE_URL + "get_user?"
+    static let url_GetUserList = BASE_URL + "get_users"
     static let url_GetUserImage = BASE_URL + "get_user_image"
     static let url_getUserProfile  = BASE_URL + "get_profile"
     static let url_ChangePassword  = BASE_URL + "change_password"

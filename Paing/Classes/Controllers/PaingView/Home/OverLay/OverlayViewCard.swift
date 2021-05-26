@@ -11,11 +11,16 @@ import Koloda
 private let overlayRightImageName = "yesOverlayImage"
 private let overlayLeftImageName = "noOverlayImage"
 
-class OverLayCard: OverlayView {
+class OverlayViewCard: OverlayView {
 
     @IBOutlet var lblAge: UILabel!
     @IBOutlet var lblName: UILabel!
     @IBOutlet var imgVw: UIImageView!
+    
+    class func createMyClassView() -> OverlayViewCard? {
+        let myClassNib = UINib(nibName: "OverlayViewCard", bundle: nil)
+        return myClassNib.instantiate(withOwner: nil, options: nil)[0] as? OverlayViewCard
+    }
     
 //    @IBOutlet lazy var overlayImageView: UIImageView! = {
 //        [unowned self] in

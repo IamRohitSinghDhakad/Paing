@@ -14,6 +14,7 @@ private var numberOfCards: Int = 5
 class HomeViewController: UIViewController {
 
     @IBOutlet var swipeView: KolodaView!
+    @IBOutlet var subVwFilter: UIView!
     
     var arrUsers = [HomeModel]()
     var dictSampleData = [String:Any]()
@@ -22,13 +23,14 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.subVwFilter.isHidden = true
         swipeView.dataSource = self
         swipeView.delegate = self
         
 //        for dataa in dictSampleData{
 //            let obj = HomeModel.init(dict: dataa)
 //        }
-        
+        self.call_GetUsers()
         self.modalTransitionStyle = UIModalTransitionStyle.flipHorizontal
         // Do any additional setup after loading the view.
     }
@@ -36,9 +38,30 @@ class HomeViewController: UIViewController {
     //MARK: - Action Methods
     
     @IBAction func actionSideMenu(_ sender: Any) {
+        self.subVwFilter.fadeOut()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            self.subVwFilter.isHidden = true
+        }
         self.sideMenuController?.revealMenu()
     }
    
+    @IBAction func actionOpenFilterView(_ sender: Any) {
+        
+    //( self.subVwFilter.isHidden) : self.subVwFilter.fadeIn() ? self.subVwFilter.fadeOut()
+
+        if self.subVwFilter.isHidden{
+            self.subVwFilter.isHidden = false
+            self.subVwFilter.fadeIn()
+        }else{
+            self.subVwFilter.fadeOut()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                self.subVwFilter.isHidden = true
+            }
+           
+        }
+        
+       
+    }
 }
 
 // MARK: KolodaViewDelegate
@@ -46,11 +69,7 @@ class HomeViewController: UIViewController {
 extension HomeViewController: KolodaViewDelegate {
     
     func kolodaDidRunOutOfCards(_ koloda: KolodaView) {
-//        let position = swipeView.currentCardIndex
-//        for i in 1...4 {
-//          dataSource.append(UIImage(named: "Card_like_\(i)")!)
-//        }
-//        swipeView.insertCardAtIndexRange(position..<position + 4, animated: true)
+        print("Run out of cards")
     }
     
     func koloda(_ koloda: KolodaView, didSelectCardAt index: Int) {
@@ -74,28 +93,48 @@ extension HomeViewController: KolodaViewDataSource {
     }
     
     func koloda(_ koloda: KolodaView, viewForCardAt index: Int) -> UIView {
-        let cell = koloda.viewForCard(at: index)as? OverLayCard
-        
-        let objCard = self.arrUsers[index]
-        
-        cell?.lblName.text = objCard.strName
-        cell?.lblAge.text = objCard.strAge
-      
-        
-        let profilePic = objCard.strImageUrl
-        if profilePic != "" {
-            let url = URL(string: profilePic)
-            cell?.imgVw.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "logo"))
+        if let overlay = OverlayViewCard.createMyClassView() {
+            print(index)
+            overlay.tag = index
+            
+            if index < self.arrUsers.count {
+                let objCard = self.arrUsers[index]
+                overlay.lblName.text = objCard.strName
+                overlay.lblAge.text = objCard.strAge
+                let profilePic = objCard.strImageUrl
+                if profilePic != "" {
+                    let url = URL(string: profilePic)
+                    overlay.imgVw.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "logo"))
+                }
+            }
+            
+            
+            return overlay
         }
+        let myView = UIView.init()
+        return myView
+        
+     //   let objCard = self.arrUsers[index]
+        
+       // print(objCard.strName)
+        
+//        vw.lblName.text = objCard.strName
+//        vw.lblAge.text = objCard.strAge
+//
+//
+//        let profilePic = objCard.strImageUrl
+//        if profilePic != "" {
+//            let url = URL(string: profilePic)
+//            vw.imgVw.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "logo"))
+//        }
         
         
-        return cell!
         
        // return UIImageView(image: dataSource[Int(index)])
     }
     
     func koloda(_ koloda: KolodaView, viewForCardOverlayAt index: Int) -> OverlayView? {
-        return Bundle.main.loadNibNamed("OverlayViewCard", owner: self, options: nil)?[0] as? OverlayView
+        return nil//Bundle.main.loadNibNamed("OverlayViewCard", owner: self, options: nil)?[0] as? OverlayView
     }
     
     func koloda(_ koloda: KolodaView, didSwipeCardAt index: Int, in direction: SwipeResultDirection) {
@@ -108,7 +147,46 @@ extension HomeViewController: KolodaViewDataSource {
 extension HomeViewController{
     
     
+    func call_GetUsers(){
+        
+        if !objWebServiceManager.isNetworkAvailable(){
+            objWebServiceManager.hideIndicator()
+            objAlert.showAlert(message: "No Internet Connection", title: "Alert", controller: self)
+            return
+        }
     
+        objWebServiceManager.showIndicator()
+        
+        let parameter = ["user_id":"1"]as [String:Any]
+        
+        
+        objWebServiceManager.requestGet(strURL: WsUrl.url_GetUserList, params: parameter, queryParams: [:], strCustomValidation: "") { (response) in
+            objWebServiceManager.hideIndicator()
+            let status = (response["status"] as? Int)
+            let message = (response["message"] as? String)
+            
+            print(response)
+            
+            if status == MessageConstant.k_StatusCode{
+                if let arrData  = response["result"] as? [[String:Any]]{
+                    for dictdata in arrData{
+                        let obj = HomeModel.init(dict: dictdata)
+                        self.arrUsers.append(obj)
+                    }
+                    self.swipeView.reloadData()
+                }
+            }else{
+                objWebServiceManager.hideIndicator()
+                objAlert.showAlert(message: message ?? "", title: "Alert", controller: self)
+                
+            }
+           
+            
+        } failure: { (Error) in
+            print(Error)
+            objWebServiceManager.hideIndicator()
+        }
+   }
     
     
     
