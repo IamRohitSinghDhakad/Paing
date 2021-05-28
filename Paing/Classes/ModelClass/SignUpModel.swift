@@ -57,11 +57,11 @@ class userDetailModel: NSObject {
     var strAddress :String = ""
     var strDob    :String = ""
     var strGender    :String = ""
+    var strCity      :String = ""
+    var strState      :String = ""
+    var strCountry      :String = ""
     
-    //Currency Conversion
-    var strUserCountryName :String = ""
-    var strUserCurrency :String = ""
-    var strUserCountryID :String = ""
+
     
     
     init(dict : [String:Any]) {
@@ -90,13 +90,20 @@ class userDetailModel: NSObject {
             self.strCountyCode = country_code
         }
         
-        if let country_id = dict["country_id"] as? String{
-            self.strUserCountryID = country_id
+//        if let country_id = dict["country_id"] as? String{
+//            self.strUserCountryID = country_id
+//        }
+        
+        if let country = dict["country"] as? String{
+            self.strCountry = country
         }
         
-        if let country_name = dict["country_name"] as? String{
-            self.strUserCountryName = country_name
+        if let city = dict["city"] as? String{
+            self.strCity = city
         }
+        
+        
+        
         
         if let sub_CategoryName = dict["sub_category_name"] as? String{
             self.strSubCategory = sub_CategoryName
@@ -131,13 +138,7 @@ class userDetailModel: NSObject {
             self.strlongitude = "\(long)"
         }
         
-        if let currency_code = dict["currency_code"] as? String{
-            self.strUserCurrency = currency_code
-        }
-        
-        if let phone_country_code = dict["phone_country_code"] as? String{
-            self.strphone_country_code = phone_country_code
-        }
+     
         
         if let phone_number = dict["mobile"] as? String{
             self.strPhoneNumber = phone_number
@@ -163,32 +164,12 @@ class userDetailModel: NSObject {
             self.strPhoneDialCode = phone_dial_code
         }
         
-        if let social_id = dict["social_id"] as? String{
-            self.strSocialId = social_id
-        }
-        if let social_type = dict["social_type"] as? String{
-            self.strSocialType = social_type
-        }
-        
-        
-        if let onboarding_step = dict["onboarding_step"] as? String{
-            self.stronboarding_step = onboarding_step
-        }
-        
-        if let status = dict["status"] as? String{
-            self.strStatus = status
-        }
-        
-        if let created_at = dict["created_at"] as? String{
-            self.strCreateAt = created_at
-        }
+      
         if let device_id = dict["device_id"] as? String{
             self.strDeviceId = device_id
         }
         
-        if let device_timezone = dict["device_timezone"] as? String{
-            self.strDeviceTimeZone = device_timezone
-        }
+    
         
         if let device_token = dict["device_token"] as? String{
             self.strDeviceToken = device_token
@@ -203,25 +184,7 @@ class userDetailModel: NSObject {
             UserDefaults.standard.setValue(auth_token, forKey: objAppShareData.UserDetail.straAuthToken)
         }
         
-//        if let dictCategories = dict["categories"]as? [String:Any]{
-//            if let category = dictCategories["parent"]as? String{
-//                self.strCategory = category
-//            }
-//            if let subCategory = dictCategories["name"]as? String{
-//                self.strSubCategory = subCategory
-//            }
-//            if let categoryID = dictCategories["id"]as? String{
-//                self.strSubCategoryID = categoryID
-//            }else if let categoryID = dictCategories["id"]as? Int{
-//                self.strSubCategoryID = String(categoryID)
-//            }
-//            if let categoryID = dictCategories["parentId"]as? String{
-//                self.strCategoryID = categoryID
-//            }else if let categoryID = dictCategories["parentId"]as? Int{
-//                self.strCategoryID = String(categoryID)
-//            }
-//        }
-        
+
         if let profile_timezone = dict["profile_timezone"] as? String{
             self.strProfileTimeZone = profile_timezone
         }

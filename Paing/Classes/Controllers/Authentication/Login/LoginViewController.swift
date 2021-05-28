@@ -10,10 +10,17 @@ import UIKit
 class LoginViewController: UIViewController {
     
     //MARK: - Override Methods
+    @IBOutlet var tfEmail: UITextField!
+    @IBOutlet var tfPassword: UITextField!
+    @IBOutlet var btnHideShowPassword: UIButton!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        self.tfEmail.delegate = self
+        self.tfPassword.delegate = self
         
     }
     
@@ -24,12 +31,7 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func actionLogin(_ sender: Any) {
-        AppSharedData.sharedObject().isLoggedIn = true
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let vc = (self.mainStoryboard.instantiateViewController(withIdentifier: "SideMenuController") as? SideMenuController)!
-        let navController = UINavigationController(rootViewController: vc)
-        navController.isNavigationBarHidden = true
-        appDelegate.window?.rootViewController = navController
+        self.validateForSignUp()
     }
     
     @IBAction func actionForgotPassword(_ sender: Any) {
@@ -40,5 +42,107 @@ class LoginViewController: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
     
+    @IBAction func actionShowPassword(_ sender: Any) {
+        self.tfPassword.isSecureTextEntry = self.tfPassword.isSecureTextEntry ? false : true
+    }
+}
+
+//MARK:- Validations
+extension LoginViewController{
+    // TextField delegate method
+    
+    override func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == tfEmail{
+            self.tfPassword.becomeFirstResponder()
+            self.tfEmail.resignFirstResponder()
+        }
+        else if textField == self.tfPassword{
+            self.tfPassword.resignFirstResponder()
+        }
+        return true
+        
+    }
+
+}
+
+extension LoginViewController{
+    
+    //MARK:- All Validations
+    func validateForSignUp(){
+     
+        self.tfEmail.text = self.tfEmail.text!.trim()
+        self.tfPassword.text = self.tfPassword.text!.trim()
+        if (tfEmail.text?.isEmpty)! {
+            objAlert.showAlert(message: MessageConstant.BlankEmail, title:MessageConstant.k_AlertTitle, controller: self)
+        }else if !objValidationManager.validateEmail(with: tfEmail.text!){
+            objAlert.showAlert(message: MessageConstant.ValidEmail, title:MessageConstant.k_AlertTitle, controller: self)
+        }
+        else if (tfPassword.text?.isEmpty)! {
+            objAlert.showAlert(message: MessageConstant.BlankPassword, title:MessageConstant.k_AlertTitle, controller: self)
+        }
+        else{
+            self.call_WsLogin()
+        }
+    }
+}
+
+
+//MARK:- Call Webservice
+
+extension LoginViewController{
+    
+    func call_WsLogin(){
+        
+        if !objWebServiceManager.isNetworkAvailable(){
+            objWebServiceManager.hideIndicator()
+            objAlert.showAlert(message: "No Internet Connection", title: "Alert", controller: self)
+            return
+        }
+    
+        objWebServiceManager.showIndicator()
+        
+        let dicrParam = ["username":self.tfEmail.text!,
+                         "password":self.tfPassword.text!]as [String:Any]
+        
+        objWebServiceManager.requestGet(strURL: WsUrl.url_Login, params: dicrParam, queryParams: [:], strCustomValidation: "") { (response) in
+            objWebServiceManager.hideIndicator()
+            let status = (response["status"] as? Int)
+            let message = (response["message"] as? String)
+          //  print(response)
+            if status == MessageConstant.k_StatusCode{
+                
+                let user_details  = response["result"] as? [String:Any]
+
+                print(user_details)
+                objAppShareData.SaveUpdateUserInfoFromAppshareData(userDetail: user_details ?? [:])
+                objAppShareData.fetchUserInfoFromAppshareData()
+                
+                AppSharedData.sharedObject().isLoggedIn = true
+                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                let vc = (self.mainStoryboard.instantiateViewController(withIdentifier: "SideMenuController") as? SideMenuController)!
+                let navController = UINavigationController(rootViewController: vc)
+                navController.isNavigationBarHidden = true
+                appDelegate.window?.rootViewController = navController
+              
+                
+                
+            }else{
+                objWebServiceManager.hideIndicator()
+                objAlert.showAlert(message: message ?? "", title: "Alert", controller: self)
+                
+            }
+           
+            
+        } failure: { (Error) in
+            print(Error)
+            objWebServiceManager.hideIndicator()
+        }
+
+    
+   }
     
 }
+
+
+
+

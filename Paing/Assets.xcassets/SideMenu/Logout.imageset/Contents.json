@@ -1,6 +1,7 @@
 {
   "images" : [
     {
+      "filename" : "logout.png",
       "idiom" : "universal",
       "scale" : "1x"
     },

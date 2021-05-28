@@ -105,7 +105,7 @@ extension HomeViewController: KolodaViewDataSource {
                 let profilePic = objCard.strImageUrl
                 if profilePic != "" {
                     let url = URL(string: profilePic)
-                    overlay.imgVw.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "logo"))
+                    overlay.imgVw.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "splashLogo"))
                 }
             }
             

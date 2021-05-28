@@ -43,6 +43,8 @@ class MessageConstant: NSObject {
     static let NameValidation : String = "Name and title should be between 3 to 50 characters"
     static let Development: String = "Under Development"
     static let CountrySelection: String = "Please select the country"
+    static let stateSelection: String = "Please select the state"
+    static let citySelection: String = "Please select the city"
 
 
 

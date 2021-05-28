@@ -38,7 +38,7 @@ extension NotificationViewController:UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "NotificationTableViewCell")as! NotificationTableViewCell
         
-        cell.imgVw.image = #imageLiteral(resourceName: "logo")
+        cell.imgVw.image = #imageLiteral(resourceName: "logo_header")
         
         return cell
     }

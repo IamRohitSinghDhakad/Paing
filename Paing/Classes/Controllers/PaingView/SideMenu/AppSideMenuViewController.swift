@@ -26,10 +26,10 @@ class AppSideMenuViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var selectionMenuTrailingConstraint: NSLayoutConstraint!
     
-    private let menus: [SideMenuOptions] = [SideMenuOptions(menuName: "Home", menuImageName: "Home"),
+    private let menus: [SideMenuOptions] = [SideMenuOptions(menuName: "Home", menuImageName: "user"),
                                     SideMenuOptions(menuName: "Profile", menuImageName: "Profile"),
-                                    SideMenuOptions(menuName: "Chat", menuImageName: "Chat"),
-                                    SideMenuOptions(menuName: "Membership", menuImageName: "Membership"),
+                                    SideMenuOptions(menuName: "Chat", menuImageName: "chat"),
+                                    SideMenuOptions(menuName: "Membership", menuImageName: "icon_membership"),
                                     SideMenuOptions(menuName: "Blocked", menuImageName: "Blocked"),
                                     SideMenuOptions(menuName: "Notification", menuImageName: "Notification"),
                                     SideMenuOptions(menuName: "Settings", menuImageName: "Settings"),
