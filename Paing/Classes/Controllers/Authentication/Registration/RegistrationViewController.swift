@@ -125,7 +125,7 @@ class RegistrationViewController: UIViewController,UINavigationControllerDelegat
         self.btnFemale.setTitleColor(UIColor.white, for: .normal)
         self.btnMale.backgroundColor = UIColor.white
         self.btnFemale.backgroundColor = UIColor.clear
-        self.strGender = "Masculina"
+        self.strGender = "Male"
         
     }
     @IBAction func actionShowMujer(_ sender: Any) {
@@ -133,7 +133,7 @@ class RegistrationViewController: UIViewController,UINavigationControllerDelegat
         self.btnMale.setTitleColor(UIColor.white, for: .normal)
         self.btnFemale.backgroundColor = UIColor.white
         self.btnMale.backgroundColor = UIColor.clear
-        self.strGender = "Mujer"
+        self.strGender = "Female"
     }
     
     @IBAction func btnCloseSubVw(_ sender: Any) {
@@ -234,7 +234,7 @@ extension RegistrationViewController{
 
       @objc func donedatePicker(){
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy/MM/dd"
+        formatter.dateFormat = "yyyy-MM-dd"
         self.tfDOB.text = formatter.string(from: datePicker.date)
         self.view.endEditing(true)
      }
@@ -542,12 +542,7 @@ extension RegistrationViewController{
                 objAppShareData.SaveUpdateUserInfoFromAppshareData(userDetail: user_details ?? [:])
                 objAppShareData.fetchUserInfoFromAppshareData()
 
-                AppSharedData.sharedObject().isLoggedIn = true
-                let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                let vc = (self.mainStoryboard.instantiateViewController(withIdentifier: "SideMenuController") as? SideMenuController)!
-                let navController = UINavigationController(rootViewController: vc)
-                navController.isNavigationBarHidden = true
-                appDelegate.window?.rootViewController = navController
+                self.pushVc(viewConterlerId: "DemoViewController")
 
             }else{
                 objWebServiceManager.hideIndicator()

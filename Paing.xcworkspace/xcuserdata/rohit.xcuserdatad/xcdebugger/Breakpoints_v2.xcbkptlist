@@ -94,8 +94,8 @@
             filePath = "Paing/Classes/Controllers/Authentication/Login/LoginViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "116"
-            endingLineNumber = "116"
+            startingLineNumber = "123"
+            endingLineNumber = "123"
             landmarkName = "call_WsLogin()"
             landmarkType = "7">
          </BreakpointContent>

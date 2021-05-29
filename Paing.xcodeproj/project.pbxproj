@@ -45,6 +45,8 @@
 		F99A181C265E79BA004DFCD6 /* PaingBlogTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99A181B265E79BA004DFCD6 /* PaingBlogTableViewCell.swift */; };
 		F99DF1FB2658F4A4006734BF /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99DF1FA2658F4A4006734BF /* DetailViewController.swift */; };
 		F99DF1FE26594F8E006734BF /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99DF1FD26594F8E006734BF /* UserProfileViewController.swift */; };
+		F9B3B02A2662034F008178CB /* DemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B3B0292662034F008178CB /* DemoViewController.swift */; };
+		F9B3B02E26623135008178CB /* PrivacyPolicyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B3B02D26623135008178CB /* PrivacyPolicyViewController.swift */; };
 		F9CB4911265D8584004E4788 /* NotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9CB4910265D8584004E4788 /* NotificationTableViewCell.swift */; };
 		F9EEB14E266029890010AF1F /* OptionsRegistrationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9EEB14D266029890010AF1F /* OptionsRegistrationTableViewCell.swift */; };
 		F9F808A22656CD8A00F320FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F808A12656CD8A00F320FF /* AppDelegate.swift */; };
@@ -121,6 +123,8 @@
 		F99A181B265E79BA004DFCD6 /* PaingBlogTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaingBlogTableViewCell.swift; sourceTree = "<group>"; };
 		F99DF1FA2658F4A4006734BF /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		F99DF1FD26594F8E006734BF /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
+		F9B3B0292662034F008178CB /* DemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoViewController.swift; sourceTree = "<group>"; };
+		F9B3B02D26623135008178CB /* PrivacyPolicyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyViewController.swift; sourceTree = "<group>"; };
 		F9CB4910265D8584004E4788 /* NotificationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTableViewCell.swift; sourceTree = "<group>"; };
 		F9EEB14D266029890010AF1F /* OptionsRegistrationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsRegistrationTableViewCell.swift; sourceTree = "<group>"; };
 		F9F8089E2656CD8A00F320FF /* Paing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Paing.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -347,6 +351,7 @@
 		8C897CF226581790009B0677 /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
+				F9B3B0282662033B008178CB /* DemoScreen */,
 				8C74AA11265A7AD100FC9F9E /* Welcome */,
 				8C74AA1C265AB06100FC9F9E /* ForgotPassword */,
 				8C74AA16265A912100FC9F9E /* Registration */,
@@ -398,6 +403,7 @@
 		8C897CFA26581875009B0677 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				F9B3B02C26623114008178CB /* PrivacyPolicyAndLegalsDoc */,
 				8C897D0E26582DCC009B0677 /* Cell */,
 				8C897D03265818D1009B0677 /* SettingsViewController.swift */,
 			);
@@ -487,6 +493,22 @@
 				F99A181B265E79BA004DFCD6 /* PaingBlogTableViewCell.swift */,
 			);
 			path = CellClasses;
+			sourceTree = "<group>";
+		};
+		F9B3B0282662033B008178CB /* DemoScreen */ = {
+			isa = PBXGroup;
+			children = (
+				F9B3B0292662034F008178CB /* DemoViewController.swift */,
+			);
+			path = DemoScreen;
+			sourceTree = "<group>";
+		};
+		F9B3B02C26623114008178CB /* PrivacyPolicyAndLegalsDoc */ = {
+			isa = PBXGroup;
+			children = (
+				F9B3B02D26623135008178CB /* PrivacyPolicyViewController.swift */,
+			);
+			path = PrivacyPolicyAndLegalsDoc;
 			sourceTree = "<group>";
 		};
 		F9CB490F265D856F004E4788 /* CellClasses */ = {
@@ -809,6 +831,7 @@
 				8C5E2D432657FF23004A7D92 /* AppSideMenuTableViewCell.swift in Sources */,
 				F99A181C265E79BA004DFCD6 /* PaingBlogTableViewCell.swift in Sources */,
 				F9CB4911265D8584004E4788 /* NotificationTableViewCell.swift in Sources */,
+				F9B3B02E26623135008178CB /* PrivacyPolicyViewController.swift in Sources */,
 				8C5E2D332657F827004A7D92 /* UIView+Container.swift in Sources */,
 				8C5E2D2D2657F827004A7D92 /* StatusBar.swift in Sources */,
 				F9F808A62656CD8A00F320FF /* ViewController.swift in Sources */,
@@ -821,6 +844,7 @@
 				8C5E2D342657F827004A7D92 /* SideMenuController.swift in Sources */,
 				8C5E2D2F2657F827004A7D92 /* Delegate.swift in Sources */,
 				8C897D1026582DDC009B0677 /* SettingsTableViewCell.swift in Sources */,
+				F9B3B02A2662034F008178CB /* DemoViewController.swift in Sources */,
 				8C5E2D462657FFFF004A7D92 /* HomeViewController.swift in Sources */,
 				8C5E2D312657F827004A7D92 /* UIViewController+Container.swift in Sources */,
 				F9F808E32656F26400F320FF /* UserDefaultExtension.swift in Sources */,

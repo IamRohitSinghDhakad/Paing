@@ -13,6 +13,8 @@ class LoginViewController: UIViewController {
     @IBOutlet var tfEmail: UITextField!
     @IBOutlet var tfPassword: UITextField!
     @IBOutlet var btnHideShowPassword: UIButton!
+    @IBOutlet var subVw: UIView!
+    @IBOutlet var lblTitleSubVw: UILabel!
     
     
     override func viewDidLoad() {
@@ -22,9 +24,14 @@ class LoginViewController: UIViewController {
         self.tfEmail.delegate = self
         self.tfPassword.delegate = self
         
+        self.subVw.isHidden = true
+        
     }
     
     //MARK: - Action Methods
+    @IBAction func btnActionValidationSubVw(_ sender: Any) {
+        self.subVw.isHidden = true
+    }
     
     @IBAction func actionBack(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)

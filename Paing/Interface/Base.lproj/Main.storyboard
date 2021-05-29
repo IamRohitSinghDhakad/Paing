@@ -5670,6 +5670,86 @@
             </objects>
             <point key="canvasLocation" x="-761" y="1094"/>
         </scene>
+        <!--Privacy Policy View Controller-->
+        <scene sceneID="a7o-cH-3h8">
+            <objects>
+                <viewController storyboardIdentifier="PrivacyPolicyViewController" id="4Qb-HY-AhO" customClass="PrivacyPolicyViewController" customModule="Paing" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="kG9-KK-sNe">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z27-VG-gJi">
+                                <rect key="frame" x="0.0" y="44" width="414" height="58"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About Us" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DUa-Sr-a1T">
+                                        <rect key="frame" x="163.5" y="14" width="87" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="5Xw-ur-vom"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                        <color key="textColor" name="AppSkyBlue"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="back" translatesAutoresizingMaskIntoConstraints="NO" id="ll9-Nt-et8">
+                                        <rect key="frame" x="10" y="19" width="20" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="ll9-Nt-et8" secondAttribute="height" multiplier="1:1" id="0lw-oF-693"/>
+                                            <constraint firstAttribute="height" constant="20" id="wnE-rZ-OdT"/>
+                                        </constraints>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c9t-30-yls">
+                                        <rect key="frame" x="0.0" y="0.0" width="60" height="58"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="60" id="LPI-Cr-zWX"/>
+                                        </constraints>
+                                        <connections>
+                                            <action selector="btnBackOnHeader:" destination="4Qb-HY-AhO" eventType="touchUpInside" id="2RQ-ik-wpa"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="ll9-Nt-et8" firstAttribute="centerY" secondItem="z27-VG-gJi" secondAttribute="centerY" id="3Rh-S2-S20"/>
+                                    <constraint firstItem="ll9-Nt-et8" firstAttribute="leading" secondItem="z27-VG-gJi" secondAttribute="leading" constant="10" id="5BP-ak-uM4"/>
+                                    <constraint firstItem="DUa-Sr-a1T" firstAttribute="centerX" secondItem="z27-VG-gJi" secondAttribute="centerX" id="8kX-0E-a4Z"/>
+                                    <constraint firstAttribute="bottom" secondItem="c9t-30-yls" secondAttribute="bottom" id="OTQ-oR-g4n"/>
+                                    <constraint firstItem="c9t-30-yls" firstAttribute="leading" secondItem="z27-VG-gJi" secondAttribute="leading" id="QKt-EE-qGh"/>
+                                    <constraint firstItem="c9t-30-yls" firstAttribute="top" secondItem="z27-VG-gJi" secondAttribute="top" id="WL5-Gi-Xr3"/>
+                                    <constraint firstItem="DUa-Sr-a1T" firstAttribute="centerY" secondItem="z27-VG-gJi" secondAttribute="centerY" id="nU7-x7-0qW"/>
+                                </constraints>
+                            </view>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pE0-tQ-NWg">
+                                <rect key="frame" x="0.0" y="102" width="414" height="794"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vh8-dw-hPp"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="pE0-tQ-NWg" secondAttribute="trailing" id="1Lz-gh-1Cy"/>
+                            <constraint firstItem="pE0-tQ-NWg" firstAttribute="leading" secondItem="kG9-KK-sNe" secondAttribute="leading" id="4DO-PE-fyo"/>
+                            <constraint firstItem="z27-VG-gJi" firstAttribute="top" secondItem="vh8-dw-hPp" secondAttribute="top" id="9lE-PR-cHr"/>
+                            <constraint firstItem="pE0-tQ-NWg" firstAttribute="top" secondItem="z27-VG-gJi" secondAttribute="bottom" id="Jfs-rQ-qbP"/>
+                            <constraint firstItem="vh8-dw-hPp" firstAttribute="trailing" secondItem="z27-VG-gJi" secondAttribute="trailing" id="P3D-Ct-OBZ"/>
+                            <constraint firstItem="z27-VG-gJi" firstAttribute="width" secondItem="z27-VG-gJi" secondAttribute="height" multiplier="5:0.7" id="cHs-xj-wfO"/>
+                            <constraint firstAttribute="bottom" secondItem="pE0-tQ-NWg" secondAttribute="bottom" id="oIe-jd-T13"/>
+                            <constraint firstItem="z27-VG-gJi" firstAttribute="leading" secondItem="kG9-KK-sNe" secondAttribute="leading" id="tnO-sq-mGL"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="lblHeader" destination="DUa-Sr-a1T" id="nv2-ZJ-fdX"/>
+                        <outlet property="vwHeader" destination="z27-VG-gJi" id="CsK-UK-Ant"/>
+                        <outlet property="vwWebkit" destination="pE0-tQ-NWg" id="Dic-9x-gqe"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3e7-xh-5Jb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6651" y="-1260"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Profile" width="42.5" height="42.5"/>

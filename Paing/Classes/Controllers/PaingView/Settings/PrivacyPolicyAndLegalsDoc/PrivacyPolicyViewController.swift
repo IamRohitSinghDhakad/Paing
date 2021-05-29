@@ -1,0 +1,74 @@
+//
+//  PrivacyPolicyViewController.swift
+//  Paing
+//
+//  Created by Rohit Singh Dhakad on 29/05/21.
+//
+
+import UIKit
+import WebKit
+
+class PrivacyPolicyViewController: UIViewController {
+    
+    
+    @IBOutlet var lblHeader: UILabel!
+    @IBOutlet var vwWebkit: WKWebView!
+    
+    var strType = ""
+    
+    func loadUrl(strUrl:String){
+        let url = NSURL(string: strUrl)
+        let request = NSURLRequest(url: url! as URL)
+        vwWebkit.load(request as URLRequest)
+    }
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        switch strType {
+        case "ContactUs":
+            self.loadUrl(strUrl: "http://ambitious.in.net/Shubham/paing/index.php/api/page/Contact")
+        case "Privacy":
+            self.loadUrl(strUrl: "http://ambitious.in.net/Shubham/paing/index.php/api/page/Privacy")
+        case "Suggestion":
+            self.loadUrl(strUrl: "http://ambitious.in.net/Shubham/paing/index.php/api/page/Suggestions")
+        case "ReportProfile":
+            self.loadUrl(strUrl: "http://ambitious.in.net/Shubham/paing/index.php/api/page/Report%20profile")
+        case "LegalWarning":
+            self.loadUrl(strUrl: "http://ambitious.in.net/Shubham/paing/index.php/api/page/Legal%20warning")
+        case "Terms&Service":
+            self.loadUrl(strUrl: "http://ambitious.in.net/Shubham/paing/index.php/api/page/Terms%20of%20use")
+        case "Cookies":
+            self.loadUrl(strUrl: "http://ambitious.in.net/Shubham/paing/index.php/api/page/Cookies")
+        case "Help":
+            self.loadUrl(strUrl: "http://ambitious.in.net/Shubham/paing/index.php/api/page/Help")
+        case "Settings":
+            self.loadUrl(strUrl: "http://ambitious.in.net/Shubham/paing/index.php/api/page/setting")
+        case "PricacyPolicy":
+            self.loadUrl(strUrl: "http://ambitious.in.net/Shubham/paing/index.php/api/page/privacy%20policy")
+        default:
+            break
+        }
+        
+        
+    }
+    
+    @IBAction func btnBackOnHeader(_ sender: Any) {
+        onBackPressed()
+    }
+}
+
+
+extension PrivacyPolicyViewController: WKNavigationDelegate{
+    
+    private func webView(webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: NSError) {
+        print(error.localizedDescription)
+    }
+    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+        print("Strat to load")
+    }
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        print("finish to load")
+    }
+}

@@ -59,7 +59,6 @@ class ViewController: UIViewController {
             appDelegate.window?.rootViewController = navController
         }
     }
-
 }
 
 extension UIView {
