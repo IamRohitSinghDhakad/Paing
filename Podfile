@@ -4,7 +4,7 @@
 target 'Paing' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
-
+  
   # Pods for Paing
   pod 'Alamofire'
   pod 'SVProgressHUD'
@@ -12,8 +12,13 @@ target 'Paing' do
   pod 'IQKeyboardManagerSwift'
   pod 'Firebase/Messaging'
   pod 'iOSDropDown'
-  pod 'FBSDKLoginKit'
+  #  pod 'FBSDKLoginKit'
   pod 'GoogleSignIn'
   pod "Koloda"
-
+  pod 'FBSDKCoreKit'
+  
+  pod 'FBSDKLoginKit'
+  
+  pod 'FBSDKShareKit'
+  
 end
