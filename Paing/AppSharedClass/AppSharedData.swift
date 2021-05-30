@@ -27,6 +27,9 @@ class AppSharedData: NSObject {
     
     //MARK:- Variables
     var UserDetail = userDetailModel(dict: [:])
+    var strFirebaseToken = ""
+    var isFromNotification = Bool()
+    var isNotificationDict = [String:Any]()
     
     open var isLoggedIn: Bool {
         get {

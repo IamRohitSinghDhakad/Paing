@@ -26,15 +26,15 @@ class AppSideMenuViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var selectionMenuTrailingConstraint: NSLayoutConstraint!
     
-    private let menus: [SideMenuOptions] = [SideMenuOptions(menuName: "Home", menuImageName: "user"),
-                                    SideMenuOptions(menuName: "Profile", menuImageName: "Profile"),
+    private let menus: [SideMenuOptions] = [SideMenuOptions(menuName: "Inicio", menuImageName: "home_selected"),
+                                    SideMenuOptions(menuName: "Perfil", menuImageName: "user_sideMenu"),
                                     SideMenuOptions(menuName: "Chat", menuImageName: "chat"),
-                                    SideMenuOptions(menuName: "Membership", menuImageName: "icon_membership"),
-                                    SideMenuOptions(menuName: "Blocked", menuImageName: "Blocked"),
-                                    SideMenuOptions(menuName: "Notification", menuImageName: "Notification"),
-                                    SideMenuOptions(menuName: "Settings", menuImageName: "Settings"),
-                                    SideMenuOptions(menuName: "Paing Blog", menuImageName: "PaingBlog"),
-                                    SideMenuOptions(menuName: "Exit Session", menuImageName: "Logout")]
+                                    SideMenuOptions(menuName: "Afiliación", menuImageName: "icon_membership"),
+                                    SideMenuOptions(menuName: "Bloqueados", menuImageName: "block_sideMenu"),
+                                    SideMenuOptions(menuName: "Notificación", menuImageName: "noti"),
+                                    SideMenuOptions(menuName: "Ajustes", menuImageName: "setting"),
+                                    SideMenuOptions(menuName: "Paing Blog", menuImageName: "blog Side_menu"),
+                                    SideMenuOptions(menuName: "Cerrar Sesión", menuImageName: "logout")]
     
     
     //MARK: - Override Methods
@@ -161,7 +161,7 @@ extension AppSideMenuViewController: UITableViewDelegate, UITableViewDataSource 
         if row == 8 {
             sideMenuController?.hideMenu()
             
-            objAlert.showAlertCallBack(alertLeftBtn: "No", alertRightBtn: "Yes", title: "Sign off", message: "Do you want to log out?", controller: self) {
+            objAlert.showAlertCallBack(alertLeftBtn: "No", alertRightBtn: "si", title: "Cerrar Sesión", message: "¿Quieres cerrar sesión??", controller: self) {
                 AppSharedData.sharedObject().signOut()
             }
             

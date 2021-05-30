@@ -7,6 +7,7 @@
 
 import UIKit
 import IQKeyboardManagerSwift
+import Firebase
 
 
 let ObjAppdelegate = UIApplication.shared.delegate as! AppDelegate
@@ -27,11 +28,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        UNUserNotificationCenter.current().delegate = self
+        
+        let deviceID = UIDevice.current.identifierForVendor!.uuidString
+        UserDefaults.standard.setValue(deviceID, forKey: UserDefaults.Keys.strVenderId)
+         print(deviceID)
         
         IQKeyboardManager.shared.enable = true
         IQKeyboardManager.shared.enableAutoToolbar = true
         IQKeyboardManager.shared.shouldResignOnTouchOutside = true
         
+        FirebaseApp.configure()
+        self.registerForRemoteNotification()
+        Messaging.messaging().delegate = self
         
         (UIApplication.shared.delegate as? AppDelegate)?.self.window = window
         // Override point for customization after application launch.
@@ -90,6 +99,191 @@ extension AppDelegate {
         let vc = UIStoryboard(name: "Auth", bundle: nil).instantiateViewController(withIdentifier: "ViewController") as! ViewController
         //        let navController = UINavigationController(rootViewController: setViewController)
         appDelegate.window?.rootViewController = vc
+    }
+    
+}
+
+//MARK:- notification setup
+extension AppDelegate:UNUserNotificationCenterDelegate{
+    func registerForRemoteNotification() {
+        // iOS 10 support
+        if #available(iOS 10, *) {
+            let authOptions : UNAuthorizationOptions = [.alert, .badge, .sound]
+            UNUserNotificationCenter.current().requestAuthorization(options:authOptions){ (granted, error) in
+                UNUserNotificationCenter.current().delegate = self as UNUserNotificationCenterDelegate
+                Messaging.messaging().delegate = self
+                let deafultCategory = UNNotificationCategory(identifier: "CustomSamplePush", actions: [], intentIdentifiers: [], options: [])
+                let center = UNUserNotificationCenter.current()
+                center.setNotificationCategories(Set([deafultCategory]))
+            }
+        }else {
+            
+            let settings: UIUserNotificationSettings =
+                UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+            UIApplication.shared.registerUserNotificationSettings(settings)
+        }
+        UIApplication.shared.registerForRemoteNotifications()
+        NotificationCenter.default.addObserver(self, selector:
+            #selector(tokenRefreshNotification), name:
+            .InstanceIDTokenRefresh, object: nil)
+    }
+}
+
+//MARK: - FireBase Methods / FCM Token
+extension AppDelegate : MessagingDelegate{
+    
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
+        print("Firebase registration token: \(String(describing: fcmToken))")
+        objAppShareData.strFirebaseToken = fcmToken ?? ""
+    }
+
+    func messaging(_ messaging: Messaging, didRefreshRegistrationToken fcmToken: String) {
+        objAppShareData.strFirebaseToken = fcmToken
+        ConnectToFCM()
+    }
+    
+    @objc func tokenRefreshNotification(_ notification: Notification) {
+        
+        InstanceID.instanceID().instanceID { (result, error) in
+            if let error = error {
+                print("Error fetching remote instange ID: \(error)")
+            }else if let result = result {
+                print("Remote instance ID token: \(result.token)")
+               // objAppShareData.strFirebaseToken = result.token
+                print("objAppShareData.firebaseToken = \(result.token)")
+            }
+        }
+        // Connect to FCM since connection may have failed when attempted before having a token.
+        ConnectToFCM()
+    }
+    
+    func ConnectToFCM() {
+        InstanceID.instanceID().instanceID { (result, error) in
+            
+            if let error = error {
+                print("Error fetching remote instange ID: \(error)")
+            }else if let result = result {
+                print("Remote instance ID token: \(result.token)")
+             //   objAppShareData.strFirebaseToken = result.token
+                print("objAppShareData.firebaseToken = \(result.token)")
+            }
+        }
+    }
+
+    @available(iOS 10.0, *)
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                willPresent notification: UNNotification,
+                                withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        
+        if let userInfo = notification.request.content.userInfo as? [String : Any]{
+            print(userInfo)
+            var notificationType = ""
+            var bookingID = ""
+            
+            if let type = userInfo["type"] as? Int{
+                notificationType = String(type)
+            }else if let type = userInfo["type"] as? String{
+                notificationType = type
+            }
+                    
+            if let id = userInfo["reference_id"] as? Int{
+                bookingID = String(id)
+            }else if let id = userInfo["reference_id"] as? String{
+                bookingID = id
+            }
+         //   objAppShareData.notificationDict = userInfo
+            self.navWithNotification(type: notificationType, bookingID: bookingID)
+        }
+        completionHandler([.alert,.sound,.badge])
+    }
+    
+    
+    func navWithNotification(type:String,bookingID:String){
+//        let topController = self.topViewController()
+//        //print(topController?.restorationIdentifier)
+//        if type == "1" && (topController?.restorationIdentifier == "Ridedetail_VC") && bookingID == objAppShareData.holdBookingID{
+//            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refreshDetail"), object: nil)
+//
+//        }else if type == "1" && (objAppShareData.isONMainList == true){
+//            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refreshMainList"), object: nil)
+//
+//        }else if type == "1" && (topController?.restorationIdentifier == "Expire_CompleteRides_VC"){
+//            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refreshExpiredCmpltList"), object: nil)
+//
+//        }else if type == "5" && (topController?.restorationIdentifier == "Companylist_VC"){
+//            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refreshCompanyList"), object: nil)
+//
+//        }else if objAppShareData.holdVCIndex == "1" || objAppShareData.holdVCIndex == "2"{
+//            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refreshCompanyList"), object: nil)
+//        }
+    }
+
+    //TODO: called When you tap on the notification in background
+   @available(iOS 10.0, *)
+   func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: () -> Void) {
+       print(response)
+       switch response.actionIdentifier {
+       case UNNotificationDismissActionIdentifier:
+           print("Dismiss Action")
+       case UNNotificationDefaultActionIdentifier:
+           print("Open Action")
+           if let userInfo = response.notification.request.content.userInfo as? [String : Any]{
+               print(userInfo)
+               self.handleNotificationWithNotificationData(dict: userInfo)
+           }
+       case "Snooze":
+           print("Snooze")
+       case "Delete":
+           print("Delete")
+       default:
+           print("default")
+       }
+       completionHandler()
+   }
+    
+    func handleNotificationWithNotificationData(dict:[String:Any]){
+        print(dict)
+        let userID = dict["gcm.notification.user_request_id"]as? String ?? ""
+        print(userID)
+      //  objAppShareData.isFromNotification = true
+       // objAppShareData.userReqID = dict["gcm.notification.user_request_id"] as? String ?? "0"
+    //    self.HomeNavigation()
+        
+//        var strType = ""
+//        var bookingID = ""
+//        if let notiType = dict["notification_type"] as? String{
+//            strType = notiType
+//        }
+//        if let type = dict["type"] as? Int{
+//            strType = String(type)
+//        }else if let type = dict["type"] as? String{
+//            strType = type
+//        }
+//
+//        if let id = dict["reference_id"] as? Int{
+//            bookingID = String(id)
+//        }else if let id = dict["reference_id"] as? String{
+//            bookingID = id
+//        }
+//        objAppShareData.notificationDict = dict
+//        objAppShareData.isFromNotification = true
+//        objAppShareData.notificationType = strType
+//        self.homeNavigation(animated: false)
+    }
+    
+    func topViewController(controller: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {
+        if let navigationController = controller as? UINavigationController {
+            return topViewController(controller: navigationController.visibleViewController)
+        }
+        if let tabController = controller as? UITabBarController {
+            if let selected = tabController.selectedViewController {
+                return topViewController(controller: selected)
+            }
+        }
+        if let presented = controller?.presentedViewController {
+            return topViewController(controller: presented)
+        }
+        return controller
     }
     
 }

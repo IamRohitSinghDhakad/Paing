@@ -9,6 +9,7 @@
 #define BridgingHeader_h
 
 #import "SWRevealViewController.h"
+#import "SZTextView.h"
 
 #endif /* BridgingHeader_h */
 

@@ -2100,7 +2100,7 @@ para restablecer su contraseña</string>
         <image name="heart" width="22" height="19.5"/>
         <image name="img_poster" width="291" height="388.5"/>
         <image name="loc" width="14.5" height="20.5"/>
-        <image name="lock" width="50.5" height="50.5"/>
+        <image name="lock" width="22" height="27.5"/>
         <image name="mail" width="18" height="14"/>
         <image name="next" width="20" height="13.5"/>
         <image name="one" width="375" height="675"/>

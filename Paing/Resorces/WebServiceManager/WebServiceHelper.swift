@@ -23,9 +23,11 @@ struct WsUrl{
     
     static let url_forgotPassword = BASE_URL + "forgot_password"
     static let url_GetUserList = BASE_URL + "get_users"
+    
     static let url_GetUserImage = BASE_URL + "get_user_image"
     static let url_getUserProfile  = BASE_URL + "get_profile"
-    static let url_ChangePassword  = BASE_URL + "change_password"
+    static let url_getNotification  = BASE_URL + "get_notification"
+    static let url_getConversationList = BASE_URL + "get_conversation"
     static let url_ForgotPassword  = BASE_URL + "forgot_password"
 }
 
