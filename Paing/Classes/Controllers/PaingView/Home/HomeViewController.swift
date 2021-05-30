@@ -16,6 +16,9 @@ class HomeViewController: UIViewController {
     
     @IBOutlet var swipeView: KolodaView!
     @IBOutlet var subVwFilter: UIView!
+    @IBOutlet var subVwCompleteProfile: UIView!
+    @IBOutlet var lblUserProfileName: UILabel!
+    @IBOutlet var imgVwLogo: UIImageView!
     
     //SubVwOutlets
     @IBOutlet var tfSelectGenderSubVw: DropDown!
@@ -51,11 +54,12 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Do any additional setup after loading the view.
         self.setDropDown()
         self.subVwFilter.isHidden = true
+        self.subVwCompleteProfile.isHidden = true
         swipeView.dataSource = self
         swipeView.delegate = self
-        
         self.tfMinimuAgeSubVw.delegate = self
         self.tfMaximumAgeSubVw.delegate = self
         self.tfSelectGenderSubVw.delegate = self
@@ -68,10 +72,31 @@ class HomeViewController: UIViewController {
         //        for dataa in dictSampleData{
         //            let obj = HomeModel.init(dict: dataa)
         //        }
+
         
-        self.call_GetUsers()
-        self.modalTransitionStyle = UIModalTransitionStyle.flipHorizontal
-        // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.subVwFilter.isHidden = true
+        self.subVwCompleteProfile.isHidden = true
+        if objAppShareData.UserDetail.strGender == "" && objAppShareData.UserDetail.strDob == "" {
+            self.lblUserProfileName.text = objAppShareData.UserDetail.strName
+            self.subVwCompleteProfile.isHidden = false
+            
+            UIView.animate(withDuration: 1, delay: 0.0, options: [.curveEaseIn], animations: {
+                self.imgVwLogo.transform = CGAffineTransform.identity.scaledBy(x: 0.5, y: 0.5)
+            }) { (finished) in
+                UIView.animate(withDuration: 1, animations: {
+                    self.imgVwLogo.transform = CGAffineTransform.identity
+                })
+            }
+        }
+        else {
+            self.call_GetUsers()
+            self.modalTransitionStyle = UIModalTransitionStyle.flipHorizontal
+        }
+
     }
     
     func setDropDown(){
@@ -180,6 +205,7 @@ class HomeViewController: UIViewController {
             }
             
         }
+
     }
     
     @IBAction func actionBtnLeftSwipe(_ sender: Any) {
@@ -199,9 +225,16 @@ class HomeViewController: UIViewController {
         print(swipeView.currentCardIndex)
         let userID = self.arrUsers[swipeView.currentCardIndex]
     }
+
+    
+    @IBAction func actionCompleteProfile(_ sender: Any) {
+        self.subVwCompleteProfile.isHidden = true
+        pushVc(viewConterlerId: "EditProfileViewController")
+    }
+    
 }
 
-// MARK: KolodaViewDelegate
+// MARK: - KolodaViewDelegate
 
 extension HomeViewController: KolodaViewDelegate {
     
@@ -217,7 +250,7 @@ extension HomeViewController: KolodaViewDelegate {
 }
 
 
-// MARK: KolodaViewDataSource
+// MARK: - KolodaViewDataSource
 
 extension HomeViewController: KolodaViewDataSource {
     

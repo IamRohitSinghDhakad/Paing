@@ -52,6 +52,12 @@ class LoginViewController: UIViewController {
     @IBAction func actionShowPassword(_ sender: Any) {
         self.tfPassword.isSecureTextEntry = self.tfPassword.isSecureTextEntry ? false : true
     }
+    
+    @IBAction func actionDismissEmailVerificationPopup(_ sender: Any) {
+        self.subVw.isHidden = true
+    }
+    
+    
 }
 
 //MARK:- Validations
@@ -69,14 +75,14 @@ extension LoginViewController{
         return true
         
     }
-
+    
 }
 
 extension LoginViewController{
     
     //MARK:- All Validations
     func validateForSignUp(){
-     
+        self.view.endEditing(true)
         self.tfEmail.text = self.tfEmail.text!.trim()
         self.tfPassword.text = self.tfPassword.text!.trim()
         if (tfEmail.text?.isEmpty)! {
@@ -105,7 +111,7 @@ extension LoginViewController{
             objAlert.showAlert(message: "No Internet Connection", title: "Alert", controller: self)
             return
         }
-    
+        
         objWebServiceManager.showIndicator()
         
         let dicrParam = ["username":self.tfEmail.text!,
@@ -115,38 +121,38 @@ extension LoginViewController{
             objWebServiceManager.hideIndicator()
             let status = (response["status"] as? Int)
             let message = (response["message"] as? String)
-          //  print(response)
+            //  print(response)
             if status == MessageConstant.k_StatusCode{
-                
-                let user_details  = response["result"] as? [String:Any]
-
-                print(user_details)
-                objAppShareData.SaveUpdateUserInfoFromAppshareData(userDetail: user_details ?? [:])
-                objAppShareData.fetchUserInfoFromAppshareData()
-                
-                AppSharedData.sharedObject().isLoggedIn = true
-                let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                let vc = (self.mainStoryboard.instantiateViewController(withIdentifier: "SideMenuController") as? SideMenuController)!
-                let navController = UINavigationController(rootViewController: vc)
-                navController.isNavigationBarHidden = true
-                appDelegate.window?.rootViewController = navController
-              
-                
-                
+                if let user_details  = response["result"] as? [String:Any] {
+                    let isEmailVerified = user_details["email_verified"] as! String
+                    if isEmailVerified == "0" {
+                        //Show Email Verification Popup
+                        self.subVw.isHidden = false
+                    }
+                    else {
+                        print(user_details)
+                        objAppShareData.SaveUpdateUserInfoFromAppshareData(userDetail: user_details)
+                        objAppShareData.fetchUserInfoFromAppshareData()
+                        self.pushVc(viewConterlerId: "DemoViewController")
+                    }
+                }
+                else {
+                    objAlert.showAlert(message: "Something went wrong!", title: "Alert", controller: self)
+                }
             }else{
                 objWebServiceManager.hideIndicator()
                 objAlert.showAlert(message: message ?? "", title: "Alert", controller: self)
                 
             }
-           
+            
             
         } failure: { (Error) in
             print(Error)
             objWebServiceManager.hideIndicator()
         }
-
-    
-   }
+        
+        
+    }
     
 }
 

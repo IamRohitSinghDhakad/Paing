@@ -63,10 +63,11 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let row = indexPath.row
+
         
         switch row {
         case 0:
-            let vc = self.mainStoryboard.instantiateViewController(withIdentifier: "BasicInformationViewController") as! BasicInformationViewController
+            let vc = self.mainStoryboard.instantiateViewController(withIdentifier: "EditProfileViewController") as! EditProfileViewController
             self.navigationController?.pushViewController(vc, animated: true)
         case 1:
             let vc = self.mainStoryboard.instantiateViewController(withIdentifier: "PrivacyPolicyViewController") as! PrivacyPolicyViewController

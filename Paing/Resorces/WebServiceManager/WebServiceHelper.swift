@@ -15,6 +15,7 @@ let BASE_URL = "http://ambitious.in.net/Shubham/paing/index.php/api/"
 struct WsUrl{
     
     static let url_SignUp  = BASE_URL + "signup?"
+    static let url_SocialLogin  = BASE_URL + "social_login"
     static let url_getSubCategory = BASE_URL + "get_sub_category?"
     static let url_Login  = BASE_URL + "login"
     static let url_getCountry = BASE_URL + "get_country"

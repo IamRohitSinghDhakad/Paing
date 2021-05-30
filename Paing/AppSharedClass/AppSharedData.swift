@@ -33,10 +33,11 @@ class AppSharedData: NSObject {
     
     open var isLoggedIn: Bool {
         get {
-            return UserDefaults.standard.bool(forKey: "loggedIn")
-        }
-        set(userLoggedIn) {
-            UserDefaults.standard.set(userLoggedIn, forKey: "loggedIn")
+            if (UserDefaults.standard.value(forKey:  UserDefaults.KeysDefault.userInfo) as? [String : Any]) != nil {
+                objAppShareData.fetchUserInfoFromAppshareData()
+                return true
+            }
+            return false
         }
     }
     
@@ -69,7 +70,8 @@ class AppSharedData: NSObject {
     //MARK: - Sign Out
     
     func signOut() {
-        self.isLoggedIn = false
+        UserDefaults.standard.removeObject(forKey: UserDefaults.KeysDefault.userInfo)
+        UserDetail = userDetailModel(dict: [:])
         let vc = (UIStoryboard(name: "Auth", bundle: nil).instantiateViewController(withIdentifier: "WelcomeViewController") as? WelcomeViewController)!
         let navController = UINavigationController(rootViewController: vc)
         let appDelegate = UIApplication.shared.delegate as! AppDelegate

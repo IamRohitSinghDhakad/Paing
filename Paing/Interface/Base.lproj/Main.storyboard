@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -168,7 +168,7 @@
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <prototypes>
                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NotificationTableViewCell" rowHeight="80" id="23N-i1-Up0" customClass="NotificationTableViewCell" customModule="Paing" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="24.5" width="414" height="80"/>
+                                                        <rect key="frame" x="0.0" y="28" width="414" height="80"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="23N-i1-Up0" id="boh-DW-kst">
                                                             <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
@@ -534,7 +534,7 @@
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <prototypes>
                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PaingBlogTableViewCell" id="na8-YM-YND" customClass="PaingBlogTableViewCell" customModule="Paing" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="24.5" width="414" height="157.5"/>
+                                                        <rect key="frame" x="0.0" y="28" width="414" height="157.5"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="na8-YM-YND" id="sbR-3F-4eY">
                                                             <rect key="frame" x="0.0" y="0.0" width="414" height="157.5"/>
@@ -962,7 +962,7 @@
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <prototypes>
                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="MessageTableViewCell" rowHeight="82" id="8sg-5W-9Ba" customClass="MessageTableViewCell" customModule="Paing" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="24.5" width="414" height="82"/>
+                                                        <rect key="frame" x="0.0" y="28" width="414" height="82"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8sg-5W-9Ba" id="A6a-Hu-SQz">
                                                             <rect key="frame" x="0.0" y="0.0" width="414" height="82"/>
@@ -2478,6 +2478,192 @@
                                     <constraint firstItem="5O4-9t-Scx" firstAttribute="top" secondItem="IaD-I4-S57" secondAttribute="bottom" constant="10" id="tf0-0R-vmQ"/>
                                 </constraints>
                             </view>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HNa-k9-rzR">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <subviews>
+                                    <view alpha="0.75" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9H8-GL-E7v">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pwn-Nk-avV">
+                                        <rect key="frame" x="20" y="272.5" width="374" height="351"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Dgg-rn-J7I">
+                                                <rect key="frame" x="0.0" y="20" width="374" height="311"/>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vch-4d-WX4">
+                                                        <rect key="frame" x="0.0" y="0.0" width="374" height="68"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="Hola" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DLg-uR-xsh">
+                                                                <rect key="frame" x="0.0" y="0.0" width="374" height="26.5"/>
+                                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="22"/>
+                                                                <color key="textColor" name="AppSkyBlue"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="Hola" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r0n-KL-rkn">
+                                                                <rect key="frame" x="0.0" y="41.5" width="374" height="26.5"/>
+                                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="22"/>
+                                                                <color key="textColor" name="AppSkyBlue"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstItem="DLg-uR-xsh" firstAttribute="top" secondItem="Vch-4d-WX4" secondAttribute="top" id="5ck-k8-7En"/>
+                                                            <constraint firstItem="r0n-KL-rkn" firstAttribute="leading" secondItem="Vch-4d-WX4" secondAttribute="leading" id="6G8-Z9-s9J"/>
+                                                            <constraint firstItem="DLg-uR-xsh" firstAttribute="leading" secondItem="Vch-4d-WX4" secondAttribute="leading" id="Mlq-c2-5sJ"/>
+                                                            <constraint firstAttribute="trailing" secondItem="DLg-uR-xsh" secondAttribute="trailing" id="QN1-XJ-ICE"/>
+                                                            <constraint firstItem="r0n-KL-rkn" firstAttribute="top" secondItem="DLg-uR-xsh" secondAttribute="bottom" constant="15" id="R4y-3E-kgE"/>
+                                                            <constraint firstAttribute="bottom" secondItem="r0n-KL-rkn" secondAttribute="bottom" id="rKK-a6-1NU"/>
+                                                            <constraint firstAttribute="trailing" secondItem="r0n-KL-rkn" secondAttribute="trailing" id="y6I-Au-ia3"/>
+                                                        </constraints>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JYN-Kn-1eW">
+                                                        <rect key="frame" x="0.0" y="88" width="374" height="30"/>
+                                                        <subviews>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="nLM-Uc-dxP">
+                                                                <rect key="frame" x="37.5" y="0.0" width="299" height="30"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Te damos la bienvenida A" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nci-Mg-AtB">
+                                                                        <rect key="frame" x="0.0" y="4" width="203.5" height="21.5"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                                        <color key="textColor" name="AppSkyBlue"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tps-Ob-VG7">
+                                                                        <rect key="frame" x="213.5" y="0.0" width="85.5" height="30"/>
+                                                                        <subviews>
+                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart" translatesAutoresizingMaskIntoConstraints="NO" id="uhL-Vf-nVk">
+                                                                                <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+                                                                                <constraints>
+                                                                                    <constraint firstAttribute="width" secondItem="uhL-Vf-nVk" secondAttribute="height" multiplier="1:1" id="5Gi-jj-2Ik"/>
+                                                                                </constraints>
+                                                                            </imageView>
+                                                                        </subviews>
+                                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <constraints>
+                                                                            <constraint firstItem="uhL-Vf-nVk" firstAttribute="leading" secondItem="Tps-Ob-VG7" secondAttribute="leading" id="6Vr-Qq-rA7"/>
+                                                                            <constraint firstItem="uhL-Vf-nVk" firstAttribute="top" secondItem="Tps-Ob-VG7" secondAttribute="top" id="AKw-51-VQ2"/>
+                                                                            <constraint firstAttribute="bottom" secondItem="uhL-Vf-nVk" secondAttribute="bottom" id="n0q-zr-5BC"/>
+                                                                        </constraints>
+                                                                    </view>
+                                                                </subviews>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="30" id="TRd-uQ-LFi"/>
+                                                                </constraints>
+                                                            </stackView>
+                                                        </subviews>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstItem="nLM-Uc-dxP" firstAttribute="top" secondItem="JYN-Kn-1eW" secondAttribute="top" id="1dV-Xf-bXO"/>
+                                                            <constraint firstAttribute="bottom" secondItem="nLM-Uc-dxP" secondAttribute="bottom" id="AF6-ds-dqZ"/>
+                                                            <constraint firstItem="nLM-Uc-dxP" firstAttribute="centerX" secondItem="JYN-Kn-1eW" secondAttribute="centerX" id="P0c-Ia-6ln"/>
+                                                            <constraint firstItem="nLM-Uc-dxP" firstAttribute="width" secondItem="JYN-Kn-1eW" secondAttribute="width" multiplier="0.8" id="ww2-dB-YWo"/>
+                                                        </constraints>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gcg-61-Ez0">
+                                                        <rect key="frame" x="0.0" y="138" width="374" height="40"/>
+                                                        <subviews>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_header" translatesAutoresizingMaskIntoConstraints="NO" id="A15-vp-A2g">
+                                                                <rect key="frame" x="121.5" y="0.0" width="131" height="40"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" secondItem="A15-vp-A2g" secondAttribute="height" multiplier="140:43" id="Yxj-GG-HSS"/>
+                                                                </constraints>
+                                                            </imageView>
+                                                        </subviews>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <constraints>
+                                                            <constraint firstItem="A15-vp-A2g" firstAttribute="width" secondItem="Gcg-61-Ez0" secondAttribute="width" multiplier="0.35" id="6FA-hK-SQ5"/>
+                                                            <constraint firstItem="A15-vp-A2g" firstAttribute="centerX" secondItem="Gcg-61-Ez0" secondAttribute="centerX" id="Txj-rU-Kbp"/>
+                                                            <constraint firstItem="A15-vp-A2g" firstAttribute="top" secondItem="Gcg-61-Ez0" secondAttribute="top" id="abQ-sd-WX6"/>
+                                                            <constraint firstAttribute="bottom" secondItem="A15-vp-A2g" secondAttribute="bottom" id="wB7-ex-tcD"/>
+                                                        </constraints>
+                                                    </view>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nkw-10-AZb">
+                                                        <rect key="frame" x="0.0" y="198" width="374" height="43"/>
+                                                        <string key="text">Para continuar, complete su perfil Por
+favor</string>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                        <color key="textColor" name="AppSkyBlue"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="REa-OI-keK">
+                                                        <rect key="frame" x="0.0" y="261" width="374" height="50"/>
+                                                        <subviews>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jhk-u1-cJk">
+                                                                <rect key="frame" x="93.5" y="0.0" width="187" height="50"/>
+                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="50" id="v0B-5V-5JR"/>
+                                                                </constraints>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                                <state key="normal" title="Vamos a completar">
+                                                                    <color key="titleColor" name="AppSkyBlue"/>
+                                                                </state>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                                                        <integer key="value" value="1"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColor">
+                                                                        <color key="value" name="AppSkyBlue"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                        <real key="value" value="1"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                        <color key="value" name="AppSkyBlue"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="actionCompleteProfile:" destination="Afx-c9-E2Q" eventType="touchUpInside" id="t4S-U4-8pD"/>
+                                                                </connections>
+                                                            </button>
+                                                        </subviews>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstItem="jhk-u1-cJk" firstAttribute="top" secondItem="REa-OI-keK" secondAttribute="top" id="6AT-rl-1po"/>
+                                                            <constraint firstItem="jhk-u1-cJk" firstAttribute="centerX" secondItem="REa-OI-keK" secondAttribute="centerX" id="KWa-27-X9e"/>
+                                                            <constraint firstAttribute="bottom" secondItem="jhk-u1-cJk" secondAttribute="bottom" id="Rrb-DG-vwK"/>
+                                                            <constraint firstItem="jhk-u1-cJk" firstAttribute="width" secondItem="REa-OI-keK" secondAttribute="width" multiplier="0.5" id="XAH-yg-9sS"/>
+                                                        </constraints>
+                                                    </view>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="Dgg-rn-J7I" secondAttribute="trailing" id="4cV-Hh-NkR"/>
+                                            <constraint firstItem="Dgg-rn-J7I" firstAttribute="leading" secondItem="pwn-Nk-avV" secondAttribute="leading" id="DWt-cR-4dS"/>
+                                            <constraint firstItem="Dgg-rn-J7I" firstAttribute="top" secondItem="pwn-Nk-avV" secondAttribute="top" constant="20" id="mzM-rV-JHC"/>
+                                            <constraint firstAttribute="bottom" secondItem="Dgg-rn-J7I" secondAttribute="bottom" constant="20" id="zUd-XF-z3e"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                                <integer key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColor">
+                                                <color key="value" name="AppSkyBlue"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" name="AppSkyBlue"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="9H8-GL-E7v" firstAttribute="top" secondItem="HNa-k9-rzR" secondAttribute="top" id="5JO-Ln-PTX"/>
+                                    <constraint firstAttribute="trailing" secondItem="pwn-Nk-avV" secondAttribute="trailing" constant="20" id="5dO-9g-Nby"/>
+                                    <constraint firstAttribute="bottom" secondItem="9H8-GL-E7v" secondAttribute="bottom" id="N37-XT-hli"/>
+                                    <constraint firstItem="pwn-Nk-avV" firstAttribute="leading" secondItem="HNa-k9-rzR" secondAttribute="leading" constant="20" id="Qec-fS-JvF"/>
+                                    <constraint firstItem="9H8-GL-E7v" firstAttribute="leading" secondItem="HNa-k9-rzR" secondAttribute="leading" id="kqw-TD-0u5"/>
+                                    <constraint firstItem="pwn-Nk-avV" firstAttribute="centerY" secondItem="HNa-k9-rzR" secondAttribute="centerY" id="zDB-Bi-pP0"/>
+                                    <constraint firstAttribute="trailing" secondItem="9H8-GL-E7v" secondAttribute="trailing" id="zLQ-aq-KFp"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="dyR-19-VBQ"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -2487,6 +2673,10 @@
                             <constraint firstItem="y2B-nT-e3K" firstAttribute="leading" secondItem="dyR-19-VBQ" secondAttribute="leading" id="NJV-vx-fWb"/>
                             <constraint firstItem="6ze-4M-E7m" firstAttribute="leading" secondItem="dyR-19-VBQ" secondAttribute="leading" id="UvS-ah-7FM"/>
                             <constraint firstItem="dyR-19-VBQ" firstAttribute="trailing" secondItem="y2B-nT-e3K" secondAttribute="trailing" id="ZKe-WX-8Yq"/>
+                            <constraint firstAttribute="bottom" secondItem="HNa-k9-rzR" secondAttribute="bottom" id="bfx-QG-hXo"/>
+                            <constraint firstItem="HNa-k9-rzR" firstAttribute="top" secondItem="pQj-6K-6gR" secondAttribute="top" id="lUm-du-3PI"/>
+                            <constraint firstItem="HNa-k9-rzR" firstAttribute="leading" secondItem="pQj-6K-6gR" secondAttribute="leading" id="qEM-F2-Xce"/>
+                            <constraint firstAttribute="trailing" secondItem="HNa-k9-rzR" secondAttribute="trailing" id="rei-vK-vat"/>
                             <constraint firstItem="y2B-nT-e3K" firstAttribute="bottom" secondItem="dyR-19-VBQ" secondAttribute="bottom" id="tEK-cS-XmJ"/>
                             <constraint firstAttribute="trailing" secondItem="6ze-4M-E7m" secondAttribute="trailing" id="wf6-We-rm2"/>
                             <constraint firstItem="6ze-4M-E7m" firstAttribute="top" secondItem="dyR-19-VBQ" secondAttribute="top" id="xWi-b7-gxk"/>
@@ -2498,6 +2688,9 @@
                         <outlet property="btnChatSUbVw" destination="49W-gy-fBw" id="lnA-HT-9DR"/>
                         <outlet property="btnRelacionIntima" destination="zAE-kD-IOB" id="4za-hD-3cC"/>
                         <outlet property="btnRelationSubVw" destination="ScX-NP-ZaQ" id="IZV-Qg-f01"/>
+                        <outlet property="imgVwLogo" destination="A15-vp-A2g" id="eJg-qV-bc8"/>
+                        <outlet property="lblUserProfileName" destination="r0n-KL-rkn" id="gDj-61-RvY"/>
+                        <outlet property="subVwCompleteProfile" destination="HNa-k9-rzR" id="P8m-vS-CNa"/>
                         <outlet property="subVwFilter" destination="y2B-nT-e3K" id="xXj-Jq-GGS"/>
                         <outlet property="swipeView" destination="HBy-uc-mek" id="Qik-WL-lly"/>
                         <outlet property="tfMaximumAgeSubVw" destination="jYi-Sn-6hk" id="mLs-TB-xud"/>
@@ -2532,7 +2725,7 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="AppSideMenuTableViewCell" rowHeight="67" id="HjL-41-DuP" customClass="AppSideMenuTableViewCell" customModule="Paing" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="24.5" width="165.5" height="67"/>
+                                                <rect key="frame" x="0.0" y="28" width="165.5" height="67"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="HjL-41-DuP" id="WMZ-2y-TfO">
                                                     <rect key="frame" x="0.0" y="0.0" width="165.5" height="67"/>
@@ -5937,6 +6130,7 @@
         <image name="delete_red" width="21" height="22.5"/>
         <image name="fav_home" width="51" height="50.5"/>
         <image name="filter" width="20" height="13.5"/>
+        <image name="heart" width="22" height="19.5"/>
         <image name="logo" width="123" height="121.5"/>
         <image name="logo_header" width="140" height="43"/>
         <image name="menu" width="5.5" height="19"/>
@@ -5947,7 +6141,7 @@
         <image name="tic_unselect" width="21.5" height="22"/>
         <image name="user" width="15.5" height="15.5"/>
         <namedColor name="AppSkyBlue">
-            <color red="0.22400000691413879" green="0.81999999284744263" blue="0.94099998474121094" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.22400000689999999" green="0.81999999280000002" blue="0.94099998470000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="buttonColor">
             <color red="0.32899999618530273" green="0.32400000095367432" blue="0.4779999852180481" alpha="0.33000001311302185" colorSpace="custom" customColorSpace="sRGB"/>

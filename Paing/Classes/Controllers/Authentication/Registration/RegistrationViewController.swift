@@ -510,6 +510,9 @@ extension RegistrationViewController{
         if self.pickedImage != nil{
             imgData = (self.pickedImage?.jpegData(compressionQuality: 1.0))!
         }
+        else {
+            imgData = (self.imgVwUser.image?.jpegData(compressionQuality: 1.0))!
+        }
         imageData.append(imgData!)
         
         let imageParam = ["user_image"]

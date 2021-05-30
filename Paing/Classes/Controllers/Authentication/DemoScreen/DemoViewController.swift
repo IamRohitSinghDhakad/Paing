@@ -19,7 +19,6 @@ class DemoViewController: UIViewController {
     }
     
     @IBAction func btnOnNext(_ sender: Any) {
-        AppSharedData.sharedObject().isLoggedIn = true
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let vc = (self.mainStoryboard.instantiateViewController(withIdentifier: "SideMenuController") as? SideMenuController)!
         let navController = UINavigationController(rootViewController: vc)
