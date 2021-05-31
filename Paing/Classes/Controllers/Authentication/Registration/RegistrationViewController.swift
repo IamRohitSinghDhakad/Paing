@@ -545,7 +545,7 @@ extension RegistrationViewController{
                 objAppShareData.SaveUpdateUserInfoFromAppshareData(userDetail: user_details ?? [:])
                 objAppShareData.fetchUserInfoFromAppshareData()
 
-                self.pushVc(viewConterlerId: "DemoViewController")
+                self.pushVc(viewConterlerId: "LoginViewController")
 
             }else{
                 objWebServiceManager.hideIndicator()
