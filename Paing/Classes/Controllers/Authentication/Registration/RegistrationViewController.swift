@@ -44,7 +44,7 @@ class RegistrationViewController: UIViewController,UINavigationControllerDelegat
     var arrCityFiltered = [CityModel]()
     
     var strType = "Country"
-    
+    var strAge = ""
     var strSelectedCountryID = ""
     var strSelectedStateID = ""
     var strSelectedCityID = ""
@@ -158,34 +158,34 @@ extension RegistrationViewController{
         
         
         if (tfName.text?.isEmpty)! {
-            objAlert.showAlert(message: MessageConstant.BlankUserName, title:MessageConstant.k_AlertTitle, controller: self)
+            objAlert.showAlert(message: "¡No puede estar vacío!", title:MessageConstant.k_AlertTitle, controller: self)
         }
         else if (tfMuestrame.text?.isEmpty)! {
             objAlert.showAlert(message: "Please select Mustrame", title:MessageConstant.k_AlertTitle, controller: self)
         }
         else if (tfEmail.text?.isEmpty)! {
-            objAlert.showAlert(message: MessageConstant.BlankEmail, title:MessageConstant.k_AlertTitle, controller: self)
+            objAlert.showAlert(message: "¡No puede estar vacío!", title:MessageConstant.k_AlertTitle, controller: self)
         }else if !objValidationManager.validateEmail(with: tfEmail.text!){
             objAlert.showAlert(message: MessageConstant.ValidEmail, title:MessageConstant.k_AlertTitle, controller: self)
         }
         else if (tfDOB.text?.isEmpty)! {
-            objAlert.showAlert(message: MessageConstant.BlankDOB, title:MessageConstant.k_AlertTitle, controller: self)
+            objAlert.showAlert(message: "Seleccionar fecha de nacimiento", title:MessageConstant.k_AlertTitle, controller: self)
         }
         else if (tfCountry.text?.isEmpty)! {
-            objAlert.showAlert(message: MessageConstant.CountrySelection, title:MessageConstant.k_AlertTitle, controller: self)
+            objAlert.showAlert(message: "¡No puede estar vacío!", title:MessageConstant.k_AlertTitle, controller: self)
         }
         else if (tfAddressOne.text?.isEmpty)! {
-            objAlert.showAlert(message: MessageConstant.stateSelection, title:MessageConstant.k_AlertTitle, controller: self)
+            objAlert.showAlert(message: "¡No puede estar vacío!", title:MessageConstant.k_AlertTitle, controller: self)
         }
-        else if (tfDOB.text?.isEmpty)! {
-            objAlert.showAlert(message: MessageConstant.citySelection, title:MessageConstant.k_AlertTitle, controller: self)
+        else if (tfAddressTwo.text?.isEmpty)! {
+            objAlert.showAlert(message: "¡No puede estar vacío!", title:MessageConstant.k_AlertTitle, controller: self)
         }
 
         else if (tfPassword.text?.isEmpty)! {
-            objAlert.showAlert(message: MessageConstant.BlankPassword, title:MessageConstant.k_AlertTitle, controller: self)
+            objAlert.showAlert(message: "¡No puede estar vacío!", title:MessageConstant.k_AlertTitle, controller: self)
         }
         else if (tfConfirmPassword.text?.isEmpty)! {
-            objAlert.showAlert(message: MessageConstant.BlankPassword, title:MessageConstant.k_AlertTitle, controller: self)
+            objAlert.showAlert(message: "¡No puede estar vacío!", title:MessageConstant.k_AlertTitle, controller: self)
         }
         
         else if self.tfPassword.text != self.tfConfirmPassword.text{
@@ -519,16 +519,21 @@ extension RegistrationViewController{
         
         print(imageData)
         
+        if self.tfDOB.text != ""{
+            self.strAge = Date().calculateAgeFromDate(strDate: self.tfDOB.text!, strFormatter: "yyyy-MM-dd")
+        }
+        
         let dicrParam = ["name":self.tfName.text!,
                          "email":self.tfEmail.text!,
                          "looking_for":self.tfMuestrame.text!,
                          "dob":self.tfDOB.text!,
+                         "age":self.strAge,
                          "password":self.tfPassword.text!,
                          "country":self.tfCountry.text!,
                          "state":self.tfAddressOne.text!,
                          "city":self.tfAddressTwo.text!,
                          "sex":self.strGender,
-                         "ios_register_id":"dfhjkgdkjgh"]as [String:Any]
+                         "ios_register_id":objAppShareData.strFirebaseToken]as [String:Any]
         
         print(dicrParam)
         

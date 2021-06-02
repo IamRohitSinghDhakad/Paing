@@ -26,7 +26,9 @@ class AppSideMenuViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var selectionMenuTrailingConstraint: NSLayoutConstraint!
     
-    private let menus: [SideMenuOptions] = [SideMenuOptions(menuName: "Inicio", menuImageName: "home_selected"),
+    var selectedIndexpath = 0
+    
+    private let menus: [SideMenuOptions] = [SideMenuOptions(menuName: "Inicio", menuImageName: "home"),
                                     SideMenuOptions(menuName: "Perfil", menuImageName: "user_sideMenu"),
                                     SideMenuOptions(menuName: "Chat", menuImageName: "chat"),
                                     SideMenuOptions(menuName: "Afiliación", menuImageName: "icon_membership"),
@@ -35,6 +37,16 @@ class AppSideMenuViewController: UIViewController {
                                     SideMenuOptions(menuName: "Ajustes", menuImageName: "setting"),
                                     SideMenuOptions(menuName: "Paing Blog", menuImageName: "blog Side_menu"),
                                     SideMenuOptions(menuName: "Cerrar Sesión", menuImageName: "logout")]
+    
+    private let menusSelected: [SideMenuOptions] = [SideMenuOptions(menuName: "Inicio", menuImageName: "home_selected"),
+                                    SideMenuOptions(menuName: "Perfil", menuImageName: "user_selected"),
+                                    SideMenuOptions(menuName: "Chat", menuImageName: "chat_selected"),
+                                    SideMenuOptions(menuName: "Afiliación", menuImageName: "afilication_selected"),
+                                    SideMenuOptions(menuName: "Bloqueados", menuImageName: "lock_selected"),
+                                    SideMenuOptions(menuName: "Notificación", menuImageName: "noti_selected"),
+                                    SideMenuOptions(menuName: "Ajustes", menuImageName: "setting_selected"),
+                                    SideMenuOptions(menuName: "Paing Blog", menuImageName: "blog_selected"),
+                                    SideMenuOptions(menuName: "Cerrar Sesión", menuImageName: "logout_selected")]
     
     
     //MARK: - Override Methods
@@ -150,13 +162,26 @@ extension AppSideMenuViewController: UITableViewDelegate, UITableViewDataSource 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AppSideMenuTableViewCell", for: indexPath) as! AppSideMenuTableViewCell
         let row = indexPath.row
-        cell.menuImage.image = UIImage(named: menus[row].menuImageName)
+        
+        if self.selectedIndexpath == indexPath.row{
+            cell.menuImage.image = UIImage(named: menusSelected[row].menuImageName)
+        }else{
+            cell.menuImage.image = UIImage(named: menus[row].menuImageName)
+        }
+        
+        
+        
         cell.menuName.text = menus[row].menuName
+        
+        
+        
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let row = indexPath.row
+        
+        self.selectedIndexpath = row
         
         if row == 8 {
             sideMenuController?.hideMenu()
@@ -174,5 +199,7 @@ extension AppSideMenuViewController: UITableViewDelegate, UITableViewDataSource 
                 print("[Example] View Controller Cache Identifier: \(identifier)")
             }
         }
+        
+        self.tableView.reloadData()
     }
 }

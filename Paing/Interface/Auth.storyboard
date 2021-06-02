@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Bvb-G8-kVA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Bvb-G8-kVA">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -127,14 +127,21 @@ ii encuentra !!</string>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L2J-TB-H9J">
                                                         <rect key="frame" x="0.0" y="0.0" width="295" height="40"/>
                                                         <subviews>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fb_white" translatesAutoresizingMaskIntoConstraints="NO" id="VBA-Ae-X5q">
+                                                                <rect key="frame" x="20" y="10" width="20" height="20"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="20" id="Nof-Cw-bHC"/>
+                                                                    <constraint firstAttribute="width" secondItem="VBA-Ae-X5q" secondAttribute="height" multiplier="1:1" id="S96-JE-gMd"/>
+                                                                </constraints>
+                                                            </imageView>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qjh-B2-5hV">
                                                                 <rect key="frame" x="0.0" y="0.0" width="295" height="40"/>
-                                                                <color key="backgroundColor" name="AccentColor"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="40" id="Xds-K4-4nx"/>
                                                                 </constraints>
                                                                 <inset key="imageEdgeInsets" minX="-50" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                                <state key="normal" title="Continuar con Facebook" image="fb_white"/>
+                                                                <state key="normal" title="Continuar con Facebook"/>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                                         <integer key="value" value="20"/>
@@ -146,20 +153,34 @@ ii encuentra !!</string>
                                                                 </connections>
                                                             </button>
                                                         </subviews>
-                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="backgroundColor" name="AccentColor"/>
                                                         <constraints>
+                                                            <constraint firstItem="VBA-Ae-X5q" firstAttribute="centerY" secondItem="L2J-TB-H9J" secondAttribute="centerY" id="Kem-0U-G10"/>
                                                             <constraint firstAttribute="bottom" secondItem="qjh-B2-5hV" secondAttribute="bottom" id="W0P-b2-5O9"/>
                                                             <constraint firstAttribute="trailing" secondItem="qjh-B2-5hV" secondAttribute="trailing" id="bLX-PZ-4v8"/>
                                                             <constraint firstItem="qjh-B2-5hV" firstAttribute="leading" secondItem="L2J-TB-H9J" secondAttribute="leading" id="fcn-Og-4DI"/>
+                                                            <constraint firstItem="VBA-Ae-X5q" firstAttribute="leading" secondItem="L2J-TB-H9J" secondAttribute="leading" constant="20" id="k5m-qe-O3t"/>
                                                             <constraint firstItem="qjh-B2-5hV" firstAttribute="top" secondItem="L2J-TB-H9J" secondAttribute="top" id="z9D-D0-QJM"/>
                                                         </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="20"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4fX-aE-fSx">
                                                         <rect key="frame" x="0.0" y="50" width="295" height="40"/>
                                                         <subviews>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3HA-vv-WiB">
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="google.png" translatesAutoresizingMaskIntoConstraints="NO" id="Tvr-Jd-jJg">
+                                                                <rect key="frame" x="20" y="11" width="18" height="18"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" secondItem="Tvr-Jd-jJg" secondAttribute="height" multiplier="1:1" id="bHh-Fu-nnF"/>
+                                                                    <constraint firstAttribute="width" constant="18" id="r5C-zN-Tgz"/>
+                                                                </constraints>
+                                                            </imageView>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3HA-vv-WiB">
                                                                 <rect key="frame" x="0.0" y="0.0" width="295" height="40"/>
-                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <state key="normal" title="Ingresa con Gmail">
                                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 </state>
@@ -174,20 +195,34 @@ ii encuentra !!</string>
                                                                 </connections>
                                                             </button>
                                                         </subviews>
-                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstItem="3HA-vv-WiB" firstAttribute="top" secondItem="4fX-aE-fSx" secondAttribute="top" id="1gX-tQ-f71"/>
                                                             <constraint firstAttribute="bottom" secondItem="3HA-vv-WiB" secondAttribute="bottom" id="SPY-kS-2cf"/>
+                                                            <constraint firstItem="Tvr-Jd-jJg" firstAttribute="centerY" secondItem="4fX-aE-fSx" secondAttribute="centerY" id="cm6-wc-aqI"/>
+                                                            <constraint firstItem="Tvr-Jd-jJg" firstAttribute="leading" secondItem="4fX-aE-fSx" secondAttribute="leading" constant="20" id="fOH-kH-3r8"/>
                                                             <constraint firstItem="3HA-vv-WiB" firstAttribute="leading" secondItem="4fX-aE-fSx" secondAttribute="leading" id="myI-ZF-NgV"/>
                                                             <constraint firstAttribute="trailing" secondItem="3HA-vv-WiB" secondAttribute="trailing" id="pMg-GU-fUP"/>
                                                         </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="20"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z7W-e1-eGz">
                                                         <rect key="frame" x="0.0" y="100" width="295" height="40"/>
                                                         <subviews>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mail_white" translatesAutoresizingMaskIntoConstraints="NO" id="7Rr-lL-hdh">
+                                                                <rect key="frame" x="20" y="10" width="20" height="20"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" secondItem="7Rr-lL-hdh" secondAttribute="height" multiplier="1:1" id="Nz0-mQ-DAD"/>
+                                                                    <constraint firstAttribute="width" constant="20" id="QDo-qK-5rC"/>
+                                                                </constraints>
+                                                            </imageView>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rRr-Pl-wkA">
                                                                 <rect key="frame" x="0.0" y="0.0" width="295" height="40"/>
-                                                                <color key="backgroundColor" name="AppSkyBlue"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <state key="normal" title="Ingresa con Email">
                                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 </state>
@@ -202,13 +237,20 @@ ii encuentra !!</string>
                                                                 </connections>
                                                             </button>
                                                         </subviews>
-                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="backgroundColor" name="AppSkyBlue"/>
                                                         <constraints>
+                                                            <constraint firstItem="7Rr-lL-hdh" firstAttribute="leading" secondItem="Z7W-e1-eGz" secondAttribute="leading" constant="20" id="3UZ-se-Kge"/>
                                                             <constraint firstAttribute="bottom" secondItem="rRr-Pl-wkA" secondAttribute="bottom" id="Erq-Rp-HYF"/>
                                                             <constraint firstAttribute="trailing" secondItem="rRr-Pl-wkA" secondAttribute="trailing" id="FB1-wH-uIg"/>
+                                                            <constraint firstItem="7Rr-lL-hdh" firstAttribute="centerY" secondItem="Z7W-e1-eGz" secondAttribute="centerY" id="Gtu-Jp-1LP"/>
                                                             <constraint firstItem="rRr-Pl-wkA" firstAttribute="leading" secondItem="Z7W-e1-eGz" secondAttribute="leading" id="Ng3-ct-Oq9"/>
                                                             <constraint firstItem="rRr-Pl-wkA" firstAttribute="top" secondItem="Z7W-e1-eGz" secondAttribute="top" id="hO3-nN-u9V"/>
                                                         </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="20"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Sd-wI-530">
                                                         <rect key="frame" x="0.0" y="150" width="295" height="40"/>
@@ -598,7 +640,7 @@ En tu país</string>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7DM-lc-Dqz">
                                                                 <rect key="frame" x="30" y="0.0" width="315" height="50"/>
                                                                 <subviews>
-                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart" translatesAutoresizingMaskIntoConstraints="NO" id="HUk-sK-Fo1">
+                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="like-of-filled-heart" translatesAutoresizingMaskIntoConstraints="NO" id="HUk-sK-Fo1">
                                                                         <rect key="frame" x="15" y="10" width="30" height="30"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" secondItem="HUk-sK-Fo1" secondAttribute="height" multiplier="1:1" id="Hhy-xO-ugI"/>
@@ -660,7 +702,7 @@ En tu país</string>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3tf-SZ-Fr6">
                                                                 <rect key="frame" x="30" y="0.0" width="315" height="50"/>
                                                                 <subviews>
-                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mail" translatesAutoresizingMaskIntoConstraints="NO" id="kPk-iY-Ps1">
+                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mail_white" translatesAutoresizingMaskIntoConstraints="NO" id="kPk-iY-Ps1">
                                                                         <rect key="frame" x="15" y="10" width="30" height="30"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" secondItem="kPk-iY-Ps1" secondAttribute="height" multiplier="1:1" id="v9q-9G-hr7"/>
@@ -973,7 +1015,7 @@ En tu país</string>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DYW-91-ayY">
                                                                 <rect key="frame" x="30" y="0.0" width="315" height="50"/>
                                                                 <subviews>
-                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lock" translatesAutoresizingMaskIntoConstraints="NO" id="6XP-8f-cQO">
+                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pass" translatesAutoresizingMaskIntoConstraints="NO" id="6XP-8f-cQO">
                                                                         <rect key="frame" x="15" y="10" width="30" height="30"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" secondItem="6XP-8f-cQO" secondAttribute="height" multiplier="1:1" id="KBe-A9-dZJ"/>
@@ -1042,7 +1084,7 @@ En tu país</string>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G3H-Rb-WWi">
                                                                 <rect key="frame" x="30" y="0.0" width="315" height="50"/>
                                                                 <subviews>
-                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lock" translatesAutoresizingMaskIntoConstraints="NO" id="y3m-dD-ttX">
+                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pass" translatesAutoresizingMaskIntoConstraints="NO" id="y3m-dD-ttX">
                                                                         <rect key="frame" x="15" y="10" width="30" height="30"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" secondItem="y3m-dD-ttX" secondAttribute="height" multiplier="1:1" id="9iZ-jW-LCa"/>
@@ -1288,7 +1330,7 @@ En tu país</string>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <prototypes>
                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="OptionsRegistrationTableViewCell" id="c7e-fM-dJT" customClass="OptionsRegistrationTableViewCell" customModule="Paing" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="28" width="281" height="41"/>
+                                                        <rect key="frame" x="0.0" y="24.5" width="281" height="41"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="c7e-fM-dJT" id="tGe-hi-eP7">
                                                             <rect key="frame" x="0.0" y="0.0" width="281" height="41"/>
@@ -1524,6 +1566,7 @@ En tu país</string>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="40" id="H2x-XZ-hEi"/>
                                                                         </constraints>
+                                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                                                                     </textField>
@@ -1579,6 +1622,7 @@ En tu país</string>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="40" id="TVC-Ln-bTj"/>
                                                                         </constraints>
+                                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                                                                     </textField>
@@ -1951,6 +1995,7 @@ para restablecer su contraseña</string>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="40" id="qBS-i0-zlk"/>
                                                                         </constraints>
+                                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                                                                     </textField>
@@ -2251,13 +2296,14 @@ un solo lugar.</string>
         <image name="country" width="18.5" height="18.5"/>
         <image name="dob" width="17.5" height="18"/>
         <image name="fb_white" width="18" height="18"/>
-        <image name="heart" width="22" height="19.5"/>
+        <image name="google.png" width="18" height="18"/>
         <image name="img_poster" width="291" height="388.5"/>
+        <image name="like-of-filled-heart" width="128" height="128"/>
         <image name="loc" width="14.5" height="20.5"/>
-        <image name="lock" width="22" height="27.5"/>
-        <image name="mail" width="18" height="14"/>
-        <image name="next" width="5.5" height="10"/>
+        <image name="mail_white" width="15.5" height="11.5"/>
+        <image name="next" width="20" height="13.5"/>
         <image name="one" width="375" height="675"/>
+        <image name="pass" width="15.5" height="19"/>
         <image name="seen" width="20.5" height="12.5"/>
         <image name="splashLogo" width="123" height="121.5"/>
         <image name="square" width="221" height="221.5"/>

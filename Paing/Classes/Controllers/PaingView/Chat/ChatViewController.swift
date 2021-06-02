@@ -20,9 +20,7 @@ class ChatViewController: UIViewController {
         self.tblMessage.delegate = self
         self.tblMessage.dataSource = self
         
-        self.tblMessage.displayBackgroundText(text: "ningún record fue encontrado")
-        
-        self.call_GetChatList(strUserID: "2")
+        self.call_GetChatList(strUserID: objAppShareData.UserDetail.strUserId)
     }
     
     //MARK: - Action Methods
@@ -33,7 +31,7 @@ class ChatViewController: UIViewController {
     
 }
 
-
+//MARK:- Uitablevie datasource and delegates
 extension ChatViewController:UITableViewDelegate,UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -83,7 +81,7 @@ extension ChatViewController:UITableViewDelegate,UITableViewDataSource{
     
 }
 
-
+//MARK:- Call Webservice Chat List
 extension ChatViewController{
     
     func call_GetChatList(strUserID:String){
@@ -112,15 +110,18 @@ extension ChatViewController{
                         let obj = ConversationListModel.init(dict: dictdata)
                         self.arrMessageList.append(obj)
                     }
+                    
                     self.tblMessage.reloadData()
                 }
             }else{
                 objWebServiceManager.hideIndicator()
-                objAlert.showAlert(message: message ?? "", title: "Alert", controller: self)
                 
+                if (response["result"]as? String) != nil{
+                    self.tblMessage.displayBackgroundText(text: "ningún record fue encontrado")
+                }else{
+                    objAlert.showAlert(message: message ?? "", title: "Alert", controller: self)
+                }
             }
-            
-            
         } failure: { (Error) in
             print(Error)
             objWebServiceManager.hideIndicator()

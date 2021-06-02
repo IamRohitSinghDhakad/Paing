@@ -9,7 +9,7 @@ import UIKit
 
 class SettingsViewController: UIViewController {
     
-    private let settingOptions: [String] = ["Basic information", "Share application", "Legal Warning", "Privacy Policy","Terms of use", "Cookies", "Contact Us", "Setting", "Help", "Sign Off"]
+    private let settingOptions: [String] = ["Información básica", "Compartir aplicación", "Aviso legal", "Política de privacidad","Condiciones de uso", "Cookies", "Contáctenos", "Configuración", "Ayuda", "Cerrar Sesión"]
     
     /*
      case "ContactUs 6":
@@ -68,22 +68,24 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
         switch row {
         case 0:
             let vc = self.mainStoryboard.instantiateViewController(withIdentifier: "EditProfileViewController") as! EditProfileViewController
+            vc.isComingFrom = "Basic Information"
             self.navigationController?.pushViewController(vc, animated: true)
         case 1:
-            let vc = self.mainStoryboard.instantiateViewController(withIdentifier: "PrivacyPolicyViewController") as! PrivacyPolicyViewController
-            vc.strType = "Privacy"
-            self.navigationController?.pushViewController(vc, animated: true)
+            objAlert.showAlert(message: "Under Development", controller: self)
+//            let vc = self.mainStoryboard.instantiateViewController(withIdentifier: "PrivacyPolicyViewController") as! PrivacyPolicyViewController
+//            vc.strType = "Privacy"
+//            self.navigationController?.pushViewController(vc, animated: true)
         case 2:
             let vc = self.mainStoryboard.instantiateViewController(withIdentifier: "PrivacyPolicyViewController") as! PrivacyPolicyViewController
-            vc.strType = "Suggestion"
+            vc.strType = "Aviso legal"
             self.navigationController?.pushViewController(vc, animated: true)
         case 3:
             let vc = self.mainStoryboard.instantiateViewController(withIdentifier: "PrivacyPolicyViewController") as! PrivacyPolicyViewController
-            vc.strType = "PricacyPolicy"
+            vc.strType = "Política de privacidad"
             self.navigationController?.pushViewController(vc, animated: true)
         case 4:
             let vc = self.mainStoryboard.instantiateViewController(withIdentifier: "PrivacyPolicyViewController") as! PrivacyPolicyViewController
-            vc.strType = "Terms&Service"
+            vc.strType = "Condiciones de uso"
             self.navigationController?.pushViewController(vc, animated: true)
         case 5:
             let vc = self.mainStoryboard.instantiateViewController(withIdentifier: "PrivacyPolicyViewController") as! PrivacyPolicyViewController
@@ -91,15 +93,15 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
             self.navigationController?.pushViewController(vc, animated: true)
         case 6:
             let vc = self.mainStoryboard.instantiateViewController(withIdentifier: "PrivacyPolicyViewController") as! PrivacyPolicyViewController
-            vc.strType = "ContactUs"
+            vc.strType = "Contáctenos"
             self.navigationController?.pushViewController(vc, animated: true)
         case 7:
             let vc = self.mainStoryboard.instantiateViewController(withIdentifier: "PrivacyPolicyViewController") as! PrivacyPolicyViewController
-            vc.strType = "Settings"
+            vc.strType = "Configuración"
             self.navigationController?.pushViewController(vc, animated: true)
         case 8:
             let vc = self.mainStoryboard.instantiateViewController(withIdentifier: "PrivacyPolicyViewController") as! PrivacyPolicyViewController
-            vc.strType = "Help"
+            vc.strType = "Ayuda"
             self.navigationController?.pushViewController(vc, animated: true)
             
         case self.settingOptions.count - 1:

@@ -21,7 +21,7 @@ struct WsUrl{
     static let url_getCountry = BASE_URL + "get_country"
     static let url_getStates = BASE_URL + "get_state?"
     static let url_getCity = BASE_URL + "get_city?"
-    
+    static let url_completeProfile = BASE_URL + "complete_profile"
     static let url_forgotPassword = BASE_URL + "forgot_password"
     static let url_GetUserList = BASE_URL + "get_users"
     
@@ -29,7 +29,10 @@ struct WsUrl{
     static let url_getUserProfile  = BASE_URL + "get_profile"
     static let url_getNotification  = BASE_URL + "get_notification"
     static let url_getConversationList = BASE_URL + "get_conversation"
+    static let url_getBlockList = BASE_URL + "blocked_list"
+    static let url_getBlogList = BASE_URL + "get_blog"
     static let url_ForgotPassword  = BASE_URL + "forgot_password"
+    static let url_DeleteNotification = BASE_URL + "delete_notification?"
 }
 
 //Api Header

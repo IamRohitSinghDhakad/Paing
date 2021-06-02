@@ -26,26 +26,28 @@ class PrivacyPolicyViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.lblHeader.text = strType
+        
         switch strType {
-        case "ContactUs":
+        case "Contáctenos":
             self.loadUrl(strUrl: "http://ambitious.in.net/Shubham/paing/index.php/api/page/Contact")
         case "Privacy":
             self.loadUrl(strUrl: "http://ambitious.in.net/Shubham/paing/index.php/api/page/Privacy")
-        case "Suggestion":
-            self.loadUrl(strUrl: "http://ambitious.in.net/Shubham/paing/index.php/api/page/Suggestions")
+        case "Aviso legal":
+            self.loadUrl(strUrl: "http://ambitious.in.net/Shubham/paing/index.php/api/page/Legal%20warning")
         case "ReportProfile":
             self.loadUrl(strUrl: "http://ambitious.in.net/Shubham/paing/index.php/api/page/Report%20profile")
         case "LegalWarning":
             self.loadUrl(strUrl: "http://ambitious.in.net/Shubham/paing/index.php/api/page/Legal%20warning")
-        case "Terms&Service":
+        case "Condiciones de uso":
             self.loadUrl(strUrl: "http://ambitious.in.net/Shubham/paing/index.php/api/page/Terms%20of%20use")
         case "Cookies":
             self.loadUrl(strUrl: "http://ambitious.in.net/Shubham/paing/index.php/api/page/Cookies")
-        case "Help":
+        case "Ayuda":
             self.loadUrl(strUrl: "http://ambitious.in.net/Shubham/paing/index.php/api/page/Help")
-        case "Settings":
+        case "Configuración":
             self.loadUrl(strUrl: "http://ambitious.in.net/Shubham/paing/index.php/api/page/setting")
-        case "PricacyPolicy":
+        case "Política de privacidad":
             self.loadUrl(strUrl: "http://ambitious.in.net/Shubham/paing/index.php/api/page/privacy%20policy")
         default:
             break

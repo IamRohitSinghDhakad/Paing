@@ -12,6 +12,7 @@ class HomeModel: NSObject {
     
     var strName     :String = ""
     var strAge    :String = ""
+    var strDateOfBirth    :String = ""
     var strImageUrl :String = ""
     
     init(dict : [String:Any]) {
@@ -27,6 +28,12 @@ class HomeModel: NSObject {
         if let image = dict["user_image"] as? String{
             self.strImageUrl = image
         }
+        
+        if let dob = dict["dob"] as? String{
+            self.strDateOfBirth = dob
+        }
+        
+        
     }
 
 }

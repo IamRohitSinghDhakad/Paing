@@ -42,8 +42,11 @@ class HomeViewController: UIViewController {
     var strCountry = ""
     var strState = ""
     var strCity = ""
-    var limit = 5
+    var limit = 2
     var offset = 0
+    var totalRecord = Int()
+    var isFilteredApply = Bool()
+    var selectedGender = String()
     
     var isSelectedOne = Bool()
     var isSelectedTwo = Bool()
@@ -69,34 +72,26 @@ class HomeViewController: UIViewController {
         self.vwThreeSubVw.borderColor = UIColor.lightGray
         self.vwFourSubVw.borderColor = UIColor.lightGray
         
+        self.swipeView.layer.borderWidth = 1.0
+        self.swipeView.borderColor = UIColor.lightGray
+        
         //        for dataa in dictSampleData{
         //            let obj = HomeModel.init(dict: dataa)
         //        }
-
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.subVwFilter.isHidden = true
         self.subVwCompleteProfile.isHidden = true
+        
+        
         if objAppShareData.UserDetail.strGender == "" && objAppShareData.UserDetail.strDob == "" {
-            self.lblUserProfileName.text = objAppShareData.UserDetail.strName
-            self.subVwCompleteProfile.isHidden = false
-            
-            UIView.animate(withDuration: 1, delay: 0.0, options: [.curveEaseIn], animations: {
-                self.imgVwLogo.transform = CGAffineTransform.identity.scaledBy(x: 0.5, y: 0.5)
-            }) { (finished) in
-                UIView.animate(withDuration: 1, animations: {
-                    self.imgVwLogo.transform = CGAffineTransform.identity
-                })
-            }
-        }
-        else {
-            self.call_GetUsers()
+            self.call_GetProfile(strUserID: objAppShareData.UserDetail.strUserId)
+        }else {
+            self.call_GetUsers(strUserID: objAppShareData.UserDetail.strUserId)
             self.modalTransitionStyle = UIModalTransitionStyle.flipHorizontal
         }
-
     }
     
     func setDropDown(){
@@ -104,6 +99,14 @@ class HomeViewController: UIViewController {
         self.tfSelectGenderSubVw.optionArray = ["Hombre", "Mujer", "Hombre y Mujer"]
 
         self.tfSelectGenderSubVw.didSelect{(selectedText , index ,id) in
+            switch index {
+            case 0:
+                self.selectedGender = "Male"
+            case 1:
+                self.selectedGender = "Female"
+            default:
+                self.selectedGender = ""
+            }
         self.tfSelectGenderSubVw.text = selectedText
         }
     }
@@ -168,7 +171,11 @@ class HomeViewController: UIViewController {
         }
     }
     @IBAction func btnApplySubVw(_ sender: Any) {
-        self.call_GetFilteredUsers(strOffset: 0)
+        self.subVwFilter.fadeOut()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            self.subVwFilter.isHidden = true
+        }
+        self.call_GetFilteredUsers(strOffset: 0, strUserID: objAppShareData.UserDetail.strUserId)
     }
     
     func clearColorAndValues(){
@@ -203,9 +210,7 @@ class HomeViewController: UIViewController {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 self.subVwFilter.isHidden = true
             }
-            
         }
-
     }
     
     @IBAction func actionBtnLeftSwipe(_ sender: Any) {
@@ -218,12 +223,18 @@ class HomeViewController: UIViewController {
     
     @IBAction func actionBtnChatBox(_ sender: Any) {
        print(swipeView.currentCardIndex)
-        let userID = self.arrUsers[swipeView.currentCardIndex]
+        if self.arrUsers.count > 0{
+            let userID = self.arrUsers[swipeView.currentCardIndex]
+        }
+       
     }
     
     @IBAction func actionBtnProfile(_ sender: Any) {
         print(swipeView.currentCardIndex)
-        let userID = self.arrUsers[swipeView.currentCardIndex]
+        if self.arrUsers.count > 0{
+            let userID = self.arrUsers[swipeView.currentCardIndex]
+            pushVc(viewConterlerId: "EditProfileViewController")
+        }
     }
 
     
@@ -239,11 +250,23 @@ class HomeViewController: UIViewController {
 extension HomeViewController: KolodaViewDelegate {
     
     func kolodaDidRunOutOfCards(_ koloda: KolodaView) {
-        print("Run out of cards")
+        
+        if isFilteredApply{
+            if self.arrUsers.count < self.totalRecord{
+                offset = offset + limit
+                self.call_GetFilteredUsers(strOffset: offset, strUserID: objAppShareData.UserDetail.strUserId)
+            }else{
+              objAlert.showAlert(message: "Quedarse sin usuarias", title: "Alerta", controller: self)
+                self.arrUsers.removeAll()
+            }
+        }else{
+            objAlert.showAlert(message: "Quedarse sin usuarias", title: "Alerta", controller: self)
+            self.arrUsers.removeAll()
+        }
     }
     
     func koloda(_ koloda: KolodaView, didSelectCardAt index: Int) {
-        pushVc(viewConterlerId: "DetailViewController")
+       // pushVc(viewConterlerId: "DetailViewController")
         //  UIApplication.shared.openURL(URL(string: "https://yalantis.com/")!)
     }
     
@@ -270,7 +293,17 @@ extension HomeViewController: KolodaViewDataSource {
             if index < self.arrUsers.count {
                 let objCard = self.arrUsers[index]
                 overlay.lblName.text = objCard.strName
-                overlay.lblAge.text = "\(objCard.strAge) Años"
+                
+                
+                if objCard.strAge != ""{
+                    overlay.lblAge.text = "\(objCard.strAge) Años"
+                }else{
+                    if objCard.strDateOfBirth != ""{
+                        let age =   Date().calculateAgeFromDate(strDate: objCard.strDateOfBirth, strFormatter: "yyyy-MM-dd")
+                        overlay.lblAge.text = "\(age) Años"
+                    }
+                }
+            
                 let profilePic = objCard.strImageUrl
                 if profilePic != "" {
                     let url = URL(string: profilePic)
@@ -365,8 +398,7 @@ extension HomeViewController{
 //MARK:- Call Webservice Get All Users
 extension HomeViewController{
     
-    
-    func call_GetUsers(){
+    func call_GetUsers(strUserID:String){
         
         if !objWebServiceManager.isNetworkAvailable(){
             objWebServiceManager.hideIndicator()
@@ -376,8 +408,11 @@ extension HomeViewController{
         
         objWebServiceManager.showIndicator()
         
-        let parameter = ["user_id":"1"]as [String:Any]
-        
+        let parameter = ["user_id":strUserID,
+                         "sex":objAppShareData.UserDetail.strGender,
+                         "country":objAppShareData.UserDetail.strCountry,
+                         "looking_for":objAppShareData.UserDetail.strLookingFor
+        ]as [String:Any]
         
         objWebServiceManager.requestGet(strURL: WsUrl.url_GetUserList, params: parameter, queryParams: [:], strCustomValidation: "") { (response) in
             objWebServiceManager.hideIndicator()
@@ -394,9 +429,22 @@ extension HomeViewController{
                     }
                     self.swipeView.reloadData()
                 }
+                
+                if let recordsCount = response["total_rows"]as? Int {
+                    self.totalRecord = recordsCount
+                }else if let recordsCount = response["total_rows"]as? String {
+                    self.totalRecord = Int(recordsCount) ?? 0
+                }
+                print(self.totalRecord)
+                
             }else{
                 objWebServiceManager.hideIndicator()
-                objAlert.showAlert(message: message ?? "", title: "Alert", controller: self)
+                if (response["result"] as? String) != nil || response["result"] as? String == "User not found"{
+                    objAlert.showAlert(message: "ningún record fue encontrado", title: "Alerta", controller: self)
+                }else{
+                    objAlert.showAlert(message: message ?? "", title: "Alert", controller: self)
+                }
+               
                 
             }
             
@@ -408,7 +456,7 @@ extension HomeViewController{
     }
     
     
-    func call_GetFilteredUsers(strOffset:Int){
+    func call_GetFilteredUsers(strOffset:Int,strUserID:String){
         
         if !objWebServiceManager.isNetworkAvailable(){
             objWebServiceManager.hideIndicator()
@@ -418,7 +466,13 @@ extension HomeViewController{
         
         objWebServiceManager.showIndicator()
         
-        let ageRange = "\(self.tfMinimuAgeSubVw.text ?? "0") - \(self.tfMaximumAgeSubVw.text ?? "0")"
+        var ageRange = ""
+        
+        if self.tfMinimuAgeSubVw.text != "" && self.tfMaximumAgeSubVw.text != ""{
+            ageRange = "\(self.tfMinimuAgeSubVw.text ?? "0") - \(self.tfMaximumAgeSubVw.text ?? "0")"
+        }
+        
+       
         var lookingFor = ""
         if isSelectedOne{
             lookingFor = (self.btnChatSUbVw.titleLabel?.text)!
@@ -436,12 +490,11 @@ extension HomeViewController{
         if lookingFor.hasPrefix(","){
             lookingFor.remove(at: lookingFor.startIndex)
         }
-        print(lookingFor)
         
         
-        let parameter = ["user_id":"1",
+        let parameter = ["user_id":strUserID,
                          "age_range":ageRange,
-                         "sex":self.tfSelectGenderSubVw.text!,
+                         "sex":self.selectedGender,
                          "country":self.strCountry,
                          "state":self.strState,
                          "city":self.strCity,
@@ -459,7 +512,15 @@ extension HomeViewController{
             print(response)
             //total_rows
             
+            if self.isFilteredApply{
+                
+            }else{
+                self.arrUsers.removeAll()
+            }
+            
+            
             if status == MessageConstant.k_StatusCode{
+                self.isFilteredApply = true
                 if let arrData  = response["result"] as? [[String:Any]]{
                     for dictdata in arrData{
                         let obj = HomeModel.init(dict: dictdata)
@@ -467,10 +528,22 @@ extension HomeViewController{
                     }
                     self.swipeView.reloadData()
                 }
+                
+                if let recordsCount = response["total_rows"]as? Int {
+                    self.totalRecord = recordsCount
+                }else if let recordsCount = response["total_rows"]as? String {
+                    self.totalRecord = Int(recordsCount) ?? 0
+                }
+                print(self.totalRecord)
+                
             }else{
                 objWebServiceManager.hideIndicator()
-                objAlert.showAlert(message: message ?? "", title: "Alert", controller: self)
-                
+                if (response["result"] as? String) != nil || response["result"] as? String == "User not found"{
+                    objAlert.showAlert(message: "ningún record fue encontrado", title: "Alerta", controller: self)
+                }else{
+                    objAlert.showAlert(message: message ?? "", title: "Alert", controller: self)
+                }
+                self.swipeView.reloadData()
             }
         } failure: { (Error) in
             print(Error)
@@ -478,5 +551,96 @@ extension HomeViewController{
         }
     }
     
+    // MARK:- Get Profile
+    
+    func call_GetProfile(strUserID:String){
+        
+        if !objWebServiceManager.isNetworkAvailable(){
+            objWebServiceManager.hideIndicator()
+            objAlert.showAlert(message: "No Internet Connection", title: "Alert", controller: self)
+            return
+        }
+        
+     //   objWebServiceManager.showIndicator()
+        
+        let parameter = ["user_id":strUserID]as [String:Any]
+        
+        
+        objWebServiceManager.requestGet(strURL: WsUrl.url_getUserProfile, params: parameter, queryParams: [:], strCustomValidation: "") { (response) in
+            objWebServiceManager.hideIndicator()
+            let status = (response["status"] as? Int)
+            let message = (response["message"] as? String)
+            
+            print(response)
+            
+            if status == MessageConstant.k_StatusCode{
+                
+                if let user_details  = response["result"] as? [String:Any] {
+                       
+                        objAppShareData.SaveUpdateUserInfoFromAppshareData(userDetail: user_details)
+                        objAppShareData.fetchUserInfoFromAppshareData()
+                    
+                    if objAppShareData.UserDetail.strGender == "" && objAppShareData.UserDetail.strDob == "" {
+                        self.lblUserProfileName.text = objAppShareData.UserDetail.strName
+                        self.subVwCompleteProfile.isHidden = false
+                        
+                        UIView.animate(withDuration: 1, delay: 0.0, options: [.curveEaseIn], animations: {
+                            self.imgVwLogo.transform = CGAffineTransform.identity.scaledBy(x: 0.5, y: 0.5)
+                        }) { (finished) in
+                            UIView.animate(withDuration: 1, animations: {
+                                self.imgVwLogo.transform = CGAffineTransform.identity
+                            })
+                        }
+                    }else {
+                        self.call_GetUsers(strUserID: objAppShareData.UserDetail.strUserId)
+                        self.modalTransitionStyle = UIModalTransitionStyle.flipHorizontal
+                    }
+
+                    
+                }
+                
+//                if let arrData  = response["result"] as? [[String:Any]]{
+//                    for dictdata in arrData{
+//                        let obj = HomeModel.init(dict: dictdata)
+//                        self.arrUsers.append(obj)
+//                    }
+//                    self.swipeView.reloadData()
+//                }
+                
+                
+            }else{
+                objWebServiceManager.hideIndicator()
+                objAlert.showAlert(message: message ?? "", title: "Alert", controller: self)
+                
+            }
+            
+            
+        } failure: { (Error) in
+            print(Error)
+            objWebServiceManager.hideIndicator()
+        }
+    }
+    
+    
+}
+
+
+extension Date{
+    
+    func calculateAgeFromDate(strDate:String,strFormatter:String) -> String{
+        
+        let dateFormatter : DateFormatter = {
+                let formatter = DateFormatter()
+                formatter.dateFormat = strFormatter//"yyyy-MM-dd"
+                formatter.locale = Locale(identifier: "en_US_POSIX")
+                return formatter
+            }()
+
+        let birthday = dateFormatter.date(from: strDate)
+        let timeInterval = birthday?.timeIntervalSinceNow
+        let age = abs(Int(timeInterval! / 31556926.0))
+        
+        return "\(age)"
+    }
     
 }

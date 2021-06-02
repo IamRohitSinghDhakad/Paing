@@ -35,6 +35,9 @@
 		8C897D07265818DA009B0677 /* PaingBlogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C897D06265818DA009B0677 /* PaingBlogViewController.swift */; };
 		8C897D0C26582D06009B0677 /* BasicInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C897D0B26582D06009B0677 /* BasicInformationViewController.swift */; };
 		8C897D1026582DDC009B0677 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C897D0F26582DDC009B0677 /* SettingsTableViewCell.swift */; };
+		F902CCE426679C44007703FA /* BlockListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F902CCE326679C44007703FA /* BlockListTableViewCell.swift */; };
+		F902CCE626679E3F007703FA /* BlockModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F902CCE526679E3F007703FA /* BlockModel.swift */; };
+		F902CCE82667B337007703FA /* BlogListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F902CCE72667B337007703FA /* BlogListModel.swift */; };
 		F94ABAB926611022009E455D /* CountryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94ABAB826611022009E455D /* CountryModel.swift */; };
 		F94ABABB26614B9E009E455D /* TableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94ABABA26614B9E009E455D /* TableViewExtension.swift */; };
 		F950BC2D2658D46D00D844AD /* OverlayViewCard.xib in Resources */ = {isa = PBXBuildFile; fileRef = F950BC2C2658D46D00D844AD /* OverlayViewCard.xib */; };
@@ -120,6 +123,9 @@
 		BB0E37602664138C00F6D5A4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C80448757C3B46ED0A908570 /* Pods-Paing.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Paing.release.xcconfig"; path = "Target Support Files/Pods-Paing/Pods-Paing.release.xcconfig"; sourceTree = "<group>"; };
 		CA208F8E3138D5B243E7AD6E /* Pods_Paing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Paing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F902CCE326679C44007703FA /* BlockListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockListTableViewCell.swift; sourceTree = "<group>"; };
+		F902CCE526679E3F007703FA /* BlockModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockModel.swift; sourceTree = "<group>"; };
+		F902CCE72667B337007703FA /* BlogListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlogListModel.swift; sourceTree = "<group>"; };
 		F94ABAB826611022009E455D /* CountryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryModel.swift; sourceTree = "<group>"; };
 		F94ABABA26614B9E009E455D /* TableViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewExtension.swift; sourceTree = "<group>"; };
 		F950BC2C2658D46D00D844AD /* OverlayViewCard.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OverlayViewCard.xib; sourceTree = "<group>"; };
@@ -412,6 +418,7 @@
 		8C897CF92658186D009B0677 /* Blocked */ = {
 			isa = PBXGroup;
 			children = (
+				F902CCE226679C2E007703FA /* CellClasses */,
 				8C897D00265818C6009B0677 /* BlockedViewController.swift */,
 			);
 			path = Blocked;
@@ -468,6 +475,14 @@
 				C80448757C3B46ED0A908570 /* Pods-Paing.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		F902CCE226679C2E007703FA /* CellClasses */ = {
+			isa = PBXGroup;
+			children = (
+				F902CCE326679C44007703FA /* BlockListTableViewCell.swift */,
+			);
+			path = CellClasses;
 			sourceTree = "<group>";
 		};
 		F950BC2E2658D59F00D844AD /* OverLay */ = {
@@ -697,6 +712,8 @@
 				F9F808EC2656F46600F320FF /* DetailsSubCategoryModel.swift */,
 				F9F808ED2656F46600F320FF /* UserModel.swift */,
 				F9835B69266412AF00FE9582 /* ConversationListModel.swift */,
+				F902CCE526679E3F007703FA /* BlockModel.swift */,
+				F902CCE72667B337007703FA /* BlogListModel.swift */,
 			);
 			path = ModelClass;
 			sourceTree = "<group>";
@@ -844,6 +861,7 @@
 				F9F808D52656F1EF00F320FF /* Location.swift in Sources */,
 				F9F808C22656F1A000F320FF /* WebServiceManager.swift in Sources */,
 				8C5E2D302657F827004A7D92 /* TransitionContext.swift in Sources */,
+				F902CCE82667B337007703FA /* BlogListModel.swift in Sources */,
 				F9F808C42656F1A000F320FF /* RDTextView.swift in Sources */,
 				8C74AA1E265AB13A00FC9F9E /* ForgotPasswordViewController.swift in Sources */,
 				F9F808D72656F1EF00F320FF /* SearchHistoryManager.swift in Sources */,
@@ -855,6 +873,7 @@
 				F9F808F12656F46600F320FF /* DetailsSubCategoryModel.swift in Sources */,
 				F9F808F22656F46600F320FF /* UserModel.swift in Sources */,
 				F99DF1FB2658F4A4006734BF /* DetailViewController.swift in Sources */,
+				F902CCE626679E3F007703FA /* BlockModel.swift in Sources */,
 				8C74AA18265A913300FC9F9E /* RegistrationViewController.swift in Sources */,
 				F9F808F02656F46600F320FF /* ServiceImagesModel.swift in Sources */,
 				8C897CFD265818BD009B0677 /* MembershipViewController.swift in Sources */,
@@ -868,6 +887,7 @@
 				F9B3B02E26623135008178CB /* PrivacyPolicyViewController.swift in Sources */,
 				8C5E2D332657F827004A7D92 /* UIView+Container.swift in Sources */,
 				8C5E2D2D2657F827004A7D92 /* StatusBar.swift in Sources */,
+				F902CCE426679C44007703FA /* BlockListTableViewCell.swift in Sources */,
 				F9F808A62656CD8A00F320FF /* ViewController.swift in Sources */,
 				8C5E2D4C26580507004A7D92 /* ChatViewController.swift in Sources */,
 				8C897D01265818C6009B0677 /* BlockedViewController.swift in Sources */,
@@ -976,6 +996,7 @@
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = AML7MFR26Z;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -996,7 +1017,7 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = ProvProfileDev_30052021;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1040,6 +1061,7 @@
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = AML7MFR26Z;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -1053,7 +1075,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = ProvProfileDev_30052021;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";

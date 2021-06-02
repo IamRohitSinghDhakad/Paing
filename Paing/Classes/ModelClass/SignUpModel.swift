@@ -21,8 +21,8 @@ class SignUpModel: NSObject {
 
 class userDetailModel: NSObject {
     var straAuthToken          : String = ""
-    var strCountyCode          : String = ""
-    var strCreateAt            : String = ""
+  
+   
     var strDeviceId            : String = ""
     var strDeviceTimeZone        : String = ""
     var strDeviceType          : String = ""
@@ -31,26 +31,13 @@ class userDetailModel: NSObject {
     var strEmail                : String = ""
     var strName                  : String = ""
     var strPassword             : String = ""
-    var strPhoneDialCode        : String = ""
     var strPhoneNumber          : String = ""
     var strProfilePicture     : String = ""
-    var strProfileTimeZone     : String = ""
     var strSocialId           : String = ""
     var strSocialType          : String = ""
     var strStatus            : String = ""
     var strUserId               : String = ""
     var strUserName             : String = ""
-    var strUserMetaId             : String = ""
-    var stronboarding_step        : String = ""
-    var strphone_country_code       : String = ""
-    var strStars                   : String = ""
-    var strpushAlertStatus         : String = ""
-    var strUserType         : String = ""
-    var availableStars   :String = ""
-    var strCategory      :String = ""
-    var strSubCategory :String = ""
-    var strCategoryID :String = ""
-    var strSubCategoryID :String = ""
     
     var strlatitude :String = ""
     var strlongitude :String = ""
@@ -60,11 +47,31 @@ class userDetailModel: NSObject {
     var strCity      :String = ""
     var strState      :String = ""
     var strCountry      :String = ""
+    var strLookingFor      :String = ""
     
+    var strAboutMe :String = ""
+    var strSpecialInstruction :String = ""
+    var strHairColor :String = ""
+    var strAllowSex :String = ""
+    var strAllowCountry :String = ""
+    var strAllowCity :String = ""
+    var strAllowState :String = ""
+    var strCinema :String = ""
+    var strEye :String = ""
+    var strHeight :String = ""
+    var strMusic :String = ""
+    var strSkinTone :String = ""
+    var strSport :String = ""
 
     
     
     init(dict : [String:Any]) {
+        
+        if let userID = dict["user_id"] as? String{
+            self.strUserId = userID
+        }else if let userID = dict["user_id"] as? Int{
+            self.strUserId = "\(userID)"
+        }
         
         if let username = dict["name"] as? String{
             self.strUserName = username
@@ -72,6 +79,27 @@ class userDetailModel: NSObject {
         
         if let password = dict["password"] as? String{
             self.strPassword = password
+        }
+        
+        if let password = dict["short_bio"] as? String{
+            self.strAboutMe = password
+        }
+      
+        
+        if let hairColor = dict["hair"] as? String{
+            self.strHairColor = hairColor
+        }
+        
+        if let skin = dict["skin"] as? String{
+            self.strSkinTone = skin
+        }
+        
+        if let sport = dict["sport"] as? String{
+            self.strSport = sport
+        }
+        
+        if let music = dict["music"] as? String{
+            self.strMusic = music
         }
         
         if let name = dict["name"] as? String{
@@ -86,45 +114,66 @@ class userDetailModel: NSObject {
             self.strAddress = address
         }
         
-        if let country_code = dict["country_code"] as? String{
-            self.strCountyCode = country_code
+        if let allow_sex = dict["allow_sex"] as? String{
+            self.strAllowSex = allow_sex
+        }else if let allow_sex = dict["allow_sex"] as? Int{
+            self.strAllowSex = "\(allow_sex)"
         }
         
-//        if let country_id = dict["country_id"] as? String{
-//            self.strUserCountryID = country_id
-//        }
+        if let allow_country = dict["allow_country"] as? String{
+            self.strAllowCountry = allow_country
+        }else if let allow_country = dict["allow_country"] as? Int{
+            self.strAllowCountry = "\(allow_country)"
+        }
+        
+        if let allow_city = dict["allow_city"] as? String{
+            self.strAllowCity = allow_city
+        }else if let allow_city = dict["allow_city"] as? Int{
+            self.strAllowCity = "\(allow_city)"
+        }
+        
+        if let allow_state = dict["allow_state"] as? String{
+            self.strAllowState = allow_state
+        }else if let allow_state = dict["allow_state"] as? Int{
+            self.strAllowState = "\(allow_state)"
+        }
+        
+        
+        if let height = dict["height"] as? String{
+            self.strHeight = height
+        }
+        
+        
+        if let looking_for = dict["looking_for"] as? String{
+            self.strLookingFor = looking_for
+        }
+        
+        if let cinema = dict["cinema"] as? String{
+            self.strCinema = cinema
+        }
+        
+        if let eye = dict["eye"] as? String{
+            self.strEye = eye
+        }
+        
+        if let highlight_info = dict["highlight_info"] as? String{
+            self.strSpecialInstruction = highlight_info
+        }
+        
+        
+        
         
         if let country = dict["country"] as? String{
             self.strCountry = country
         }
         
+        if let state = dict["state"] as? String{
+            self.strState = state
+        }
+        
         if let city = dict["city"] as? String{
             self.strCity = city
         }
-        
-        
-        
-        
-        if let sub_CategoryName = dict["sub_category_name"] as? String{
-            self.strSubCategory = sub_CategoryName
-        }
-        
-        if let sub_CategoryID = dict["sub_category_id"] as? String{
-            self.strSubCategoryID = sub_CategoryID
-        }else if let sub_CategoryID = dict["sub_category_id"] as? Int{
-            self.strSubCategoryID = "\(sub_CategoryID)"
-        }
-        
-        if let CategoryName = dict["category_name"] as? String{
-            self.strCategory = CategoryName
-        }
-        
-        if let CategoryID = dict["category_id"] as? String{
-            self.strCategoryID = CategoryID
-        }else if let CategoryID = dict["category_id"] as? Int{
-            self.strCategoryID = "\(CategoryID)"
-        }
-        
  
         if let lat = dict["lat"] as? String{
             self.strlatitude = lat
@@ -137,8 +186,6 @@ class userDetailModel: NSObject {
         }else if let long = dict["lon"] as? Int{
             self.strlongitude = "\(long)"
         }
-        
-     
         
         if let phone_number = dict["mobile"] as? String{
             self.strPhoneNumber = phone_number
@@ -154,22 +201,13 @@ class userDetailModel: NSObject {
             self.strGender = sex
         }
         
-        
-        
         if let profile_picture = dict["user_image"] as? String{
             self.strProfilePicture = profile_picture
         }
         
-        if let phone_dial_code = dict["phone_dial_code"] as? String{
-            self.strPhoneDialCode = phone_dial_code
-        }
-        
-      
         if let device_id = dict["device_id"] as? String{
             self.strDeviceId = device_id
         }
-        
-    
         
         if let device_token = dict["device_token"] as? String{
             self.strDeviceToken = device_token
@@ -183,39 +221,5 @@ class userDetailModel: NSObject {
             self.straAuthToken = auth_token
             UserDefaults.standard.setValue(auth_token, forKey: objAppShareData.UserDetail.straAuthToken)
         }
-        
-
-        if let profile_timezone = dict["profile_timezone"] as? String{
-            self.strProfileTimeZone = profile_timezone
-        }
-        
-        if let userID = dict["user_id"] as? String{
-            self.strUserId = userID
-        }else if let userID = dict["user_id"] as? Int{
-            self.strUserId = "\(userID)"
-        }
-        
-        if let starPoints = dict["total"] as? String{
-        self.strStars = starPoints
-        }
-               if let userType = dict["user_type"] as? String{
-                  self.strUserType = userType
-               }
-               
-               if let stars = dict["available"] as? String{
-                   self.availableStars = stars
-               }else if let stars = dict["available"] as? Int{
-                   self.availableStars = "\(stars)"
-               }else if let stars = dict["available"] as? Double{
-                   self.availableStars = "\(stars)"
-               }
-               
-               if let pushAlertStatus = dict["push_alert_status"] as? String{
-                   self.strpushAlertStatus = pushAlertStatus
-               }else  if let pushAlertStatus = dict["push_alert_status"] as? Int{
-                   self.strpushAlertStatus = "\(pushAlertStatus)"
-               }
-               
-        
     }
 }
