@@ -47,7 +47,9 @@ extension ChatViewController:UITableViewDelegate,UITableViewDataSource{
         
         
         if obj.strLastMsg != ""{
-            cell.lblMessage.text = obj.strLastMsg
+            let emojiString  = obj.strLastMsg.decodeEmoji
+            cell.lblMessage.text = emojiString
+            //cell.lblMessage.text = obj.strLastMsg
         }else{
             cell.lblMessage.text = "Image"
         }
@@ -74,6 +76,7 @@ extension ChatViewController:UITableViewDelegate,UITableViewDataSource{
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "ChatDetailViewController")as! ChatDetailViewController
         vc.strUserName = self.arrMessageList[indexPath.row].strName
         vc.strUserImage = self.arrMessageList[indexPath.row].strUserImage
+        vc.strSenderID = self.arrMessageList[indexPath.row].strSenderID
         self.navigationController?.pushViewController(vc, animated: true)
     }
     

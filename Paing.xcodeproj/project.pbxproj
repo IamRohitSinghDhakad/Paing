@@ -38,11 +38,17 @@
 		F902CCE426679C44007703FA /* BlockListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F902CCE326679C44007703FA /* BlockListTableViewCell.swift */; };
 		F902CCE626679E3F007703FA /* BlockModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F902CCE526679E3F007703FA /* BlockModel.swift */; };
 		F902CCE82667B337007703FA /* BlogListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F902CCE72667B337007703FA /* BlogListModel.swift */; };
+		F91BDEC52668DA6E002B89CA /* CommentLikesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91BDEC42668DA6E002B89CA /* CommentLikesTableViewCell.swift */; };
+		F91BDEC72668DA85002B89CA /* CommentLikesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91BDEC62668DA85002B89CA /* CommentLikesViewController.swift */; };
+		F91BDEC92668DB0A002B89CA /* LikesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91BDEC82668DB0A002B89CA /* LikesTableViewCell.swift */; };
+		F91BDECB26695580002B89CA /* ChatDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91BDECA26695580002B89CA /* ChatDetailModel.swift */; };
 		F94ABAB926611022009E455D /* CountryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94ABAB826611022009E455D /* CountryModel.swift */; };
 		F94ABABB26614B9E009E455D /* TableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94ABABA26614B9E009E455D /* TableViewExtension.swift */; };
 		F950BC2D2658D46D00D844AD /* OverlayViewCard.xib in Resources */ = {isa = PBXBuildFile; fileRef = F950BC2C2658D46D00D844AD /* OverlayViewCard.xib */; };
 		F950BC302658D5C500D844AD /* OverlayViewCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F950BC2F2658D5C500D844AD /* OverlayViewCard.swift */; };
 		F950BC332658DC2600D844AD /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F950BC322658DC2600D844AD /* HomeModel.swift */; };
+		F96BAA902668A11200D1C0C3 /* MyBlogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96BAA8F2668A11200D1C0C3 /* MyBlogViewController.swift */; };
+		F96BAA922668A1A100D1C0C3 /* MyBlogTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96BAA912668A1A100D1C0C3 /* MyBlogTableViewCell.swift */; };
 		F9835B662663A21A00FE9582 /* NotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9835B652663A21A00FE9582 /* NotificationModel.swift */; };
 		F9835B682663A3D300FE9582 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F9835B672663A3D300FE9582 /* GoogleService-Info.plist */; };
 		F9835B6A266412AF00FE9582 /* ConversationListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9835B69266412AF00FE9582 /* ConversationListModel.swift */; };
@@ -126,11 +132,17 @@
 		F902CCE326679C44007703FA /* BlockListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockListTableViewCell.swift; sourceTree = "<group>"; };
 		F902CCE526679E3F007703FA /* BlockModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockModel.swift; sourceTree = "<group>"; };
 		F902CCE72667B337007703FA /* BlogListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlogListModel.swift; sourceTree = "<group>"; };
+		F91BDEC42668DA6E002B89CA /* CommentLikesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentLikesTableViewCell.swift; sourceTree = "<group>"; };
+		F91BDEC62668DA85002B89CA /* CommentLikesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentLikesViewController.swift; sourceTree = "<group>"; };
+		F91BDEC82668DB0A002B89CA /* LikesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikesTableViewCell.swift; sourceTree = "<group>"; };
+		F91BDECA26695580002B89CA /* ChatDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatDetailModel.swift; sourceTree = "<group>"; };
 		F94ABAB826611022009E455D /* CountryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryModel.swift; sourceTree = "<group>"; };
 		F94ABABA26614B9E009E455D /* TableViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewExtension.swift; sourceTree = "<group>"; };
 		F950BC2C2658D46D00D844AD /* OverlayViewCard.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OverlayViewCard.xib; sourceTree = "<group>"; };
 		F950BC2F2658D5C500D844AD /* OverlayViewCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayViewCard.swift; sourceTree = "<group>"; };
 		F950BC322658DC2600D844AD /* HomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
+		F96BAA8F2668A11200D1C0C3 /* MyBlogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBlogViewController.swift; sourceTree = "<group>"; };
+		F96BAA912668A1A100D1C0C3 /* MyBlogTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBlogTableViewCell.swift; sourceTree = "<group>"; };
 		F9835B652663A21A00FE9582 /* NotificationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationModel.swift; sourceTree = "<group>"; };
 		F9835B672663A3D300FE9582 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F9835B69266412AF00FE9582 /* ConversationListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationListModel.swift; sourceTree = "<group>"; };
@@ -439,6 +451,8 @@
 			children = (
 				F99A181A265E79A2004DFCD6 /* CellClasses */,
 				8C897D06265818DA009B0677 /* PaingBlogViewController.swift */,
+				F96BAA8F2668A11200D1C0C3 /* MyBlogViewController.swift */,
+				F91BDEC62668DA85002B89CA /* CommentLikesViewController.swift */,
 			);
 			path = PaingBlog;
 			sourceTree = "<group>";
@@ -535,6 +549,9 @@
 			isa = PBXGroup;
 			children = (
 				F99A181B265E79BA004DFCD6 /* PaingBlogTableViewCell.swift */,
+				F96BAA912668A1A100D1C0C3 /* MyBlogTableViewCell.swift */,
+				F91BDEC42668DA6E002B89CA /* CommentLikesTableViewCell.swift */,
+				F91BDEC82668DB0A002B89CA /* LikesTableViewCell.swift */,
 			);
 			path = CellClasses;
 			sourceTree = "<group>";
@@ -714,6 +731,7 @@
 				F9835B69266412AF00FE9582 /* ConversationListModel.swift */,
 				F902CCE526679E3F007703FA /* BlockModel.swift */,
 				F902CCE72667B337007703FA /* BlogListModel.swift */,
+				F91BDECA26695580002B89CA /* ChatDetailModel.swift */,
 			);
 			path = ModelClass;
 			sourceTree = "<group>";
@@ -859,12 +877,15 @@
 				F99DF1FE26594F8E006734BF /* UserProfileViewController.swift in Sources */,
 				F9F808D82656F1EF00F320FF /* AlertViewController.swift in Sources */,
 				F9F808D52656F1EF00F320FF /* Location.swift in Sources */,
+				F91BDEC92668DB0A002B89CA /* LikesTableViewCell.swift in Sources */,
 				F9F808C22656F1A000F320FF /* WebServiceManager.swift in Sources */,
 				8C5E2D302657F827004A7D92 /* TransitionContext.swift in Sources */,
 				F902CCE82667B337007703FA /* BlogListModel.swift in Sources */,
 				F9F808C42656F1A000F320FF /* RDTextView.swift in Sources */,
+				F91BDECB26695580002B89CA /* ChatDetailModel.swift in Sources */,
 				8C74AA1E265AB13A00FC9F9E /* ForgotPasswordViewController.swift in Sources */,
 				F9F808D72656F1EF00F320FF /* SearchHistoryManager.swift in Sources */,
+				F96BAA902668A11200D1C0C3 /* MyBlogViewController.swift in Sources */,
 				F94ABAB926611022009E455D /* CountryModel.swift in Sources */,
 				8C897D04265818D1009B0677 /* SettingsViewController.swift in Sources */,
 				F9EEB14E266029890010AF1F /* OptionsRegistrationTableViewCell.swift in Sources */,
@@ -882,6 +903,7 @@
 				8C5E2D352657F827004A7D92 /* BasicTransitionAnimator.swift in Sources */,
 				F9F808DC2656F1EF00F320FF /* CustomUIView.swift in Sources */,
 				8C5E2D432657FF23004A7D92 /* AppSideMenuTableViewCell.swift in Sources */,
+				F96BAA922668A1A100D1C0C3 /* MyBlogTableViewCell.swift in Sources */,
 				F99A181C265E79BA004DFCD6 /* PaingBlogTableViewCell.swift in Sources */,
 				F9CB4911265D8584004E4788 /* NotificationTableViewCell.swift in Sources */,
 				F9B3B02E26623135008178CB /* PrivacyPolicyViewController.swift in Sources */,
@@ -914,10 +936,12 @@
 				8C5E2D2C2657F827004A7D92 /* UIViewController+SideMenu.swift in Sources */,
 				8C5E2D2E2657F827004A7D92 /* Preferences.swift in Sources */,
 				F9F808A42656CD8A00F320FF /* SceneDelegate.swift in Sources */,
+				F91BDEC72668DA85002B89CA /* CommentLikesViewController.swift in Sources */,
 				F950BC302658D5C500D844AD /* OverlayViewCard.swift in Sources */,
 				F9F808E42656F26400F320FF /* AppSharedData.swift in Sources */,
 				F9835B6A266412AF00FE9582 /* ConversationListModel.swift in Sources */,
 				F950BC332658DC2600D844AD /* HomeModel.swift in Sources */,
+				F91BDEC52668DA6E002B89CA /* CommentLikesTableViewCell.swift in Sources */,
 				F9F808DB2656F1EF00F320FF /* Extensions.swift in Sources */,
 				8C5E2D3F2657FF09004A7D92 /* AppSideMenuViewController.swift in Sources */,
 				8C5E2D4F26580513004A7D92 /* ProfileViewController.swift in Sources */,

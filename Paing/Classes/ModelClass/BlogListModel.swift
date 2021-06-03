@@ -15,6 +15,7 @@ class BlogListModel: NSObject {
     var strDob : String = ""
     var strGender : String = ""
     var strBlogId : String = ""
+    var strBlogUserID : String = ""
     var strUserImage : String = ""
     var strLikeCount : String = ""
     var strCommentCount :String = ""
@@ -70,6 +71,12 @@ class BlogListModel: NSObject {
             self.strBlogId = "\(notification_id)"
         }
         
+        if let blogUserID = dict["user_id"] as? String{
+            self.strBlogUserID = blogUserID
+        }else  if let blogUserID = dict["user_id"] as? Int{
+            self.strBlogUserID = "\(blogUserID)"
+        }
+        
         if let likes = dict["likes"] as? String{
             self.strLikeCount = likes
         }else  if let likes = dict["likes"] as? Int{
@@ -81,6 +88,14 @@ class BlogListModel: NSObject {
         }else  if let comments = dict["comments"] as? Int{
             self.strCommentCount = "\(comments)"
         }
+        
+        if let liked = dict["liked"] as? String{
+            self.strLikeStatus = liked
+        }else  if let liked = dict["liked"] as? Int{
+            self.strLikeStatus = "\(liked)"
+        }
+        
+        
         
         
         //Likes Data fetch
@@ -146,6 +161,7 @@ class CommentDataModel : NSObject{
     var strComment :String = ""
     var strCommentID :String = ""
     var strCommentUserImage :String = ""
+    var isSelected : Bool = false
  
     init(dict : [String:Any]) {
         

@@ -19,8 +19,8 @@ class BlockModel: NSObject {
     init(dict : [String:Any]) {
         
         
-        if let notification_id = dict["name"] as? String{
-            self.strName = notification_id
+        if let name = dict["name"] as? String{
+            self.strName = name
         }
         
         if let user_image = dict["user_image"] as? String{
@@ -39,10 +39,10 @@ class BlockModel: NSObject {
             self.strDob = dob
         }
         
-        if let notification_id = dict["name"] as? String{
-            self.strChatId = notification_id
-        }else  if let notification_id = dict["name"] as? Int{
-            self.strChatId = "\(notification_id)"
+        if let id = dict["id"] as? String{
+            self.strChatId = id
+        }else  if let id = dict["id"] as? Int{
+            self.strChatId = "\(id)"
         }
         
     }

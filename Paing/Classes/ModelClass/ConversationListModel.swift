@@ -10,18 +10,23 @@ import UIKit
 class ConversationListModel: NSObject {
     
     var strUserImage :String = ""
-    var strChatID :String = ""
+    var strChatStatus :String = ""
     var strName: String = ""
     var strLastMsg: String = ""
     var strTimeAgo : String = ""
+    var strSenderID :String = ""
     
     init(dict : [String:Any]) {
         
         
-        if let notification_id = dict["notification_id"] as? String{
-            self.strChatID = notification_id
-        }else if let notification_id = dict["notification_id"] as? Int{
-            self.strChatID = "\(notification_id)"
+        if let chat_status = dict["chat_status"] as? String{
+            self.strChatStatus = chat_status
+        }
+        
+        if let sender_id = dict["sender_id"] as? String{
+            self.strSenderID = sender_id
+        }else if let sender_id = dict["sender_id"] as? Int{
+            self.strSenderID = "\(sender_id)"
         }
         
         if let user_image = dict["user_image"] as? String{

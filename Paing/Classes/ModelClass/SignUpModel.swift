@@ -48,6 +48,7 @@ class userDetailModel: NSObject {
     var strState      :String = ""
     var strCountry      :String = ""
     var strLookingFor      :String = ""
+    var strAge      :String = ""
     
     var strAboutMe :String = ""
     var strSpecialInstruction :String = ""
@@ -71,6 +72,12 @@ class userDetailModel: NSObject {
             self.strUserId = userID
         }else if let userID = dict["user_id"] as? Int{
             self.strUserId = "\(userID)"
+        }
+        
+        if let age = dict["age"] as? String{
+            self.strAge = age
+        }else if let age = dict["age"] as? Int{
+            self.strAge = "\(age)"
         }
         
         if let username = dict["name"] as? String{

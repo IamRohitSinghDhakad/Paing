@@ -21,8 +21,12 @@ class ChatDetailViewController: UIViewController {
     let txtViewCommentMaxHeight: CGFloat = 100
     let txtViewCommentMinHeight: CGFloat = 34
     
+    
+    var arrChatMessages = [ChatDetailModel]()
+    
     var strUserName = ""
     var strUserImage = ""
+    var strSenderID = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,10 +42,47 @@ class ChatDetailViewController: UIViewController {
             let url = URL(string: profilePic)
             self.imgVwUser.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "splashLogo"))
         }
+        
+        self.call_GetChatList(strUserID: objAppShareData.UserDetail.strUserId, strSenderID: self.strSenderID)
     }
     
     @IBAction func btnBackOnHeader(_ sender: Any) {
         onBackPressed()
+        
+    }
+    
+    @IBAction func btnSendMessage(_ sender: Any) {
+        if (txtVwChat.text?.isEmpty)!{
+            
+            self.txtVwChat.text = "."
+            self.txtVwChat.text = self.txtVwChat.text.trimmingCharacters(in: .whitespacesAndNewlines)
+            self.txtVwChat.isScrollEnabled = false
+            self.txtVwChat.frame.size.height = self.txtViewCommentMinHeight
+            self.txtVwChat.text = ""
+            
+            if self.txtVwChat.text.count > 0{
+                
+                self.txtVwChat.isScrollEnabled = false
+                
+            }else{
+                self.txtVwChat.isScrollEnabled = false
+            }
+            
+        }else{
+            
+         
+            self.txtVwChat.frame.size.height = self.txtViewCommentMinHeight
+            DispatchQueue.main.async {
+                let text  = self.txtVwChat.text.encodeEmoji
+                self.sendMessageNew(strText: text)
+            }
+            if self.txtVwChat.text.count > 0{
+                self.txtVwChat.isScrollEnabled = false
+                
+            }else{
+                self.txtVwChat.isScrollEnabled = false
+            }
+        }
         
     }
     
@@ -94,7 +135,7 @@ extension ChatDetailViewController: UITextViewDelegate{
       
     
     
-    func sendMessageNew(){
+    func sendMessageNew(strText:String){
         self.txtVwChat.isScrollEnabled = false
         self.txtVwChat.contentSize.height = self.txtViewCommentMinHeight
         self.txtVwChat.text = self.txtVwChat.text.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -103,6 +144,7 @@ extension ChatDetailViewController: UITextViewDelegate{
            // AppSharedClass.shared.showAlert(title: "Alert", message: "Please enter some text", view: self)
             return
         }else{
+            self.call_SendTextMessageOnly(strReceiverID: objAppShareData.UserDetail.strUserId, strSenderID: self.strSenderID, strText: strText)
            //asd self.call_WSSendMessage(strSenderID: self.getSenderID, strMessage: self.txtVwChat.text)
         }
         self.txtVwChat.text = ""
@@ -115,15 +157,165 @@ extension ChatDetailViewController: UITextViewDelegate{
 extension ChatDetailViewController:UITableViewDelegate,UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return self.arrChatMessages.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tblChat.dequeueReusableCell(withIdentifier: "ChatDetailTVCell")as! ChatDetailTVCell
         
+        let obj = self.arrChatMessages[indexPath.row]
+        
+        
+        if obj.strImageUrl != ""{
+            if obj.strReceiverID == objAppShareData.UserDetail.strUserId{
+                cell.vwMyMsg.isHidden = true
+                cell.vwOpponent.isHidden = true
+                cell.vwOpponentImage.isHidden = true
+                cell.vwMyImage.isHidden = false
+            }else{
+                cell.vwMyMsg.isHidden = true
+                cell.vwOpponent.isHidden = true
+                cell.vwOpponentImage.isHidden = false
+                cell.vwMyImage.isHidden = true
+            }
+        }else{
+            if obj.strReceiverID == objAppShareData.UserDetail.strUserId{
+                cell.vwOpponentImage.isHidden = true
+                cell.vwMyImage.isHidden = true
+                cell.vwMyMsg.isHidden = false
+                cell.lblMyMsg.text = obj.strOpponentChatMessage
+                cell.lblMyMsgTime.text = obj.strOpponentChatTime
+                cell.vwOpponent.isHidden = true
+            }else{
+                cell.vwOpponentImage.isHidden = true
+                cell.vwMyImage.isHidden = true
+                cell.lblOpponentMsg.text = obj.strOpponentChatMessage
+                cell.lblopponentMsgTime.text = obj.strOpponentChatTime
+                cell.vwOpponent.isHidden = false
+                cell.vwMyMsg.isHidden = true
+            }
+        }
+        
+        
+        cell.lblOpponentMsg.text = obj.strOpponentChatMessage
+        cell.lblopponentMsgTime.text = obj.strOpponentChatTime
+        
+        
         
         return cell
     }
     
+    
+    func updateTableContentInset() {
+        let numRows = self.tblChat.numberOfRows(inSection: 0)
+        var contentInsetTop = self.tblChat.bounds.size.height
+        for i in 0..<numRows {
+            let rowRect = self.tblChat.rectForRow(at: IndexPath(item: i, section: 0))
+            contentInsetTop -= rowRect.size.height
+            if contentInsetTop <= 0 {
+                contentInsetTop = 0
+                break
+            }
+        }
+        self.tblChat.contentInset = UIEdgeInsets(top: contentInsetTop,left: 0,bottom: 0,right: 0)
+    }
+    
+}
+
+
+//Get Chat List
+//MARK:- Call Webservice Chat List
+extension ChatDetailViewController{
+    
+    func call_GetChatList(strUserID:String, strSenderID:String){
+        
+        if !objWebServiceManager.isNetworkAvailable(){
+            objWebServiceManager.hideIndicator()
+            objAlert.showAlert(message: "No Internet Connection", title: "Alert", controller: self)
+            return
+        }
+        
+        objWebServiceManager.showIndicator()
+        
+        let parameter = ["receiver_id":strUserID,
+                         "sender_id":strSenderID,
+                         "chat_status":"online"]as [String:Any]
+        
+        
+        objWebServiceManager.requestGet(strURL: WsUrl.url_getChatList, params: parameter, queryParams: [:], strCustomValidation: "") { (response) in
+            objWebServiceManager.hideIndicator()
+            let status = (response["status"] as? Int)
+            let message = (response["message"] as? String)
+            
+            print(response)
+            
+            if status == MessageConstant.k_StatusCode{
+                if let arrData  = response["result"] as? [[String:Any]]{
+                    for dictdata in arrData{
+                        let obj = ChatDetailModel.init(dict: dictdata)
+                        self.arrChatMessages.append(obj)
+                    }
+                
+                    self.tblChat.reloadData()
+                    self.updateTableContentInset()
+                }
+            }else{
+                objWebServiceManager.hideIndicator()
+                
+                if (response["result"]as? String) != nil{
+                    self.tblChat.displayBackgroundText(text: "ningún record fue encontrado")
+                }else{
+                    objAlert.showAlert(message: message ?? "", title: "Alert", controller: self)
+                }
+            }
+        } failure: { (Error) in
+            print(Error)
+            objWebServiceManager.hideIndicator()
+        }
+    }
+ 
+    
+    //MARK:- Send Text message Only
+    
+    func call_SendTextMessageOnly(strReceiverID:String, strSenderID:String, strText:String){
+        
+        if !objWebServiceManager.isNetworkAvailable(){
+            objWebServiceManager.hideIndicator()
+            objAlert.showAlert(message: "No Internet Connection", title: "Alert", controller: self)
+            return
+        }
+    
+        objWebServiceManager.showIndicator()
+        
+        let dicrParam = ["receiver_id":strReceiverID,
+                         "sender_id":strSenderID,
+                         "type":"Text",
+                         "chat_message":strText]as [String:Any]
+        
+        objWebServiceManager.requestPost(strURL: WsUrl.url_insertChat, queryParams: [:], params: dicrParam, strCustomValidation: "", showIndicator: false) { (response) in
+            objWebServiceManager.hideIndicator()
+            let status = (response["status"] as? Int)
+            let message = (response["message"] as? String)
+            
+            print(response)
+            
+            if status == MessageConstant.k_StatusCode{
+                
+             
+                
+            }else{
+                objWebServiceManager.hideIndicator()
+               // objAlert.showAlert(message: message ?? "", title: "Alert", controller: self)
+                
+            }
+           
+            
+        } failure: { (Error) in
+            print(Error)
+            objWebServiceManager.hideIndicator()
+        }
+
+    
+   }
     
 }

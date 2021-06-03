@@ -30,9 +30,17 @@ struct WsUrl{
     static let url_getNotification  = BASE_URL + "get_notification"
     static let url_getConversationList = BASE_URL + "get_conversation"
     static let url_getBlockList = BASE_URL + "blocked_list"
-    static let url_getBlogList = BASE_URL + "get_blog"
+    static let url_getBlockUnblock = BASE_URL + "block_in_user"
+    static let url_getBlogList = BASE_URL + "get_blog?"
+    static let url_AddBlogInList = BASE_URL + "add_blog"
+    static let url_DeleteBlogInList = BASE_URL + "delete_blog"
+    static let url_addBlogComment = BASE_URL + "blog_comment"
+    static let url_likeBlog = BASE_URL + "blog_like"
+    static let url_getChatList = BASE_URL + "get_chat"
+    static let url_insertChat = BASE_URL + "insert_chat"
     static let url_ForgotPassword  = BASE_URL + "forgot_password"
     static let url_DeleteNotification = BASE_URL + "delete_notification?"
+    static let url_DeleteBlogComment = BASE_URL + "blog_comment_delete?"
 }
 
 //Api Header

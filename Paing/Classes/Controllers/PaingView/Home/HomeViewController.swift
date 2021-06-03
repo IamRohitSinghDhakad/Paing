@@ -42,7 +42,7 @@ class HomeViewController: UIViewController {
     var strCountry = ""
     var strState = ""
     var strCity = ""
-    var limit = 2
+    var limit = 20
     var offset = 0
     var totalRecord = Int()
     var isFilteredApply = Bool()
@@ -72,8 +72,8 @@ class HomeViewController: UIViewController {
         self.vwThreeSubVw.borderColor = UIColor.lightGray
         self.vwFourSubVw.borderColor = UIColor.lightGray
         
-        self.swipeView.layer.borderWidth = 1.0
-        self.swipeView.borderColor = UIColor.lightGray
+//        self.swipeView.layer.borderWidth = 1.0
+//        self.swipeView.borderColor = UIColor.lightGray
         
         //        for dataa in dictSampleData{
         //            let obj = HomeModel.init(dict: dataa)
@@ -290,6 +290,9 @@ extension HomeViewController: KolodaViewDataSource {
             print(index)
             overlay.tag = index
             
+            overlay.layer.borderWidth = 1.0
+            overlay.borderColor = UIColor.lightGray
+            
             if index < self.arrUsers.count {
                 let objCard = self.arrUsers[index]
                 overlay.lblName.text = objCard.strName
@@ -409,9 +412,9 @@ extension HomeViewController{
         objWebServiceManager.showIndicator()
         
         let parameter = ["user_id":strUserID,
-                         "sex":objAppShareData.UserDetail.strGender,
-                         "country":objAppShareData.UserDetail.strCountry,
-                         "looking_for":objAppShareData.UserDetail.strLookingFor
+                         //"sex":objAppShareData.UserDetail.strGender,
+                        // "country":objAppShareData.UserDetail.strCountry,
+                        // "looking_for":objAppShareData.UserDetail.strLookingFor
         ]as [String:Any]
         
         objWebServiceManager.requestGet(strURL: WsUrl.url_GetUserList, params: parameter, queryParams: [:], strCustomValidation: "") { (response) in
@@ -469,7 +472,7 @@ extension HomeViewController{
         var ageRange = ""
         
         if self.tfMinimuAgeSubVw.text != "" && self.tfMaximumAgeSubVw.text != ""{
-            ageRange = "\(self.tfMinimuAgeSubVw.text ?? "0") - \(self.tfMaximumAgeSubVw.text ?? "0")"
+            ageRange = "\(self.tfMinimuAgeSubVw.text ?? "0")-\(self.tfMaximumAgeSubVw.text ?? "0")"
         }
         
        

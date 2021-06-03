@@ -8,7 +8,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "0215BF37-FD20-4DD2-879C-C020F1BC47B4"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Paing/Classes/Controllers/Authentication/Login/LoginViewController.swift"
@@ -23,33 +23,337 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "3BA5CC75-0FD4-46BD-A4FF-B6F3B0458672"
-            shouldBeEnabled = "Yes"
+            uuid = "2C38BA41-4692-4AD0-858F-866D99B1200C"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Paing/Classes/Controllers/PaingView/Chat/ChatDetailViewController.swift"
+            filePath = "Paing/Classes/Controllers/PaingView/Blocked/BlockedViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "84"
-            endingLineNumber = "84"
-            landmarkName = "textViewDidChange(_:)"
+            startingLineNumber = "145"
+            endingLineNumber = "145"
+            landmarkName = "call_GetUnblockUser(strUserID:strBLockerID:indexPath:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "9AF85834-0234-498E-9A15-62CB9ABBC134"
+            uuid = "66F2A849-2B60-483C-8519-893CBF8AAB8E"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Paing/Classes/Controllers/PaingView/PaingBlog/MyBlogViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "309"
+            endingLineNumber = "309"
+            landmarkName = "call_EditBlog(strUserID:strText:strBlogID:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F786609A-E325-420D-B012-77C82CE4F177"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Paing/Classes/Controllers/PaingView/Blocked/BlockedViewController.swift"
+            filePath = "Paing/Classes/Controllers/PaingView/PaingBlog/MyBlogViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "90"
-            endingLineNumber = "90"
-            landmarkName = "call_GetBlockList(strUserID:)"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
+            landmarkName = "btnSubmitBlog(_:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "188395FE-AB8B-45C1-AB69-D214C6D60815"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Paing/Classes/Controllers/PaingView/PaingBlog/MyBlogViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "btnSubmitBlog(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D0D940AA-1E16-4047-AF8C-EBEB9E385444"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Paing/Classes/Controllers/PaingView/PaingBlog/MyBlogViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "300"
+            endingLineNumber = "300"
+            landmarkName = "call_EditBlog(strUserID:strText:strBlogID:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B05F5FB8-CE0B-48B1-BECC-F3B9C27E5379"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Paing/Classes/Controllers/PaingView/PaingBlog/CommentLikesViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "404"
+            endingLineNumber = "404"
+            landmarkName = "call_GetBlogList(strUserID:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "B05F5FB8-CE0B-48B1-BECC-F3B9C27E5379 - 637d1d479bf71322"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Paing.CommentLikesViewController.call_GetBlogList(strUserID: Swift.String) -&gt; ()"
+                  moduleName = "Paing"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rohit/Rohit&apos;s%20WorkSpace/Freelance/Paing/Paing/Classes/Controllers/PaingView/PaingBlog/CommentLikesViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "404"
+                  endingLineNumber = "404"
+                  offsetFromSymbolStart = "1000">
+               </Location>
+               <Location
+                  uuid = "B05F5FB8-CE0B-48B1-BECC-F3B9C27E5379 - 137818b1b1795ce3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Dictionary&lt;Swift.String, Any&gt;) -&gt; () in Paing.CommentLikesViewController.call_GetBlogList(strUserID: Swift.String) -&gt; ()"
+                  moduleName = "Paing"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rohit/Rohit&apos;s%20WorkSpace/Freelance/Paing/Paing/Classes/Controllers/PaingView/PaingBlog/CommentLikesViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "405"
+                  endingLineNumber = "405"
+                  offsetFromSymbolStart = "450">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "ADAE1B10-B24F-4A89-8957-28795F424FED"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Paing/Classes/Controllers/PaingView/PaingBlog/CommentLikesViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "400"
+            endingLineNumber = "400"
+            landmarkName = "call_GetBlogList(strUserID:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "328DCFC3-9580-4178-A5FA-43574060FFA0"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Paing/Classes/Controllers/PaingView/PaingBlog/CommentLikesViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "357"
+            endingLineNumber = "357"
+            landmarkName = "call_DeleteBlogComment(strCommentID:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C1CB8546-E926-49F3-9207-CFFA785F678F"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Paing/Classes/Controllers/PaingView/PaingBlog/CommentLikesViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "368"
+            endingLineNumber = "368"
+            landmarkName = "call_DeleteBlogComment(strCommentID:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DD4E69D9-3BB5-422D-915C-24F80DB5D25C"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Paing/Classes/Controllers/PaingView/Chat/ChatDetailViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "250"
+            endingLineNumber = "250"
+            landmarkName = "call_GetChatList(strUserID:strSenderID:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "31573CA6-5F6B-45F9-BDE1-DF27234AEF04"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Paing/Classes/Controllers/PaingView/PaingBlog/PaingBlogViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "440"
+            endingLineNumber = "440"
+            landmarkName = "call_LikeBlog(strUserID:blogID:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FC08BE58-1D35-45B4-A3A2-0F48D285C34F"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Paing/Classes/Controllers/PaingView/PaingBlog/PaingBlogViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "435"
+            endingLineNumber = "435"
+            landmarkName = "call_LikeBlog(strUserID:blogID:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "FC08BE58-1D35-45B4-A3A2-0F48D285C34F - fa5c39a4756b1965"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Paing.PaingBlogViewController.call_LikeBlog(strUserID: Swift.String, blogID: Swift.String) -&gt; ()"
+                  moduleName = "Paing"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rohit/Rohit&apos;s%20WorkSpace/Freelance/Paing/Paing/Classes/Controllers/PaingView/PaingBlog/PaingBlogViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "435"
+                  endingLineNumber = "435"
+                  offsetFromSymbolStart = "1071">
+               </Location>
+               <Location
+                  uuid = "FC08BE58-1D35-45B4-A3A2-0F48D285C34F - fcfccd4fdab3558b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Dictionary&lt;Swift.String, Any&gt;) -&gt; () in Paing.PaingBlogViewController.call_LikeBlog(strUserID: Swift.String, blogID: Swift.String) -&gt; ()"
+                  moduleName = "Paing"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rohit/Rohit&apos;s%20WorkSpace/Freelance/Paing/Paing/Classes/Controllers/PaingView/PaingBlog/PaingBlogViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "436"
+                  endingLineNumber = "436"
+                  offsetFromSymbolStart = "232">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5834EB7C-E9CE-4404-BE1F-D5D9C3B4F660"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Paing/Classes/Controllers/PaingView/PaingBlog/PaingBlogViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "431"
+            endingLineNumber = "431"
+            landmarkName = "call_LikeBlog(strUserID:blogID:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "51E5FE59-1913-4C65-BD37-EB960FF6F7B1"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Paing/Classes/Controllers/PaingView/PaingBlog/PaingBlogViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "268"
+            endingLineNumber = "268"
+            landmarkName = "call_GetBlogList(strUserID:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "EFA57A89-68BC-4915-A92B-E49FB7FA838C"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Paing/Classes/Controllers/PaingView/PaingBlog/PaingBlogViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "263"
+            endingLineNumber = "263"
+            landmarkName = "call_GetBlogList(strUserID:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "EFA57A89-68BC-4915-A92B-E49FB7FA838C - c4687f4829f82ec2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Paing.PaingBlogViewController.call_GetBlogList(strUserID: Swift.String) -&gt; ()"
+                  moduleName = "Paing"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rohit/Rohit&apos;s%20WorkSpace/Freelance/Paing/Paing/Classes/Controllers/PaingView/PaingBlog/PaingBlogViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "263"
+                  endingLineNumber = "263"
+                  offsetFromSymbolStart = "862">
+               </Location>
+               <Location
+                  uuid = "EFA57A89-68BC-4915-A92B-E49FB7FA838C - ce3e2bb0726c6578"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Dictionary&lt;Swift.String, Any&gt;) -&gt; () in Paing.PaingBlogViewController.call_GetBlogList(strUserID: Swift.String) -&gt; ()"
+                  moduleName = "Paing"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rohit/Rohit&apos;s%20WorkSpace/Freelance/Paing/Paing/Classes/Controllers/PaingView/PaingBlog/PaingBlogViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "264"
+                  endingLineNumber = "264"
+                  offsetFromSymbolStart = "282">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
