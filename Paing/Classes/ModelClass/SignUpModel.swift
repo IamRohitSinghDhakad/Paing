@@ -63,8 +63,10 @@ class userDetailModel: NSObject {
     var strMusic :String = ""
     var strSkinTone :String = ""
     var strSport :String = ""
-
-    
+    var strRelStatus: String = ""
+    var valLikedStatus: Int = 0
+    var valBlockedStatus: Int = 0
+    var strBlockedBy: String = ""
     
     init(dict : [String:Any]) {
         
@@ -228,5 +230,108 @@ class userDetailModel: NSObject {
             self.straAuthToken = auth_token
             UserDefaults.standard.setValue(auth_token, forKey: objAppShareData.UserDetail.straAuthToken)
         }
+        
+        if let rel_status = dict["rel_status"] as? String {
+            self.strRelStatus = rel_status
+        }
+        
+        if let liked_status = dict["liked"] as? Int {
+            self.valLikedStatus = liked_status
+        }
+        
+        if let blocked = dict["blocked"] as? Int {
+            self.valBlockedStatus = blocked
+        }
+        
+        if let blockedBy = dict["blockedBy"] as? String {
+            self.strBlockedBy = blockedBy
+        }
     }
 }
+
+/*
+{
+    "account_holder_name" = "";
+    "account_no" = "";
+    address = "";
+    age = 28;
+    "allow_city" = 0;
+    "allow_country" = 1;
+    "allow_sex" = Female;
+    "allow_state" = 0;
+    "bank_name" = "";
+    blocked = 0;
+    blockedBy = "";
+    "branch_name" = "";
+    "category_id" = "";
+    "chat_status" = "";
+    "chat_time" = "0000-00-00 00:00:00";
+    cinema = Tt;
+    city = Adsubia;
+    code = "";
+    "commission_base" = 0;
+    country = "Espa\U00f1a";
+    dob = "1992-12-24";
+    document = "";
+    email = "goswamipuriarun@yahoo.com";
+    "email_verified" = 0;
+    entrydt = "2021-05-31 08:02:57";
+    "expiry_date" = "2130-12-06 13:32:57";
+    eye = Yy;
+    "fssai_image" = "";
+    "fssai_no" = "";
+    "gst_image" = "";
+    "gst_no" = "";
+    "gumasta_image" = "";
+    "gumasta_no" = "";
+    hair = Fg;
+    "has_membership" = 1;
+    height = "";
+    "highlight_info" = fgty;
+    "ifsc_code" = "";
+    lat = "";
+    liked = 0;
+    lon = "";
+    "looking_for" = "Chat,Relaci\U00f3n,Amistad,Relaci\U00f3n \U00edntima";
+    "membership_id" = 2;
+    mobile = "";
+    "mobile_verified" = 0;
+    music = Gg;
+    name = "Arun Goswami";
+    otp = "";
+    "over_commission" = 0;
+    password = "";
+    "payment_email" = "";
+    plan =     {
+        "discount_price" = 0;
+        entrydt = "2020-07-15 09:58:06";
+        "expiry_date" = "2130-12-06 13:32:57";
+        name = "Arun Goswami";
+        "plan_id" = 2;
+        "plan_title" = "Female Ultimate";
+        "real_price" = 0;
+        status = 0;
+        validity = 40000;
+    };
+    "register_id" = "eAu4p6muQO-YQLuW-dvvRo:APA91bHwnw5OHBBg9xyejLivqLgZUn_MSU3KrevrmwRUCktORvC-ynlBRLGO8a7Sel92cuMoC9J_V56YRredd6ADrDK0l1Wh11WNxNGeznt0JsVvieYPA0zHATe_LbjxN0u1qwdY5bNK";
+    "rel_status" = "";
+    sex = Female;
+    "shipping_time" = 0;
+    "short_bio" = tyyt;
+    skin = Yytt;
+    "social_id" = 4005869259503653;
+    "social_type" = fb;
+    sport = Gg;
+    state = "Alicante/Alacant";
+    status = 1;
+    "sub_category_id" = "";
+    "swift_code" = "";
+    type = user;
+    "under_commission" = 0;
+    "user_id" = 26;
+    "user_image" = "http://ambitious.in.net/Shubham/paing/uploads/user/9074IMG_1622448105262.png";
+    visible = 0;
+    work = "";
+}
+
+*/

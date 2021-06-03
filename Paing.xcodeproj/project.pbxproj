@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		734E019F70F6ACEA4AE1BBE5 /* Pods_Paing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA208F8E3138D5B243E7AD6E /* Pods_Paing.framework */; };
+		8C0C2AAF266818D9005AC1C3 /* UserProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C0C2AAE266818D9005AC1C3 /* UserProfile.storyboard */; };
+		8C0C2AB326681E46005AC1C3 /* UserAssetsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0C2AB226681E46005AC1C3 /* UserAssetsCollectionViewCell.swift */; };
+		8C4CFCF226691BAE004F15F3 /* UserImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C4CFCF126691BAE004F15F3 /* UserImageModel.swift */; };
+		8C4CFCF82669515A004F15F3 /* PreviewPhotoVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C4CFCF72669515A004F15F3 /* PreviewPhotoVideoViewController.swift */; };
 		8C5E2D2C2657F827004A7D92 /* UIViewController+SideMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5E2D212657F827004A7D92 /* UIViewController+SideMenu.swift */; };
 		8C5E2D2D2657F827004A7D92 /* StatusBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5E2D222657F827004A7D92 /* StatusBar.swift */; };
 		8C5E2D2E2657F827004A7D92 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5E2D232657F827004A7D92 /* Preferences.swift */; };
@@ -97,6 +101,10 @@
 
 /* Begin PBXFileReference section */
 		2262E74C98E4C3C6487D1989 /* Pods-Paing.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Paing.debug.xcconfig"; path = "Target Support Files/Pods-Paing/Pods-Paing.debug.xcconfig"; sourceTree = "<group>"; };
+		8C0C2AAE266818D9005AC1C3 /* UserProfile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UserProfile.storyboard; sourceTree = "<group>"; };
+		8C0C2AB226681E46005AC1C3 /* UserAssetsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAssetsCollectionViewCell.swift; sourceTree = "<group>"; };
+		8C4CFCF126691BAE004F15F3 /* UserImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserImageModel.swift; sourceTree = "<group>"; };
+		8C4CFCF72669515A004F15F3 /* PreviewPhotoVideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewPhotoVideoViewController.swift; sourceTree = "<group>"; };
 		8C5E2D202657F827004A7D92 /* SideMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SideMenu.h; sourceTree = "<group>"; };
 		8C5E2D212657F827004A7D92 /* UIViewController+SideMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+SideMenu.swift"; sourceTree = "<group>"; };
 		8C5E2D222657F827004A7D92 /* StatusBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusBar.swift; sourceTree = "<group>"; };
@@ -216,9 +224,35 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		8C0C2AB126681E29005AC1C3 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				8C0C2AB226681E46005AC1C3 /* UserAssetsCollectionViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		8C4CFCF52669511A004F15F3 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				8C0C2AB126681E29005AC1C3 /* Cell */,
+				F99DF1FD26594F8E006734BF /* UserProfileViewController.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		8C4CFCF626695126004F15F3 /* PreviewPhotoVideo */ = {
+			isa = PBXGroup;
+			children = (
+				8C4CFCF72669515A004F15F3 /* PreviewPhotoVideoViewController.swift */,
+			);
+			path = PreviewPhotoVideo;
+			sourceTree = "<group>";
+		};
 		8C5E2D162657F662004A7D92 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				8C85409C2668114B0045E895 /* UserProfile */,
 				8C897CF226581790009B0677 /* Authentication */,
 				8C897D0926582CDA009B0677 /* SettingsOption */,
 				8C897CF32658179C009B0677 /* PaingView */,
@@ -354,6 +388,7 @@
 				F9F808A72656CD8A00F320FF /* Main.storyboard */,
 				F9F808DD2656F20F00F320FF /* LocationPicker.storyboard */,
 				F9F808AC2656CD8C00F320FF /* LaunchScreen.storyboard */,
+				8C0C2AAE266818D9005AC1C3 /* UserProfile.storyboard */,
 			);
 			path = Interface;
 			sourceTree = "<group>";
@@ -381,6 +416,15 @@
 				8C74AA1D265AB13A00FC9F9E /* ForgotPasswordViewController.swift */,
 			);
 			path = ForgotPassword;
+			sourceTree = "<group>";
+		};
+		8C85409C2668114B0045E895 /* UserProfile */ = {
+			isa = PBXGroup;
+			children = (
+				8C4CFCF626695126004F15F3 /* PreviewPhotoVideo */,
+				8C4CFCF52669511A004F15F3 /* Profile */,
+			);
+			path = UserProfile;
 			sourceTree = "<group>";
 		};
 		8C897CF226581790009B0677 /* Authentication */ = {
@@ -622,10 +666,9 @@
 				8C74A99C265A5FC900FC9F9E /* AppDelegate */,
 				8C74A99D265A5FD200FC9F9E /* CustomSplash */,
 				F950BC312658DC0B00D844AD /* ModelClasses */,
-				8C5E2D162657F662004A7D92 /* Controllers */,
 				F9F808E82656F46600F320FF /* ModelClass */,
+				8C5E2D162657F662004A7D92 /* Controllers */,
 				F99DF1FA2658F4A4006734BF /* DetailViewController.swift */,
-				F99DF1FD26594F8E006734BF /* UserProfileViewController.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -732,6 +775,7 @@
 				F902CCE526679E3F007703FA /* BlockModel.swift */,
 				F902CCE72667B337007703FA /* BlogListModel.swift */,
 				F91BDECA26695580002B89CA /* ChatDetailModel.swift */,
+				8C4CFCF126691BAE004F15F3 /* UserImageModel.swift */,
 			);
 			path = ModelClass;
 			sourceTree = "<group>";
@@ -801,6 +845,7 @@
 				F9F808AB2656CD8C00F320FF /* Assets.xcassets in Resources */,
 				F9F808A92656CD8A00F320FF /* Main.storyboard in Resources */,
 				F950BC2D2658D46D00D844AD /* OverlayViewCard.xib in Resources */,
+				8C0C2AAF266818D9005AC1C3 /* UserProfile.storyboard in Resources */,
 				F9F808DF2656F20F00F320FF /* LocationPicker.storyboard in Resources */,
 				F9835B682663A3D300FE9582 /* GoogleService-Info.plist in Resources */,
 			);
@@ -876,6 +921,7 @@
 				F9F808D42656F1EF00F320FF /* LocationSearchResultsViewController.swift in Sources */,
 				F99DF1FE26594F8E006734BF /* UserProfileViewController.swift in Sources */,
 				F9F808D82656F1EF00F320FF /* AlertViewController.swift in Sources */,
+				8C0C2AB326681E46005AC1C3 /* UserAssetsCollectionViewCell.swift in Sources */,
 				F9F808D52656F1EF00F320FF /* Location.swift in Sources */,
 				F91BDEC92668DB0A002B89CA /* LikesTableViewCell.swift in Sources */,
 				F9F808C22656F1A000F320FF /* WebServiceManager.swift in Sources */,
@@ -938,6 +984,7 @@
 				F9F808A42656CD8A00F320FF /* SceneDelegate.swift in Sources */,
 				F91BDEC72668DA85002B89CA /* CommentLikesViewController.swift in Sources */,
 				F950BC302658D5C500D844AD /* OverlayViewCard.swift in Sources */,
+				8C4CFCF226691BAE004F15F3 /* UserImageModel.swift in Sources */,
 				F9F808E42656F26400F320FF /* AppSharedData.swift in Sources */,
 				F9835B6A266412AF00FE9582 /* ConversationListModel.swift in Sources */,
 				F950BC332658DC2600D844AD /* HomeModel.swift in Sources */,
@@ -947,6 +994,7 @@
 				8C5E2D4F26580513004A7D92 /* ProfileViewController.swift in Sources */,
 				8C5E2D49265804FC004A7D92 /* NotificationViewController.swift in Sources */,
 				F9F808D92656F1EF00F320FF /* MessageConstant.swift in Sources */,
+				8C4CFCF82669515A004F15F3 /* PreviewPhotoVideoViewController.swift in Sources */,
 				8C897D0C26582D06009B0677 /* BasicInformationViewController.swift in Sources */,
 				F9F808C52656F1A000F320FF /* RevealViewController.swift in Sources */,
 				8C5E2D322657F827004A7D92 /* Segue.swift in Sources */,

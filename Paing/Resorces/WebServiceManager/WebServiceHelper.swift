@@ -40,7 +40,15 @@ struct WsUrl{
     static let url_insertChat = BASE_URL + "insert_chat"
     static let url_ForgotPassword  = BASE_URL + "forgot_password"
     static let url_DeleteNotification = BASE_URL + "delete_notification?"
+
     static let url_DeleteBlogComment = BASE_URL + "blog_comment_delete?"
+
+    
+    static let url_SaveInFavorite = BASE_URL + "save_in_favorite"
+    static let url_LikeUserImage = BASE_URL + "like_user_image"
+    static let url_BlockInUser = BASE_URL + "block_in_user"
+    
+
 }
 
 //Api Header

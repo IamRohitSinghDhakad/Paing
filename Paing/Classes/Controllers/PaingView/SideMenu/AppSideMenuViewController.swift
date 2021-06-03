@@ -10,9 +10,11 @@ import UIKit
 class SideMenuOptions: Codable {
     var menuName: String = ""
     var menuImageName: String = ""
-    init(menuName: String, menuImageName: String) {
+    var menuSelectedImageName: String = ""
+    init(menuName: String, menuImageName: String, menuSelectedImageName: String) {
         self.menuName = menuName
         self.menuImageName = menuImageName
+        self.menuSelectedImageName = menuSelectedImageName
     }
 }
 
@@ -28,25 +30,15 @@ class AppSideMenuViewController: UIViewController {
     
     var selectedIndexpath = 0
     
-    private let menus: [SideMenuOptions] = [SideMenuOptions(menuName: "Inicio", menuImageName: "home"),
-                                    SideMenuOptions(menuName: "Perfil", menuImageName: "user_sideMenu"),
-                                    SideMenuOptions(menuName: "Chat", menuImageName: "chat"),
-                                    SideMenuOptions(menuName: "Afiliación", menuImageName: "icon_membership"),
-                                    SideMenuOptions(menuName: "Bloqueados", menuImageName: "block_sideMenu"),
-                                    SideMenuOptions(menuName: "Notificación", menuImageName: "noti"),
-                                    SideMenuOptions(menuName: "Ajustes", menuImageName: "setting"),
-                                    SideMenuOptions(menuName: "Paing Blog", menuImageName: "blog Side_menu"),
-                                    SideMenuOptions(menuName: "Cerrar Sesión", menuImageName: "logout")]
-    
-    private let menusSelected: [SideMenuOptions] = [SideMenuOptions(menuName: "Inicio", menuImageName: "home_selected"),
-                                    SideMenuOptions(menuName: "Perfil", menuImageName: "user_selected"),
-                                    SideMenuOptions(menuName: "Chat", menuImageName: "chat_selected"),
-                                    SideMenuOptions(menuName: "Afiliación", menuImageName: "afilication_selected"),
-                                    SideMenuOptions(menuName: "Bloqueados", menuImageName: "lock_selected"),
-                                    SideMenuOptions(menuName: "Notificación", menuImageName: "noti_selected"),
-                                    SideMenuOptions(menuName: "Ajustes", menuImageName: "setting_selected"),
-                                    SideMenuOptions(menuName: "Paing Blog", menuImageName: "blog_selected"),
-                                    SideMenuOptions(menuName: "Cerrar Sesión", menuImageName: "logout_selected")]
+    private let menus: [SideMenuOptions] = [SideMenuOptions(menuName: "Inicio", menuImageName: "Home", menuSelectedImageName: "home_selected"),
+                                            SideMenuOptions(menuName: "Perfil", menuImageName: "user_sideMenu", menuSelectedImageName: "user_selected"),
+                                            SideMenuOptions(menuName: "Chat", menuImageName: "chat", menuSelectedImageName: "chat_selected"),
+                                            SideMenuOptions(menuName: "Afiliación", menuImageName: "icon_membership", menuSelectedImageName: "afilication_selected"),
+                                            SideMenuOptions(menuName: "Bloqueados", menuImageName: "block_sideMenu", menuSelectedImageName: "lock_selected"),
+                                            SideMenuOptions(menuName: "Notificación", menuImageName: "noti", menuSelectedImageName: "noti_selected"),
+                                            SideMenuOptions(menuName: "Ajustes", menuImageName: "setting", menuSelectedImageName: "setting_selected"),
+                                            SideMenuOptions(menuName: "Paing Blog", menuImageName: "blog Side_menu", menuSelectedImageName: "blog_selected"),
+                                            SideMenuOptions(menuName: "Cerrar Sesión", menuImageName: "logout", menuSelectedImageName: "logout_selected")]
     
     
     //MARK: - Override Methods
@@ -162,19 +154,12 @@ extension AppSideMenuViewController: UITableViewDelegate, UITableViewDataSource 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AppSideMenuTableViewCell", for: indexPath) as! AppSideMenuTableViewCell
         let row = indexPath.row
-        
         if self.selectedIndexpath == indexPath.row{
-            cell.menuImage.image = UIImage(named: menusSelected[row].menuImageName)
+            cell.menuImage.image = UIImage(named: menus[row].menuSelectedImageName)
         }else{
             cell.menuImage.image = UIImage(named: menus[row].menuImageName)
         }
-        
-        
-        
         cell.menuName.text = menus[row].menuName
-        
-        
-        
         return cell
     }
     

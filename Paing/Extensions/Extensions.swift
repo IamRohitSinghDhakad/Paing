@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import AVKit
 
 extension UserDefaults {
     enum Keys {
@@ -370,4 +371,70 @@ func fadeOut(duration: TimeInterval = 0.5, delay: TimeInterval = 0.0, completion
         completion(true)
     }
 }
+}
+
+extension UIImageView {
+    
+    func getThumbnailImage(with url: URL?, placeholderImage: UIImage) {
+        self.image = placeholderImage
+        if let videoURL = url {
+            let asset: AVAsset = AVAsset(url: videoURL)
+            let imageGenerator = AVAssetImageGenerator(asset: asset)
+            do {
+                let thumbnailImage = try imageGenerator.copyCGImage(at: CMTimeMake(value: 1, timescale: 60) , actualTime: nil)
+                let imageGenerated = UIImage(cgImage: thumbnailImage)
+                self.image = imageGenerated
+            } catch let error {
+                print(error)
+                self.image = placeholderImage
+            }
+        }
+    }
+    
+    func getThumbnailImageFromVideoUrl(videoURL: URL?, placeholderImage: UIImage) {
+        self.image = placeholderImage
+        if let url = videoURL {
+            DispatchQueue.global().async { //1
+                let asset = AVAsset(url: url) //2
+                let avAssetImageGenerator = AVAssetImageGenerator(asset: asset) //3
+                avAssetImageGenerator.appliesPreferredTrackTransform = true //4
+                let thumnailTime = CMTimeMake(value: 2, timescale: 1) //5
+                do {
+                    let cgThumbImage = try avAssetImageGenerator.copyCGImage(at: thumnailTime, actualTime: nil) //6
+                    let thumbNailImage = UIImage(cgImage: cgThumbImage) //7
+                    DispatchQueue.main.async { //8
+                        self.image = thumbNailImage
+                    }
+                } catch {
+                    print(error.localizedDescription) //10
+                    DispatchQueue.main.async {
+                        self.image = placeholderImage
+                    }
+                }
+            }
+        }
+    }
+}
+
+extension UIViewController {
+    func getThumbnailImageFromVideoUrl(url: URL, completion: @escaping ((_ image: UIImage?)->Void)) {
+        DispatchQueue.global().async { //1
+            let asset = AVAsset(url: url) //2
+            let avAssetImageGenerator = AVAssetImageGenerator(asset: asset) //3
+            avAssetImageGenerator.appliesPreferredTrackTransform = true //4
+            let thumnailTime = CMTimeMake(value: 2, timescale: 1) //5
+            do {
+                let cgThumbImage = try avAssetImageGenerator.copyCGImage(at: thumnailTime, actualTime: nil) //6
+                let thumbNailImage = UIImage(cgImage: cgThumbImage) //7
+                DispatchQueue.main.async { //8
+                    completion(thumbNailImage) //9
+                }
+            } catch {
+                print(error.localizedDescription) //10
+                DispatchQueue.main.async {
+                    completion(nil) //11
+                }
+            }
+        }
+    }
 }

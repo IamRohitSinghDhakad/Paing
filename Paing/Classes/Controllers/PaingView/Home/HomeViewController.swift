@@ -232,8 +232,10 @@ class HomeViewController: UIViewController {
     @IBAction func actionBtnProfile(_ sender: Any) {
         print(swipeView.currentCardIndex)
         if self.arrUsers.count > 0{
-            let userID = self.arrUsers[swipeView.currentCardIndex]
-            pushVc(viewConterlerId: "EditProfileViewController")
+            let userID = self.arrUsers[swipeView.currentCardIndex].strUserID
+            let vc = UIStoryboard(name: "UserProfile", bundle: nil).instantiateViewController(withIdentifier: "UserProfileViewController") as? UserProfileViewController
+            vc?.userID = userID
+            self.navigationController?.pushViewController(vc!, animated: true)
         }
     }
 

@@ -98,6 +98,8 @@ class EditProfileViewController: UIViewController,UINavigationControllerDelegate
         self.tfSearch.delegate = self
         self.tfSearch.addTarget(self, action: #selector(searchContactAsPerText(_ :)), for: .editingChanged)
         
+        self.imagePicker.delegate = self
+        
         self.setDefaultStyling()
         self.setDropDown()
         self.showDatePicker()
