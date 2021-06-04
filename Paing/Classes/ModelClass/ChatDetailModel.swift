@@ -13,6 +13,9 @@ class ChatDetailModel: NSObject {
     var strOpponentChatTime : String = ""
     var strReceiverID   : String = ""
     var strImageUrl   : String = ""
+    var strMsgIDForDelete  : String = ""
+    var strSenderId : String = ""
+    var strChatTime   : String = ""
   
     
     init(dict : [String:Any]) {
@@ -23,9 +26,27 @@ class ChatDetailModel: NSObject {
             self.strReceiverID = receiver_id
         }
         
+        if let sender_id = dict["sender_id"] as? String{
+            self.strSenderId = sender_id
+        }else  if let sender_id = dict["sender_id"] as? String{
+            self.strSenderId = sender_id
+        }
+        
+        if let id = dict["id"] as? String{
+            self.strMsgIDForDelete = id
+        }else  if let id = dict["id"] as? String{
+            self.strMsgIDForDelete = id
+        }
+        
         if let chat_image = dict["chat_image"] as? String{
             self.strImageUrl = chat_image
         }
+        
+        
+        if let chat_Time = dict["date"]as? String{
+            self.strChatTime = chat_Time
+        }
+        
         
         
         if let chat_message = dict["chat_message"] as? String{

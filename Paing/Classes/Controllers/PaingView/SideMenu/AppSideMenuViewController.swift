@@ -30,7 +30,7 @@ class AppSideMenuViewController: UIViewController {
     
     var selectedIndexpath = 0
     
-    private let menus: [SideMenuOptions] = [SideMenuOptions(menuName: "Inicio", menuImageName: "Home", menuSelectedImageName: "home_selected"),
+    private let menus: [SideMenuOptions] = [SideMenuOptions(menuName: "Inicio", menuImageName: "home", menuSelectedImageName: "home_selected"),
                                             SideMenuOptions(menuName: "Perfil", menuImageName: "user_sideMenu", menuSelectedImageName: "user_selected"),
                                             SideMenuOptions(menuName: "Chat", menuImageName: "chat", menuSelectedImageName: "chat_selected"),
                                             SideMenuOptions(menuName: "Afiliación", menuImageName: "icon_membership", menuSelectedImageName: "afilication_selected"),

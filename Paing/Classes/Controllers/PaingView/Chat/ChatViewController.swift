@@ -20,6 +20,11 @@ class ChatViewController: UIViewController {
         self.tblMessage.delegate = self
         self.tblMessage.dataSource = self
         
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         self.call_GetChatList(strUserID: objAppShareData.UserDetail.strUserId)
     }
     
@@ -44,7 +49,6 @@ extension ChatViewController:UITableViewDelegate,UITableViewDataSource{
         let obj = self.arrMessageList[indexPath.row]
         
         cell.lblUserName.text = obj.strName
-        
         
         if obj.strLastMsg != ""{
             let emojiString  = obj.strLastMsg.decodeEmoji
@@ -109,6 +113,7 @@ extension ChatViewController{
             
             if status == MessageConstant.k_StatusCode{
                 if let arrData  = response["result"] as? [[String:Any]]{
+                    self.arrMessageList.removeAll()
                     for dictdata in arrData{
                         let obj = ConversationListModel.init(dict: dictdata)
                         self.arrMessageList.append(obj)

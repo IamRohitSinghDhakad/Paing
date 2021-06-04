@@ -26,7 +26,11 @@ class ChatDetailTVCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-      
+    
+        let longPressMyMsg = UILongPressGestureRecognizer (target: self, action: #selector (self.longPressMyMessage (gesture :)))
+        longPressMyMsg.minimumPressDuration = 1
+        self.lblMyMsg.addGestureRecognizer(longPressMyMsg)
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -35,4 +39,13 @@ class ChatDetailTVCell: UITableViewCell {
         
     }
 
+    @objc func longPressMyMessage (gesture: UILongPressGestureRecognizer) {
+        if gesture.state == .began {
+            print ("longPress began")
+        }
+        if gesture.state == .ended {
+            print ("longPress ended")
+        }
+    }
+    
 }
