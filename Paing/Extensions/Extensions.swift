@@ -438,3 +438,10 @@ extension UIViewController {
         }
     }
 }
+
+extension Date {
+    /// to get time since 1970 till current time in milliseconds
+    func toMillis() -> Int64 {
+        return Int64(self.timeIntervalSince1970 * 1000)
+    }
+}

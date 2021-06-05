@@ -32,6 +32,7 @@
 		8C74AA13265A7B7500FC9F9E /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C74AA12265A7B7500FC9F9E /* WelcomeViewController.swift */; };
 		8C74AA18265A913300FC9F9E /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C74AA17265A913300FC9F9E /* RegistrationViewController.swift */; };
 		8C74AA1E265AB13A00FC9F9E /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C74AA1D265AB13A00FC9F9E /* ForgotPasswordViewController.swift */; };
+		8C76BAAF266AACB900C206DD /* EditImageVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C76BAAE266AACB900C206DD /* EditImageVideoViewController.swift */; };
 		8C897CF6265817C0009B0677 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C897CF5265817C0009B0677 /* LoginViewController.swift */; };
 		8C897CFD265818BD009B0677 /* MembershipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C897CFC265818BD009B0677 /* MembershipViewController.swift */; };
 		8C897D01265818C6009B0677 /* BlockedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C897D00265818C6009B0677 /* BlockedViewController.swift */; };
@@ -127,6 +128,7 @@
 		8C74AA12265A7B7500FC9F9E /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		8C74AA17265A913300FC9F9E /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		8C74AA1D265AB13A00FC9F9E /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
+		8C76BAAE266AACB900C206DD /* EditImageVideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditImageVideoViewController.swift; sourceTree = "<group>"; };
 		8C897CF5265817C0009B0677 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		8C897CFC265818BD009B0677 /* MembershipViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MembershipViewController.swift; sourceTree = "<group>"; };
 		8C897D00265818C6009B0677 /* BlockedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockedViewController.swift; sourceTree = "<group>"; };
@@ -324,6 +326,7 @@
 		8C5E2D382657F880004A7D92 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				8C76BAAC266AAC8500C206DD /* EditImageVideo */,
 				8C5E2D4E26580513004A7D92 /* ProfileViewController.swift */,
 			);
 			path = Profile;
@@ -416,6 +419,14 @@
 				8C74AA1D265AB13A00FC9F9E /* ForgotPasswordViewController.swift */,
 			);
 			path = ForgotPassword;
+			sourceTree = "<group>";
+		};
+		8C76BAAC266AAC8500C206DD /* EditImageVideo */ = {
+			isa = PBXGroup;
+			children = (
+				8C76BAAE266AACB900C206DD /* EditImageVideoViewController.swift */,
+			);
+			path = EditImageVideo;
 			sourceTree = "<group>";
 		};
 		8C85409C2668114B0045E895 /* UserProfile */ = {
@@ -993,6 +1004,7 @@
 				8C5E2D3F2657FF09004A7D92 /* AppSideMenuViewController.swift in Sources */,
 				8C5E2D4F26580513004A7D92 /* ProfileViewController.swift in Sources */,
 				8C5E2D49265804FC004A7D92 /* NotificationViewController.swift in Sources */,
+				8C76BAAF266AACB900C206DD /* EditImageVideoViewController.swift in Sources */,
 				F9F808D92656F1EF00F320FF /* MessageConstant.swift in Sources */,
 				8C4CFCF82669515A004F15F3 /* PreviewPhotoVideoViewController.swift in Sources */,
 				8C897D0C26582D06009B0677 /* BasicInformationViewController.swift in Sources */,
@@ -1161,9 +1173,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Javier Verbo Ramirez (327YSDT995)";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = AML7MFR26Z;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7E7WKW772Q;
 				INFOPLIST_FILE = Paing/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1171,7 +1183,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ambitious.paing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = ProvProfileDev_30052021;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "${SRCROOT}/Paing/BridgeHeader/BridgingHeader.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1184,9 +1196,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Javier Verbo Ramirez (327YSDT995)";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = AML7MFR26Z;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7E7WKW772Q;
 				INFOPLIST_FILE = Paing/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1194,7 +1206,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ambitious.paing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = ProvProfileDev_30052021;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "${SRCROOT}/Paing/BridgeHeader/BridgingHeader.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;

@@ -561,19 +561,11 @@
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XJ8-fF-t9t">
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="755"/>
                                             </imageView>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="message" translatesAutoresizingMaskIntoConstraints="NO" id="sXd-oE-7uY">
-                                                <rect key="frame" x="0.0" y="0.0" width="23.5" height="16.5"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" secondItem="sXd-oE-7uY" secondAttribute="height" multiplier="23:16" id="A3q-ar-607"/>
-                                                </constraints>
-                                            </imageView>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="XJ8-fF-t9t" secondAttribute="bottom" id="78H-0b-Skx"/>
                                             <constraint firstAttribute="trailing" secondItem="XJ8-fF-t9t" secondAttribute="trailing" id="A1Z-9h-axX"/>
-                                            <constraint firstItem="sXd-oE-7uY" firstAttribute="top" secondItem="mYA-u2-1vn" secondAttribute="top" id="Vbc-Ci-ULb"/>
-                                            <constraint firstItem="sXd-oE-7uY" firstAttribute="leading" secondItem="mYA-u2-1vn" secondAttribute="leading" id="nFm-T4-bpG"/>
                                             <constraint firstItem="XJ8-fF-t9t" firstAttribute="top" secondItem="mYA-u2-1vn" secondAttribute="top" id="wgO-sy-Xpg"/>
                                             <constraint firstItem="XJ8-fF-t9t" firstAttribute="leading" secondItem="mYA-u2-1vn" secondAttribute="leading" id="xhv-Nv-qN8"/>
                                         </constraints>

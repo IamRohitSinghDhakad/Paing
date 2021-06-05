@@ -47,6 +47,8 @@ struct WsUrl{
     static let url_LikeUserImage = BASE_URL + "like_user_image"
     static let url_BlockInUser = BASE_URL + "block_in_user"
     
+    static let url_AddUserImage = BASE_URL + "add_user_image"
+    static let url_DeleteUserImage = BASE_URL + "delete_user_image"
 
 }
 

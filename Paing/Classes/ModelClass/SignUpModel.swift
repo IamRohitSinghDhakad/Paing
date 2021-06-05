@@ -67,6 +67,7 @@ class userDetailModel: NSObject {
     var valLikedStatus: Int = 0
     var valBlockedStatus: Int = 0
     var strBlockedBy: String = ""
+    var strVisibilityStatus: String = ""
     
     init(dict : [String:Any]) {
         
@@ -246,6 +247,13 @@ class userDetailModel: NSObject {
         if let blockedBy = dict["blockedBy"] as? String {
             self.strBlockedBy = blockedBy
         }
+        
+        if let visible = dict["visible"] as? String {
+            self.strVisibilityStatus = visible
+        }
+        
+        
+        
     }
 }
 

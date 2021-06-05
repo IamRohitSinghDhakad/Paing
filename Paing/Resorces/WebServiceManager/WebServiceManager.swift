@@ -541,7 +541,7 @@ extension WebServiceManager {
             
             let count = imageToUpload.count
             for i in 0..<count{
-                multipartFormData.append(imageToUpload[i], withName: "\(imagesParam[i])", fileName: "file\(i).png" , mimeType: "image/png")
+                multipartFormData.append(imageToUpload[i], withName: "\(imagesParam[i])", fileName: mimeType!.contains("mp4") ? "file\(i).mp4" : "file\(i).png" , mimeType: mimeType)
             }
             
             for (key, value) in params ?? [:]{

@@ -12,6 +12,4 @@ class UserAssetsCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var imgUserProfileAsset: UIImageView!
     @IBOutlet weak var btnFavAsset: UIButton!
     
-    
-    
 }
