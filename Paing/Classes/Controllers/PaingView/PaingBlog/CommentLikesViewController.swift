@@ -238,10 +238,22 @@ extension CommentLikesViewController: UITableViewDelegate,UITableViewDataSource{
             
             cell.lblMsgComment.text = obj.strComment.decodeEmoji
             
-            if obj.isSelected == true{
-                cell.imgVwTick.image = #imageLiteral(resourceName: "select")
+            if objUserData.strBlogUserID == objAppShareData.UserDetail.strUserId{
+                if obj.isSelected == true{
+                    cell.imgVwTick.image = #imageLiteral(resourceName: "select")
+                }else{
+                    cell.imgVwTick.image = #imageLiteral(resourceName: "tic_unselect")
+                }
             }else{
-                cell.imgVwTick.image = #imageLiteral(resourceName: "tic_unselect")
+                if obj.strCommentUserID == objAppShareData.UserDetail.strUserId{
+                    if obj.isSelected == true{
+                        cell.imgVwTick.image = #imageLiteral(resourceName: "select")
+                    }else{
+                        cell.imgVwTick.image = #imageLiteral(resourceName: "tic_unselect")
+                    }
+                }else{
+                    cell.imgVwTick.image = nil
+                }
             }
             
             let filtered = self.arrComment.filter { $0.isSelected == true }
@@ -282,15 +294,24 @@ extension CommentLikesViewController: UITableViewDelegate,UITableViewDataSource{
             
             let obj = self.arrComment[indexPath.row]
             
-            if obj.isSelected == true{
-                obj.isSelected = false
+            if objUserData.strBlogUserID == objAppShareData.UserDetail.strUserId{
+                if obj.isSelected == true{
+                    obj.isSelected = false
+                }else{
+                    obj.isSelected = true
+                }
             }else{
-                obj.isSelected = true
+                if obj.strCommentUserID == objAppShareData.UserDetail.strUserId{
+                    if obj.isSelected == true{
+                        obj.isSelected = false
+                    }else{
+                        obj.isSelected = true
+                    }
+                }else{
             }
-            
-            self.tblComments.reloadData()
         }
-        
+        self.tblComments.reloadData()
+        }
     }
     
     
@@ -424,6 +445,8 @@ extension CommentLikesViewController{
                                 self.arrComment.append(obj)
                             }
                         }
+                        
+                        self.lblCommentCount.text = "(\(self.arrComment.count))"
                         
                         if let commentData = newData["likes_data"] as? [[String:Any]]{
                             for dictData in commentData{

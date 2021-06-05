@@ -50,13 +50,6 @@ class MyBlogViewController: UIViewController {
                 }
                 
             }
-    //    }
-//        if self.txtVwComment.text?.isEmpth{
-//
-//        }else{
-//            self.call_AddBlog()
-//        }
-
     }
     @IBAction func btnCancelSubVw(_ sender: Any) {
         self.SubVw.isHidden = true
@@ -69,8 +62,22 @@ class MyBlogViewController: UIViewController {
     
     @IBAction func btnAddMyBlog(_ sender: Any) {
         self.txtVwComment.text = ""
+        let profilePic = objAppShareData.UserDetail.strProfilePicture
+        if profilePic != "" {
+            let url = URL(string: profilePic)
+            self.imgVwuser.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "splashLogo"))
+        }
+        
+        self.lblUserName.text = objAppShareData.UserDetail.strUserName
+        
+        if objAppShareData.UserDetail.strGender == "Male"{
+            self.lblAgeGender.text = "Hombre, \(objAppShareData.UserDetail.strAge)"
+        }else{
+            self.lblAgeGender.text = "Mujer, \(objAppShareData.UserDetail.strAge)"
+        }
         self.isComingFromEdit = false
         self.SubVw.isHidden = false
+        
     }
     
 }

@@ -15,6 +15,7 @@ class HomeModel: NSObject {
     var strDateOfBirth    :String = ""
     var strImageUrl :String = ""
     var strUserID: String = ""
+    var strIsBlocked : String = ""
     
     init(dict : [String:Any]) {
         
@@ -37,6 +38,13 @@ class HomeModel: NSObject {
         if let user_id = dict["user_id"] as? String{
             self.strUserID = user_id
         }
+        
+        if let blocked = dict["blocked"] as? String{
+            self.strIsBlocked = blocked
+        }else if let blocked = dict["blocked"] as? Int{
+            self.strIsBlocked = "\(blocked)"
+        }
+        
         
         
     }

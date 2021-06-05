@@ -97,12 +97,18 @@ extension NotificationViewController:UITableViewDelegate,UITableViewDataSource{
         }else{
             cell.imgVwCheckUncheck.image = UIImage.init(named: "tic_unselect")
         }
+        let filtered = self.arrNotifications.filter { $0.isSelected == true }
+        if filtered.count > 0{
+            self.vwDelete.isHidden = false
+        }else{
+            self.vwDelete.isHidden = true
+        }
+        
       
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.vwDelete.isHidden = false
         
         let obj = self.arrNotifications[indexPath.row]
         if obj.isSelected == true{

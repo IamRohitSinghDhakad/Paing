@@ -161,6 +161,7 @@ class CommentDataModel : NSObject{
     var strComment :String = ""
     var strCommentID :String = ""
     var strCommentUserImage :String = ""
+    var strCommentUserID :String = ""
     var isSelected : Bool = false
  
     init(dict : [String:Any]) {
@@ -176,6 +177,12 @@ class CommentDataModel : NSObject{
         
         if let blog_comment_id = dict["blog_comment_id"] as? String{
             self.strCommentID = blog_comment_id
+        }
+        
+        if let user_id = dict["user_id"] as? String{
+            self.strCommentUserID = user_id
+        }else  if let user_id = dict["user_id"] as? String{
+            self.strCommentUserID = user_id
         }
     
     

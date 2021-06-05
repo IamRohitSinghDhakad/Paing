@@ -430,7 +430,9 @@ extension HomeViewController{
                 if let arrData  = response["result"] as? [[String:Any]]{
                     for dictdata in arrData{
                         let obj = HomeModel.init(dict: dictdata)
-                        self.arrUsers.append(obj)
+                        if obj.strIsBlocked == "0"{
+                            self.arrUsers.append(obj)
+                        }
                     }
                     self.swipeView.reloadData()
                 }

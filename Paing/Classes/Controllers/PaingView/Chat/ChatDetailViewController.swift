@@ -23,6 +23,7 @@ class ChatDetailViewController: UIViewController,UINavigationControllerDelegate 
     @IBOutlet var vwContainRightTickImageSubVw: UIView!
     
     
+    
     //MARK:- Variables
     var imagePicker = UIImagePickerController()
     var pickedImage:UIImage?
@@ -34,6 +35,9 @@ class ChatDetailViewController: UIViewController,UINavigationControllerDelegate 
     var strUserName = ""
     var strUserImage = ""
     var strSenderID = ""
+    var timer: Timer?
+    var strOnlineStatus = ""
+    var isSendMessage = true
     
     
     override func viewDidLoad() {
@@ -44,8 +48,9 @@ class ChatDetailViewController: UIViewController,UINavigationControllerDelegate 
         self.txtVwChat.delegate = self
         
         self.imagePicker.delegate = self
-        
         self.lblUserName.text = strUserName
+        
+        self.strOnlineStatus = "Online"
         
         self.subVw.isHidden = true
         
@@ -59,9 +64,22 @@ class ChatDetailViewController: UIViewController,UINavigationControllerDelegate 
         
         let longPress = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(sender:)))
         self.tblChat.addGestureRecognizer(longPress)
+        
+        self.timer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
+        //self.title = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(updateCounter), userInfo: nil, repeats: true)
+        
+    }
+    
+    
+    @objc func updateTimer() {
+        //example functionality
+            print("seconds to the end of the world")
+        self.call_GetChatList(strUserID: objAppShareData.UserDetail.strUserId, strSenderID: self.strSenderID)
     }
     
     @IBAction func btnBackOnHeader(_ sender: Any) {
+        self.timer?.invalidate()
+        self.timer = nil
         onBackPressed()
         
     }
@@ -223,6 +241,7 @@ extension ChatDetailViewController: UITextViewDelegate{
     
     
     func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
+        self.strOnlineStatus = "Typing"
           if self.txtVwChat.text == "\n"{
               self.txtVwChat.resignFirstResponder()
           }
@@ -231,6 +250,9 @@ extension ChatDetailViewController: UITextViewDelegate{
           return true
       }
       
+    func textViewDidEndEditing(_ textView: UITextView) {
+        self.strOnlineStatus = "Online"
+    }
       
       func textViewDidChange(_ textView: UITextView)
       {
@@ -401,11 +423,11 @@ extension ChatDetailViewController{
             return
         }
         
-        objWebServiceManager.showIndicator()
+      //  objWebServiceManager.showIndicator()
         
         let parameter = ["receiver_id":strSenderID,
                          "sender_id":strUserID,
-                         "chat_status":"online"]as [String:Any]
+                         "chat_status":self.strOnlineStatus]as [String:Any]
         
         
         objWebServiceManager.requestGet(strURL: WsUrl.url_getChatList, params: parameter, queryParams: [:], strCustomValidation: "") { (response) in
@@ -425,7 +447,13 @@ extension ChatDetailViewController{
                 
                     self.tblChat.reloadData()
                     self.updateTableContentInset()
-                    self.tblChat.scrollToBottom()
+                    if self.isSendMessage{
+                        self.isSendMessage = false
+                        self.tblChat.scrollToBottom()
+                    }else{
+                        
+                    }
+                    
                 }
             }else{
                 objWebServiceManager.hideIndicator()
@@ -469,7 +497,8 @@ extension ChatDetailViewController{
             
             if let result = response["result"]as? String{
                 if result == "successful"{
-                    self.call_GetChatList(strUserID: objAppShareData.UserDetail.strUserId, strSenderID: self.strSenderID)
+                    self.isSendMessage = true
+                   // self.call_GetChatList(strUserID: objAppShareData.UserDetail.strUserId, strSenderID: self.strSenderID)
                 }
             }else{
                 objWebServiceManager.hideIndicator()
@@ -508,7 +537,7 @@ extension ChatDetailViewController{
             
             if status == MessageConstant.k_StatusCode{
                 
-                self.call_GetChatList(strUserID: strUserID, strSenderID: self.strSenderID)
+                //self.call_GetChatList(strUserID: strUserID, strSenderID: self.strSenderID)
                 
             }else{
                 objWebServiceManager.hideIndicator()
@@ -613,7 +642,8 @@ extension ChatDetailViewController{
             if let result = response["result"]as? String{
                 if result == "successful"{
                     self.subVw.isHidden = true
-                    self.call_GetChatList(strUserID: objAppShareData.UserDetail.strUserId, strSenderID: self.strSenderID)
+                    self.isSendMessage = true
+                   // self.call_GetChatList(strUserID: objAppShareData.UserDetail.strUserId, strSenderID: self.strSenderID)
                 }
             }else{
                 objWebServiceManager.hideIndicator()
