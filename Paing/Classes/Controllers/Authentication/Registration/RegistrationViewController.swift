@@ -533,7 +533,7 @@ extension RegistrationViewController{
                          "state":self.tfAddressOne.text!,
                          "city":self.tfAddressTwo.text!,
                          "sex":self.strGender,
-                         "ios_register_id":objAppShareData.strFirebaseToken]as [String:Any]
+                         "register_id":objAppShareData.strFirebaseToken]as [String:Any]
         
         print(dicrParam)
         

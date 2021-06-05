@@ -159,7 +159,16 @@ class UserProfileViewController: UIViewController {
             
             self.lblLocation.text = locationArr.joined(separator: ", ")
             self.lblUserName.text = userProfile.strName
-            self.lblAboutUs.text = userProfile.strAboutMe
+            if userProfile.strAboutMe == ""{
+                if userProfile.strGender == "Male"{
+                    self.lblAboutUs.text = "Soy hombre"
+                }else{
+                    self.lblAboutUs.text = "Soy Mujer"
+                }
+            }else{
+                self.lblAboutUs.text = userProfile.strAboutMe
+            }
+           
             self.btnRelationshipStatus.setTitle(userProfile.strRelStatus, for: .normal)
             self.vwRelationStatus.isHidden = (userProfile.strRelStatus == "") ?  true : false
             self.imgVwFavProfile.image = (userProfile.valLikedStatus == 0) ? UIImage(named: "emptyStar") : UIImage(named: "filledStar")
@@ -321,7 +330,9 @@ extension UserProfileViewController {
      //   objWebServiceManager.showIndicator()
         let likeToMark = self.userProfileDetail!.valLikedStatus == 0 ? 1 : 0
         
-        let parameter = ["user_id" : objAppShareData.UserDetail.strUserId, "id" : self.userProfileDetail!.strUserId, "liked" : "\(likeToMark)"] as [String:Any]
+        let parameter = ["user_id" : objAppShareData.UserDetail.strUserId,
+                         "id" : self.userProfileDetail!.strUserId,
+                         "liked" : "\(likeToMark)"] as [String:Any]
         
         
         objWebServiceManager.requestGet(strURL: WsUrl.url_SaveInFavorite, params: parameter, queryParams: [:], strCustomValidation: "") { (response) in
@@ -391,7 +402,7 @@ extension UserProfileViewController {
                 
             }else{
                 objWebServiceManager.hideIndicator()
-                objAlert.showAlert(message: message ?? "", title: "Alert", controller: self)
+               // objAlert.showAlert(message: message ?? "", title: "Alert", controller: self)
                 
             }
             

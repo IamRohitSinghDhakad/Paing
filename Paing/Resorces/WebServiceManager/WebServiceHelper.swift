@@ -46,7 +46,7 @@ struct WsUrl{
     static let url_SaveInFavorite = BASE_URL + "save_in_favorite"
     static let url_LikeUserImage = BASE_URL + "like_user_image"
     static let url_BlockInUser = BASE_URL + "block_in_user"
-    
+    static let url_FavoriteList = BASE_URL + "favorite_list"
     static let url_AddUserImage = BASE_URL + "add_user_image"
     static let url_DeleteUserImage = BASE_URL + "delete_user_image"
 

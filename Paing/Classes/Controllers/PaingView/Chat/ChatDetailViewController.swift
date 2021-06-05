@@ -22,7 +22,13 @@ class ChatDetailViewController: UIViewController,UINavigationControllerDelegate 
     @IBOutlet var imgVwFull: UIImageView!
     @IBOutlet var vwContainRightTickImageSubVw: UIView!
     
+    @IBOutlet var cvSticker: UICollectionView!
+    @IBOutlet var subVwContainCV: UIView!
+    @IBOutlet var subVwSelection: UIView!
+    @IBOutlet var sbVwMainSticker: UIView!
+    @IBOutlet var btnAddSticker: UIButton!
     
+    @IBOutlet var btnSendSticker: UIButton!
     
     //MARK:- Variables
     var imagePicker = UIImagePickerController()
@@ -38,7 +44,9 @@ class ChatDetailViewController: UIViewController,UINavigationControllerDelegate 
     var timer: Timer?
     var strOnlineStatus = ""
     var isSendMessage = true
+    var selectedIndex = -1
     
+    var arrImagesSticker = [UIImage.init(named: "sone"),UIImage.init(named: "stwo"),UIImage.init(named: "sthree"),UIImage.init(named: "four"),UIImage.init(named: "five"),UIImage.init(named: "six"),UIImage.init(named: "seven"),UIImage.init(named: "eight")]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,12 +55,18 @@ class ChatDetailViewController: UIViewController,UINavigationControllerDelegate 
         self.tblChat.dataSource = self
         self.txtVwChat.delegate = self
         
+        self.cvSticker.delegate = self
+        self.cvSticker.dataSource = self
+        
         self.imagePicker.delegate = self
         self.lblUserName.text = strUserName
         
         self.strOnlineStatus = "Online"
         
         self.subVw.isHidden = true
+        self.subVwSelection.isHidden = true
+        self.sbVwMainSticker.isHidden = true
+        self.subVwContainCV.isHidden = true
         
         let profilePic = self.strUserImage
         if profilePic != "" {
@@ -65,15 +79,17 @@ class ChatDetailViewController: UIViewController,UINavigationControllerDelegate 
         let longPress = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(sender:)))
         self.tblChat.addGestureRecognizer(longPress)
         
-        self.timer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
-        //self.title = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(updateCounter), userInfo: nil, repeats: true)
-        
+        self.timer = Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
     }
     
+    @IBAction func btnActionSendSticker(_ sender: Any) {
+        if self.pickedImage != nil && self.selectedIndex != -1{
+            self.callWebserviceForSendImage(strSenderID: objAppShareData.UserDetail.strUserId, strReceiverID: self.strSenderID)
+        }
+    }
     
     @objc func updateTimer() {
         //example functionality
-            print("seconds to the end of the world")
         self.call_GetChatList(strUserID: objAppShareData.UserDetail.strUserId, strSenderID: self.strSenderID)
     }
     
@@ -85,6 +101,27 @@ class ChatDetailViewController: UIViewController,UINavigationControllerDelegate 
     }
     @IBAction func btnOpenCamera(_ sender: Any) {
         self.setImage()
+    }
+    
+    @IBAction func btnOpenStickerView(_ sender: Any) {
+        self.subVwSelection.isHidden = true
+        self.subVwContainCV.isHidden = false
+    }
+    @IBAction func btnOpenAudio(_ sender: Any) {
+        self.subVwSelection.isHidden = true
+        self.sbVwMainSticker.isHidden = true
+        self.subVwContainCV.isHidden = true
+    }
+    
+    @IBAction func btnOpenVideo(_ sender: Any) {
+        self.subVwSelection.isHidden = true
+        self.sbVwMainSticker.isHidden = true
+        self.subVwContainCV.isHidden = true
+    }
+    
+    @IBAction func btnAddOnSticker(_ sender: Any) {
+        self.sbVwMainSticker.isHidden = false
+        self.subVwSelection.isHidden = false
     }
     
     @IBAction func btnSendMessage(_ sender: Any) {
@@ -121,6 +158,12 @@ class ChatDetailViewController: UIViewController,UINavigationControllerDelegate 
         }
         
     }
+    @IBAction func btnCloseStickerSubVw(_ sender: Any) {
+        self.subVwSelection.isHidden = true
+        self.sbVwMainSticker.isHidden = true
+        self.subVwContainCV.isHidden = true
+        self.selectedIndex = -1
+    }
     
     /*
      if self.txtVwChat.text == ""{
@@ -148,6 +191,51 @@ class ChatDetailViewController: UIViewController,UINavigationControllerDelegate 
     @IBAction func btnCancelSUbVw(_ sender: Any) {
         self.imgVwFull.image = nil
         self.subVw.isHidden = true
+    }
+}
+
+extension ChatDetailViewController:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.arrImagesSticker.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ChatStickerCollectionViewCell", for: indexPath)as! ChatStickerCollectionViewCell
+        
+        cell.imgVwSticker.image = self.arrImagesSticker[indexPath.row]
+        
+        if self.selectedIndex == indexPath.row{
+            cell.vwBorder.borderWidth = 1
+            cell.vwBorder.borderColor = UIColor.init(named: "AppSkyBlue")
+        }else{
+            cell.vwBorder.borderWidth = 0
+            cell.vwBorder.borderColor = UIColor.clear
+        }
+        
+        
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.selectedIndex = indexPath.row
+        self.pickedImage = self.arrImagesSticker[indexPath.row]
+        self.cvSticker.reloadData()
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+
+        let noOfCellsInRow = 3
+
+        let flowLayout = collectionViewLayout as! UICollectionViewFlowLayout
+
+        let totalSpace = flowLayout.sectionInset.left
+            + flowLayout.sectionInset.right
+            + (flowLayout.minimumInteritemSpacing * CGFloat(noOfCellsInRow - 1))
+
+        let size = Int((collectionView.bounds.width - totalSpace) / CGFloat(noOfCellsInRow))
+
+        return CGSize(width: size, height: size)
     }
 }
 
@@ -306,11 +394,24 @@ extension ChatDetailViewController:UITableViewDelegate,UITableViewDataSource{
                 cell.vwOpponent.isHidden = true
                 cell.vwOpponentImage.isHidden = true
                 cell.vwMyImage.isHidden = false
+                
+                let profilePic = obj.strImageUrl
+                if profilePic != "" {
+                    let url = URL(string: profilePic)
+                    cell.imgVwMySide.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "logo_square"))
+                }
+                
             }else{
                 cell.vwMyMsg.isHidden = true
                 cell.vwOpponent.isHidden = true
                 cell.vwOpponentImage.isHidden = false
                 cell.vwMyImage.isHidden = true
+                
+                let profilePic = obj.strImageUrl
+                if profilePic != "" {
+                    let url = URL(string: profilePic)
+                    cell.imgVwopponent.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "splashLogo"))
+                }
             }
         }else{
             if obj.strSenderId == objAppShareData.UserDetail.strUserId{
@@ -330,17 +431,9 @@ extension ChatDetailViewController:UITableViewDelegate,UITableViewDataSource{
             }
         }
         
-        let profilePic = obj.strImageUrl
-        if profilePic != "" {
-            let url = URL(string: profilePic)
-            cell.imgVwopponent.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "splashLogo"))
-        }
+       
         
-        let profilePic1 = obj.strImageUrl
-        if profilePic1 != "" {
-            let url = URL(string: profilePic1)
-            cell.imgVwMySide.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "splashLogo"))
-        }
+       
         
         let time = obj.strChatTime.split(separator: " ")
         print(time.last as Any)

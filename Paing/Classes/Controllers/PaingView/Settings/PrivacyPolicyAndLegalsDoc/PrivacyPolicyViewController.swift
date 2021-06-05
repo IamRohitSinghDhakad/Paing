@@ -31,11 +31,11 @@ class PrivacyPolicyViewController: UIViewController {
         switch strType {
         case "Contáctenos":
             self.loadUrl(strUrl: "http://ambitious.in.net/Shubham/paing/index.php/api/page/Contact")
-        case "Privacy":
+        case "Privacidad":
             self.loadUrl(strUrl: "http://ambitious.in.net/Shubham/paing/index.php/api/page/Privacy")
         case "Aviso legal":
             self.loadUrl(strUrl: "http://ambitious.in.net/Shubham/paing/index.php/api/page/Legal%20warning")
-        case "ReportProfile":
+        case "Denunciar perfil":
             self.loadUrl(strUrl: "http://ambitious.in.net/Shubham/paing/index.php/api/page/Report%20profile")
         case "LegalWarning":
             self.loadUrl(strUrl: "http://ambitious.in.net/Shubham/paing/index.php/api/page/Legal%20warning")
@@ -49,6 +49,8 @@ class PrivacyPolicyViewController: UIViewController {
             self.loadUrl(strUrl: "http://ambitious.in.net/Shubham/paing/index.php/api/page/setting")
         case "Política de privacidad":
             self.loadUrl(strUrl: "http://ambitious.in.net/Shubham/paing/index.php/api/page/privacy%20policy")
+        case "Sugerencias":
+            self.loadUrl(strUrl: "http://ambitious.in.net/Shubham/paing/index.php/api/page/Suggestions")
         default:
             break
         }

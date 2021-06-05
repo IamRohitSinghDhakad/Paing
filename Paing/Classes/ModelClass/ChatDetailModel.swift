@@ -39,7 +39,7 @@ class ChatDetailModel: NSObject {
         }
         
         if let chat_image = dict["chat_image"] as? String{
-            self.strImageUrl = chat_image
+            self.strImageUrl = chat_image.trim()
         }
         
         

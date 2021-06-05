@@ -34,6 +34,10 @@ class MyBlogViewController: UIViewController {
         self.SubVw.isHidden = true
         self.call_GetBlogList(strUserID: objAppShareData.UserDetail.strUserId)
     }
+    @IBAction func btnCloseSubVw(_ sender: Any) {
+        self.txtVwComment.text = ""
+        self.SubVw.isHidden = true
+    }
     
     @IBAction func btnSubmitBlog(_ sender: Any) {
         

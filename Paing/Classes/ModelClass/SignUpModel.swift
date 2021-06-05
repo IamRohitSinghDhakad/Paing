@@ -91,8 +91,8 @@ class userDetailModel: NSObject {
             self.strPassword = password
         }
         
-        if let password = dict["short_bio"] as? String{
-            self.strAboutMe = password
+        if let short_bio = dict["short_bio"] as? String{
+            self.strAboutMe = short_bio
         }
       
         

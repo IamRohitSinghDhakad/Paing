@@ -80,6 +80,7 @@ class ProfileViewController: UIViewController {
     }
     
     @IBAction func actionFavorites(_ sender: Any) {
+        self.pushVc(viewConterlerId: "FavoriteViewController")
     }
     
     @IBAction func actionFavImageVideo(_ sender: Any) {

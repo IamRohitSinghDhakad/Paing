@@ -11,27 +11,6 @@ class SettingsViewController: UIViewController {
     
     private let settingOptions: [String] = ["Información básica", "Compartir aplicación", "Aviso legal", "Política de privacidad","Condiciones de uso", "Cookies", "Contáctenos", "Configuración", "Ayuda", "Cerrar Sesión"]
     
-    /*
-     case "ContactUs 6":
-         self.loadUrl(strUrl: "http://ambitious.in.net/Shubham/paing/index.php/api/page/Contact")
-     case "Privacy 3":
-         self.loadUrl(strUrl: "http://ambitious.in.net/Shubham/paing/index.php/api/page/Privacy")
-     case "Suggestion 2":
-         self.loadUrl(strUrl: "http://ambitious.in.net/Shubham/paing/index.php/api/page/Suggestions")
-     case "ReportProfile":
-         self.loadUrl(strUrl: "http://ambitious.in.net/Shubham/paing/index.php/api/page/Report%20profile")
-     case "LegalWarning 2":
-         self.loadUrl(strUrl: "http://ambitious.in.net/Shubham/paing/index.php/api/page/Legal%20warning")
-     case "Terms&Service 4":
-         self.loadUrl(strUrl: "http://ambitious.in.net/Shubham/paing/index.php/api/page/Terms%20of%20use")
-     case "Cookies 5":
-         self.loadUrl(strUrl: "http://ambitious.in.net/Shubham/paing/index.php/api/page/Cookies")
-     case "Help 8":
-         self.loadUrl(strUrl: "http://ambitious.in.net/Shubham/paing/index.php/api/page/Help")
-     case "Settings 7":
-         self.loadUrl(strUrl: "http://ambitious.in.net/Shubham/paing/index.php/api/page/setting")
-     case "PricacyPolicy 3":
-     **/
     @IBOutlet weak var settingsTableView: UITableView!
     
     //MARK: - Override Methods
@@ -71,10 +50,7 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
             vc.isComingFrom = "Basic Information"
             self.navigationController?.pushViewController(vc, animated: true)
         case 1:
-            objAlert.showAlert(message: "Under Development", controller: self)
-//            let vc = self.mainStoryboard.instantiateViewController(withIdentifier: "PrivacyPolicyViewController") as! PrivacyPolicyViewController
-//            vc.strType = "Privacy"
-//            self.navigationController?.pushViewController(vc, animated: true)
+            self.pushVc(viewConterlerId: "ShareAppViewController")
         case 2:
             let vc = self.mainStoryboard.instantiateViewController(withIdentifier: "PrivacyPolicyViewController") as! PrivacyPolicyViewController
             vc.strType = "Aviso legal"
@@ -92,9 +68,10 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
             vc.strType = "Cookies"
             self.navigationController?.pushViewController(vc, animated: true)
         case 6:
-            let vc = self.mainStoryboard.instantiateViewController(withIdentifier: "PrivacyPolicyViewController") as! PrivacyPolicyViewController
-            vc.strType = "Contáctenos"
-            self.navigationController?.pushViewController(vc, animated: true)
+            self.pushVc(viewConterlerId: "ContactUsViewController")
+       //     let vc = self.mainStoryboard.instantiateViewController(withIdentifier: "PrivacyPolicyViewController") as! PrivacyPolicyViewController
+        //    vc.strType = "Contáctenos"
+        //    self.navigationController?.pushViewController(vc, animated: true)
         case 7:
             let vc = self.mainStoryboard.instantiateViewController(withIdentifier: "PrivacyPolicyViewController") as! PrivacyPolicyViewController
             vc.strType = "Configuración"
@@ -105,7 +82,7 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
             self.navigationController?.pushViewController(vc, animated: true)
             
         case self.settingOptions.count - 1:
-            objAlert.showAlertCallBack(alertLeftBtn: "No", alertRightBtn: "Yes", title: "Sign off", message: "Do you want to log out?", controller: self) {
+            objAlert.showAlertCallBack(alertLeftBtn: "No", alertRightBtn: "si", title: "Cerrar Sesión", message: "¿Quieres cerrar sesión??", controller: self) {
                 AppSharedData.sharedObject().signOut()
             }
         default:
