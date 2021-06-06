@@ -167,47 +167,58 @@ class UserProfileViewController: UIViewController {
             
             if userProfile.strGender == "Male"{
                 //self.lblAboutUs.text = "Soy hombre"
-                finalText = "Soy hombre,"
+                finalText = "Soy hombre"
             }else{
                 // self.lblAboutUs.text = "Soy Mujer"
                 finalText = "Soy Mujer"
             }
             
-            finalText = finalText + " tengo \(userProfile.strAge) años," + " \(userProfile.strAboutMe),"
+            if userProfile.strAge != ""{
+                finalText = finalText + ", tengo \(userProfile.strAge) años"
+            }else{
+                if userProfile.strDob != ""{
+                    let age = Date().calculateAgeFromDate(strDate: userProfile.strDob, strFormatter: "yyyy-MM-dd")
+                    finalText = finalText + ", tengo \(age) años"
+                }
+            }
+            
+            if userProfile.strAboutMe != ""{
+                finalText = finalText + ", \(userProfile.strAboutMe)"
+            }
             
             if userProfile.strHairColor != ""{
-                finalText =  finalText + " tengo el pelo de color \(userProfile.strHairColor),"
+                finalText =  finalText + ", tengo el pelo de color \(userProfile.strHairColor)"
             }
             
             if userProfile.strEye != "" {
-                finalText = finalText + " los ojos \(userProfile.strEye),"
+                finalText = finalText + ", los ojos \(userProfile.strEye)"
             }
             
             if userProfile.strSkinTone != "" {
-                finalText = finalText + " y mi piel es \(userProfile.strSkinTone),"
+                finalText = finalText + ", y mi piel es \(userProfile.strSkinTone)"
             }
             
             if userProfile.strHeight != "" {
                 let x = userProfile.strHeight
                 let h = x.replacingOccurrences(of: ".", with: ",")
                 print(h)
-                finalText = finalText + " mi altura es \(h) mts,"
+                finalText = finalText + ", mi altura es \(h) mts"
             }
             
             if userProfile.strMusic != "" {
-                finalText = finalText + " me gusta la música \(userProfile.strMusic),"
+                finalText = finalText + ", me gusta la música \(userProfile.strMusic)"
             }
             
             if userProfile.strSport != "" {
-                finalText = finalText + " el deporte de \(userProfile.strSport),"
+                finalText = finalText + ", el deporte de \(userProfile.strSport)"
             }
             
             if userProfile.strCinema != "" {
-                finalText = finalText + " y me gusta el cine de \(userProfile.strCinema),"
+                finalText = finalText + ", y me gusta el cine de \(userProfile.strCinema)"
             }
             
             if userProfile.strSpecialInstruction != "" {
-                finalText = finalText + " \(userProfile.strSpecialInstruction)"
+                finalText = finalText + ", \(userProfile.strSpecialInstruction)."
             }
             
             self.lblAboutUs.text = finalText
@@ -329,7 +340,7 @@ extension UserProfileViewController {
             
             let status = (response["status"] as? Int)
             let message = (response["message"] as? String)
-            
+            objWebServiceManager.hideIndicator()
             print(response)
             
             if status == MessageConstant.k_StatusCode{

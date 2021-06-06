@@ -20,12 +20,12 @@ class ChatViewController: UIViewController {
        
         self.tblMessage.delegate = self
         self.tblMessage.dataSource = self
-        
-        
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.arrMessageList.removeAll()
         self.call_GetChatList(strUserID: objAppShareData.UserDetail.strUserId)
     }
     

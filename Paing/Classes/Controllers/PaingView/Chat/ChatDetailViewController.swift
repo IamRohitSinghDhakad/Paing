@@ -913,7 +913,7 @@ extension ChatDetailViewController{
             objAlert.showAlert(message: "No Internet Connection", title: "Alert", controller: self)
             return
         }
-     //   objWebServiceManager.showIndicator()
+        objWebServiceManager.showIndicator()
         self.view.endEditing(true)
         
         var imageData = [Data]()

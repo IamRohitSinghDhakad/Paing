@@ -229,20 +229,27 @@
                                                                                 <constraint firstAttribute="height" constant="1" id="nsb-99-u4M"/>
                                                                             </constraints>
                                                                         </view>
+                                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NHS-46-1xj">
+                                                                            <rect key="frame" x="9" y="15" width="52" height="50"/>
+                                                                        </button>
                                                                     </subviews>
                                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="trailing" secondItem="7YK-ro-TUd" secondAttribute="trailing" constant="10" id="0wS-6I-hO3"/>
                                                                         <constraint firstItem="5Iy-Sf-X2U" firstAttribute="leading" secondItem="yMw-aB-syM" secondAttribute="trailing" constant="10" id="BUs-YZ-zrW"/>
                                                                         <constraint firstItem="7YK-ro-TUd" firstAttribute="leading" secondItem="5Iy-Sf-X2U" secondAttribute="trailing" constant="10" id="GC6-qB-6zH"/>
+                                                                        <constraint firstItem="NHS-46-1xj" firstAttribute="centerY" secondItem="yMw-aB-syM" secondAttribute="centerY" id="IEc-xa-wCQ"/>
                                                                         <constraint firstAttribute="height" constant="70" id="Kxg-cT-rz3"/>
                                                                         <constraint firstItem="5Iy-Sf-X2U" firstAttribute="centerY" secondItem="ZeJ-Tu-xwU" secondAttribute="centerY" id="Nzz-rI-OdM"/>
                                                                         <constraint firstItem="yMw-aB-syM" firstAttribute="leading" secondItem="ZeJ-Tu-xwU" secondAttribute="leading" constant="10" id="QI7-gK-aA4"/>
                                                                         <constraint firstItem="yMw-aB-syM" firstAttribute="centerY" secondItem="ZeJ-Tu-xwU" secondAttribute="centerY" id="S7f-kF-1Yy"/>
+                                                                        <constraint firstItem="NHS-46-1xj" firstAttribute="width" secondItem="yMw-aB-syM" secondAttribute="width" multiplier="1.04" id="VIR-2M-4SB"/>
+                                                                        <constraint firstItem="NHS-46-1xj" firstAttribute="height" secondItem="yMw-aB-syM" secondAttribute="height" id="Xc2-wx-Zwz"/>
                                                                         <constraint firstAttribute="trailing" secondItem="PQg-w3-No5" secondAttribute="trailing" constant="1" id="Ytg-s6-6jC"/>
                                                                         <constraint firstItem="PQg-w3-No5" firstAttribute="leading" secondItem="ZeJ-Tu-xwU" secondAttribute="leading" constant="1" id="c4F-is-3qI"/>
                                                                         <constraint firstItem="7YK-ro-TUd" firstAttribute="centerY" secondItem="5Iy-Sf-X2U" secondAttribute="centerY" id="cJZ-Fp-maY"/>
                                                                         <constraint firstAttribute="bottom" secondItem="PQg-w3-No5" secondAttribute="bottom" constant="1" id="iJL-Oe-6rO"/>
+                                                                        <constraint firstItem="NHS-46-1xj" firstAttribute="centerX" secondItem="yMw-aB-syM" secondAttribute="centerX" id="lon-dF-Xsb"/>
                                                                     </constraints>
                                                                 </view>
                                                             </subviews>
@@ -255,6 +262,7 @@
                                                         </tableViewCellContentView>
                                                         <connections>
                                                             <outlet property="btnCheckUncheck" destination="j8J-KS-alT" id="B5A-DF-80D"/>
+                                                            <outlet property="btnOpenProfile" destination="NHS-46-1xj" id="EqP-SO-whB"/>
                                                             <outlet property="imgVw" destination="yMw-aB-syM" id="1Ku-Nh-qcU"/>
                                                             <outlet property="imgVwCheckUncheck" destination="j9Q-bi-Z8M" id="5GZ-3G-Lf0"/>
                                                             <outlet property="lblMsg" destination="5Iy-Sf-X2U" id="bfg-mK-6Zn"/>
@@ -6379,6 +6387,9 @@ favor</string>
                                                                                     <nil key="textColor"/>
                                                                                     <nil key="highlightedColor"/>
                                                                                 </label>
+                                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pHL-zB-3LJ">
+                                                                                    <rect key="frame" x="8" y="9.5" width="54" height="53"/>
+                                                                                </button>
                                                                             </subviews>
                                                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                             <constraints>
@@ -6388,11 +6399,15 @@ favor</string>
                                                                                 <constraint firstItem="vdV-4c-LgI" firstAttribute="leading" secondItem="iGa-Xe-E2F" secondAttribute="trailing" constant="8" symbolic="YES" id="B2F-Bd-bIw"/>
                                                                                 <constraint firstAttribute="bottom" secondItem="iGa-Xe-E2F" secondAttribute="bottom" constant="8" id="ELT-UG-lBM"/>
                                                                                 <constraint firstItem="vdV-4c-LgI" firstAttribute="centerY" secondItem="62T-2K-yhn" secondAttribute="centerY" id="HIn-Fk-vA8"/>
+                                                                                <constraint firstItem="pHL-zB-3LJ" firstAttribute="height" secondItem="UkC-ij-1vr" secondAttribute="height" multiplier="1.06" id="Izd-kP-82c"/>
                                                                                 <constraint firstItem="UkC-ij-1vr" firstAttribute="centerY" secondItem="62T-2K-yhn" secondAttribute="centerY" id="QGw-qB-EZm"/>
                                                                                 <constraint firstAttribute="trailing" secondItem="vdV-4c-LgI" secondAttribute="trailing" constant="10" id="bKL-eO-ft7"/>
                                                                                 <constraint firstAttribute="bottom" secondItem="uAJ-V1-doQ" secondAttribute="bottom" id="dzR-1r-haa"/>
                                                                                 <constraint firstItem="UkC-ij-1vr" firstAttribute="leading" secondItem="62T-2K-yhn" secondAttribute="leading" constant="10" id="gnl-xN-Yd0"/>
+                                                                                <constraint firstItem="pHL-zB-3LJ" firstAttribute="width" secondItem="UkC-ij-1vr" secondAttribute="width" multiplier="1.08" id="pmi-mc-Bzv"/>
+                                                                                <constraint firstItem="pHL-zB-3LJ" firstAttribute="centerX" secondItem="UkC-ij-1vr" secondAttribute="centerX" id="raD-EM-NAN"/>
                                                                                 <constraint firstAttribute="trailing" secondItem="uAJ-V1-doQ" secondAttribute="trailing" constant="1" id="wLw-I1-0gZ"/>
+                                                                                <constraint firstItem="pHL-zB-3LJ" firstAttribute="centerY" secondItem="UkC-ij-1vr" secondAttribute="centerY" id="zpC-Cw-3xt"/>
                                                                             </constraints>
                                                                             <userDefinedRuntimeAttributes>
                                                                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -6425,6 +6440,7 @@ favor</string>
                                                             </constraints>
                                                         </tableViewCellContentView>
                                                         <connections>
+                                                            <outlet property="btnGoToProfile" destination="pHL-zB-3LJ" id="fSR-iT-KRa"/>
                                                             <outlet property="btnUnBlock" destination="Awn-no-vEU" id="d4f-32-PpU"/>
                                                             <outlet property="imgVwUser" destination="UkC-ij-1vr" id="ZHn-kC-1mf"/>
                                                             <outlet property="lblOtherDetails" destination="Jei-Oi-qjC" id="4qE-Kq-Yzp"/>
@@ -6461,7 +6477,7 @@ favor</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mQr-J2-QuI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5121.739130434783" y="-565.17857142857144"/>
+            <point key="canvasLocation" x="5120.8000000000002" y="-565.36731634182911"/>
         </scene>
         <!--Favorite View Controller-->
         <scene sceneID="OJs-IX-6Ru">

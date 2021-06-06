@@ -22,8 +22,14 @@ class BlockedViewController: UIViewController {
         self.tblBlockList.delegate = self
         self.tblBlockList.dataSource = self
 
-        self.call_GetBlockList(strUserID: objAppShareData.UserDetail.strUserId)
+      
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.arrBlocklist.removeAll()
+        self.call_GetBlockList(strUserID: objAppShareData.UserDetail.strUserId)
     }
     
     //MARK: - Action Methods
@@ -58,8 +64,25 @@ extension BlockedViewController:UITableViewDelegate,UITableViewDataSource{
         
         cell.btnUnBlock.tag = indexPath.row
         cell.btnUnBlock.addTarget(self, action: #selector(btnUnBlock), for: .touchUpInside)
+        
+        cell.btnGoToProfile.tag = indexPath.row
+        cell.btnGoToProfile.addTarget(self, action: #selector(btnGoToProfile), for: .touchUpInside)
       
         return cell
+    }
+    
+
+    
+    @objc func btnGoToProfile(sender: UIButton){
+        print(sender.tag)
+        
+        let userID = self.arrBlocklist[sender.tag].strChatId
+        if objAppShareData.UserDetail.strUserId == userID{
+        }else{
+            let vc = UIStoryboard(name: "UserProfile", bundle: nil).instantiateViewController(withIdentifier: "UserProfileViewController") as? UserProfileViewController
+            vc?.userID = userID
+            self.navigationController?.pushViewController(vc!, animated: true)
+        }
     }
     
     

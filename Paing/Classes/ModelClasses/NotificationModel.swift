@@ -12,6 +12,7 @@ class NotificationModel: NSObject {
     var strTime_ago    :String = ""
     var strType    :String = ""
     var strUserImage :String = ""
+    var strUserID :String = ""
     var strNotificationTitle :String = ""
     var strNotificationID :String = ""
     var strName :String = ""
@@ -24,6 +25,12 @@ class NotificationModel: NSObject {
             self.strNotificationID = notification_id
         }else if let notification_id = dict["notification_id"] as? Int{
             self.strNotificationID = "\(notification_id)"
+        }
+        
+        if let user_id = dict["notify_by"] as? String{
+            self.strUserID = user_id
+        }else if let user_id = dict["notify_by"] as? Int{
+            self.strUserID = "\(user_id)"
         }
         
         if let type = dict["type"] as? String{

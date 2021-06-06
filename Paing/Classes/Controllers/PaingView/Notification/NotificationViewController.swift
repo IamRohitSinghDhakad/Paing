@@ -107,11 +107,26 @@ extension NotificationViewController:UITableViewDelegate,UITableViewDataSource{
         cell.btnCheckUncheck.tag = indexPath.row
         cell.btnCheckUncheck.addTarget(self, action: #selector(btnCheckUncheckAction), for: .touchUpInside)
         
+        cell.btnOpenProfile.tag = indexPath.row
+        cell.btnOpenProfile.addTarget(self, action: #selector(btnGoToProfile), for: .touchUpInside)
+        
       
         return cell
     }
     
 
+    @objc func btnGoToProfile(sender: UIButton){
+        print(sender.tag)
+        
+        let userID = self.arrNotifications[sender.tag].strUserID
+        if objAppShareData.UserDetail.strUserId == userID{
+        }else{
+            let vc = UIStoryboard(name: "UserProfile", bundle: nil).instantiateViewController(withIdentifier: "UserProfileViewController") as? UserProfileViewController
+            vc?.userID = userID
+            self.navigationController?.pushViewController(vc!, animated: true)
+        }
+    }
+    
 
     @objc func btnCheckUncheckAction(sender: UIButton){
         let obj = self.arrNotifications[sender.tag]

@@ -72,23 +72,29 @@ class PaingBlogViewController: UIViewController {
     }
     
     @IBAction func actionBtnPublicBlogs(_ sender: Any) {
-        self.txtVwCommentSubVw.text = ""
         
-        let profilePic = objAppShareData.UserDetail.strProfilePicture
-        if profilePic != "" {
-            let url = URL(string: profilePic)
-            self.imgVwUserSubVw.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "splashLogo"))
-        }
+        let filtert = self.arrBlogList.filter({$0.strBlogUserID == objAppShareData.UserDetail.strUserId})
         
-        self.lblUserNameSubVw.text = objAppShareData.UserDetail.strUserName
-        
-        if objAppShareData.UserDetail.strGender == "Male"{
-            self.lblAgeGenderSubVw.text = "Hombre, \(objAppShareData.UserDetail.strAge)"
+        if filtert.count > 1{
+            objAlert.showAlert(message: "Solo puedospublicar 2 blogs en 24 horas.", title: "Alert", controller: self)
         }else{
-            self.lblAgeGenderSubVw.text = "Mujer, \(objAppShareData.UserDetail.strAge)"
+            self.txtVwCommentSubVw.text = ""
+            let profilePic = objAppShareData.UserDetail.strProfilePicture
+            if profilePic != "" {
+                let url = URL(string: profilePic)
+                self.imgVwUserSubVw.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "splashLogo"))
+            }
+            
+            self.lblUserNameSubVw.text = objAppShareData.UserDetail.strUserName
+            
+            if objAppShareData.UserDetail.strGender == "Male"{
+                self.lblAgeGenderSubVw.text = "Hombre, \(objAppShareData.UserDetail.strAge)"
+            }else{
+                self.lblAgeGenderSubVw.text = "Mujer, \(objAppShareData.UserDetail.strAge)"
+            }
+            
+            self.subVw.isHidden = false
         }
-        
-        self.subVw.isHidden = false
     }
 }
 

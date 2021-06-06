@@ -13,6 +13,7 @@ class BlockListTableViewCell: UITableViewCell {
     @IBOutlet var lblUsername: UILabel!
     @IBOutlet var lblOtherDetails: UILabel!
     @IBOutlet var btnUnBlock: UIButton!
+    @IBOutlet var btnGoToProfile: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()

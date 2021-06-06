@@ -258,50 +258,61 @@ class ProfileViewController: UIViewController {
         
         if userProfile.strGender == "Male"{
             //self.lblAboutUs.text = "Soy hombre"
-            finalText = "Soy hombre,"
+            finalText = "Soy hombre"
         }else{
-           // self.lblAboutUs.text = "Soy Mujer"
+            // self.lblAboutUs.text = "Soy Mujer"
             finalText = "Soy Mujer"
         }
-    
-        finalText = finalText + " tengo \(userProfile.strAge) años," + " \(userProfile.strAboutMe),"
+        
+        if userProfile.strAge != ""{
+            finalText = finalText + ", tengo \(userProfile.strAge) años"
+        }else{
+            if userProfile.strDob != ""{
+                let age = Date().calculateAgeFromDate(strDate: userProfile.strDob, strFormatter: "yyyy-MM-dd")
+                finalText = finalText + ", tengo \(age) años"
+            }
+        }
+        
+        if userProfile.strAboutMe != ""{
+            finalText = finalText + ", \(userProfile.strAboutMe)"
+        }
         
         if userProfile.strHairColor != ""{
-            finalText =  finalText + " tengo el pelo de color \(userProfile.strHairColor),"
+            finalText =  finalText + ", tengo el pelo de color \(userProfile.strHairColor)"
         }
-       
+        
         if userProfile.strEye != "" {
-            finalText = finalText + " los ojos \(userProfile.strEye),"
+            finalText = finalText + ", los ojos \(userProfile.strEye)"
         }
         
         if userProfile.strSkinTone != "" {
-            finalText = finalText + " y mi piel es \(userProfile.strSkinTone),"
+            finalText = finalText + ", y mi piel es \(userProfile.strSkinTone)"
         }
         
         if userProfile.strHeight != "" {
             let x = userProfile.strHeight
             let h = x.replacingOccurrences(of: ".", with: ",")
             print(h)
-            finalText = finalText + " mi altura es \(h) mts,"
+            finalText = finalText + ", mi altura es \(h) mts"
         }
         
         if userProfile.strMusic != "" {
-            finalText = finalText + " me gusta la música \(userProfile.strMusic),"
+            finalText = finalText + ", me gusta la música \(userProfile.strMusic)"
         }
         
         if userProfile.strSport != "" {
-            finalText = finalText + " el deporte de \(userProfile.strSport),"
+            finalText = finalText + ", el deporte de \(userProfile.strSport)"
         }
         
         if userProfile.strCinema != "" {
-            finalText = finalText + " y me gusta el cine de \(userProfile.strCinema),"
+            finalText = finalText + ", y me gusta el cine de \(userProfile.strCinema)"
         }
         
         if userProfile.strSpecialInstruction != "" {
-            finalText = finalText + " \(userProfile.strSpecialInstruction)"
+            finalText = finalText + ", \(userProfile.strSpecialInstruction)."
         }
-    
-    self.lblAboutUs.text = finalText
+        
+        self.lblAboutUs.text = finalText
         
         
         self.lblLocation.text = locationArr.joined(separator: ", ")
@@ -408,12 +419,24 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
         let cameraAction = UIAlertAction(title: "Foto", style: UIAlertAction.Style.default)
         {
             UIAlertAction in
-            self.openGallery()
+            
+            if self.arrayPhotoCollection.count > 11{
+                objAlert.showAlert(message: "no puedes subir más de 12 imágenes", title: "Alert", controller: self)
+            }else{
+               // objAlert.showAlert(message: "no puedes subir más de 12 imágenes", title: "Alert", controller: self)
+                self.openGallery()
+            }
         }
         
         let galleryAction = UIAlertAction(title: "Video", style: UIAlertAction.Style.default) {
             UIAlertAction in
-            self.openVideoGallery()
+            
+            if self.arrayPhotoCollection.count > 3{
+                objAlert.showAlert(message: "no puedes subir mas de 4 videos", title: "Alert", controller: self)
+            }else{
+                self.openVideoGallery()
+            }
+           
         }
         
         let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel) {

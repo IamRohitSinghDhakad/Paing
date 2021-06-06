@@ -13,6 +13,7 @@ class NotificationTableViewCell: UITableViewCell {
     @IBOutlet var btnCheckUncheck: UIButton!
     @IBOutlet var imgVwCheckUncheck: UIImageView!
     @IBOutlet var lblMsg: UILabel!
+    @IBOutlet var btnOpenProfile: UIButton!
     
     
     override func awakeFromNib() {
