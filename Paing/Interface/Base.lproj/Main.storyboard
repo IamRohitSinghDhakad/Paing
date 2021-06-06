@@ -5697,6 +5697,7 @@ favor</string>
                         <outlet property="cvSticker" destination="5ne-hk-UzS" id="b80-ci-NcS"/>
                         <outlet property="hgtConsMaximum" destination="yUF-nz-nqG" id="SN0-2d-hEV"/>
                         <outlet property="hgtConsMinimum" destination="pWw-bB-MKH" id="mDM-mT-Nw9"/>
+                        <outlet property="imgVwFull" destination="EEd-Qy-Kct" id="shH-3h-yUd"/>
                         <outlet property="imgVwUser" destination="eL1-wd-hpx" id="tnL-0N-AGS"/>
                         <outlet property="imgvwFullForDownload" destination="pHm-SQ-K83" id="ExK-R6-8iG"/>
                         <outlet property="lblOnLineStatus" destination="ePl-x4-UF6" id="Xxz-D9-V8q"/>
@@ -11091,6 +11092,20 @@ favor</string>
             <point key="canvasLocation" x="961" y="-1958"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="74p-1I-CaK">
+            <size key="intrinsicContentSize" width="71" height="18.5"/>
+        </designable>
+        <designable name="9Zs-vc-K6p">
+            <size key="intrinsicContentSize" width="10" height="36.5"/>
+        </designable>
+        <designable name="Vo9-9V-rPL">
+            <size key="intrinsicContentSize" width="119.5" height="18.5"/>
+        </designable>
+        <designable name="lRL-kH-p8P">
+            <size key="intrinsicContentSize" width="10" height="36.5"/>
+        </designable>
+    </designables>
     <resources>
         <image name="add" width="18.5" height="18"/>
         <image name="add_circle" width="17" height="17"/>

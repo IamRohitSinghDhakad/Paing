@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class ChatDetailViewController: UIViewController,UINavigationControllerDelegate {
 
@@ -454,10 +455,14 @@ extension ChatDetailViewController:UITableViewDelegate,UITableViewDataSource{
                 }
                 
                 let profilePic = obj.strImageUrl
-                if profilePic != "" {
-                    let url = URL(string: profilePic)
-                    cell.imgVwMySide.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "logo_square"))
-                }
+//                if profilePic != "" {
+//                    let url = URL(string: profilePic)
+//                    cell.imgVwMySide.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "logo_square"))
+//                }
+                
+                cell.imgVwMySide.imageFromServerURL(urlString: profilePic, PlaceHolderImage: #imageLiteral(resourceName: "logo_square"))
+                
+                
                 
             }else{
                 cell.vwMyMsg.isHidden = true
@@ -475,10 +480,11 @@ extension ChatDetailViewController:UITableViewDelegate,UITableViewDataSource{
                 }
                 
                 let profilePic = obj.strImageUrl
-                if profilePic != "" {
-                    let url = URL(string: profilePic)
-                    cell.imgVwopponent.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "splashLogo"))
-                }
+                cell.imgVwopponent.imageFromServerURL(urlString: profilePic, PlaceHolderImage: #imageLiteral(resourceName: "logo_square"))
+//                if profilePic != "" {
+//                    let url = URL(string: profilePic)
+//                    cell.imgVwopponent.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "splashLogo"))
+//                }
             }
         }else{
             if obj.strSenderId == objAppShareData.UserDetail.strUserId{
@@ -907,3 +913,26 @@ extension UITableView {
         return indexPath.section < self.numberOfSections && indexPath.row < self.numberOfRows(inSection: indexPath.section)
     }
 }
+
+
+extension UIImageView {
+
+ public func imageFromServerURL(urlString: String, PlaceHolderImage:UIImage) {
+
+        if self.image == nil{
+              self.image = PlaceHolderImage
+        }
+
+        URLSession.shared.dataTask(with: NSURL(string: urlString)! as URL, completionHandler: { (data, response, error) -> Void in
+
+            if error != nil {
+                print(error ?? "No Error")
+                return
+            }
+            DispatchQueue.main.async(execute: { () -> Void in
+                let image = UIImage(data: data!)
+                self.image = image
+            })
+
+        }).resume()
+    }}

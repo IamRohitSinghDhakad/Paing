@@ -41,9 +41,10 @@ class MyBlogViewController: UIViewController {
     
     @IBAction func btnSubmitBlog(_ sender: Any) {
         
-        if self.arrBlogList.count > 1{
-            objAlert.showAlert(message: "Solo puedospublicar 2 blogs en 24 horas.", title: "Alert", controller: self)
-        }else{
+//        if self.arrBlogList.count > 1{
+//            objAlert.showAlert(message: "Solo puedospublicar 2 blogs en 24 horas.", title: "Alert", controller: self)
+//        }
+      //  else{
             if ((self.txtVwComment.text?.isEmpty) != nil){
                 
                 let strText = self.txtVwComment.text!.encodeEmoji
@@ -53,7 +54,7 @@ class MyBlogViewController: UIViewController {
                     self.call_AddBlog(strUserID: objAppShareData.UserDetail.strUserId, strText: strText)
                 }
             }
-        }
+       // }
     }
     @IBAction func btnCancelSubVw(_ sender: Any) {
         self.SubVw.isHidden = true
@@ -65,25 +66,28 @@ class MyBlogViewController: UIViewController {
     }
     
     @IBAction func btnAddMyBlog(_ sender: Any) {
-        self.txtVwComment.text = ""
-        let profilePic = objAppShareData.UserDetail.strProfilePicture
-        if profilePic != "" {
-            let url = URL(string: profilePic)
-            self.imgVwuser.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "splashLogo"))
-        }
         
-        self.lblUserName.text = objAppShareData.UserDetail.strUserName
-        
-        if objAppShareData.UserDetail.strGender == "Male"{
-            self.lblAgeGender.text = "Hombre, \(objAppShareData.UserDetail.strAge)"
+        if self.arrBlogList.count > 1{
+            objAlert.showAlert(message: "Solo puedospublicar 2 blogs en 24 horas.", title: "Alert", controller: self)
         }else{
-            self.lblAgeGender.text = "Mujer, \(objAppShareData.UserDetail.strAge)"
+            self.txtVwComment.text = ""
+            let profilePic = objAppShareData.UserDetail.strProfilePicture
+            if profilePic != "" {
+                let url = URL(string: profilePic)
+                self.imgVwuser.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "splashLogo"))
+            }
+            
+            self.lblUserName.text = objAppShareData.UserDetail.strUserName
+            
+            if objAppShareData.UserDetail.strGender == "Male"{
+                self.lblAgeGender.text = "Hombre, \(objAppShareData.UserDetail.strAge)"
+            }else{
+                self.lblAgeGender.text = "Mujer, \(objAppShareData.UserDetail.strAge)"
+            }
+            self.isComingFromEdit = false
+            self.SubVw.isHidden = false
         }
-        self.isComingFromEdit = false
-        self.SubVw.isHidden = false
-        
     }
-    
 }
 
 //UITextView Delegates
