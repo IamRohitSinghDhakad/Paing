@@ -55,6 +55,8 @@ class ChatDetailViewController: UIViewController,UINavigationControllerDelegate 
     
     var arrImagesSticker = [UIImage.init(named: "sone"),UIImage.init(named: "stwo"),UIImage.init(named: "sthree"),UIImage.init(named: "four"),UIImage.init(named: "five"),UIImage.init(named: "six"),UIImage.init(named: "seven"),UIImage.init(named: "eight")]
     
+    //MARK: - Override Methods
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -83,13 +85,20 @@ class ChatDetailViewController: UIViewController,UINavigationControllerDelegate 
             self.imgVwUser.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "splashLogo"))
         }
         
-        self.call_GetChatList(strUserID: objAppShareData.UserDetail.strUserId, strSenderID: self.strSenderID)
-        
         let longPress = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(sender:)))
         self.tblChat.addGestureRecognizer(longPress)
         
+        self.call_GetChatList(strUserID: objAppShareData.UserDetail.strUserId, strSenderID: self.strSenderID)
+        
         self.timer = Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+//        self.tblChat.scrollToBottom()
+    }
+    
+    //MARK: - Action Methods
     
     @IBAction func btnActionSendSticker(_ sender: Any) {
         if self.pickedImage != nil && self.selectedIndex != -1{
@@ -447,17 +456,27 @@ extension ChatDetailViewController:UITableViewDelegate,UITableViewDataSource{
                 cell.vwMyImage.isHidden = false
                 
                 if obj.strType == "Sticker" || obj.strType == "sticker"{
-                    cell.vwContainImgBorderMySide.isHidden = true
+                    cell.vwContainImgBorderMySide.backgroundColor = .clear
                     cell.imgVwMySide.contentMode = .scaleAspectFit
+//                    cell.vwContainImgBorderMySide.isHidden = false
+//                    cell.imgVwMySide.contentMode = .scaleAspectFill
                 }else{
-                    cell.vwContainImgBorderMySide.isHidden = false
+                    cell.vwContainImgBorderMySide.backgroundColor = UIColor.init(named: "AppSkyBlue")
                     cell.imgVwMySide.contentMode = .scaleAspectFill
                 }
                 
                 let profilePic = obj.strImageUrl
 //                if profilePic != "" {
 //                    let url = URL(string: profilePic)
-//                    cell.imgVwMySide.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "logo_square"))
+//                    cell.imgVwopponent.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "splashLogo"), options: .refreshCached) { (image, error, cacheType, url) in
+//                        if image != nil {
+//                            cell.imgVwopponent.image = image
+//                        }
+//                        if let error = error {
+//                            print("URL: \(url), error: \(error)")
+//                        }
+//                    }
+////                    cell.imgVwMySide.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "logo_square"))
 //                }
                 
                 cell.imgVwMySide.imageFromServerURL(urlString: profilePic, PlaceHolderImage: #imageLiteral(resourceName: "logo_square"))
@@ -472,10 +491,12 @@ extension ChatDetailViewController:UITableViewDelegate,UITableViewDataSource{
                 
                 
                 if obj.strType == "Sticker" || obj.strType == "sticker"{
-                    cell.vwContainImgBorderOpponentSide.isHidden = true
+                    cell.vwContainImgBorderOpponentSide.backgroundColor = .clear
                     cell.imgVwopponent.contentMode = .scaleAspectFit
+//                    cell.vwContainImgBorderOpponentSide.isHidden = false
+//                    cell.imgVwopponent.contentMode = .scaleAspectFill
                 }else{
-                    cell.vwContainImgBorderOpponentSide.isHidden = false
+                    cell.vwContainImgBorderOpponentSide.backgroundColor = UIColor.init(named: "AppSkyBlue")
                     cell.imgVwopponent.contentMode = .scaleAspectFill
                 }
                 
@@ -483,7 +504,15 @@ extension ChatDetailViewController:UITableViewDelegate,UITableViewDataSource{
                 cell.imgVwopponent.imageFromServerURL(urlString: profilePic, PlaceHolderImage: #imageLiteral(resourceName: "logo_square"))
 //                if profilePic != "" {
 //                    let url = URL(string: profilePic)
-//                    cell.imgVwopponent.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "splashLogo"))
+//                    cell.imgVwopponent.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "splashLogo"), options: .refreshCached) { (image, error, cacheType, url) in
+//                        if image != nil {
+//                            cell.imgVwopponent.image = image
+//                        }
+//                        if let error = error {
+//                            print("URL: \(url), error: \(error)")
+//                        }
+//                    }
+////                    cell.imgVwopponent.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "splashLogo"))
 //                }
             }
         }else{
@@ -624,32 +653,91 @@ extension ChatDetailViewController{
                 
                 if let dictChatStatus = response["online_status"] as? [String:Any]{
                     if let chatStatus = dictChatStatus["chat_status"] as? String{
-                        self.lblOnLineStatus.text = chatStatus
+                        self.lblOnLineStatus.text = chatStatus.contains("Typing") ? "Escribiendo..." : chatStatus.contains("Online") ? "En línea" : chatStatus
                     }else{
                         self.lblOnLineStatus.text = ""
                     }
                 }
                 
-                if let arrData  = response["result"] as? [[String:Any]]{
-                    
-                    self.arrChatMessages.removeAll()
-                    
-                    for dictdata in arrData{
-                        let obj = ChatDetailModel.init(dict: dictdata)
-                        self.arrChatMessages.append(obj)
+                if let arrData  = response["result"] as? [[String:Any]] {
+                    var newArrayChatMessages: [ChatDetailModel] = []
+                    for dict in arrData {
+                        let obj = ChatDetailModel.init(dict: dict)
+                        newArrayChatMessages.append(obj)
                     }
+                    
+                    if self.arrChatMessages.count == 0 {
+                        //Add initially all
+                        self.arrChatMessages.removeAll()
+                        self.tblChat.reloadData()
+                        
+                        for i in 0..<arrData.count{
+                            let dictdata = arrData[i]
+                            let obj = ChatDetailModel.init(dict: dictdata)
+                            self.arrChatMessages.insert(obj, at: i)
+    //
+    //                        self.arrChatMessages.append(obj)
+                            self.tblChat.insertRows(at: [IndexPath(item: i, section: 0)], with: .none)
+                        }
+                        self.tblChat.scrollToBottom()
+                    }
+                    else {
+                        let previoudIds = self.arrChatMessages.map { $0.strMsgIDForDelete }
+                        let newIds = newArrayChatMessages.map { $0.strMsgIDForDelete }
+
+                        let previoudIdsSet = Set(previoudIds)
+                        let newIdsSet = Set(newIds)
+                        
+                        let unique = (previoudIdsSet.symmetricDifference(newIdsSet)).sorted()
+                        
+                        for uniqueId in unique {
+                            if previoudIds.contains(uniqueId) {
+                                //Remove the element
+                                if let idToDelete = self.arrChatMessages.firstIndex(where: { $0.strMsgIDForDelete == uniqueId }) {
+                                    self.arrChatMessages.remove(at: idToDelete)
+                                    self.tblChat.deleteRows(at: [IndexPath(item: idToDelete, section: 0)], with: .none)
+                                    
+                                }
+                            }
+                            else if newIds.contains(uniqueId) {
+                                // Add new element
+                                let filterObj = newArrayChatMessages.filter({ $0.strMsgIDForDelete == uniqueId })
+                                if filterObj.count > 0 {
+                                    let index = self.arrChatMessages.count
+                                    self.arrChatMessages.insert(filterObj[0], at: index)
+                                    self.tblChat.insertRows(at: [IndexPath(item: index, section: 0)], with: .none)
+                                    self.tblChat.scrollToBottom()
+                                }
+                                
+                            }
+                        }
+                        
+                    }
+                    
+                    
+//                    for i in 0..<self.arrChatMessages.count{
+//                        self.tblChat.deleteRows(at: [IndexPath(item: i, section: 0)], with: .automatic)
+//                    }
+                    
+                    
 
                     
                     if self.initilizeFirstTimeOnly == false{
                         self.initilizeFirstTimeOnly = true
                         self.arrCount = self.arrChatMessages.count
-                        self.tblChat.reloadData()
+//                        self.tblChat.reloadData()
                     }
+                    
+//                    self.tblChat.scrollToBottom()
+//                    if self.isSendMessage{
+//                        self.isSendMessage = false
+//                        self.tblChat.scrollToBottom()
+//                    }
                 
                     if self.arrCount == self.arrChatMessages.count{
                         
                     }else{
-                        self.tblChat.reloadData()
+//                        self.tblChat.reloadData()
                         self.updateTableContentInset()
                     }
                     
@@ -660,12 +748,12 @@ extension ChatDetailViewController{
                         self.tblChat.displayBackgroundText(text: "")
                     }
                     
-                    if self.isSendMessage{
-                        self.isSendMessage = false
-                        self.tblChat.scrollToBottom()
-                    }else{
-                        
-                    }
+//                    if self.isSendMessage{
+//                        self.isSendMessage = false
+//                        self.tblChat.scrollToBottom()
+//                    }else{
+//
+//                    }
                     
                 }
             }else{
@@ -935,4 +1023,34 @@ extension UIImageView {
             })
 
         }).resume()
-    }}
+    }
+    
+}
+
+public extension Sequence {
+
+    func uniq<Id: Hashable >(by getIdentifier: (Iterator.Element) -> Id) -> [Iterator.Element] {
+        var ids = Set<Id>()
+        return self.reduce([]) { uniqueElements, element in
+            if ids.insert(getIdentifier(element)).inserted {
+                return uniqueElements + CollectionOfOne(element)
+            }
+            return uniqueElements
+        }
+    }
+
+
+    func uniq<Id: Hashable >(by keyPath: KeyPath<Iterator.Element, Id>) -> [Iterator.Element] {
+      return self.uniq(by: { $0[keyPath: keyPath] })
+   }
+}
+
+public extension Sequence where Iterator.Element: Hashable {
+
+    var uniq: [Iterator.Element] {
+        return self.uniq(by: { (element) -> Iterator.Element in
+            return element
+        })
+    }
+
+}
