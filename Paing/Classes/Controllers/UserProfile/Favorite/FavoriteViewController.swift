@@ -55,13 +55,23 @@ extension FavoriteViewController:UITableViewDelegate,UITableViewDataSource{
             cell.lblAgeGender.text = "\(obj.strAge) Años, Mujer"
         }
         
+        cell.btnDelete.tag = indexPath.row
+        cell.btnDelete.addTarget(self, action: #selector(btnDeleteAction), for: .touchUpInside)
+        
         return cell
         
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let id = self.arrFavList[indexPath.row].strOpponentUserID
+    
+    @objc func btnDeleteAction(sender: UIButton){
+        print(sender.tag)
+        let id = self.arrFavList[sender.tag].strOpponentUserID
         self.call_MarkUserFavorite(strMyUserID: objAppShareData.UserDetail.strUserId, strAnotherUserID: id)
+       
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+       
     }
     
 }

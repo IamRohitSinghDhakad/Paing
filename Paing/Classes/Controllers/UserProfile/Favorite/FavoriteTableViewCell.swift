@@ -12,6 +12,7 @@ class FavoriteTableViewCell: UITableViewCell {
     @IBOutlet var imgVwUser: UIImageView!
     @IBOutlet var lblUserName: UILabel!
     @IBOutlet var lblAgeGender: UILabel!
+    @IBOutlet var btnDelete: UIButton!
     
 
     override func awakeFromNib() {

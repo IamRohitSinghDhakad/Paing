@@ -16,6 +16,7 @@ class ChatDetailModel: NSObject {
     var strMsgIDForDelete  : String = ""
     var strSenderId : String = ""
     var strChatTime   : String = ""
+    var strType   : String = ""
   
     
     init(dict : [String:Any]) {
@@ -45,6 +46,10 @@ class ChatDetailModel: NSObject {
         
         if let chat_Time = dict["date"]as? String{
             self.strChatTime = chat_Time
+        }
+        
+        if let type = dict["type"]as? String{
+            self.strType = type
         }
         
         

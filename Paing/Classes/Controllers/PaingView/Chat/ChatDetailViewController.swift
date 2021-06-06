@@ -28,6 +28,8 @@ class ChatDetailViewController: UIViewController,UINavigationControllerDelegate 
     @IBOutlet var sbVwMainSticker: UIView!
     @IBOutlet var btnAddSticker: UIButton!
     
+    @IBOutlet var vwContainFullImage: UIView!
+    @IBOutlet var imgvwFullForDownload: UIImageView!
     @IBOutlet var btnSendSticker: UIButton!
     
     //MARK:- Variables
@@ -45,6 +47,10 @@ class ChatDetailViewController: UIViewController,UINavigationControllerDelegate 
     var strOnlineStatus = ""
     var isSendMessage = true
     var selectedIndex = -1
+    var arrCount = Int()
+    var initilizeFirstTimeOnly = Bool()
+    var strSelectedImageUrl = ""
+    var strMsgID = -1
     
     var arrImagesSticker = [UIImage.init(named: "sone"),UIImage.init(named: "stwo"),UIImage.init(named: "sthree"),UIImage.init(named: "four"),UIImage.init(named: "five"),UIImage.init(named: "six"),UIImage.init(named: "seven"),UIImage.init(named: "eight")]
     
@@ -68,6 +74,8 @@ class ChatDetailViewController: UIViewController,UINavigationControllerDelegate 
         self.sbVwMainSticker.isHidden = true
         self.subVwContainCV.isHidden = true
         
+        self.vwContainFullImage.isHidden = true
+        
         let profilePic = self.strUserImage
         if profilePic != "" {
             let url = URL(string: profilePic)
@@ -84,9 +92,50 @@ class ChatDetailViewController: UIViewController,UINavigationControllerDelegate 
     
     @IBAction func btnActionSendSticker(_ sender: Any) {
         if self.pickedImage != nil && self.selectedIndex != -1{
-            self.callWebserviceForSendImage(strSenderID: objAppShareData.UserDetail.strUserId, strReceiverID: self.strSenderID)
+            self.subVwSelection.isHidden = true
+            self.callWebserviceForSendImage(strSenderID: objAppShareData.UserDetail.strUserId, strReceiverID: self.strSenderID, strType: "Sticker")
         }
     }
+    
+    @IBAction func btnHideSubVwSelection(_ sender: Any) {
+        self.subVwSelection.isHidden = true
+    }
+    
+    @IBAction func btnCloseFullImgVwDownload(_ sender: Any) {
+        self.vwContainFullImage.isHidden = true
+    }
+    
+    @IBAction func btnDeleteFullImageDownload(_ sender: Any) {
+        if self.strMsgID != -1{
+            self.vwContainFullImage.isHidden = true
+            let userIDForDelete = self.arrChatMessages[strMsgID].strMsgIDForDelete
+            self.call_DeleteChatMsgSinle(strUserID: objAppShareData.UserDetail.strUserId, strMsgID: userIDForDelete)
+        }else{
+            
+        }
+       
+    }
+    
+    @IBAction func btnDownloadFullImg(_ sender: Any) {
+        
+        if self.strSelectedImageUrl != ""{
+            
+            if let url = URL(string: strSelectedImageUrl),
+               let data = try? Data(contentsOf: url),
+               let image = UIImage(data: data) {
+                UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
+            }
+            
+            objAlert.showAlertCallBack(alertLeftBtn: "", alertRightBtn: "OK", title: "Alert", message: "Image Saved Succusfully", controller: self) {
+                self.vwContainFullImage.isHidden = true
+            }
+        }else{
+            objAlert.showAlertCallBack(alertLeftBtn: "", alertRightBtn: "OK", title: "Alert", message: "Image Url not found", controller: self) {
+                self.vwContainFullImage.isHidden = true
+            }
+        }
+    }
+    
     
     @objc func updateTimer() {
         //example functionality
@@ -178,6 +227,8 @@ class ChatDetailViewController: UIViewController,UINavigationControllerDelegate 
     @IBAction func btnOnDeleteChat(_ sender: Any) {
         
         objAlert.showAlertCallBack(alertLeftBtn: "No", alertRightBtn: "Si", title: "Alert", message: "Quieres eliminar el chat con \(self.strUserName) ?", controller: self) {
+            self.timer?.invalidate()
+            self.timer = nil
             self.call_ClearConversation(strUserID: objAppShareData.UserDetail.strUserId)
         }
        // self.tblChat.reloadData()
@@ -185,7 +236,7 @@ class ChatDetailViewController: UIViewController,UINavigationControllerDelegate 
     
     //SUbVw
     @IBAction func btnActionSendImage(_ sender: Any) {
-        self.callWebserviceForSendImage(strSenderID: objAppShareData.UserDetail.strUserId, strReceiverID: self.strSenderID)
+        self.callWebserviceForSendImage(strSenderID: objAppShareData.UserDetail.strUserId, strReceiverID: self.strSenderID, strType: "Image")
     }
     
     @IBAction func btnCancelSUbVw(_ sender: Any) {
@@ -387,13 +438,20 @@ extension ChatDetailViewController:UITableViewDelegate,UITableViewDataSource{
         
         let obj = self.arrChatMessages[indexPath.row]
         
-        
         if obj.strImageUrl != ""{
             if obj.strSenderId == objAppShareData.UserDetail.strUserId{
                 cell.vwMyMsg.isHidden = true
                 cell.vwOpponent.isHidden = true
                 cell.vwOpponentImage.isHidden = true
                 cell.vwMyImage.isHidden = false
+                
+                if obj.strType == "Sticker" || obj.strType == "sticker"{
+                    cell.vwContainImgBorderMySide.isHidden = true
+                    cell.imgVwMySide.contentMode = .scaleAspectFit
+                }else{
+                    cell.vwContainImgBorderMySide.isHidden = false
+                    cell.imgVwMySide.contentMode = .scaleAspectFill
+                }
                 
                 let profilePic = obj.strImageUrl
                 if profilePic != "" {
@@ -406,6 +464,15 @@ extension ChatDetailViewController:UITableViewDelegate,UITableViewDataSource{
                 cell.vwOpponent.isHidden = true
                 cell.vwOpponentImage.isHidden = false
                 cell.vwMyImage.isHidden = true
+                
+                
+                if obj.strType == "Sticker" || obj.strType == "sticker"{
+                    cell.vwContainImgBorderOpponentSide.isHidden = true
+                    cell.imgVwopponent.contentMode = .scaleAspectFit
+                }else{
+                    cell.vwContainImgBorderOpponentSide.isHidden = false
+                    cell.imgVwopponent.contentMode = .scaleAspectFill
+                }
                 
                 let profilePic = obj.strImageUrl
                 if profilePic != "" {
@@ -431,12 +498,8 @@ extension ChatDetailViewController:UITableViewDelegate,UITableViewDataSource{
             }
         }
         
-       
-        
-       
-        
+
         let time = obj.strChatTime.split(separator: " ")
-        print(time.last as Any)
         
         let chatTime = "\(time.last ?? "")"
         
@@ -446,7 +509,28 @@ extension ChatDetailViewController:UITableViewDelegate,UITableViewDataSource{
         cell.lblOpponentImgTime.text = chatTime
         cell.lblMyMsgTime.text = chatTime
         
+        cell.btnOpenImageOnFullviewMySide.tag = indexPath.row
+        cell.btnOpenImageOnFullviewMySide.addTarget(self, action: #selector(btnOpenImage), for: .touchUpInside)
+        
+        cell.btnOpenImageOnFullViewOpponentSide.tag = indexPath.row
+        cell.btnOpenImageOnFullViewOpponentSide.addTarget(self, action: #selector(btnOpenImage), for: .touchUpInside)
+        
         return cell
+    }
+    
+    
+    @objc func btnOpenImage(sender: UIButton){
+        print(sender.tag)
+        self.strMsgID = sender.tag
+        let obj = self.arrChatMessages[sender.tag]
+        self.strSelectedImageUrl = obj.strImageUrl
+        let profilePic = obj.strImageUrl
+        if profilePic != "" {
+            let url = URL(string: profilePic)
+            self.imgvwFullForDownload.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "logo_square"))
+        }
+        
+        self.vwContainFullImage.isHidden = false
     }
 
     
@@ -531,15 +615,45 @@ extension ChatDetailViewController{
             print(response)
             
             if status == MessageConstant.k_StatusCode{
+                
+                if let dictChatStatus = response["online_status"] as? [String:Any]{
+                    if let chatStatus = dictChatStatus["chat_status"] as? String{
+                        self.lblOnLineStatus.text = chatStatus
+                    }else{
+                        self.lblOnLineStatus.text = ""
+                    }
+                }
+                
                 if let arrData  = response["result"] as? [[String:Any]]{
+                    
                     self.arrChatMessages.removeAll()
+                    
                     for dictdata in arrData{
                         let obj = ChatDetailModel.init(dict: dictdata)
                         self.arrChatMessages.append(obj)
                     }
+
+                    
+                    if self.initilizeFirstTimeOnly == false{
+                        self.initilizeFirstTimeOnly = true
+                        self.arrCount = self.arrChatMessages.count
+                        self.tblChat.reloadData()
+                    }
                 
-                    self.tblChat.reloadData()
-                    self.updateTableContentInset()
+                    if self.arrCount == self.arrChatMessages.count{
+                        
+                    }else{
+                        self.tblChat.reloadData()
+                        self.updateTableContentInset()
+                    }
+                    
+                    
+                    if self.arrChatMessages.count == 0{
+                        self.tblChat.displayBackgroundText(text: "ningún record fue encontrado")
+                    }else{
+                        self.tblChat.displayBackgroundText(text: "")
+                    }
+                    
                     if self.isSendMessage{
                         self.isSendMessage = false
                         self.tblChat.scrollToBottom()
@@ -574,7 +688,7 @@ extension ChatDetailViewController{
             return
         }
     
-        objWebServiceManager.showIndicator()
+       // objWebServiceManager.showIndicator()
         
         let dicrParam = ["receiver_id":self.strSenderID,//Opponent ID
                          "sender_id":strUserID,//My ID
@@ -591,6 +705,7 @@ extension ChatDetailViewController{
             if let result = response["result"]as? String{
                 if result == "successful"{
                     self.isSendMessage = true
+                    self.initilizeFirstTimeOnly = false
                    // self.call_GetChatList(strUserID: objAppShareData.UserDetail.strUserId, strSenderID: self.strSenderID)
                 }
             }else{
@@ -629,7 +744,7 @@ extension ChatDetailViewController{
             print(response)
             
             if status == MessageConstant.k_StatusCode{
-                
+                self.initilizeFirstTimeOnly = false
                 //self.call_GetChatList(strUserID: strUserID, strSenderID: self.strSenderID)
                 
             }else{
@@ -669,9 +784,13 @@ extension ChatDetailViewController{
             
             print(response)
             
+            if (response["result"]as? String) != nil{
+                self.onBackPressed()
+            }
+            
             if status == MessageConstant.k_StatusCode{
                 
-                self.onBackPressed()
+               
                 
             }else{
                 objWebServiceManager.hideIndicator()
@@ -692,7 +811,7 @@ extension ChatDetailViewController{
 //MARK:- CallWebservice
 extension ChatDetailViewController{
     
-    func callWebserviceForSendImage(strSenderID:String,strReceiverID:String){
+    func callWebserviceForSendImage(strSenderID:String,strReceiverID:String,strType:String){
         
         if !objWebServiceManager.isNetworkAvailable(){
             objWebServiceManager.hideIndicator()
@@ -700,16 +819,17 @@ extension ChatDetailViewController{
             objAlert.showAlert(message: "No Internet Connection", title: "Alert", controller: self)
             return
         }
-        objWebServiceManager.showIndicator()
+     //   objWebServiceManager.showIndicator()
         self.view.endEditing(true)
         
         var imageData = [Data]()
         var imgData : Data?
         if self.pickedImage != nil{
-            imgData = (self.pickedImage?.jpegData(compressionQuality: 1.0))!
+           // imgData = (self.pickedImage?.jpegData(compressionQuality: 1.0))!
+            imgData = (self.pickedImage?.pngData())// jpegData(compressionQuality: 1.0))!
         }
         else {
-            imgData = (self.imgVwUser.image?.jpegData(compressionQuality: 1.0))!
+            imgData = (self.imgVwUser.image?.pngData()) //jpegData(compressionQuality: 1.0))!
         }
         imageData.append(imgData!)
         
@@ -720,12 +840,12 @@ extension ChatDetailViewController{
         let dicrParam = ["sender_id":strSenderID,
                          "receiver_id":strReceiverID,
                          "chat_message":"",
-                         "type":"Image"
+                         "type":strType
         ]as [String:Any]
         
         print(dicrParam)
         
-        objWebServiceManager.uploadMultipartWithImagesData(strURL: WsUrl.url_insertChat, params: dicrParam, showIndicator: true, customValidation: "", imageData: imgData, imageToUpload: imageData, imagesParam: imageParam, fileName: "chat_image", mimeType: "image/jpeg") { (response) in
+        objWebServiceManager.uploadMultipartWithImagesData(strURL: WsUrl.url_insertChat, params: dicrParam, showIndicator: true, customValidation: "", imageData: imgData, imageToUpload: imageData, imagesParam: imageParam, fileName: "chat_image", mimeType: "image/png") { (response) in
             objWebServiceManager.hideIndicator()
             print(response)
             let status = (response["status"] as? Int)
@@ -735,7 +855,12 @@ extension ChatDetailViewController{
             if let result = response["result"]as? String{
                 if result == "successful"{
                     self.subVw.isHidden = true
+                    self.subVwContainCV.isHidden = true
+                    self.subVwSelection.isHidden = true
+                    self.sbVwMainSticker.isHidden = true
+                    
                     self.isSendMessage = true
+                    self.initilizeFirstTimeOnly = false
                    // self.call_GetChatList(strUserID: objAppShareData.UserDetail.strUserId, strSenderID: self.strSenderID)
                 }
             }else{

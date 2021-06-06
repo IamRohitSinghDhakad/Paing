@@ -21,6 +21,7 @@ class PaingBlogTableViewCell: UITableViewCell {
     @IBOutlet var lblLikeCount: UILabel!
     @IBOutlet var lblCommentCount: UILabel!
     @IBOutlet var imgVwThreeDot: UIImageView!
+    @IBOutlet var btnOnProfile: UIButton!
     
     
     override func awakeFromNib() {

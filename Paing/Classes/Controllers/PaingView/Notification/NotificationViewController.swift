@@ -104,19 +104,35 @@ extension NotificationViewController:UITableViewDelegate,UITableViewDataSource{
             self.vwDelete.isHidden = true
         }
         
+        cell.btnCheckUncheck.tag = indexPath.row
+        cell.btnCheckUncheck.addTarget(self, action: #selector(btnCheckUncheckAction), for: .touchUpInside)
+        
       
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        let obj = self.arrNotifications[indexPath.row]
+
+
+    @objc func btnCheckUncheckAction(sender: UIButton){
+        let obj = self.arrNotifications[sender.tag]
         if obj.isSelected == true{
             obj.isSelected = false
         }else{
             obj.isSelected = true
         }
         self.tblVwNotification.reloadData()
+        
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+//        let obj = self.arrNotifications[indexPath.row]
+//        if obj.isSelected == true{
+//            obj.isSelected = false
+//        }else{
+//            obj.isSelected = true
+//        }
+//        self.tblVwNotification.reloadData()
     }
 }
 

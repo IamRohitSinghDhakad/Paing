@@ -22,7 +22,11 @@ class ChatDetailTVCell: UITableViewCell {
     @IBOutlet weak var imgVwMySide: UIImageView!
     @IBOutlet weak var lblOpponentImgTime: UILabel!
     @IBOutlet weak var lblMyImageTime: UILabel!
+    @IBOutlet var vwContainImgBorderMySide: UIView!
+    @IBOutlet var vwContainImgBorderOpponentSide: UIView!
     
+    @IBOutlet var btnOpenImageOnFullViewOpponentSide: UIButton!
+    @IBOutlet var btnOpenImageOnFullviewMySide: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()

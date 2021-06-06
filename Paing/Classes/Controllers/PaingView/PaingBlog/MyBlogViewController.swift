@@ -41,9 +41,9 @@ class MyBlogViewController: UIViewController {
     
     @IBAction func btnSubmitBlog(_ sender: Any) {
         
-//        if self.arrBlogList.count > 1{
-//            objAlert.showAlert(message: "Solo puedospublicar 2 blogs en 24 horas.", title: "Alert", controller: self)
-//        }else{
+        if self.arrBlogList.count > 1{
+            objAlert.showAlert(message: "Solo puedospublicar 2 blogs en 24 horas.", title: "Alert", controller: self)
+        }else{
             if ((self.txtVwComment.text?.isEmpty) != nil){
                 
                 let strText = self.txtVwComment.text!.encodeEmoji
@@ -52,8 +52,8 @@ class MyBlogViewController: UIViewController {
                 }else{
                     self.call_AddBlog(strUserID: objAppShareData.UserDetail.strUserId, strText: strText)
                 }
-                
             }
+        }
     }
     @IBAction func btnCancelSubVw(_ sender: Any) {
         self.SubVw.isHidden = true
@@ -139,10 +139,14 @@ extension MyBlogViewController:UITableViewDelegate,UITableViewDataSource{
             cell.lblCommentCount.text = "(\(obj.strCommentCount))"
         }
         
+        cell.btnComment.tag = indexPath.row
+        cell.btnComment.addTarget(self, action: #selector(btnCommentAction), for: .touchUpInside)
         
         cell.btnMenuDot.tag = indexPath.row
         cell.btnMenuDot.addTarget(self, action: #selector(buttonSelected), for: .touchUpInside)
         
+        cell.btnLike.tag = indexPath.row
+        cell.btnLike.addTarget(self, action: #selector(btnLikeAction), for: .touchUpInside)
         
         return cell
     }
@@ -152,13 +156,24 @@ extension MyBlogViewController:UITableViewDelegate,UITableViewDataSource{
         
     }
     
+    @objc func btnCommentAction(sender: UIButton){
+        print(sender.tag)
+        
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "CommentLikesViewController")as! CommentLikesViewController
+        vc.objUserData = self.arrBlogList[sender.tag]
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
     
     @objc func buttonSelected(sender: UIButton){
         print(sender.tag)
         
         self.openActionSheet(index: sender.tag)
-        
-        
+    }
+    
+    @objc func btnLikeAction(sender: UIButton){
+        print(sender.tag)
+        let strBlogID = self.arrBlogList[sender.tag].strBlogId
+        self.call_LikeBlog(strUserID: objAppShareData.UserDetail.strUserId, blogID: strBlogID)
     }
     
     func openActionSheet(index:Int){
@@ -381,4 +396,44 @@ extension MyBlogViewController{
         }
     }
     
+    //=================== Like Blog ==================//
+    func call_LikeBlog(strUserID:String, blogID:String){
+        
+        if !objWebServiceManager.isNetworkAvailable(){
+            objWebServiceManager.hideIndicator()
+            objAlert.showAlert(message: "No Internet Connection", title: "Alert", controller: self)
+            return
+        }
+        
+        objWebServiceManager.showIndicator()
+        
+        let parameter = ["user_id":strUserID,
+                         "blog_id":blogID]as [String:Any]
+        
+        
+        objWebServiceManager.requestGet(strURL: WsUrl.url_likeBlog, params: parameter, queryParams: [:], strCustomValidation: "") { (response) in
+            objWebServiceManager.hideIndicator()
+            let status = (response["status"] as? Int)
+            let message = (response["message"] as? String)
+            
+            print(response)
+            
+            if status == MessageConstant.k_StatusCode{
+
+                self.call_GetBlogList(strUserID: strUserID)
+                
+            }else{
+                objWebServiceManager.hideIndicator()
+                
+                if (response["result"]as? String) != nil{
+                    self.tblBLogs.displayBackgroundText(text: "ningún record fue encontrado")
+                }else{
+                    objAlert.showAlert(message: message ?? "", title: "Alert", controller: self)
+                }
+            }
+        } failure: { (Error) in
+            print(Error)
+            objWebServiceManager.hideIndicator()
+        }
+    }
 }

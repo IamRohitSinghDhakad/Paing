@@ -204,6 +204,9 @@ extension PaingBlogViewController:UITableViewDelegate,UITableViewDataSource{
         cell.btnMenuDot.tag = indexPath.row
         cell.btnMenuDot.addTarget(self, action: #selector(btnEditBlog), for: .touchUpInside)
         
+        cell.btnOnProfile.tag = indexPath.row
+        cell.btnOnProfile.addTarget(self, action: #selector(btnGoToProfile), for: .touchUpInside)
+        
         cell.btnComment.tag = indexPath.row
         cell.btnComment.addTarget(self, action: #selector(btnCommentAction), for: .touchUpInside)
         
@@ -220,16 +223,25 @@ extension PaingBlogViewController:UITableViewDelegate,UITableViewDataSource{
     }
     
     
+    @objc func btnGoToProfile(sender: UIButton){
+        print(sender.tag)
+        
+        let userID = self.arrBlogList[sender.tag].strBlogUserID
+        if objAppShareData.UserDetail.strUserId == userID{
+        }else{
+            let vc = UIStoryboard(name: "UserProfile", bundle: nil).instantiateViewController(withIdentifier: "UserProfileViewController") as? UserProfileViewController
+            vc?.userID = userID
+            self.navigationController?.pushViewController(vc!, animated: true)
+        }
+    }
+    
+    
     @objc func btnCommentAction(sender: UIButton){
         print(sender.tag)
         
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "CommentLikesViewController")as! CommentLikesViewController
-       // vc.arrComment = self.arrBlogList[sender.tag].arrCommentList
-       // vc.arrLike = self.arrBlogList[sender.tag].arrLikedList
         vc.objUserData = self.arrBlogList[sender.tag]
         self.navigationController?.pushViewController(vc, animated: true)
-        
-        
     }
     
     @objc func btnLikeAction(sender: UIButton){

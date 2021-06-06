@@ -98,6 +98,18 @@ class CommentLikesViewController: UIViewController {
         
     }
     
+    @IBAction func btnOnprofile(_ sender: Any) {
+        
+        let userID = self.objUserData.strBlogUserID
+        if objAppShareData.UserDetail.strUserId == userID{
+        }else{
+            let vc = UIStoryboard(name: "UserProfile", bundle: nil).instantiateViewController(withIdentifier: "UserProfileViewController") as? UserProfileViewController
+            vc?.userID = userID
+            self.navigationController?.pushViewController(vc!, animated: true)
+        }
+    }
+    
+    
     @IBAction func btnOnSendComment(_ sender: Any) {
         if (txtVwChat.text?.isEmpty)!{
             
@@ -263,6 +275,8 @@ extension CommentLikesViewController: UITableViewDelegate,UITableViewDataSource{
                self.btnDeleteComment.isHidden = true
            }
             
+            cell.btnOnProfile.tag = indexPath.row
+            cell.btnOnProfile.addTarget(self, action: #selector(btnGoToProfile), for: .touchUpInside)
             
             return cell
             
@@ -286,6 +300,17 @@ extension CommentLikesViewController: UITableViewDelegate,UITableViewDataSource{
         }
     }
     
+    @objc func btnGoToProfile(sender: UIButton){
+        print(sender.tag)
+        
+        let userID = self.arrComment[sender.tag].strCommentUserID
+        if objAppShareData.UserDetail.strUserId == userID{
+        }else{
+            let vc = UIStoryboard(name: "UserProfile", bundle: nil).instantiateViewController(withIdentifier: "UserProfileViewController") as? UserProfileViewController
+            vc?.userID = userID
+            self.navigationController?.pushViewController(vc!, animated: true)
+        }
+    }
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

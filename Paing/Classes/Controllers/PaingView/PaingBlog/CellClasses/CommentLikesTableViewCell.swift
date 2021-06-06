@@ -12,6 +12,7 @@ class CommentLikesTableViewCell: UITableViewCell {
     @IBOutlet var imgVwUser: UIImageView!
     @IBOutlet var imgVwTick: UIImageView!
     @IBOutlet var lblMsgComment: UILabel!
+    @IBOutlet var btnOnProfile: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()

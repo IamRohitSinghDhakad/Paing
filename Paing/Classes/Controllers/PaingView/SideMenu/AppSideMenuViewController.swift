@@ -172,7 +172,7 @@ extension AppSideMenuViewController: UITableViewDelegate, UITableViewDataSource 
             sideMenuController?.hideMenu()
             
             objAlert.showAlertCallBack(alertLeftBtn: "No", alertRightBtn: "si", title: "Cerrar Sesión", message: "¿Quieres cerrar sesión??", controller: self) {
-                AppSharedData.sharedObject().signOut()
+                self.call_WSLogout(strUserID: objAppShareData.UserDetail.strUserId)
             }
             
         }
@@ -187,4 +187,43 @@ extension AppSideMenuViewController: UITableViewDelegate, UITableViewDataSource 
         
         self.tableView.reloadData()
     }
+}
+
+extension AppSideMenuViewController{
+    
+    //MARK:- Call WebService
+    
+    func call_WSLogout(strUserID:String){
+        
+        if !objWebServiceManager.isNetworkAvailable(){
+            objWebServiceManager.hideIndicator()
+            objAlert.showAlert(message: "No Internet Connection", title: "Alert", controller: self)
+            return
+        }
+    
+        objWebServiceManager.showIndicator()
+        
+        let dicrParam = ["user_id":strUserID,
+                        ]as [String:Any]
+        
+        objWebServiceManager.requestGet(strURL: WsUrl.url_Logout, params: dicrParam, queryParams: [:], strCustomValidation: "") { (response) in
+            objWebServiceManager.hideIndicator()
+            let status = (response["status"] as? Int)
+            let message = (response["message"] as? String)
+            print(response)
+            if status == MessageConstant.k_StatusCode{
+                
+                AppSharedData.sharedObject().signOut()
+                
+            }else{
+                objWebServiceManager.hideIndicator()
+                objAlert.showAlert(message: message ?? "", title: "Alert", controller: self)
+            }
+           
+        } failure: { (Error) in
+            print(Error)
+            objWebServiceManager.hideIndicator()
+        }
+   }
+    
 }

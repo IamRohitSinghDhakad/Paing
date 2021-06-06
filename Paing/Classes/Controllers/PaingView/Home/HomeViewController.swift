@@ -217,14 +217,29 @@ class HomeViewController: UIViewController {
         swipeView.swipe(.left)
     }
     @IBAction func actionBtnRightSwipe(_ sender: Any) {
-        swipeView.swipe(.right)
+        
+        if self.arrUsers.count != 0{
+            
+            let obj = self.arrUsers[swipeView.currentCardIndex]
+            
+            let opponetID = obj.strUserID
+            let text = "\(obj.strName) le gustó tu perfil."
+            
+            self.call_SendNotification(strOpponentID: opponetID, strUserID: objAppShareData.UserDetail.strUserId, strNotificationTitle: text)
+        }
+        
+       
         
     }
     
     @IBAction func actionBtnChatBox(_ sender: Any) {
        print(swipeView.currentCardIndex)
         if self.arrUsers.count > 0{
-            let userID = self.arrUsers[swipeView.currentCardIndex]
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "ChatDetailViewController")as! ChatDetailViewController
+            vc.strUserName = self.arrUsers[swipeView.currentCardIndex].strName
+            vc.strUserImage = self.arrUsers[swipeView.currentCardIndex].strImageUrl
+            vc.strSenderID = self.arrUsers[swipeView.currentCardIndex].strUserID
+            self.navigationController?.pushViewController(vc, animated: true)
         }
        
     }
@@ -319,24 +334,6 @@ extension HomeViewController: KolodaViewDataSource {
         }
         let myView = UIView.init()
         return myView
-        
-        //   let objCard = self.arrUsers[index]
-        
-        // print(objCard.strName)
-        
-        //        vw.lblName.text = objCard.strName
-        //        vw.lblAge.text = objCard.strAge
-        //
-        //
-        //        let profilePic = objCard.strImageUrl
-        //        if profilePic != "" {
-        //            let url = URL(string: profilePic)
-        //            vw.imgVw.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "logo"))
-        //        }
-        
-        
-        
-        // return UIImageView(image: dataSource[Int(index)])
     }
     
     func koloda(_ koloda: KolodaView, viewForCardOverlayAt index: Int) -> OverlayView? {
@@ -358,7 +355,7 @@ extension HomeViewController{
                 if newLength >= 2 {
                     
                     let newstr = (textField.text ?? "") + string
-                    if let value = Int(newstr), value > 18 {
+                    if let value = Int(newstr), value < 18 {
                         self.tfMinimuAgeSubVw.text = ""
                       
                         objAlert.showAlert(message: "Age Maximum 18 only", title: "Alert", controller: self)
@@ -415,9 +412,13 @@ extension HomeViewController{
         
         let parameter = ["user_id":strUserID,
                          "sex":objAppShareData.UserDetail.strGender,
-                         "country":objAppShareData.UserDetail.strCountry,
-                         "looking_for":objAppShareData.UserDetail.strLookingFor
+                         "country":"",
+                         "looking_for":"",
+                         "limit":self.limit,
+                         "offset":offset
         ]as [String:Any]
+        
+        print(parameter)
         
         objWebServiceManager.requestGet(strURL: WsUrl.url_GetUserList, params: parameter, queryParams: [:], strCustomValidation: "") { (response) in
             objWebServiceManager.hideIndicator()
@@ -428,10 +429,13 @@ extension HomeViewController{
             
             if status == MessageConstant.k_StatusCode{
                 if let arrData  = response["result"] as? [[String:Any]]{
+                    self.arrUsers.removeAll()
                     for dictdata in arrData{
                         let obj = HomeModel.init(dict: dictdata)
                         if obj.strIsBlocked == "0"{
-                            self.arrUsers.append(obj)
+                            if obj.strVisible == "0"{
+                                self.arrUsers.append(obj)
+                            }
                         }
                     }
                     self.swipeView.reloadData()
@@ -442,7 +446,6 @@ extension HomeViewController{
                 }else if let recordsCount = response["total_rows"]as? String {
                     self.totalRecord = Int(recordsCount) ?? 0
                 }
-                print(self.totalRecord)
                 
             }else{
                 objWebServiceManager.hideIndicator()
@@ -451,8 +454,6 @@ extension HomeViewController{
                 }else{
                     objAlert.showAlert(message: message ?? "", title: "Alert", controller: self)
                 }
-               
-                
             }
             
             
@@ -519,20 +520,26 @@ extension HomeViewController{
             print(response)
             //total_rows
             
-            if self.isFilteredApply{
-                
-            }else{
-                self.arrUsers.removeAll()
-            }
+//            if self.isFilteredApply{
+//
+//            }else{
+//                self.arrUsers.removeAll()
+//            }
             
             
             if status == MessageConstant.k_StatusCode{
                 self.isFilteredApply = true
                 if let arrData  = response["result"] as? [[String:Any]]{
+                    self.arrUsers.removeAll()
                     for dictdata in arrData{
+                        
                         let obj = HomeModel.init(dict: dictdata)
-                        self.arrUsers.append(obj)
+                        if obj.strVisible == "0"{
+                            self.arrUsers.append(obj)
+                        }
+                       // self.arrUsers.append(obj)
                     }
+                    self.swipeView.resetCurrentCardIndex()
                     self.swipeView.reloadData()
                 }
                 
@@ -542,6 +549,49 @@ extension HomeViewController{
                     self.totalRecord = Int(recordsCount) ?? 0
                 }
                 print(self.totalRecord)
+                
+            }else{
+                objWebServiceManager.hideIndicator()
+                if (response["result"] as? String) != nil || response["result"] as? String == "User not found"{
+                    objAlert.showAlert(message: "ningún record fue encontrado", title: "Alerta", controller: self)
+                }else{
+                    objAlert.showAlert(message: message ?? "", title: "Alert", controller: self)
+                }
+                self.swipeView.reloadData()
+            }
+        } failure: { (Error) in
+            print(Error)
+            objWebServiceManager.hideIndicator()
+        }
+    }
+    
+    func call_SendNotification(strOpponentID:String,strUserID:String,strNotificationTitle:String){
+        
+        if !objWebServiceManager.isNetworkAvailable(){
+            objWebServiceManager.hideIndicator()
+            objAlert.showAlert(message: "No Internet Connection", title: "Alert", controller: self)
+            return
+        }
+        
+        objWebServiceManager.showIndicator()
+        
+        let parameter = ["notify_by":strUserID,
+                         "notification_title":strNotificationTitle,
+                         "notification":strNotificationTitle,
+                         "send_to":strOpponentID,
+                         "type":"profile_like"
+        ]as [String:Any]
+        
+        print(parameter)
+        
+        objWebServiceManager.requestGet(strURL: WsUrl.url_GetUserList, params: parameter, queryParams: [:], strCustomValidation: "") { (response) in
+            objWebServiceManager.hideIndicator()
+            let status = (response["status"] as? Int)
+            let message = (response["message"] as? String)
+            
+            if status == MessageConstant.k_StatusCode{
+                
+                self.swipeView.swipe(.right)
                 
             }else{
                 objWebServiceManager.hideIndicator()

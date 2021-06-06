@@ -24,7 +24,6 @@ class PreviewPhotoVideoViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         self.setupView()
-        
     }
     
     //MARK: - Setup

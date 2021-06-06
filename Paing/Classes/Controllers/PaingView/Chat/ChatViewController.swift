@@ -14,6 +14,7 @@ class ChatViewController: UIViewController {
     
     var arrMessageList = [ConversationListModel]()
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
        
@@ -117,6 +118,14 @@ extension ChatViewController{
                     for dictdata in arrData{
                         let obj = ConversationListModel.init(dict: dictdata)
                         self.arrMessageList.append(obj)
+                    }
+                    
+                    self.arrMessageList.reverse()
+                    
+                    if self.arrMessageList.count == 0{
+                        self.tblMessage.displayBackgroundText(text: "ningún record fue encontrado")
+                    }else{
+                        self.tblMessage.displayBackgroundText(text: "")
                     }
                     
                     self.tblMessage.reloadData()

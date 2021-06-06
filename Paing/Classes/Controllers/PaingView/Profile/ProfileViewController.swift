@@ -179,31 +179,51 @@ class ProfileViewController: UIViewController {
     func actionImageVideoSelect(index: Int) {
         let vc = UIStoryboard(name: "UserProfile", bundle: nil).instantiateViewController(withIdentifier: "PreviewPhotoVideoViewController") as? PreviewPhotoVideoViewController
         let alert:UIAlertController = UIAlertController(title: "Seleccion", message: nil, preferredStyle: UIAlertController.Style.actionSheet)
-        let option1 = UIAlertAction(title: "Ver Foto", style: .default) { (action) in
-            if self.selectedSegmentIndx == 0 {
+        
+        if self.selectedSegmentIndx == 0{
+            let option1 = UIAlertAction(title: "Ver Foto", style: .default) { (action) in
                 let imageObj = self.arrayPhotoCollection[index]
                 vc?.asset = imageObj
                 self.navigationController?.pushViewController(vc!, animated: true)
             }
-            else if self.selectedSegmentIndx == 1 {
+            
+            let option2 = UIAlertAction(title: "Quitar foto", style: .default) { (action) in
+                alert.dismiss(animated: true) {
+                    DispatchQueue.main.async {
+                        self.showDeleteImageVideoPopup(index: index)
+                    }
+                }
+                
+            }
+            
+            alert.addAction(option1)
+            alert.addAction(option2)
+            
+        }else if self.selectedSegmentIndx == 1 {
+            let option1 = UIAlertAction(title: "Ver Video", style: .default) { (action) in
                 let videoObj = self.arrayVideoCollection[index]
                 vc?.asset = videoObj
                 self.navigationController?.pushViewController(vc!, animated: true)
             }
-        }
-        let option2 = UIAlertAction(title: "Quitar foto", style: .default) { (action) in
-            alert.dismiss(animated: true) {
-                DispatchQueue.main.async {
-                    self.showDeleteImageVideoPopup(index: index)
+            
+            let option2 = UIAlertAction(title: "Quitar Video", style: .default) { (action) in
+                alert.dismiss(animated: true) {
+                    DispatchQueue.main.async {
+                        self.showDeleteImageVideoPopup(index: index)
+                    }
                 }
+                
             }
             
+            alert.addAction(option1)
+            alert.addAction(option2)
         }
+       
+
         let optionCancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
             
         }
-        alert.addAction(option1)
-        alert.addAction(option2)
+       
         alert.addAction(optionCancel)
         alert.popoverPresentationController?.sourceView = self.view
         self.present(alert, animated: true, completion: nil)
@@ -227,6 +247,7 @@ class ProfileViewController: UIViewController {
     //MARK: - Bind User Profile
     
     func bindUserProfile() {
+        var finalText = ""
         let userProfile = objAppShareData.UserDetail
         let profilePic = userProfile.strProfilePicture
         if profilePic != "" {
@@ -235,9 +256,57 @@ class ProfileViewController: UIViewController {
         }
         let locationArr = [userProfile.strCity, userProfile.strState, userProfile.strCountry].filter { !$0.trim().isEmpty }
         
+        if userProfile.strGender == "Male"{
+            //self.lblAboutUs.text = "Soy hombre"
+            finalText = "Soy hombre,"
+        }else{
+           // self.lblAboutUs.text = "Soy Mujer"
+            finalText = "Soy Mujer"
+        }
+    
+        finalText = finalText + " tengo \(userProfile.strAge) años," + " \(userProfile.strAboutMe),"
+        
+        if userProfile.strHairColor != ""{
+            finalText =  finalText + " tengo el pelo de color \(userProfile.strHairColor),"
+        }
+       
+        if userProfile.strEye != "" {
+            finalText = finalText + " los ojos \(userProfile.strEye),"
+        }
+        
+        if userProfile.strSkinTone != "" {
+            finalText = finalText + " y mi piel es \(userProfile.strSkinTone),"
+        }
+        
+        if userProfile.strHeight != "" {
+            let x = userProfile.strHeight
+            let h = x.replacingOccurrences(of: ".", with: ",")
+            print(h)
+            finalText = finalText + " mi altura es \(h) mts,"
+        }
+        
+        if userProfile.strMusic != "" {
+            finalText = finalText + " me gusta la música \(userProfile.strMusic),"
+        }
+        
+        if userProfile.strSport != "" {
+            finalText = finalText + " el deporte de \(userProfile.strSport),"
+        }
+        
+        if userProfile.strCinema != "" {
+            finalText = finalText + " y me gusta el cine de \(userProfile.strCinema),"
+        }
+        
+        if userProfile.strSpecialInstruction != "" {
+            finalText = finalText + " \(userProfile.strSpecialInstruction)"
+        }
+    
+    self.lblAboutUs.text = finalText
+        
+        
         self.lblLocation.text = locationArr.joined(separator: ", ")
         self.lblName.text = userProfile.strName
-        self.lblAboutUs.text = userProfile.strAboutMe
+       // self.lblAboutUs.text = userProfile.strAboutMe
         self.lblRelationshipStatus.text = (userProfile.strRelStatus.isEmpty) ? self.relStatusList[0] : userProfile.strRelStatus
         self.lblVisibility.text = (Int(userProfile.strVisibilityStatus) == nil) ? self.visibleStatusList[0] : ((Int(userProfile.strVisibilityStatus)! < self.visibleStatusList.count) ? self.visibleStatusList[Int(userProfile.strVisibilityStatus)!] : self.visibleStatusList[0])
         

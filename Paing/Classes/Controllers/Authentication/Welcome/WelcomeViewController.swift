@@ -225,7 +225,7 @@ extension WelcomeViewController{
         //                                            @Query("social_type") String social_type,
         //                                            @Query("register_id") String register_id);
         
-        let dicrParam = ["name": socialMediaParam.name, "email": socialMediaParam.email, "social_id": socialMediaParam.social_id, "social_type": socialMediaParam.social_type, "register_id": socialMediaParam.register_id] as [String:Any]
+        let dicrParam = ["name": socialMediaParam.name, "email": socialMediaParam.email, "social_id": socialMediaParam.social_id, "social_type": socialMediaParam.social_type, "ios_register_id": socialMediaParam.register_id] as [String:Any]
         
         objWebServiceManager.requestPost(strURL: WsUrl.url_SocialLogin, queryParams: [:], params: dicrParam, strCustomValidation: "", showIndicator: false) { (response) in
             objWebServiceManager.hideIndicator()

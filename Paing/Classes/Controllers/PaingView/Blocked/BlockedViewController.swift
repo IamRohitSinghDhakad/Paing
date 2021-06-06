@@ -55,18 +55,30 @@ extension BlockedViewController:UITableViewDelegate,UITableViewDataSource{
             let url = URL(string: profilePic)
             cell.imgVwUser.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "splashLogo"))
         }
+        
+        cell.btnUnBlock.tag = indexPath.row
+        cell.btnUnBlock.addTarget(self, action: #selector(btnUnBlock), for: .touchUpInside)
       
         return cell
     }
     
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let strBlockID = self.arrBlocklist[indexPath.row].strChatId
-        let strName = self.arrBlocklist[indexPath.row].strName
+    @objc func btnUnBlock(sender: UIButton){
+        let strBlockID = self.arrBlocklist[sender.tag].strChatId
+        let strName = self.arrBlocklist[sender.tag].strName
         
         objAlert.showAlertCallBack(alertLeftBtn: "no", alertRightBtn: "sí", title: "Alerta", message: "¿Quieres desbloquear a \(strName)?", controller: self) {
-            self.call_GetUnblockUser(strUserID: objAppShareData.UserDetail.strUserId, strBLockerID: strBlockID, indexPath: indexPath.row)
+            self.call_GetUnblockUser(strUserID: objAppShareData.UserDetail.strUserId, strBLockerID: strBlockID, indexPath: sender.tag)
         }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        let strBlockID = self.arrBlocklist[indexPath.row].strChatId
+//        let strName = self.arrBlocklist[indexPath.row].strName
+//
+//        objAlert.showAlertCallBack(alertLeftBtn: "no", alertRightBtn: "sí", title: "Alerta", message: "¿Quieres desbloquear a \(strName)?", controller: self) {
+//            self.call_GetUnblockUser(strUserID: objAppShareData.UserDetail.strUserId, strBLockerID: strBlockID, indexPath: indexPath.row)
+//        }
     }
     
 }

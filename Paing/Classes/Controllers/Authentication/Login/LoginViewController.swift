@@ -116,7 +116,7 @@ extension LoginViewController{
         
         let dicrParam = ["username":self.tfEmail.text!,
                          "password":self.tfPassword.text!,
-                         "register_id":objAppShareData.strFirebaseToken]as [String:Any]
+                         "ios_register_id":objAppShareData.strFirebaseToken]as [String:Any]
         
         objWebServiceManager.requestGet(strURL: WsUrl.url_Login, params: dicrParam, queryParams: [:], strCustomValidation: "") { (response) in
             objWebServiceManager.hideIndicator()

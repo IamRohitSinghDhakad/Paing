@@ -61,7 +61,7 @@ class UserProfileViewController: UIViewController {
     @IBAction func actionBlock(_ sender: Any) {
         if let userInfo = self.userProfileDetail {
             let message = (userInfo.valBlockedStatus == 0) ? "¿Quieres bloquear a Madre ?" : "¿Quieres desbloquear a Madre ?"
-            objAlert.showAlertCallBack(alertLeftBtn: "No", alertRightBtn: "si", title: "Cerrar Sesión", message: message, controller: self) {
+            objAlert.showAlertCallBack(alertLeftBtn: "No", alertRightBtn: "si", title: "Alert", message: message, controller: self) {
                 self.call_BlockUnblockUser(strUserID: userInfo.strUserId)
             }
         }
@@ -84,13 +84,17 @@ class UserProfileViewController: UIViewController {
     }
     
     @IBAction func actionMessage(_ sender: Any) {
-        
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ChatDetailViewController") as? ChatDetailViewController
+        vc?.strUserName = self.userProfileDetail?.strUserName ?? ""
+        vc?.strUserImage = self.userProfileDetail?.strProfilePicture ?? ""
+        vc?.strSenderID = self.userProfileDetail?.strUserId ?? ""
+        self.navigationController?.pushViewController(vc!, animated: true)
     }
     
     @IBAction func actionFavorite(_ sender: Any) {
         if let userInfo = self.userProfileDetail {
             let message = (userInfo.valLikedStatus == 0) ? "Quieres agregar \(userInfo.strName) en tu lista de favoritos?" : "¿Quieres eliminar a \(userInfo.strName) de tu lista de favoritos?"
-            objAlert.showAlertCallBack(alertLeftBtn: "No", alertRightBtn: "si", title: "Cerrar Sesión", message: message, controller: self) {
+            objAlert.showAlertCallBack(alertLeftBtn: "No", alertRightBtn: "si", title: "Alert", message: message, controller: self) {
                 self.call_MarkUserFavorite()
             }
         }
@@ -149,6 +153,7 @@ class UserProfileViewController: UIViewController {
     //MARK: - Bind User Profile
     
     func bindUserProfile() {
+        var finalText = ""
         if let userProfile = self.userProfileDetail {
             let profilePic = userProfile.strProfilePicture
             if profilePic != "" {
@@ -159,20 +164,57 @@ class UserProfileViewController: UIViewController {
             
             self.lblLocation.text = locationArr.joined(separator: ", ")
             self.lblUserName.text = userProfile.strName
-            if userProfile.strAboutMe == ""{
-                if userProfile.strGender == "Male"{
-                    self.lblAboutUs.text = "Soy hombre"
-                }else{
-                    self.lblAboutUs.text = "Soy Mujer"
-                }
+            
+            if userProfile.strGender == "Male"{
+                //self.lblAboutUs.text = "Soy hombre"
+                finalText = "Soy hombre,"
             }else{
-                self.lblAboutUs.text = userProfile.strAboutMe
+                // self.lblAboutUs.text = "Soy Mujer"
+                finalText = "Soy Mujer"
             }
-           
+            
+            finalText = finalText + " tengo \(userProfile.strAge) años," + " \(userProfile.strAboutMe),"
+            
+            if userProfile.strHairColor != ""{
+                finalText =  finalText + " tengo el pelo de color \(userProfile.strHairColor),"
+            }
+            
+            if userProfile.strEye != "" {
+                finalText = finalText + " los ojos \(userProfile.strEye),"
+            }
+            
+            if userProfile.strSkinTone != "" {
+                finalText = finalText + " y mi piel es \(userProfile.strSkinTone),"
+            }
+            
+            if userProfile.strHeight != "" {
+                let x = userProfile.strHeight
+                let h = x.replacingOccurrences(of: ".", with: ",")
+                print(h)
+                finalText = finalText + " mi altura es \(h) mts,"
+            }
+            
+            if userProfile.strMusic != "" {
+                finalText = finalText + " me gusta la música \(userProfile.strMusic),"
+            }
+            
+            if userProfile.strSport != "" {
+                finalText = finalText + " el deporte de \(userProfile.strSport),"
+            }
+            
+            if userProfile.strCinema != "" {
+                finalText = finalText + " y me gusta el cine de \(userProfile.strCinema),"
+            }
+            
+            if userProfile.strSpecialInstruction != "" {
+                finalText = finalText + " \(userProfile.strSpecialInstruction)"
+            }
+            
+            self.lblAboutUs.text = finalText
+            
             self.btnRelationshipStatus.setTitle(userProfile.strRelStatus, for: .normal)
             self.vwRelationStatus.isHidden = (userProfile.strRelStatus == "") ?  true : false
             self.imgVwFavProfile.image = (userProfile.valLikedStatus == 0) ? UIImage(named: "emptyStar") : UIImage(named: "filledStar")
-            
         }
     }
     
