@@ -68,7 +68,7 @@ class MyBlogViewController: UIViewController {
     @IBAction func btnAddMyBlog(_ sender: Any) {
         
         if self.arrBlogList.count > 1{
-            objAlert.showAlert(message: "Solo puedospublicar 2 blogs en 24 horas.", title: "Alert", controller: self)
+            objAlert.showAlert(message: "Solo puedes publicar 2 blogs en 24 horas.", title: "Alert", controller: self)
         }else{
             self.txtVwComment.text = ""
             let profilePic = objAppShareData.UserDetail.strProfilePicture
@@ -441,3 +441,4 @@ extension MyBlogViewController{
         }
     }
 }
+

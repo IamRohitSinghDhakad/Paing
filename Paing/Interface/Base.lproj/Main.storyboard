@@ -4445,6 +4445,20 @@ favor</string>
                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="circle" value="YES"/>
                                                             </userDefinedRuntimeAttributes>
                                                         </view>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="   " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KUp-Mt-a5e">
+                                                            <rect key="frame" x="77" y="3.5" width="25" height="25"/>
+                                                            <color key="backgroundColor" white="1" alpha="0.75" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="25" id="a5t-lA-T4c"/>
+                                                                <constraint firstAttribute="width" secondItem="KUp-Mt-a5e" secondAttribute="height" multiplier="1:1" id="glg-UV-t0X"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="boolean" keyPath="circle" value="YES"/>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </label>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="PLv-kO-LBP">
                                                             <rect key="frame" x="5" y="44.5" width="140" height="16.5"/>
                                                             <subviews>
@@ -4472,8 +4486,10 @@ favor</string>
                                                     <constraints>
                                                         <constraint firstItem="PLv-kO-LBP" firstAttribute="leading" secondItem="WMZ-2y-TfO" secondAttribute="leading" constant="5" id="2LU-jl-LZI"/>
                                                         <constraint firstItem="RJB-ri-D4J" firstAttribute="top" secondItem="PLv-kO-LBP" secondAttribute="bottom" constant="5" id="8sZ-Pt-1Q0"/>
+                                                        <constraint firstItem="KUp-Mt-a5e" firstAttribute="top" secondItem="ukh-r1-1Bn" secondAttribute="top" id="9ST-Za-rQS"/>
                                                         <constraint firstAttribute="bottom" secondItem="RJB-ri-D4J" secondAttribute="bottom" id="BFE-w7-mRO"/>
                                                         <constraint firstAttribute="trailing" secondItem="RJB-ri-D4J" secondAttribute="trailing" id="RMu-Mb-Q9i"/>
+                                                        <constraint firstItem="KUp-Mt-a5e" firstAttribute="leading" secondItem="ukh-r1-1Bn" secondAttribute="trailing" constant="-18" id="VeY-8N-1gk"/>
                                                         <constraint firstItem="ukh-r1-1Bn" firstAttribute="centerX" secondItem="WMZ-2y-TfO" secondAttribute="centerX" id="dZz-no-i7Z"/>
                                                         <constraint firstItem="PLv-kO-LBP" firstAttribute="top" secondItem="ukh-r1-1Bn" secondAttribute="bottom" constant="1" id="hCI-Cz-9FN"/>
                                                         <constraint firstItem="ukh-r1-1Bn" firstAttribute="centerY" secondItem="WMZ-2y-TfO" secondAttribute="centerY" constant="-10" id="lbo-3T-OTM"/>
@@ -4483,6 +4499,7 @@ favor</string>
                                                 </tableViewCellContentView>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <connections>
+                                                    <outlet property="lblBadgeCount" destination="KUp-Mt-a5e" id="Z8n-oZ-NW8"/>
                                                     <outlet property="menuImage" destination="aCF-eK-zIS" id="OJa-6x-el0"/>
                                                     <outlet property="menuName" destination="L8Q-oe-yS9" id="2ob-cR-8fs"/>
                                                 </connections>

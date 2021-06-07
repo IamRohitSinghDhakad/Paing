@@ -76,7 +76,7 @@ class PaingBlogViewController: UIViewController {
         let filtert = self.arrBlogList.filter({$0.strBlogUserID == objAppShareData.UserDetail.strUserId})
         
         if filtert.count > 1{
-            objAlert.showAlert(message: "Solo puedospublicar 2 blogs en 24 horas.", title: "Alert", controller: self)
+            objAlert.showAlert(message: "Solo puedes publicar 2 blogs en 24 horas.", title: "Alert", controller: self)
         }else{
             self.txtVwCommentSubVw.text = ""
             let profilePic = objAppShareData.UserDetail.strProfilePicture
@@ -293,6 +293,13 @@ extension PaingBlogViewController{
                         let obj = BlogListModel.init(dict: dictdata)
                         self.arrBlogList.append(obj)
                     }
+                    
+                    if self.arrBlogList.count == 0{
+                        self.tblBlogs.displayBackgroundText(text: "ningún record fue encontrado")
+                    }else{
+                        self.tblBlogs.displayBackgroundText(text: "")
+                    }
+                    
                     
                     self.tblBlogs.reloadData()
                 }

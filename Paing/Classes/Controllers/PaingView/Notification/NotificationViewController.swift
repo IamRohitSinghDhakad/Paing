@@ -22,6 +22,9 @@ class NotificationViewController: UIViewController {
         // Do any additional setup after loading the view.
         self.vwDelete.isHidden = true
         
+        //Refresh Counter
+        UserDefaults.standard.setValue(0, forKey: "badge")
+        
         self.call_GetNotification(strUserId: objAppShareData.UserDetail.strUserId)
     }
     

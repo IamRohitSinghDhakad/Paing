@@ -10,6 +10,7 @@ import IQKeyboardManagerSwift
 import Firebase
 import FBSDKCoreKit
 import GoogleSignIn
+import FirebaseInstanceID
 
 let ObjAppdelegate = UIApplication.shared.delegate as! AppDelegate
 @main
@@ -17,6 +18,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     var navController: UINavigationController?
+    
+    var contentHandler: ((UNNotificationContent) -> Void)?
+    var bestAttemptContent: UNMutableNotificationContent?
     
     private static var AppDelegateManager: AppDelegate = {
         let manager = UIApplication.shared.delegate as! AppDelegate
@@ -181,6 +185,42 @@ extension AppDelegate : MessagingDelegate{
             }
         }
     }
+    
+    // Modify the payload contents.
+     func didReceive(_ request: UNNotificationRequest,
+                             withContentHandler contentHandler:
+                                @escaping (UNNotificationContent) -> Void) {
+        self.contentHandler = contentHandler
+        self.bestAttemptContent = (request.content.mutableCopy()
+                                    as? UNMutableNotificationContent)
+        
+        // Try to decode the encrypted message data.
+        let encryptedData = bestAttemptContent?.userInfo["ENCRYPTED_DATA"]
+        if let bestAttemptContent = bestAttemptContent {
+            if let data = encryptedData as? String {
+              //  let decryptedMessage = self.decrypt(data: data)
+              //  bestAttemptContent.body = decryptedMessage
+            }
+            else {
+                bestAttemptContent.body = "(Encrypted)"
+            }
+            
+            // Always call the completion handler when done.
+            contentHandler(bestAttemptContent)
+        }
+    }
+    
+    // Return something before time expires.
+     func serviceExtensionTimeWillExpire() {
+        if let contentHandler = contentHandler,
+           let bestAttemptContent = bestAttemptContent {
+            
+            // Mark the message as still encrypted.
+            bestAttemptContent.subtitle = "(Encrypted)"
+            bestAttemptContent.body = "abra ka dabra"
+            contentHandler(bestAttemptContent)
+        }
+    }
 
     @available(iOS 10.0, *)
     func userNotificationCenter(_ center: UNUserNotificationCenter,
@@ -203,12 +243,47 @@ extension AppDelegate : MessagingDelegate{
             }else if let id = userInfo["reference_id"] as? String{
                 bookingID = id
             }
+            
+            //Update BadgeCount
+            if let badgeCount = UserDefaults.standard.value(forKey: "badge")as? Int{
+                let newCount  = badgeCount + 1
+                UserDefaults.standard.setValue(newCount, forKey: "badge")
+            }else{
+                UserDefaults.standard.setValue(1, forKey: "badge")
+            }
+            
+            
          //   objAppShareData.notificationDict = userInfo
             self.navWithNotification(type: notificationType, bookingID: bookingID)
         }
         completionHandler([.alert,.sound,.badge])
     }
     
+    /*
+     if (type.equalsIgnoreCase("video")) {
+                     noti = username + " le gustó tu video.";
+                 } else if (type.equalsIgnoreCase("Sticker")) {
+                     noti = username + " te envía un duende.";
+                 } else if (type.equalsIgnoreCase("image_like")) {
+                     noti = username + " le gustó tu foto.";
+                 } else if (type.equalsIgnoreCase("image_send")) {
+                     noti = username + " te envió una imagen";
+                 } else if (type.equalsIgnoreCase("profile_like")) {
+                     noti = username + " le gustó tu perfil.";
+                 } else if (type.equalsIgnoreCase("Text")) {
+                     noti = username + " te envió un mensaje";
+                 } else if (type.equalsIgnoreCase("Image")) {
+                     noti = username + " te envió una imagen";
+                 } else if (type.equalsIgnoreCase("Liked")) {
+                     noti = username + " te Agregó a favoritos.";
+                 } else if (type.equalsIgnoreCase("blog_like")) {
+                     noti = username + " le gustó tu blog.";
+                 } else if (type.equalsIgnoreCase("blog_comment")) {
+                     noti = username + " comentó en su blog.";
+                 } else {
+                     noti = username + " te Agregó a favoritos.";
+                 }
+     */
     
     func navWithNotification(type:String,bookingID:String){
 //        let topController = self.topViewController()

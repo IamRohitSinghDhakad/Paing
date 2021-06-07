@@ -158,7 +158,7 @@ extension WelcomeViewController {
                 print("User Data: \(userData)")
                 if let name = userData["name"] as? String, let email = userData["email"] as? String, let social_id = userData["id"] as? String {
                     let social_type = "fb"
-                    let register_id = ""
+                    let register_id = objAppShareData.strFirebaseToken
                     var socialMediaParam = SocialLoginParameter()
                     socialMediaParam.name = name
                     socialMediaParam.email = email
@@ -190,7 +190,7 @@ extension WelcomeViewController : GIDSignInDelegate {
         if let userdata = user {
             //            let idToken = userdata.authentication.idToken
             let social_type = "google"
-            let register_id = ""
+            let register_id = objAppShareData.strFirebaseToken
             var socialMediaParam = SocialLoginParameter()
             socialMediaParam.name = userdata.profile.name
             socialMediaParam.email = userdata.profile.email

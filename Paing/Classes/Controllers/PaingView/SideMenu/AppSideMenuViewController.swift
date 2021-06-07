@@ -29,6 +29,7 @@ class AppSideMenuViewController: UIViewController {
     @IBOutlet weak var selectionMenuTrailingConstraint: NSLayoutConstraint!
     
     var selectedIndexpath = 0
+    var strBadgeCount = ""
     
     private let menus: [SideMenuOptions] = [SideMenuOptions(menuName: "Inicio", menuImageName: "home", menuSelectedImageName: "home_selected"),
                                             SideMenuOptions(menuName: "Perfil", menuImageName: "user_sideMenu", menuSelectedImageName: "user_selected"),
@@ -53,10 +54,34 @@ class AppSideMenuViewController: UIViewController {
         tableView.rowHeight = UITableView.automaticDimension
         
         controllerMenuSetup()
-        
-        
+    
         sideMenuController?.delegate = self
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        print("badge count update")
         
+        self.tableView.updateRow(row: 5)
+        
+//        if let badgeCount = UserDefaults.standard.value(forKey: "badge")as? Int{
+//            
+//            if badgeCount != 0{
+//                self.strBadgeCount = "\(badgeCount)"
+//                print(badgeCount)
+//                //cell.lblBadgeCount.isHidden = false
+//                
+//            }else{
+//                print(badgeCount)
+//                self.strBadgeCount = "\(badgeCount)"
+//                //cell.lblBadgeCount.isHidden = true
+//                self.tableView.updateRow(row: 5)
+//            }
+//        }else{
+//            //cell.lblBadgeCount.isHidden = true
+//           // self.tableView.updateRow(row: 5)
+//        }
+
     }
     
     private func controllerMenuSetup() {
@@ -159,6 +184,24 @@ extension AppSideMenuViewController: UITableViewDelegate, UITableViewDataSource 
         }else{
             cell.menuImage.image = UIImage(named: menus[row].menuImageName)
         }
+        
+        if row == 5{
+            if let badgeCount = UserDefaults.standard.value(forKey: "badge")as? Int{
+                
+                if badgeCount != 0{
+                    cell.lblBadgeCount.isHidden = false
+                    cell.lblBadgeCount.text = "\(badgeCount)"
+                }else{
+                    cell.lblBadgeCount.isHidden = true
+                }
+            }else{
+                cell.lblBadgeCount.isHidden = true
+            }
+        }else{
+            cell.lblBadgeCount.isHidden = true
+        }
+        
+        
         cell.menuName.text = menus[row].menuName
         return cell
     }
@@ -225,5 +268,18 @@ extension AppSideMenuViewController{
             objWebServiceManager.hideIndicator()
         }
    }
+    
+}
+
+extension UITableView
+{
+    func updateRow(row: Int, section: Int = 0)
+    {
+        let indexPath = IndexPath(row: row, section: section)
+        
+        self.beginUpdates()
+        self.reloadRows(at: [indexPath], with: .automatic)
+        self.endUpdates()
+    }
     
 }

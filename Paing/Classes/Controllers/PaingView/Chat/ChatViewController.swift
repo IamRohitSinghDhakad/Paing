@@ -84,9 +84,6 @@ extension ChatViewController:UITableViewDelegate,UITableViewDataSource{
         vc.strSenderID = self.arrMessageList[indexPath.row].strSenderID
         self.navigationController?.pushViewController(vc, animated: true)
     }
-    
-    
-    
 }
 
 //MARK:- Call Webservice Chat List
@@ -134,6 +131,7 @@ extension ChatViewController{
                 objWebServiceManager.hideIndicator()
                 
                 if (response["result"]as? String) != nil{
+                    self.tblMessage.reloadData()
                     self.tblMessage.displayBackgroundText(text: "ningún record fue encontrado")
                 }else{
                     objAlert.showAlert(message: message ?? "", title: "Alert", controller: self)

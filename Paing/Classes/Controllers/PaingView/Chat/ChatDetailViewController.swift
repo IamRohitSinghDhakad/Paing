@@ -575,7 +575,11 @@ extension ChatDetailViewController:UITableViewDelegate,UITableViewDataSource{
             if let indexPath = tblChat.indexPathForRow(at: touchPoint) {
                 print(indexPath.row)
                 // your code here, get the row for the indexPath or do whatever you want
-                self.openActionSheet(index: indexPath.row)
+                
+                let type = self.arrChatMessages[indexPath.row].strType
+                if type == "Text" || type == "text"{
+                    self.openActionSheet(index: indexPath.row)
+                }
             }
         }
     }
@@ -679,7 +683,10 @@ extension ChatDetailViewController{
     //                        self.arrChatMessages.append(obj)
                             self.tblChat.insertRows(at: [IndexPath(item: i, section: 0)], with: .none)
                         }
-                        self.tblChat.scrollToBottom()
+                        DispatchQueue.main.async {
+                            self.tblChat.scrollToBottom()
+                        }
+                       
                     }
                     else {
                         let previoudIds = self.arrChatMessages.map { $0.strMsgIDForDelete }

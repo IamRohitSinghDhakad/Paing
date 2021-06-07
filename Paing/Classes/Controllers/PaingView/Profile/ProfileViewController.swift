@@ -421,9 +421,8 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
             UIAlertAction in
             
             if self.arrayPhotoCollection.count > 11{
-                objAlert.showAlert(message: "no puedes subir más de 12 imágenes", title: "Alert", controller: self)
+                objAlert.showAlert(message: "Puede cargar un máximo de 12 fotos.", title: "Alert", controller: self)
             }else{
-               // objAlert.showAlert(message: "no puedes subir más de 12 imágenes", title: "Alert", controller: self)
                 self.openGallery()
             }
         }
@@ -431,8 +430,8 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
         let galleryAction = UIAlertAction(title: "Video", style: UIAlertAction.Style.default) {
             UIAlertAction in
             
-            if self.arrayPhotoCollection.count > 3{
-                objAlert.showAlert(message: "no puedes subir mas de 4 videos", title: "Alert", controller: self)
+            if self.arrayVideoCollection.count > 2{
+                objAlert.showAlert(message: "Puede cargar un máximo de 3 videos.", title: "Alert", controller: self)
             }else{
                 self.openVideoGallery()
             }

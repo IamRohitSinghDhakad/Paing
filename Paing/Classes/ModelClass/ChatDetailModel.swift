@@ -55,7 +55,7 @@ class ChatDetailModel: NSObject {
         
         
         if let chat_message = dict["chat_message"] as? String{
-            self.strOpponentChatMessage = chat_message
+            self.strOpponentChatMessage = chat_message.decodeEmoji
         }
         
         if let time_ago = dict["time_ago"] as? String{
