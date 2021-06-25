@@ -44,7 +44,7 @@ class ChatDetailModel: NSObject {
         }
         
         
-        if let chat_Time = dict["date"]as? String{
+        if let chat_Time = dict["created_at"]as? String{
             self.strChatTime = chat_Time
         }
         

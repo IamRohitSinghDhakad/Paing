@@ -383,7 +383,7 @@
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vbe-70-DLv">
                                                                     <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                                                     <subviews>
-                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iRe-iH-Q23">
+                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iRe-iH-Q23">
                                                                             <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                                                         </imageView>
                                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hBL-wh-9Jy">
@@ -558,16 +558,29 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mYA-u2-1vn">
                                         <rect key="frame" x="0.0" y="63" width="414" height="755"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XJ8-fF-t9t">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="755"/>
-                                            </imageView>
+                                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" contentInsetAdjustmentBehavior="never" translatesAutoresizingMaskIntoConstraints="NO" id="dRB-aV-2s4">
+                                                <rect key="frame" x="0.0" y="5" width="414" height="750"/>
+                                                <subviews>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XJ8-fF-t9t">
+                                                        <rect key="frame" x="0.0" y="0.0" width="414" height="750"/>
+                                                    </imageView>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="XJ8-fF-t9t" secondAttribute="trailing" id="9Lz-v1-aFw"/>
+                                                    <constraint firstItem="XJ8-fF-t9t" firstAttribute="top" secondItem="dRB-aV-2s4" secondAttribute="top" id="9mI-tm-aHj"/>
+                                                    <constraint firstItem="XJ8-fF-t9t" firstAttribute="leading" secondItem="dRB-aV-2s4" secondAttribute="leading" id="CK0-nw-1G8"/>
+                                                    <constraint firstItem="XJ8-fF-t9t" firstAttribute="centerX" secondItem="dRB-aV-2s4" secondAttribute="centerX" id="crP-dj-M7B"/>
+                                                    <constraint firstAttribute="bottom" secondItem="XJ8-fF-t9t" secondAttribute="bottom" id="hcJ-Aq-6nW"/>
+                                                    <constraint firstItem="XJ8-fF-t9t" firstAttribute="centerY" secondItem="dRB-aV-2s4" secondAttribute="centerY" id="m9n-qf-g7j"/>
+                                                </constraints>
+                                            </scrollView>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="bottom" secondItem="XJ8-fF-t9t" secondAttribute="bottom" id="78H-0b-Skx"/>
-                                            <constraint firstAttribute="trailing" secondItem="XJ8-fF-t9t" secondAttribute="trailing" id="A1Z-9h-axX"/>
-                                            <constraint firstItem="XJ8-fF-t9t" firstAttribute="top" secondItem="mYA-u2-1vn" secondAttribute="top" id="wgO-sy-Xpg"/>
-                                            <constraint firstItem="XJ8-fF-t9t" firstAttribute="leading" secondItem="mYA-u2-1vn" secondAttribute="leading" id="xhv-Nv-qN8"/>
+                                            <constraint firstItem="dRB-aV-2s4" firstAttribute="top" secondItem="mYA-u2-1vn" secondAttribute="top" constant="5" id="5xh-XO-m5P"/>
+                                            <constraint firstAttribute="bottom" secondItem="dRB-aV-2s4" secondAttribute="bottom" id="8eg-vD-4E1"/>
+                                            <constraint firstItem="dRB-aV-2s4" firstAttribute="leading" secondItem="mYA-u2-1vn" secondAttribute="leading" id="cdT-3i-j7M"/>
+                                            <constraint firstAttribute="trailing" secondItem="dRB-aV-2s4" secondAttribute="trailing" id="y4x-vJ-4zS"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -594,12 +607,13 @@
                     </view>
                     <connections>
                         <outlet property="imgVwPreview" destination="XJ8-fF-t9t" id="Qxs-37-vTx"/>
+                        <outlet property="scrollViewZoom" destination="dRB-aV-2s4" id="Jbc-Tc-3Vj"/>
                         <outlet property="vwPreview" destination="mYA-u2-1vn" id="8FZ-zX-tqe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Ug-FP-eVi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3084" y="94"/>
+            <point key="canvasLocation" x="3082.608695652174" y="93.75"/>
         </scene>
     </scenes>
     <resources>

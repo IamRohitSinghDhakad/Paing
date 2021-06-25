@@ -15,8 +15,8 @@ class ShareAppViewController: UIViewController, MFMessageComposeViewControllerDe
     //APP Lyf Cycyle
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.strMessageToSent = "Instale Paing\nhttps://play.google.com/store/apps/details?id=com.ambitious.Paing\n& Conoce a solteros internacionales\nCharle y tenga citas con hermosas mujeres y hombres extranjeros."
+        
+        self.strMessageToSent = "Instale Paing\nhttps://apps.apple.com/us/app/paing/id1572833595\nPodrás conocer gente nueva y tener citas haciendo nuevos amigos en España."
         // Do any additional setup after loading the view.
     }
     

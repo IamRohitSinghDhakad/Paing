@@ -25,6 +25,12 @@ class NotificationViewController: UIViewController {
         //Refresh Counter
         UserDefaults.standard.setValue(0, forKey: "badge")
         
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
         self.call_GetNotification(strUserId: objAppShareData.UserDetail.strUserId)
     }
     
@@ -64,7 +70,7 @@ extension NotificationViewController:UITableViewDelegate,UITableViewDataSource{
         let profilePic = obj.strUserImage
         if profilePic != "" {
             let url = URL(string: profilePic)
-            cell.imgVw.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "splashLogo"))
+            cell.imgVw.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "logo_square"))
         }
         
         if obj.strType == "video"{
@@ -91,6 +97,8 @@ extension NotificationViewController:UITableViewDelegate,UITableViewDataSource{
             cell.lblMsg.text = obj.strName + " le gustó tu blog"
         }else if obj.strType == "blog_comment" {
             cell.lblMsg.text = obj.strName + " comentó en su blog"
+        }else if obj.strType == "admin"{
+            cell.lblMsg.text = "Administración" + " \(obj.strNotificationTitle)."
         }else{
             cell.lblMsg.text = obj.strName + " te Agregó a favoritos."
         }
@@ -120,13 +128,17 @@ extension NotificationViewController:UITableViewDelegate,UITableViewDataSource{
 
     @objc func btnGoToProfile(sender: UIButton){
         print(sender.tag)
-        
-        let userID = self.arrNotifications[sender.tag].strUserID
-        if objAppShareData.UserDetail.strUserId == userID{
+        let obj = self.arrNotifications[sender.tag]
+        if obj.strType == "admin"{
+            
         }else{
-            let vc = UIStoryboard(name: "UserProfile", bundle: nil).instantiateViewController(withIdentifier: "UserProfileViewController") as? UserProfileViewController
-            vc?.userID = userID
-            self.navigationController?.pushViewController(vc!, animated: true)
+            let userID = self.arrNotifications[sender.tag].strUserID
+            if objAppShareData.UserDetail.strUserId == userID{
+            }else{
+                let vc = UIStoryboard(name: "UserProfile", bundle: nil).instantiateViewController(withIdentifier: "UserProfileViewController") as? UserProfileViewController
+                vc?.userID = userID
+                self.navigationController?.pushViewController(vc!, animated: true)
+            }
         }
     }
     
@@ -189,7 +201,14 @@ extension NotificationViewController{
                 }
             }else{
                 objWebServiceManager.hideIndicator()
-                objAlert.showAlert(message: message ?? "", title: "Alert", controller: self)
+                
+                if (response["result"]as? String) != nil{
+                    self.tblVwNotification.displayBackgroundText(text: "Aún no tienes ninguna notificación")
+                }else{
+                    objAlert.showAlert(message: message ?? "", title: "Alert", controller: self)
+                }
+                
+               // objAlert.showAlert(message: message ?? "", title: "Alert", controller: self)
                 
             }
             
@@ -215,7 +234,7 @@ extension NotificationViewController{
         
         let parameter = ["notification_id":strNotificationID]as [String:Any]
         
-        
+        print(parameter)
         objWebServiceManager.requestGet(strURL: WsUrl.url_DeleteNotification, params: parameter, queryParams: [:], strCustomValidation: "") { (response) in
             objWebServiceManager.hideIndicator()
             let status = (response["status"] as? Int)

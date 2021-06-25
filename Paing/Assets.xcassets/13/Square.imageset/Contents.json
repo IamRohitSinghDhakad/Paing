@@ -5,12 +5,11 @@
       "scale" : "1x"
     },
     {
-      "filename" : "overlay_skip@2x.png",
+      "filename" : "Square.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "overlay_skip@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

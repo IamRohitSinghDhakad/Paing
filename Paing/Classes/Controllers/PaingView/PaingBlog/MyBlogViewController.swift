@@ -254,7 +254,7 @@ extension MyBlogViewController{
                     }
                     
                     if self.arrBlogList.count == 0{
-                        self.tblBLogs.displayBackgroundText(text: "ningún record fue encontrado")
+                        self.tblBLogs.displayBackgroundText(text: "Aún no publicas ningún blog")
                     }else{
                         self.tblBLogs.displayBackgroundText(text: "")
                     }
@@ -265,7 +265,7 @@ extension MyBlogViewController{
                 objWebServiceManager.hideIndicator()
                 
                 if (response["result"]as? String) != nil{
-                    self.tblBLogs.displayBackgroundText(text: "ningún record fue encontrado")
+                    self.tblBLogs.displayBackgroundText(text: "Aún no publicas ningún blog")
                 }else{
                     objAlert.showAlert(message: message ?? "", title: "Alert", controller: self)
                 }
@@ -389,7 +389,7 @@ extension MyBlogViewController{
                 objWebServiceManager.hideIndicator()
                 
                 if (response["result"]as? String) != nil{
-                    self.tblBLogs.displayBackgroundText(text: "ningún record fue encontrado")
+                    self.tblBLogs.displayBackgroundText(text: "Aún no publicas ningún blog")
                 }else{
                     objAlert.showAlert(message: message ?? "", title: "Alert", controller: self)
                 }

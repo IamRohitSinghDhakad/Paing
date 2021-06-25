@@ -13,11 +13,12 @@ enum AssetType: String {
     case video = "video"
 }
 
-class EditImageVideoViewController: UIViewController {
+class EditImageVideoViewController: UIViewController,UIScrollViewDelegate {
     
     @IBOutlet weak var lblHeader: UILabel!
     @IBOutlet weak var vwPreview: UIView!
     @IBOutlet weak var imgVwPreview: UIImageView!
+    @IBOutlet var scrollViewForZoom: UIScrollView!
     
     var player: AVPlayer!
     var playerViewController: AVPlayerViewController!
@@ -29,6 +30,9 @@ class EditImageVideoViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.scrollViewForZoom.delegate = self
+        self.scrollViewForZoom.minimumZoomScale = 1.0
+        self.scrollViewForZoom.maximumZoomScale = 10.0
         // Do any additional setup after loading the view.
         self.setupView()
     }
@@ -44,6 +48,11 @@ class EditImageVideoViewController: UIViewController {
             player.play()
         }
     }
+    
+    //Scroll Methods
+    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+        return self.imgVwPreview
+     }
     
     //MARK: - Setup
     func setupView() {

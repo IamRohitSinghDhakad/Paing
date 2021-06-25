@@ -8,10 +8,11 @@
 import UIKit
 import AVKit
 
-class PreviewPhotoVideoViewController: UIViewController {
+class PreviewPhotoVideoViewController: UIViewController,UIScrollViewDelegate {
     
     @IBOutlet weak var vwPreview: UIView!
     @IBOutlet weak var imgVwPreview: UIImageView!
+    @IBOutlet var scrollViewZoom: UIScrollView!
     
     var asset: UserImageModel?
     
@@ -22,6 +23,10 @@ class PreviewPhotoVideoViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.scrollViewZoom.delegate = self
+        self.scrollViewZoom.minimumZoomScale = 1.0
+        self.scrollViewZoom.maximumZoomScale = 10.0
         // Do any additional setup after loading the view.
         self.setupView()
     }
@@ -49,6 +54,12 @@ class PreviewPhotoVideoViewController: UIViewController {
             
         }
     }
+    
+    
+    //Scroll Methods
+    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+        return self.imgVwPreview
+     }
     
     func getThumbImg(model: UserImageModel) {
         let placeholderImage = #imageLiteral(resourceName: "splashLogo")

@@ -8,7 +8,7 @@
 import UIKit
 import Alamofire
 
-class ChatDetailViewController: UIViewController,UINavigationControllerDelegate {
+class ChatDetailViewController: UIViewController,UINavigationControllerDelegate,UIScrollViewDelegate {
 
     @IBOutlet var imgVwUser: UIImageView!
     @IBOutlet var lblUserName: UILabel!
@@ -33,6 +33,10 @@ class ChatDetailViewController: UIViewController,UINavigationControllerDelegate 
     @IBOutlet var imgvwFullForDownload: UIImageView!
     @IBOutlet var btnSendSticker: UIButton!
     
+    @IBOutlet var vwBlockUser: UIView!
+    @IBOutlet var scrollVwFullImageDownload: UIScrollView!
+    
+    
     //MARK:- Variables
     var imagePicker = UIImagePickerController()
     var pickedImage:UIImage?
@@ -44,6 +48,7 @@ class ChatDetailViewController: UIViewController,UINavigationControllerDelegate 
     var strUserName = ""
     var strUserImage = ""
     var strSenderID = ""
+    var isBlocked = ""
     var timer: Timer?
     var strOnlineStatus = ""
     var isSendMessage = true
@@ -60,6 +65,12 @@ class ChatDetailViewController: UIViewController,UINavigationControllerDelegate 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
+        self.scrollVwFullImageDownload.delegate = self
+        self.scrollVwFullImageDownload.minimumZoomScale = 1.0
+        self.scrollVwFullImageDownload.maximumZoomScale = 10.0
+       // self.vwBlockUser.isHidden = true
+        
         self.tblChat.delegate = self
         self.tblChat.dataSource = self
         self.txtVwChat.delegate = self
@@ -90,7 +101,10 @@ class ChatDetailViewController: UIViewController,UINavigationControllerDelegate 
         
         self.call_GetChatList(strUserID: objAppShareData.UserDetail.strUserId, strSenderID: self.strSenderID)
         
-        self.timer = Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.call_GetProfile(strUserID: self.strSenderID)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -98,7 +112,24 @@ class ChatDetailViewController: UIViewController,UINavigationControllerDelegate 
 //        self.tblChat.scrollToBottom()
     }
     
+    //Scroll Methods
+    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+        return self.imgvwFullForDownload
+     }
+    
     //MARK: - Action Methods
+    @IBAction func btnGoToUserProfile(_ sender: Any) {
+        let userID = self.strSenderID
+        if objAppShareData.UserDetail.strUserId == userID{
+        }else{
+            let vc = UIStoryboard(name: "UserProfile", bundle: nil).instantiateViewController(withIdentifier: "UserProfileViewController") as? UserProfileViewController
+            vc?.userID = userID
+            vc?.isComingFromChat = true
+            self.timer?.invalidate()
+            self.timer = nil
+            self.navigationController?.pushViewController(vc!, animated: true)
+        }
+    }
     
     @IBAction func btnActionSendSticker(_ sender: Any) {
         if self.pickedImage != nil && self.selectedIndex != -1{
@@ -117,9 +148,13 @@ class ChatDetailViewController: UIViewController,UINavigationControllerDelegate 
     
     @IBAction func btnDeleteFullImageDownload(_ sender: Any) {
         if self.strMsgID != -1{
-            self.vwContainFullImage.isHidden = true
-            let userIDForDelete = self.arrChatMessages[strMsgID].strMsgIDForDelete
-            self.call_DeleteChatMsgSinle(strUserID: objAppShareData.UserDetail.strUserId, strMsgID: userIDForDelete)
+            
+            objAlert.showAlertCallBack(alertLeftBtn: "no", alertRightBtn: "si", title: "", message: "¿Quieres borrar este mensaje?", controller: self) {
+               
+                self.vwContainFullImage.isHidden = true
+                let userIDForDelete = self.arrChatMessages[self.strMsgID].strMsgIDForDelete
+                self.call_DeleteChatMsgSinle(strUserID: objAppShareData.UserDetail.strUserId, strMsgID: userIDForDelete)
+            }
         }else{
             
         }
@@ -136,11 +171,11 @@ class ChatDetailViewController: UIViewController,UINavigationControllerDelegate 
                 UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
             }
             
-            objAlert.showAlertCallBack(alertLeftBtn: "", alertRightBtn: "OK", title: "Alert", message: "Image Saved Succusfully", controller: self) {
+            objAlert.showAlertCallBack(alertLeftBtn: "", alertRightBtn: "OK", title: "", message: "Imagen guardada con éxito", controller: self) {
                 self.vwContainFullImage.isHidden = true
             }
         }else{
-            objAlert.showAlertCallBack(alertLeftBtn: "", alertRightBtn: "OK", title: "Alert", message: "Image Url not found", controller: self) {
+            objAlert.showAlertCallBack(alertLeftBtn: "", alertRightBtn: "OK", title: "", message: "No se encontró la URL de la imagen", controller: self) {
                 self.vwContainFullImage.isHidden = true
             }
         }
@@ -236,7 +271,7 @@ class ChatDetailViewController: UIViewController,UINavigationControllerDelegate 
     
     @IBAction func btnOnDeleteChat(_ sender: Any) {
         
-        objAlert.showAlertCallBack(alertLeftBtn: "No", alertRightBtn: "Si", title: "Alert", message: "Quieres eliminar el chat con \(self.strUserName) ?", controller: self) {
+        objAlert.showAlertCallBack(alertLeftBtn: "No", alertRightBtn: "Si", title: "", message: "Quieres eliminar el chat con \(self.strUserName) ?", controller: self) {
             self.timer?.invalidate()
             self.timer = nil
             self.call_ClearConversation(strUserID: objAppShareData.UserDetail.strUserId)
@@ -502,18 +537,6 @@ extension ChatDetailViewController:UITableViewDelegate,UITableViewDataSource{
                 
                 let profilePic = obj.strImageUrl
                 cell.imgVwopponent.imageFromServerURL(urlString: profilePic, PlaceHolderImage: #imageLiteral(resourceName: "logo_square"))
-//                if profilePic != "" {
-//                    let url = URL(string: profilePic)
-//                    cell.imgVwopponent.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "splashLogo"), options: .refreshCached) { (image, error, cacheType, url) in
-//                        if image != nil {
-//                            cell.imgVwopponent.image = image
-//                        }
-//                        if let error = error {
-//                            print("URL: \(url), error: \(error)")
-//                        }
-//                    }
-////                    cell.imgVwopponent.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "splashLogo"))
-//                }
             }
         }else{
             if obj.strSenderId == objAppShareData.UserDetail.strUserId{
@@ -533,16 +556,11 @@ extension ChatDetailViewController:UITableViewDelegate,UITableViewDataSource{
             }
         }
         
-
-        let time = obj.strChatTime.split(separator: " ")
-        
-        let chatTime = "\(time.last ?? "")"
-        
         cell.lblOpponentMsg.text = obj.strOpponentChatMessage
-        cell.lblopponentMsgTime.text = chatTime
-        cell.lblMyImageTime.text = chatTime
-        cell.lblOpponentImgTime.text = chatTime
-        cell.lblMyMsgTime.text = chatTime
+        cell.lblopponentMsgTime.text = obj.strChatTime
+        cell.lblMyImageTime.text = obj.strChatTime
+        cell.lblOpponentImgTime.text = obj.strChatTime
+        cell.lblMyMsgTime.text = obj.strChatTime
         
         cell.btnOpenImageOnFullviewMySide.tag = indexPath.row
         cell.btnOpenImageOnFullviewMySide.addTarget(self, action: #selector(btnOpenImage), for: .touchUpInside)
@@ -592,9 +610,13 @@ extension ChatDetailViewController:UITableViewDelegate,UITableViewDataSource{
         
         actionsheet.addAction(UIAlertAction(title: "Eliminar mensaje", style: UIAlertAction.Style.default, handler: { (action) -> Void in
          //Delete Message
-            let msgID = self.arrChatMessages[index].strMsgIDForDelete
-          //  let rec_ID = self.arrChatMessages[index].strReceiverID
-            self.call_DeleteChatMsgSinle(strUserID: objAppShareData.UserDetail.strUserId, strMsgID: msgID)
+            
+            objAlert.showAlertCallBack(alertLeftBtn: "no", alertRightBtn: "si", title: "", message: "¿Quieres borrar este mensaje?", controller: self) {
+                let msgID = self.arrChatMessages[index].strMsgIDForDelete
+              //  let rec_ID = self.arrChatMessages[index].strReceiverID
+                self.call_DeleteChatMsgSinle(strUserID: objAppShareData.UserDetail.strUserId, strMsgID: msgID)
+                
+            }
         }))
         
         actionsheet.addAction(UIAlertAction(title: "Copiar mensaje", style: UIAlertAction.Style.default, handler: { (action) -> Void in
@@ -630,6 +652,69 @@ extension ChatDetailViewController:UITableViewDelegate,UITableViewDataSource{
 //Get Chat List
 //MARK:- Call Webservice Chat List
 extension ChatDetailViewController{
+    
+    
+    // MARK:- Get Profile
+    
+    func call_GetProfile(strUserID: String) {
+        
+        if !objWebServiceManager.isNetworkAvailable(){
+            objWebServiceManager.hideIndicator()
+            objAlert.showAlert(message: "No Internet Connection", title: "Alert", controller: self)
+            return
+        }
+        
+      //  objWebServiceManager.showIndicator()
+        
+        let parameter = ["user_id" : strUserID, "login_id" : objAppShareData.UserDetail.strUserId] as [String:Any]
+        
+        
+        objWebServiceManager.requestGet(strURL: WsUrl.url_getUserProfile, params: parameter, queryParams: [:], strCustomValidation: "") { (response) in
+            
+            let status = (response["status"] as? Int)
+            let message = (response["message"] as? String)
+            objWebServiceManager.hideIndicator()
+            print(response)
+            
+            if status == MessageConstant.k_StatusCode{
+                
+                if let user_details  = response["result"] as? [String:Any] {
+                   print(user_details)
+                    var blockStatus = ""
+                    if let status = user_details["blocked"]as? String{
+                        blockStatus = status
+                    }else  if let status = user_details["blocked"]as? Int{
+                        blockStatus = "\(status)"
+                    }
+                    
+                    if blockStatus != "0"{
+                        self.vwBlockUser.isHidden = false
+                    }else{
+                        self.vwBlockUser.isHidden = true
+                        if self.timer == nil{
+                            self.timer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(self.updateTimer), userInfo: nil, repeats: true)
+                        }else{
+                            
+                        }
+                       
+                    }
+                    
+                }
+                else {
+                    objWebServiceManager.hideIndicator()
+                }
+                
+            }else{
+                objWebServiceManager.hideIndicator()
+                objAlert.showAlert(message: message ?? "", title: "Alert", controller: self)
+                
+            }
+        } failure: { (Error) in
+            print(Error)
+            objWebServiceManager.hideIndicator()
+        }
+    }
+    
     
     func call_GetChatList(strUserID:String, strSenderID:String){
         
@@ -750,7 +835,7 @@ extension ChatDetailViewController{
                     
                     
                     if self.arrChatMessages.count == 0{
-                        self.tblChat.displayBackgroundText(text: "ningún record fue encontrado")
+                        self.tblChat.displayBackgroundText(text: "¡Sin conversación todavía!")
                     }else{
                         self.tblChat.displayBackgroundText(text: "")
                     }
@@ -1060,4 +1145,21 @@ public extension Sequence where Iterator.Element: Hashable {
         })
     }
 
+}
+
+
+extension UIImageView {
+  func enableZoom() {
+    let pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(startZooming(_:)))
+    isUserInteractionEnabled = true
+    addGestureRecognizer(pinchGesture)
+  }
+
+  @objc
+  private func startZooming(_ sender: UIPinchGestureRecognizer) {
+    let scaleResult = sender.view?.transform.scaledBy(x: sender.scale, y: sender.scale)
+    guard let scale = scaleResult, scale.a > 1, scale.d > 1 else { return }
+    sender.view?.transform = scale
+    sender.scale = 1
+  }
 }

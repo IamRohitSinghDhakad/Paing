@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import AuthenticationServices
+
 
 class LoginViewController: UIViewController {
     
@@ -120,14 +122,20 @@ extension LoginViewController{
         
         objWebServiceManager.requestGet(strURL: WsUrl.url_Login, params: dicrParam, queryParams: [:], strCustomValidation: "") { (response) in
             objWebServiceManager.hideIndicator()
+            
             let status = (response["status"] as? Int)
             let message = (response["message"] as? String)
-            //  print(response)
+            print(response)
             if status == MessageConstant.k_StatusCode{
                 if let user_details  = response["result"] as? [String:Any] {
                     let isEmailVerified = user_details["email_verified"] as! String
                     if isEmailVerified == "0" {
+                        var strUserName = ""
+                        if let userName = user_details["name"]as? String{
+                            strUserName = userName
+                        }
                         //Show Email Verification Popup
+                        self.lblTitleSubVw.text = "Te damos la bienvenida a Paing \(strUserName)"
                         self.subVw.isHidden = false
                     }
                     else {
@@ -138,11 +146,16 @@ extension LoginViewController{
                     }
                 }
                 else {
-                    objAlert.showAlert(message: "Something went wrong!", title: "Alert", controller: self)
+                    objAlert.showAlert(message: "Something went wrong!", title: "", controller: self)
                 }
             }else{
                 objWebServiceManager.hideIndicator()
-                objAlert.showAlert(message: message ?? "", title: "Alert", controller: self)
+                if let msgg = response["result"]as? String{
+                    objAlert.showAlert(message: msgg, title: "", controller: self)
+                }else{
+                    objAlert.showAlert(message: message ?? "", title: "", controller: self)
+                }
+                
                 
             }
             

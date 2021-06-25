@@ -58,10 +58,25 @@ extension FavoriteViewController:UITableViewDelegate,UITableViewDataSource{
         cell.btnDelete.tag = indexPath.row
         cell.btnDelete.addTarget(self, action: #selector(btnDeleteAction), for: .touchUpInside)
         
+        cell.btnGoToProfile.tag = indexPath.row
+        cell.btnGoToProfile.addTarget(self, action: #selector(btnGoToProfile), for: .touchUpInside)
+        
         return cell
         
     }
     
+    
+    @objc func btnGoToProfile(sender: UIButton){
+        print(sender.tag)
+        
+        let userID = self.arrFavList[sender.tag].strOpponentUserID
+        if objAppShareData.UserDetail.strUserId == userID{
+        }else{
+            let vc = UIStoryboard(name: "UserProfile", bundle: nil).instantiateViewController(withIdentifier: "UserProfileViewController") as? UserProfileViewController
+            vc?.userID = userID
+            self.navigationController?.pushViewController(vc!, animated: true)
+        }
+    }
     
     @objc func btnDeleteAction(sender: UIButton){
         print(sender.tag)
@@ -115,7 +130,7 @@ extension FavoriteViewController{
                 if (response["result"]as? String) != nil{
                     self.arrFavList.removeAll()
                     self.tblFavorite.reloadData()
-                    self.tblFavorite.displayBackgroundText(text: "ningún record fue encontrado")
+                    self.tblFavorite.displayBackgroundText(text: "No tienes perfiles favoritos")
                 }else{
                     objAlert.showAlert(message: message ?? "", title: "Alert", controller: self)
                 }

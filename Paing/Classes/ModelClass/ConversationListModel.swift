@@ -15,6 +15,7 @@ class ConversationListModel: NSObject {
     var strLastMsg: String = ""
     var strTimeAgo : String = ""
     var strSenderID :String = ""
+    var strIsBlocked : String = ""
     
     init(dict : [String:Any]) {
         
@@ -43,6 +44,12 @@ class ConversationListModel: NSObject {
         
         if let time_ago = dict["time_ago"] as? String{
             self.strTimeAgo = time_ago
+        }
+        
+        if let blocked = dict["blocked"] as? String{
+            self.strIsBlocked = blocked
+        }else  if let blocked = dict["blocked"] as? Int{
+            self.strIsBlocked = "\(blocked)"
         }
         
     }

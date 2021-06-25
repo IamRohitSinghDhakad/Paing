@@ -947,7 +947,7 @@ extension EditProfileViewController{
                 objAppShareData.fetchUserInfoFromAppshareData()
 
                 if self.isComingFrom == "Basic Information"{
-                    objAlert.showAlertCallBack(alertLeftBtn: "", alertRightBtn: "OK", title: "Alert", message: "Actualización de información básica con éxito", controller: self) {
+                    objAlert.showAlertCallBack(alertLeftBtn: "", alertRightBtn: "OK", title: "", message: "Actualización de información básica con éxito", controller: self) {
                         self.onBackPressed()
                     }
                 }else{

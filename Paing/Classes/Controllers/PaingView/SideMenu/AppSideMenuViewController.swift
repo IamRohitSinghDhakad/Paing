@@ -187,7 +187,7 @@ extension AppSideMenuViewController: UITableViewDelegate, UITableViewDataSource 
         
         if row == 5{
             if let badgeCount = UserDefaults.standard.value(forKey: "badge")as? Int{
-                
+                print(badgeCount)
                 if badgeCount != 0{
                     cell.lblBadgeCount.isHidden = false
                     cell.lblBadgeCount.text = "\(badgeCount)"

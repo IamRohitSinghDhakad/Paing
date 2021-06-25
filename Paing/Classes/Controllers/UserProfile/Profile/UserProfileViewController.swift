@@ -35,10 +35,11 @@ class UserProfileViewController: UIViewController {
     var selectedSegmentIndx: Int = 0
     var userID: String?
     var userProfileDetail : userDetailModel?
-    
+    var isComingFromChat = Bool()
     var arrayPhotoCollection: [UserImageModel] = []
     var arrayVideoCollection: [UserImageModel] = []
     let margin: CGFloat = 10
+    var strValueChanges = Bool()
     
     //MARK: - Override Method
     
@@ -55,13 +56,32 @@ class UserProfileViewController: UIViewController {
     //MARK: - Action Method
     
     @IBAction func actionBack(_ sender: Any) {
-        self.navigationController?.popViewController(animated: true)
+        
+        if isComingFromChat{
+            
+            if self.strValueChanges{
+                //Navigate To Home
+                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                let vc = (self.mainStoryboard.instantiateViewController(withIdentifier: "SideMenuController") as? SideMenuController)!
+                let navController = UINavigationController(rootViewController: vc)
+                navController.isNavigationBarHidden = true
+                appDelegate.window?.rootViewController = navController
+               
+            }else{
+                self.navigationController?.popViewController(animated: true)
+            }
+            
+        }else{
+            self.navigationController?.popViewController(animated: true)
+        }
+        
+        
     }
     
     @IBAction func actionBlock(_ sender: Any) {
         if let userInfo = self.userProfileDetail {
-            let message = (userInfo.valBlockedStatus == 0) ? "¿Quieres bloquear a Madre ?" : "¿Quieres desbloquear a Madre ?"
-            objAlert.showAlertCallBack(alertLeftBtn: "No", alertRightBtn: "si", title: "Alert", message: message, controller: self) {
+            let message = (userInfo.valBlockedStatus == 0) ? "¿Quieres bloquear a \(userInfo.strName) ?" : "¿Quieres desbloquear a \(userInfo.strName) ?"
+            objAlert.showAlertCallBack(alertLeftBtn: "No", alertRightBtn: "si", title: "", message: message, controller: self) {
                 self.call_BlockUnblockUser(strUserID: userInfo.strUserId)
             }
         }
@@ -88,13 +108,15 @@ class UserProfileViewController: UIViewController {
         vc?.strUserName = self.userProfileDetail?.strUserName ?? ""
         vc?.strUserImage = self.userProfileDetail?.strProfilePicture ?? ""
         vc?.strSenderID = self.userProfileDetail?.strUserId ?? ""
+        vc?.isBlocked = "\(self.userProfileDetail?.valBlockedStatus ?? 0)" 
+       // vc?.isBlocked = self.userProfileDetail?.valBlockedStatus
         self.navigationController?.pushViewController(vc!, animated: true)
     }
     
     @IBAction func actionFavorite(_ sender: Any) {
         if let userInfo = self.userProfileDetail {
             let message = (userInfo.valLikedStatus == 0) ? "Quieres agregar \(userInfo.strName) en tu lista de favoritos?" : "¿Quieres eliminar a \(userInfo.strName) de tu lista de favoritos?"
-            objAlert.showAlertCallBack(alertLeftBtn: "No", alertRightBtn: "si", title: "Alert", message: message, controller: self) {
+            objAlert.showAlertCallBack(alertLeftBtn: "No", alertRightBtn: "si", title: "", message: message, controller: self) {
                 self.call_MarkUserFavorite()
             }
         }
@@ -153,8 +175,12 @@ class UserProfileViewController: UIViewController {
     //MARK: - Bind User Profile
     
     func bindUserProfile() {
+        
         var finalText = ""
         if let userProfile = self.userProfileDetail {
+            
+           // self.strBlockStatus = "\(userProfile.valBlockedStatus)"
+            
             let profilePic = userProfile.strProfilePicture
             if profilePic != "" {
                 let url = URL(string: profilePic)
@@ -534,15 +560,20 @@ extension UserProfileViewController {
             let status = (response["status"] as? Int)
             let message = (response["message"] as? String)
             print(response)
+            
+            self.strValueChanges = true
+            
             if status == MessageConstant.k_StatusCode {
                 if let user_details  = response["result"] as? [String:Any] {
                     //Blocked
                     self.userProfileDetail?.valBlockedStatus = 1
+                    
 //                    self.call_GetProfile(strUserID: strUserID)
                     self.setBlockedUnblockedView(isBlocked: true)
                 }
                 else {
                     //Unblocked
+                   
                     self.userProfileDetail?.valBlockedStatus = 0
 //                    self.call_GetProfile(strUserID: strUserID)
                     self.setBlockedUnblockedView(isBlocked: false)

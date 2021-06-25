@@ -10,7 +10,8 @@ import UIKit
 
 
 //http://ambitious.in.net/Shubham/paing/index.php/api/get_profile?user_id=2
-let BASE_URL = "http://ambitious.in.net/Shubham/paing/index.php/api/"
+//let BASE_URL = "http://ambitious.in.net/Shubham/paing/index.php/api/"//Local
+let BASE_URL = "https://paing-spain.com/admin/index.php/api/"//Live
 
 struct WsUrl{
     

@@ -90,7 +90,7 @@ extension BlockedViewController:UITableViewDelegate,UITableViewDataSource{
         let strBlockID = self.arrBlocklist[sender.tag].strChatId
         let strName = self.arrBlocklist[sender.tag].strName
         
-        objAlert.showAlertCallBack(alertLeftBtn: "no", alertRightBtn: "sí", title: "Alerta", message: "¿Quieres desbloquear a \(strName)?", controller: self) {
+        objAlert.showAlertCallBack(alertLeftBtn: "no", alertRightBtn: "sí", title: "", message: "¿Quieres desbloquear a \(strName)?", controller: self) {
             self.call_GetUnblockUser(strUserID: objAppShareData.UserDetail.strUserId, strBLockerID: strBlockID, indexPath: sender.tag)
         }
     }
@@ -144,7 +144,7 @@ extension BlockedViewController{
                 objWebServiceManager.hideIndicator()
                 
                 if (response["result"]as? String) != nil{
-                    self.tblBlockList.displayBackgroundText(text: "ningún record fue encontrado")
+                    self.tblBlockList.displayBackgroundText(text: "!Aún no hay ningún usuario bloqueado!")
                 }else{
                     objAlert.showAlert(message: message ?? "", title: "Alert", controller: self)
                 }
@@ -187,7 +187,7 @@ extension BlockedViewController{
                 }
                 
                 if self.arrBlocklist.count == 0{
-                    self.tblBlockList.displayBackgroundText(text: "ningún record fue encontrado")
+                    self.tblBlockList.displayBackgroundText(text: "Aún no hay ningún usuario bloqueado")
                 }else{
                     self.tblBlockList.displayBackgroundText(text: "")
                 }

@@ -68,21 +68,29 @@ extension ChatViewController:UITableViewDelegate,UITableViewDataSource{
         if obj.strTimeAgo.contains("hours"){
             let strTxt = obj.strTimeAgo.split(separator: " ")
             cell.lblTime.text = "Hace \(strTxt[0]) horas"
+        }else if obj.strTimeAgo.contains("minutes"){
+            let strTxt = obj.strTimeAgo.split(separator: " ")
+            cell.lblTime.text = "Hace \(strTxt[0]) minutos"
+        }else if obj.strTimeAgo.contains("seconds"){
+            let strTxt = obj.strTimeAgo.split(separator: " ")
+            cell.lblTime.text = "Hace \(strTxt[0]) segundos"
         }else{
             let strTxt = obj.strTimeAgo.split(separator: " ")
             cell.lblTime.text = "Hace \(strTxt[0]) dias"
         }
-        
         return cell
     }
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "ChatDetailViewController")as! ChatDetailViewController
         vc.strUserName = self.arrMessageList[indexPath.row].strName
         vc.strUserImage = self.arrMessageList[indexPath.row].strUserImage
         vc.strSenderID = self.arrMessageList[indexPath.row].strSenderID
+        vc.isBlocked = self.arrMessageList[indexPath.row].strIsBlocked
         self.navigationController?.pushViewController(vc, animated: true)
+    
     }
 }
 
@@ -120,7 +128,7 @@ extension ChatViewController{
                     self.arrMessageList.reverse()
                     
                     if self.arrMessageList.count == 0{
-                        self.tblMessage.displayBackgroundText(text: "ningún record fue encontrado")
+                        self.tblMessage.displayBackgroundText(text: "No tienes mensajes")
                     }else{
                         self.tblMessage.displayBackgroundText(text: "")
                     }
@@ -132,7 +140,7 @@ extension ChatViewController{
                 
                 if (response["result"]as? String) != nil{
                     self.tblMessage.reloadData()
-                    self.tblMessage.displayBackgroundText(text: "ningún record fue encontrado")
+                    self.tblMessage.displayBackgroundText(text: "No tienes mensajes")
                 }else{
                     objAlert.showAlert(message: message ?? "", title: "Alert", controller: self)
                 }

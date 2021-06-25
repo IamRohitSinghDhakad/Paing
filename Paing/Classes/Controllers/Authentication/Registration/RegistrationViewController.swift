@@ -60,12 +60,15 @@ class RegistrationViewController: UIViewController,UINavigationControllerDelegat
         self.tblOptions.delegate = self
         self.tblOptions.dataSource = self
         
+        self.imgVwUser.image = UIImage.init(named: "user")
+        
         self.tfDOB.delegate = self
         
         self.tfSerchSubVw.delegate = self
         self.tfSerchSubVw.addTarget(self, action: #selector(searchContactAsPerText(_ :)), for: .editingChanged)
         
         self.tfMuestrame.arrowSize = 0
+        self.tfMuestrame.delegate = self
         
         self.subVwTbl.isHidden = true
         
@@ -81,6 +84,15 @@ class RegistrationViewController: UIViewController,UINavigationControllerDelegat
         self.tfMuestrame.text = selectedText
         }
     }
+    
+    
+     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        if textField == self.tfMuestrame{
+            self.view.endEditing(true)
+        }
+        return true
+    }
+    
     
     //MARK: - Action Methods
     
@@ -101,6 +113,9 @@ class RegistrationViewController: UIViewController,UINavigationControllerDelegat
     }
     
     @IBAction func btnSelectCountry(_ sender: Any) {
+        self.tfSerchSubVw.text = ""
+        self.arrCountryFiltered.removeAll()
+        self.arrCountryFiltered = self.arrCountry
         self.strType = "Country"
         self.tblOptions.reloadData()
         self.subVwTbl.isHidden = false
@@ -157,7 +172,9 @@ extension RegistrationViewController{
         self.tfMuestrame.text = self.tfMuestrame.text?.trim()
         
         
-        if (tfName.text?.isEmpty)! {
+        if self.imgVwUser.image == UIImage.init(named: "user") {
+            objAlert.showAlert(message: "¡Sube una foto de perfil!", title:MessageConstant.k_AlertTitle, controller: self)
+        }else if (tfName.text?.isEmpty)! {
             objAlert.showAlert(message: "¡No puede estar vacío!", title:MessageConstant.k_AlertTitle, controller: self)
         }
         else if (tfMuestrame.text?.isEmpty)! {
@@ -212,6 +229,7 @@ extension RegistrationViewController{
         let screenWidth = UIScreen.main.bounds.width
         datePicker = UIDatePicker(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 216))//1
         datePicker.datePickerMode = .date //2
+        self.datePicker.maximumDate = Date()
 
         // iOS 14 and above
         if #available(iOS 14, *) {// Added condition for iOS 14
@@ -250,10 +268,13 @@ extension RegistrationViewController:UITableViewDelegate,UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if self.strType == "Country"{
+            print(arrCountryFiltered.count)
             return arrCountryFiltered.count
         }else if self.strType == "State"{
+            print(arrStateFiltered.count)
             return arrStateFiltered.count
         }else if self.strType == "City"{
+            print(arrCityFiltered.count)
             return arrCityFiltered.count
         }else{
          return 0
@@ -634,6 +655,9 @@ extension RegistrationViewController{
             print(response)
             if status == MessageConstant.k_StatusCode{
                 
+                self.arrState.removeAll()
+                self.arrStateFiltered.removeAll()
+                
                 if let result = response["result"]as? [[String:Any]]{
                     for dictData in result{
                         let obj = StateModel.init(dict: dictData)
@@ -680,6 +704,9 @@ extension RegistrationViewController{
             let message = (response["message"] as? String)
             print(response)
             if status == MessageConstant.k_StatusCode{
+                
+                self.arrCity.removeAll()
+                self.arrCityFiltered.removeAll()
                 
                 if let result = response["result"]as? [[String:Any]]{
                     for dictData in result{

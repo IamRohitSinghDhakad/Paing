@@ -36,6 +36,12 @@ class HomeViewController: UIViewController {
     @IBOutlet var btnAmistaSubVw: UIButton!
     @IBOutlet var btnRelacionIntima: UIButton!
     
+    @IBOutlet var vwNoMatchesFound: UIView!
+    
+    @IBOutlet var subVwMemberShip: UIView!
+    @IBOutlet var lblUserNameSubVwMemberShip: UILabel!
+    @IBOutlet var imgvwLogoMembership: UIImageView!
+    
     
     var arrUsers = [HomeModel]()
     var dictSampleData = [String:Any]()
@@ -61,6 +67,7 @@ class HomeViewController: UIViewController {
         self.setDropDown()
         self.subVwFilter.isHidden = true
         self.subVwCompleteProfile.isHidden = true
+        self.subVwMemberShip.isHidden = true
         swipeView.dataSource = self
         swipeView.delegate = self
         self.tfMinimuAgeSubVw.delegate = self
@@ -72,6 +79,7 @@ class HomeViewController: UIViewController {
         self.vwThreeSubVw.borderColor = UIColor.lightGray
         self.vwFourSubVw.borderColor = UIColor.lightGray
         
+        self.vwNoMatchesFound.isHidden = true
 //        self.swipeView.layer.borderWidth = 1.0
 //        self.swipeView.borderColor = UIColor.lightGray
         
@@ -84,13 +92,29 @@ class HomeViewController: UIViewController {
         super.viewWillAppear(animated)
         self.subVwFilter.isHidden = true
         self.subVwCompleteProfile.isHidden = true
+        self.subVwMemberShip.isHidden = true
         
+        self.call_GetProfileForCheckBlockStatus(strUserID: objAppShareData.UserDetail.strUserId)
         
         if objAppShareData.UserDetail.strGender == "" && objAppShareData.UserDetail.strDob == "" {
             self.call_GetProfile(strUserID: objAppShareData.UserDetail.strUserId)
         }else {
-            self.call_GetUsers(strUserID: objAppShareData.UserDetail.strUserId)
-            self.modalTransitionStyle = UIModalTransitionStyle.flipHorizontal
+            
+            if objAppShareData.UserDetail.strMembershipStats == "0"{
+                self.lblUserNameSubVwMemberShip.text = objAppShareData.UserDetail.strName
+                self.subVwMemberShip.isHidden = false
+                
+                UIView.animate(withDuration: 1, delay: 0.0, options: [.curveEaseIn], animations: {
+                    self.imgvwLogoMembership.transform = CGAffineTransform.identity.scaledBy(x: 0.5, y: 0.5)
+                }) { (finished) in
+                    UIView.animate(withDuration: 1, animations: {
+                        self.imgvwLogoMembership.transform = CGAffineTransform.identity
+                    })
+                }
+            }else{
+                self.call_GetUsers(strUserID: objAppShareData.UserDetail.strUserId)
+                self.modalTransitionStyle = UIModalTransitionStyle.flipHorizontal
+            }
         }
     }
     
@@ -109,6 +133,11 @@ class HomeViewController: UIViewController {
             }
         self.tfSelectGenderSubVw.text = selectedText
         }
+    }
+    
+    @IBAction func actionBtnGoToMembership(_ sender: Any) {
+        self.subVwMemberShip.isHidden = true
+        self.pushVc(viewConterlerId: "SusbcriptionViewController")
     }
     
     //MARK: - Action Methods SubVw
@@ -273,11 +302,13 @@ extension HomeViewController: KolodaViewDelegate {
                 offset = offset + limit
                 self.call_GetFilteredUsers(strOffset: offset, strUserID: objAppShareData.UserDetail.strUserId)
             }else{
-              objAlert.showAlert(message: "Quedarse sin usuarias", title: "Alerta", controller: self)
+                self.vwNoMatchesFound.isHidden = false
+             // objAlert.showAlert(message: "Quedarse sin usuarias", title: "", controller: self)
                 self.arrUsers.removeAll()
             }
         }else{
-            objAlert.showAlert(message: "Quedarse sin usuarias", title: "Alerta", controller: self)
+            self.vwNoMatchesFound.isHidden = false
+          //  objAlert.showAlert(message: "Quedarse sin usuarias", title: "", controller: self)
             self.arrUsers.removeAll()
         }
     }
@@ -438,6 +469,14 @@ extension HomeViewController{
                             }
                         }
                     }
+                    
+                    if self.arrUsers.count == 0{
+                        self.vwNoMatchesFound.isHidden = false
+                    }else{
+                        self.vwNoMatchesFound.isHidden = true
+                    }
+                    
+                    self.swipeView.resetCurrentCardIndex()
                     self.swipeView.reloadData()
                 }
                 
@@ -450,7 +489,8 @@ extension HomeViewController{
             }else{
                 objWebServiceManager.hideIndicator()
                 if (response["result"] as? String) != nil || response["result"] as? String == "User not found"{
-                    objAlert.showAlert(message: "ningún record fue encontrado", title: "Alerta", controller: self)
+                    self.vwNoMatchesFound.isHidden = false
+                  //  objAlert.showAlert(message: "ningún record fue encontrado", title: "", controller: self)
                 }else{
                     objAlert.showAlert(message: message ?? "", title: "Alert", controller: self)
                 }
@@ -539,6 +579,13 @@ extension HomeViewController{
                         }
                        // self.arrUsers.append(obj)
                     }
+                    
+                    if self.arrUsers.count == 0{
+                        self.vwNoMatchesFound.isHidden = false
+                    }else{
+                        self.vwNoMatchesFound.isHidden = true
+                    }
+                    
                     self.swipeView.resetCurrentCardIndex()
                     self.swipeView.reloadData()
                 }
@@ -553,7 +600,8 @@ extension HomeViewController{
             }else{
                 objWebServiceManager.hideIndicator()
                 if (response["result"] as? String) != nil || response["result"] as? String == "User not found"{
-                    objAlert.showAlert(message: "ningún record fue encontrado", title: "Alerta", controller: self)
+                    self.vwNoMatchesFound.isHidden = false
+                   // objAlert.showAlert(message: "ningún record fue encontrado", title: "", controller: self)
                 }else{
                     objAlert.showAlert(message: message ?? "", title: "Alert", controller: self)
                 }
@@ -596,7 +644,7 @@ extension HomeViewController{
             }else{
                 objWebServiceManager.hideIndicator()
                 if (response["result"] as? String) != nil || response["result"] as? String == "User not found"{
-                    objAlert.showAlert(message: "ningún record fue encontrado", title: "Alerta", controller: self)
+                    objAlert.showAlert(message: "ningún record fue encontrado", title: "", controller: self)
                 }else{
                     objAlert.showAlert(message: message ?? "", title: "Alert", controller: self)
                 }
@@ -649,22 +697,24 @@ extension HomeViewController{
                             })
                         }
                     }else {
-                        self.call_GetUsers(strUserID: objAppShareData.UserDetail.strUserId)
-                        self.modalTransitionStyle = UIModalTransitionStyle.flipHorizontal
+                        
+                        if objAppShareData.UserDetail.strMembershipStats == "0"{
+                            self.lblUserNameSubVwMemberShip.text = objAppShareData.UserDetail.strName
+                            self.subVwMemberShip.isHidden = false
+                            
+                            UIView.animate(withDuration: 1, delay: 0.0, options: [.curveEaseIn], animations: {
+                                self.imgvwLogoMembership.transform = CGAffineTransform.identity.scaledBy(x: 0.5, y: 0.5)
+                            }) { (finished) in
+                                UIView.animate(withDuration: 1, animations: {
+                                    self.imgvwLogoMembership.transform = CGAffineTransform.identity
+                                })
+                            }
+                        }else{
+                            self.call_GetUsers(strUserID: objAppShareData.UserDetail.strUserId)
+                            self.modalTransitionStyle = UIModalTransitionStyle.flipHorizontal
+                        }
                     }
-
-                    
                 }
-                
-//                if let arrData  = response["result"] as? [[String:Any]]{
-//                    for dictdata in arrData{
-//                        let obj = HomeModel.init(dict: dictdata)
-//                        self.arrUsers.append(obj)
-//                    }
-//                    self.swipeView.reloadData()
-//                }
-                
-                
             }else{
                 objWebServiceManager.hideIndicator()
                 objAlert.showAlert(message: message ?? "", title: "Alert", controller: self)
@@ -678,6 +728,56 @@ extension HomeViewController{
         }
     }
     
+    
+    // MARK:- Get Profile For Check Block Status
+    
+    func call_GetProfileForCheckBlockStatus(strUserID:String){
+        
+        if !objWebServiceManager.isNetworkAvailable(){
+            objWebServiceManager.hideIndicator()
+            objAlert.showAlert(message: "No Internet Connection", title: "Alert", controller: self)
+            return
+        }
+        
+     //   objWebServiceManager.showIndicator()
+        
+        let parameter = ["user_id":strUserID]as [String:Any]
+        
+        
+        objWebServiceManager.requestGet(strURL: WsUrl.url_getUserProfile, params: parameter, queryParams: [:], strCustomValidation: "") { (response) in
+            objWebServiceManager.hideIndicator()
+            let status = (response["status"] as? Int)
+            let message = (response["message"] as? String)
+            
+            print(response)
+            
+            if status == MessageConstant.k_StatusCode{
+                
+                if let user_details  = response["result"] as? [String:Any] {
+                    
+                    if let blockStatus = user_details["status"]as? String{
+                        
+                        if blockStatus == "0"{
+                            
+                            objAlert.showAlertCallBack(alertLeftBtn: "", alertRightBtn: "OK", title: "", message: "Su cuenta es desactivada por el administrador.", controller: self) {
+                                AppSharedData.sharedObject().signOut()
+                            }
+                        }
+                    }else if let blockStatus = user_details["status"]as? Int{
+                        if "\(blockStatus)" == "0"{
+                            AppSharedData.sharedObject().signOut()
+                        }
+                    }
+                }
+            }else{
+                objWebServiceManager.hideIndicator()
+                objAlert.showAlert(message: message ?? "", title: "Alert", controller: self)
+            }
+        } failure: { (Error) in
+            print(Error)
+            objWebServiceManager.hideIndicator()
+        }
+    }
     
 }
 

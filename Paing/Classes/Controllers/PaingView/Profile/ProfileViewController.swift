@@ -626,7 +626,7 @@ extension ProfileViewController {
                 
             }else{
                 objWebServiceManager.hideIndicator()
-                objAlert.showAlert(message: message ?? "", title: "Alert", controller: self)
+              //  objAlert.showAlert(message: message ?? "", title: "Alert", controller: self)
                 
             }
         } failure: { (Error) in
@@ -742,7 +742,7 @@ extension ProfileViewController {
                 
             }else{
                 objWebServiceManager.hideIndicator()
-                objAlert.showAlert(message: message ?? "", title: "Alert", controller: self)
+               // objAlert.showAlert(message: message ?? "", title: "Alert", controller: self)
                 
             }
             

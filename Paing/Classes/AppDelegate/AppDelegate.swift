@@ -11,6 +11,7 @@ import Firebase
 import FBSDKCoreKit
 import GoogleSignIn
 import FirebaseInstanceID
+import UserNotifications
 
 let ObjAppdelegate = UIApplication.shared.delegate as! AppDelegate
 @main
@@ -19,8 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var navController: UINavigationController?
     
-    var contentHandler: ((UNNotificationContent) -> Void)?
-    var bestAttemptContent: UNMutableNotificationContent?
+    
     
     private static var AppDelegateManager: AppDelegate = {
         let manager = UIApplication.shared.delegate as! AppDelegate
@@ -121,6 +121,7 @@ extension AppDelegate {
 
 //MARK:- notification setup
 extension AppDelegate:UNUserNotificationCenterDelegate{
+    
     func registerForRemoteNotification() {
         // iOS 10 support
         if #available(iOS 10, *) {
@@ -186,41 +187,6 @@ extension AppDelegate : MessagingDelegate{
         }
     }
     
-    // Modify the payload contents.
-     func didReceive(_ request: UNNotificationRequest,
-                             withContentHandler contentHandler:
-                                @escaping (UNNotificationContent) -> Void) {
-        self.contentHandler = contentHandler
-        self.bestAttemptContent = (request.content.mutableCopy()
-                                    as? UNMutableNotificationContent)
-        
-        // Try to decode the encrypted message data.
-        let encryptedData = bestAttemptContent?.userInfo["ENCRYPTED_DATA"]
-        if let bestAttemptContent = bestAttemptContent {
-            if let data = encryptedData as? String {
-              //  let decryptedMessage = self.decrypt(data: data)
-              //  bestAttemptContent.body = decryptedMessage
-            }
-            else {
-                bestAttemptContent.body = "(Encrypted)"
-            }
-            
-            // Always call the completion handler when done.
-            contentHandler(bestAttemptContent)
-        }
-    }
-    
-    // Return something before time expires.
-     func serviceExtensionTimeWillExpire() {
-        if let contentHandler = contentHandler,
-           let bestAttemptContent = bestAttemptContent {
-            
-            // Mark the message as still encrypted.
-            bestAttemptContent.subtitle = "(Encrypted)"
-            bestAttemptContent.body = "abra ka dabra"
-            contentHandler(bestAttemptContent)
-        }
-    }
 
     @available(iOS 10.0, *)
     func userNotificationCenter(_ center: UNUserNotificationCenter,
@@ -229,21 +195,7 @@ extension AppDelegate : MessagingDelegate{
         
         if let userInfo = notification.request.content.userInfo as? [String : Any]{
             print(userInfo)
-            var notificationType = ""
-            var bookingID = ""
-            
-            if let type = userInfo["type"] as? Int{
-                notificationType = String(type)
-            }else if let type = userInfo["type"] as? String{
-                notificationType = type
-            }
-                    
-            if let id = userInfo["reference_id"] as? Int{
-                bookingID = String(id)
-            }else if let id = userInfo["reference_id"] as? String{
-                bookingID = id
-            }
-            
+
             //Update BadgeCount
             if let badgeCount = UserDefaults.standard.value(forKey: "badge")as? Int{
                 let newCount  = badgeCount + 1
@@ -254,55 +206,15 @@ extension AppDelegate : MessagingDelegate{
             
             
          //   objAppShareData.notificationDict = userInfo
-            self.navWithNotification(type: notificationType, bookingID: bookingID)
+//            self.navWithNotification(type: notificationType, bookingID: bookingID)
         }
         completionHandler([.alert,.sound,.badge])
     }
     
-    /*
-     if (type.equalsIgnoreCase("video")) {
-                     noti = username + " le gustó tu video.";
-                 } else if (type.equalsIgnoreCase("Sticker")) {
-                     noti = username + " te envía un duende.";
-                 } else if (type.equalsIgnoreCase("image_like")) {
-                     noti = username + " le gustó tu foto.";
-                 } else if (type.equalsIgnoreCase("image_send")) {
-                     noti = username + " te envió una imagen";
-                 } else if (type.equalsIgnoreCase("profile_like")) {
-                     noti = username + " le gustó tu perfil.";
-                 } else if (type.equalsIgnoreCase("Text")) {
-                     noti = username + " te envió un mensaje";
-                 } else if (type.equalsIgnoreCase("Image")) {
-                     noti = username + " te envió una imagen";
-                 } else if (type.equalsIgnoreCase("Liked")) {
-                     noti = username + " te Agregó a favoritos.";
-                 } else if (type.equalsIgnoreCase("blog_like")) {
-                     noti = username + " le gustó tu blog.";
-                 } else if (type.equalsIgnoreCase("blog_comment")) {
-                     noti = username + " comentó en su blog.";
-                 } else {
-                     noti = username + " te Agregó a favoritos.";
-                 }
-     */
+    
     
     func navWithNotification(type:String,bookingID:String){
-//        let topController = self.topViewController()
-//        //print(topController?.restorationIdentifier)
-//        if type == "1" && (topController?.restorationIdentifier == "Ridedetail_VC") && bookingID == objAppShareData.holdBookingID{
-//            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refreshDetail"), object: nil)
-//
-//        }else if type == "1" && (objAppShareData.isONMainList == true){
-//            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refreshMainList"), object: nil)
-//
-//        }else if type == "1" && (topController?.restorationIdentifier == "Expire_CompleteRides_VC"){
-//            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refreshExpiredCmpltList"), object: nil)
-//
-//        }else if type == "5" && (topController?.restorationIdentifier == "Companylist_VC"){
-//            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refreshCompanyList"), object: nil)
-//
-//        }else if objAppShareData.holdVCIndex == "1" || objAppShareData.holdVCIndex == "2"{
-//            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refreshCompanyList"), object: nil)
-//        }
+
     }
 
     //TODO: called When you tap on the notification in background

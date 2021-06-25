@@ -8,6 +8,8 @@
 import UIKit
 import FBSDKLoginKit
 import GoogleSignIn
+import AuthenticationServices
+
 
 struct SocialLoginParameter {
     //    Call<ResponseBody> socialsignup(@Query("name") String name,
@@ -31,6 +33,7 @@ class WelcomeViewController: UIViewController {
     
     
     var isAnimated: Bool = false
+    var isAccepted = ""
     
     let loginManager = LoginManager()
     var isFBLogin : Bool {
@@ -55,6 +58,13 @@ class WelcomeViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        if let isCheck = UserDefaults.standard.value(forKey: "isPolicyCheck")as? String{
+            isAccepted = isCheck
+        }else{
+            isAccepted = "0"
+        }
+        
         self.vwSub.isHidden = true
         if !isAnimated {
             isAnimated = true
@@ -84,54 +94,102 @@ class WelcomeViewController: UIViewController {
     //MARK: - Action Methods
     
     @IBAction func actionLoginWithFB(_ sender: Any) {
-        if !objWebServiceManager.isNetworkAvailable(){
-            objWebServiceManager.hideIndicator()
-            objAlert.showAlert(message: "No Internet Connection", title: "Alert", controller: self)
-            return
-        }
-        if let accessToken = AccessToken.current, !accessToken.isExpired {
-            // User is logged in, do work such as go to next view controller.
-            self.getFBUserDetails()
-        }
-        else {
-            // Access token not available -- user already logged out
-            // Perform log in
-            loginManager.logIn(permissions: [Permission.publicProfile.name, Permission.email.name], from: self) { (result, error) in
-                // Check for error
-                guard error == nil else {
-                    // Error occurred
-                    print("Process error: \(error!.localizedDescription)")
-                    return
-                }
-                
-                // Check for cancel
-                guard let result = result, !result.isCancelled else {
-                    print("User cancelled login")
-                    return
-                }
-                
-                DispatchQueue.main.async {
-                    // Successfully logged in
-                    print("Result: \(result)\n\nError: \(error)\n\n")
-                    self.getFBUserDetails()
-                }
-                
+        
+        if isAccepted == "1"{
+            
+            if !objWebServiceManager.isNetworkAvailable(){
+                objWebServiceManager.hideIndicator()
+                objAlert.showAlert(message: "No Internet Connection", title: "Alert", controller: self)
+                return
             }
+            if let accessToken = AccessToken.current, !accessToken.isExpired {
+                // User is logged in, do work such as go to next view controller.
+                self.getFBUserDetails()
+            }
+            else {
+                // Access token not available -- user already logged out
+                // Perform log in
+                loginManager.logIn(permissions: [Permission.publicProfile.name, Permission.email.name], from: self) { (result, error) in
+                    // Check for error
+                    guard error == nil else {
+                        // Error occurred
+                        print("Process error: \(error!.localizedDescription)")
+                        return
+                    }
+                    
+                    // Check for cancel
+                    guard let result = result, !result.isCancelled else {
+                        print("User cancelled login")
+                        return
+                    }
+                    
+                    DispatchQueue.main.async {
+                        // Successfully logged in
+                        print("Result: \(result)\n\nError: \(error)\n\n")
+                        self.getFBUserDetails()
+                    }
+                    
+                }
+            }
+        }else{
+            self.pushVc(viewConterlerId: "AcceptTermsViewController")
         }
+      
     }
     
     @IBAction func actionLoginWithGmail(_ sender: Any) {
-        GIDSignIn.sharedInstance().presentingViewController = self
-        GIDSignIn.sharedInstance().delegate = self
-        GIDSignIn.sharedInstance().signIn()
+        
+        if isAccepted == "1"{
+            
+            GIDSignIn.sharedInstance().presentingViewController = self
+            GIDSignIn.sharedInstance().delegate = self
+            GIDSignIn.sharedInstance().signIn()
+            
+        }else{
+            self.pushVc(viewConterlerId: "AcceptTermsViewController")
+        }
+        
+       
     }
     
+    @IBAction func actionSignInApple(_ sender: Any) {
+        self.view.endEditing(true)
+        if #available(iOS 13.0, *) {
+            let appleIDProvider = ASAuthorizationAppleIDProvider()
+            let request = appleIDProvider.createRequest()
+            request.requestedScopes = [.fullName, .email]
+            let authorizationController = ASAuthorizationController(authorizationRequests: [request])
+            //  authorizationController.delegate = self
+            // Create an authorization controller with the given requests.
+            authorizationController.delegate = self
+            authorizationController.presentationContextProvider = self
+            authorizationController.performRequests()
+        } else {
+            // Fallback on earlier versions
+        }
+
+    }
+    
+    
     @IBAction func actionLoginWithEmail(_ sender: Any) {
-        pushVc(viewConterlerId: "LoginViewController")
+        
+        if isAccepted == "1"{
+            pushVc(viewConterlerId: "LoginViewController")
+        }else{
+            self.pushVc(viewConterlerId: "AcceptTermsViewController")
+        }
+        
     }
     
     @IBAction func actionGoToRegistration(_ sender: Any) {
-        pushVc(viewConterlerId: "RegistrationViewController")
+        
+        if isAccepted == "1"{
+            self.pushVc(viewConterlerId: "RegistrationViewController")
+        }else{
+            self.pushVc(viewConterlerId: "AcceptTermsViewController")
+        }
+        
+        
         //     let vc = (self.authStoryboard.instantiateViewController(withIdentifier: "RegistrationViewController") as? RegistrationViewController)!
         //   self.navigationController?.pushViewController(vc, animated: true)
     }
@@ -200,8 +258,63 @@ extension WelcomeViewController : GIDSignInDelegate {
             self.call_WsSocialLogin(socialMediaParam: socialMediaParam)
         }
     }
+}
+
+//MARK:- Apple login
+@available(iOS 13.0, *)
+extension WelcomeViewController: ASAuthorizationControllerDelegate,ASAuthorizationControllerPresentationContextProviding{
     
+    @available(iOS 13.0, *)
+    func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
+        return self.view.window!
+    }
     
+    @available(iOS 13.0, *)
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+        
+        switch authorization.credential {
+        case let appleIDCredential as ASAuthorizationAppleIDCredential:
+            var socialMediaParam = SocialLoginParameter()
+            var firstName = ""
+            // Create an account in your system.
+            let userIdentifier = appleIDCredential.user
+            _ = appleIDCredential.fullName
+            if let email = appleIDCredential.email{
+                socialMediaParam.email = email
+            }
+            if let givenName = appleIDCredential.fullName?.givenName{
+                firstName = givenName
+            }
+            if let familyName = appleIDCredential.fullName?.familyName{
+                socialMediaParam.name = firstName + " " + familyName
+            }
+            
+            print(socialMediaParam.email)
+            print(socialMediaParam.name)
+            print(userIdentifier)
+            
+            socialMediaParam.social_id = userIdentifier
+            socialMediaParam.social_type = "Apple"
+            socialMediaParam.register_id = objAppShareData.strFirebaseToken
+            
+            self.call_WsSocialLogin(socialMediaParam: socialMediaParam)
+            
+            
+        case let passwordCredential as ASPasswordCredential:
+            
+            // Sign in using an existing iCloud Keychain credential.
+            let username = passwordCredential.user
+            let password = passwordCredential.password
+            
+            // For the purpose of this demo app, show the password credential as an alert.
+            DispatchQueue.main.async {
+                // self.showPasswordCredentialAlert(username: username, password: password)
+            }
+            
+        default:
+            break
+        }
+    }
 }
 
 //MARK:- Call Webservice

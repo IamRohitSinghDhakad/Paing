@@ -1,6 +1,5 @@
 //
 //  SignUpModel.swift
-//  Somi
 //
 //  Created by Rohit Singh Dhakad on 25/03/21.
 //
@@ -68,6 +67,7 @@ class userDetailModel: NSObject {
     var valBlockedStatus: Int = 0
     var strBlockedBy: String = ""
     var strVisibilityStatus: String = ""
+    var strMembershipStats:String = ""
     
     init(dict : [String:Any]) {
         
@@ -86,6 +86,14 @@ class userDetailModel: NSObject {
         if let username = dict["name"] as? String{
             self.strUserName = username
         }
+        
+        if let strMembership = dict["has_membership"] as? String{
+            self.strMembershipStats = strMembership
+        }else if let strMembership = dict["has_membership"] as? Int{
+            self.strMembershipStats = "\(strMembership)"
+        }
+        
+        
         
         if let password = dict["password"] as? String{
             self.strPassword = password
@@ -242,6 +250,8 @@ class userDetailModel: NSObject {
         
         if let blocked = dict["blocked"] as? Int {
             self.valBlockedStatus = blocked
+        }else if let blocked = dict["blocked"] as? String {
+            self.valBlockedStatus = Int(blocked) ?? 0
         }
         
         if let blockedBy = dict["blockedBy"] as? String {

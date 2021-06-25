@@ -15,7 +15,7 @@
 	<key>CFBundlePackageType</key>
 	<string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -34,11 +34,13 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>FacebookAppID</key>
 	<string>1113692679134151</string>
 	<key>FacebookDisplayName</key>
 	<string>Paing</string>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>fbapi</string>
@@ -75,19 +77,17 @@
 	<key>NSBluetoothPeripheralUsageDescription</key>
 	<string>Paing would like to make data available to nearby bluetooth devices even when you're not using the app.</string>
 	<key>NSCameraUsageDescription</key>
-	<string>$(Paing) App needs camera permission to display your photos to other users.</string>
+	<string>$(Paing) App requires access to the photo library to upload your profile photo.</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>$(Paing)"We need access to your location to show you relevant search results, Your current location will be used for nearby search results, directions and more"!</string>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>$(Paing)"We need access to your location to show you relevant search results, Your current location will be used for nearby search results, directions and more"!</string>
+	<string>$(Paing)"We need access to your location to show you relevant search results</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>$(Paing)"We need access to your location to show you relevant search results, Your current location will be used for nearby search results, directions and more"!</string>
+	<string>$(Paing)"We need access to your location to show you relevant search results, Your current location will be used for search nearby users and provide you best result.</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>$(Paing)"App need access to microphone to record video for newsfeed.</string>
+	<string>$(Paing)"App need access to microphone to record video for upload on your profile.</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>$(Paing)"We need access to your Gallery to show you relevant search results.</string>
+	<string>$(Paing)"We need access to your Gallery so you can save images on your device.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>$(Paing)"We need access to your Gallery to show you relevant search results.</string>
+	<string>$(Paing)"We need access to your Gallery so you can save images on your device.</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>UIBackgroundModes</key>
@@ -105,8 +105,6 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>

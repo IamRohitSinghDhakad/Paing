@@ -295,7 +295,7 @@ extension PaingBlogViewController{
                     }
                     
                     if self.arrBlogList.count == 0{
-                        self.tblBlogs.displayBackgroundText(text: "ningún record fue encontrado")
+                        self.tblBlogs.displayBackgroundText(text: "no tienes blogs")
                     }else{
                         self.tblBlogs.displayBackgroundText(text: "")
                     }
@@ -307,7 +307,7 @@ extension PaingBlogViewController{
                 objWebServiceManager.hideIndicator()
                 
                 if (response["result"]as? String) != nil{
-                    self.tblBlogs.displayBackgroundText(text: "ningún record fue encontrado")
+                    self.tblBlogs.displayBackgroundText(text: "no tienes blogs")
                 }else{
                     objAlert.showAlert(message: message ?? "", title: "Alert", controller: self)
                 }
@@ -431,7 +431,7 @@ extension PaingBlogViewController{
                  objWebServiceManager.hideIndicator()
                  
                  if (response["result"]as? String) != nil{
-                     self.tblBlogs.displayBackgroundText(text: "ningún record fue encontrado")
+                     self.tblBlogs.displayBackgroundText(text: "!no tienes blogs")
                  }else{
                      objAlert.showAlert(message: message ?? "", title: "Alert", controller: self)
                  }

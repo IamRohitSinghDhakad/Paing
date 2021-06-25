@@ -43,10 +43,14 @@
 		F902CCE426679C44007703FA /* BlockListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F902CCE326679C44007703FA /* BlockListTableViewCell.swift */; };
 		F902CCE626679E3F007703FA /* BlockModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F902CCE526679E3F007703FA /* BlockModel.swift */; };
 		F902CCE82667B337007703FA /* BlogListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F902CCE72667B337007703FA /* BlogListModel.swift */; };
+		F905958B267CCBF0008864AA /* SusbcriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F905958A267CCBF0008864AA /* SusbcriptionViewController.swift */; };
 		F91BDEC52668DA6E002B89CA /* CommentLikesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91BDEC42668DA6E002B89CA /* CommentLikesTableViewCell.swift */; };
 		F91BDEC72668DA85002B89CA /* CommentLikesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91BDEC62668DA85002B89CA /* CommentLikesViewController.swift */; };
 		F91BDEC92668DB0A002B89CA /* LikesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91BDEC82668DB0A002B89CA /* LikesTableViewCell.swift */; };
 		F91BDECB26695580002B89CA /* ChatDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91BDECA26695580002B89CA /* ChatDetailModel.swift */; };
+		F928C7FE26777DB40004BF5C /* AcceptTermsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F928C7FD26777DB40004BF5C /* AcceptTermsViewController.swift */; };
+		F928C80026777DCC0004BF5C /* ShowTermsAndPricavyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F928C7FF26777DCC0004BF5C /* ShowTermsAndPricavyViewController.swift */; };
+		F928C80226777DEF0004BF5C /* AcceptTermsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F928C80126777DEF0004BF5C /* AcceptTermsTableViewCell.swift */; };
 		F94ABAB926611022009E455D /* CountryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94ABAB826611022009E455D /* CountryModel.swift */; };
 		F94ABABB26614B9E009E455D /* TableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94ABABA26614B9E009E455D /* TableViewExtension.swift */; };
 		F950BC2D2658D46D00D844AD /* OverlayViewCard.xib in Resources */ = {isa = PBXBuildFile; fileRef = F950BC2C2658D46D00D844AD /* OverlayViewCard.xib */; };
@@ -105,6 +109,19 @@
 		F9F808F22656F46600F320FF /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F808ED2656F46600F320FF /* UserModel.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		F909630B267144D700EE192E /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		2262E74C98E4C3C6487D1989 /* Pods-Paing.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Paing.debug.xcconfig"; path = "Target Support Files/Pods-Paing/Pods-Paing.debug.xcconfig"; sourceTree = "<group>"; };
 		8C0C2AAE266818D9005AC1C3 /* UserProfile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UserProfile.storyboard; sourceTree = "<group>"; };
@@ -147,10 +164,17 @@
 		F902CCE326679C44007703FA /* BlockListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockListTableViewCell.swift; sourceTree = "<group>"; };
 		F902CCE526679E3F007703FA /* BlockModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockModel.swift; sourceTree = "<group>"; };
 		F902CCE72667B337007703FA /* BlogListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlogListModel.swift; sourceTree = "<group>"; };
+		F905958A267CCBF0008864AA /* SusbcriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SusbcriptionViewController.swift; sourceTree = "<group>"; };
+		F9096302267144D700EE192E /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		F9096304267144D700EE192E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F90963102671561300EE192E /* PaingServiceExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PaingServiceExtension.entitlements; sourceTree = "<group>"; };
 		F91BDEC42668DA6E002B89CA /* CommentLikesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentLikesTableViewCell.swift; sourceTree = "<group>"; };
 		F91BDEC62668DA85002B89CA /* CommentLikesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentLikesViewController.swift; sourceTree = "<group>"; };
 		F91BDEC82668DB0A002B89CA /* LikesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikesTableViewCell.swift; sourceTree = "<group>"; };
 		F91BDECA26695580002B89CA /* ChatDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatDetailModel.swift; sourceTree = "<group>"; };
+		F928C7FD26777DB40004BF5C /* AcceptTermsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcceptTermsViewController.swift; sourceTree = "<group>"; };
+		F928C7FF26777DCC0004BF5C /* ShowTermsAndPricavyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowTermsAndPricavyViewController.swift; sourceTree = "<group>"; };
+		F928C80126777DEF0004BF5C /* AcceptTermsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcceptTermsTableViewCell.swift; sourceTree = "<group>"; };
 		F94ABAB826611022009E455D /* CountryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryModel.swift; sourceTree = "<group>"; };
 		F94ABABA26614B9E009E455D /* TableViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewExtension.swift; sourceTree = "<group>"; };
 		F950BC2C2658D46D00D844AD /* OverlayViewCard.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OverlayViewCard.xib; sourceTree = "<group>"; };
@@ -453,6 +477,7 @@
 		8C897CF226581790009B0677 /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
+				F928C7FC26777D730004BF5C /* PrivacyCheck */,
 				F9B3B0282662033B008178CB /* DemoScreen */,
 				8C74AA11265A7AD100FC9F9E /* Welcome */,
 				8C74AA1C265AB06100FC9F9E /* ForgotPassword */,
@@ -490,6 +515,7 @@
 			isa = PBXGroup;
 			children = (
 				8C897CFC265818BD009B0677 /* MembershipViewController.swift */,
+				F905958A267CCBF0008864AA /* SusbcriptionViewController.swift */,
 			);
 			path = Membership;
 			sourceTree = "<group>";
@@ -565,6 +591,26 @@
 				F902CCE326679C44007703FA /* BlockListTableViewCell.swift */,
 			);
 			path = CellClasses;
+			sourceTree = "<group>";
+		};
+		F9096301267144D700EE192E /* PaingServiceExtension */ = {
+			isa = PBXGroup;
+			children = (
+				F90963102671561300EE192E /* PaingServiceExtension.entitlements */,
+				F9096302267144D700EE192E /* NotificationService.swift */,
+				F9096304267144D700EE192E /* Info.plist */,
+			);
+			path = PaingServiceExtension;
+			sourceTree = "<group>";
+		};
+		F928C7FC26777D730004BF5C /* PrivacyCheck */ = {
+			isa = PBXGroup;
+			children = (
+				F928C7FD26777DB40004BF5C /* AcceptTermsViewController.swift */,
+				F928C7FF26777DCC0004BF5C /* ShowTermsAndPricavyViewController.swift */,
+				F928C80126777DEF0004BF5C /* AcceptTermsTableViewCell.swift */,
+			);
+			path = PrivacyCheck;
 			sourceTree = "<group>";
 		};
 		F950BC2E2658D59F00D844AD /* OverLay */ = {
@@ -670,6 +716,7 @@
 			isa = PBXGroup;
 			children = (
 				F9F808A02656CD8A00F320FF /* Paing */,
+				F9096301267144D700EE192E /* PaingServiceExtension */,
 				F9F8089F2656CD8A00F320FF /* Products */,
 				8D442F25FBF8128E688D62FB /* Pods */,
 				878F74F1FF2533603D7A8EA3 /* Frameworks */,
@@ -837,6 +884,7 @@
 				F9F8089C2656CD8A00F320FF /* Resources */,
 				7E52578AB54D13BB2EF4D9C5 /* [CP] Embed Pods Frameworks */,
 				0C8BD2448154C6A7C4A7E714 /* [CP] Copy Pods Resources */,
+				F909630B267144D700EE192E /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
@@ -965,10 +1013,13 @@
 				F9F808D42656F1EF00F320FF /* LocationSearchResultsViewController.swift in Sources */,
 				F99DF1FE26594F8E006734BF /* UserProfileViewController.swift in Sources */,
 				F9F808D82656F1EF00F320FF /* AlertViewController.swift in Sources */,
+				F928C7FE26777DB40004BF5C /* AcceptTermsViewController.swift in Sources */,
 				8C0C2AB326681E46005AC1C3 /* UserAssetsCollectionViewCell.swift in Sources */,
 				F9F808D52656F1EF00F320FF /* Location.swift in Sources */,
 				F91BDEC92668DB0A002B89CA /* LikesTableViewCell.swift in Sources */,
+				F928C80026777DCC0004BF5C /* ShowTermsAndPricavyViewController.swift in Sources */,
 				F9F808C22656F1A000F320FF /* WebServiceManager.swift in Sources */,
+				F905958B267CCBF0008864AA /* SusbcriptionViewController.swift in Sources */,
 				8C5E2D302657F827004A7D92 /* TransitionContext.swift in Sources */,
 				F902CCE82667B337007703FA /* BlogListModel.swift in Sources */,
 				F9F808C42656F1A000F320FF /* RDTextView.swift in Sources */,
@@ -988,6 +1039,7 @@
 				8C74AA18265A913300FC9F9E /* RegistrationViewController.swift in Sources */,
 				F9F808F02656F46600F320FF /* ServiceImagesModel.swift in Sources */,
 				8C897CFD265818BD009B0677 /* MembershipViewController.swift in Sources */,
+				F928C80226777DEF0004BF5C /* AcceptTermsTableViewCell.swift in Sources */,
 				F9F808EF2656F46600F320FF /* CategoryModel.swift in Sources */,
 				F9835B6E266421B800FE9582 /* ChatDetailTVCell.swift in Sources */,
 				F97AB7CD266BC5E1001A85E9 /* FavoriteViewController.swift in Sources */,
@@ -1114,7 +1166,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Javier Verbo Ramirez (327YSDT995)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Javier Verbo Ramirez (AML7MFR26Z)";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -1139,7 +1191,7 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE_SPECIFIER = ProvProfileDev_30052021;
+				PROVISIONING_PROFILE_SPECIFIER = PaingProv_Distribution22062021;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1179,7 +1231,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Javier Verbo Ramirez (327YSDT995)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Javier Verbo Ramirez (AML7MFR26Z)";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -1197,7 +1249,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				PROVISIONING_PROFILE_SPECIFIER = ProvProfileDev_30052021;
+				PROVISIONING_PROFILE_SPECIFIER = PaingProv_Distribution22062021;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
@@ -1209,20 +1261,23 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2262E74C98E4C3C6487D1989 /* Pods-Paing.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Paing/Paing.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Javier Verbo Ramirez (327YSDT995)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Javier Verbo Ramirez (AML7MFR26Z)";
 				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1.0.0;
 				DEVELOPMENT_TEAM = AML7MFR26Z;
 				INFOPLIST_FILE = Paing/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ambitious.paing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = ProvProfileDevelopment_06062021;
+				PROVISIONING_PROFILE_SPECIFIER = PaingProv_Distribution22062021;
 				SWIFT_OBJC_BRIDGING_HEADER = "${SRCROOT}/Paing/BridgeHeader/BridgingHeader.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1233,20 +1288,23 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C80448757C3B46ED0A908570 /* Pods-Paing.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Paing/Paing.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Javier Verbo Ramirez (327YSDT995)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Javier Verbo Ramirez (AML7MFR26Z)";
 				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1.0.0;
 				DEVELOPMENT_TEAM = AML7MFR26Z;
 				INFOPLIST_FILE = Paing/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ambitious.paing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = ProvProfileDevelopment_06062021;
+				PROVISIONING_PROFILE_SPECIFIER = PaingProv_Distribution22062021;
 				SWIFT_OBJC_BRIDGING_HEADER = "${SRCROOT}/Paing/BridgeHeader/BridgingHeader.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;

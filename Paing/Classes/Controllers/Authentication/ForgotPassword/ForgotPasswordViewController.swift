@@ -60,7 +60,7 @@ extension ForgotPasswordViewController{
             print(response)
             if statusCode == MessageConstant.k_StatusCode{
                 
-                objAlert.showAlertCallBack(alertLeftBtn: "", alertRightBtn: "OK", title: "Alert", message: message ?? "Your request sent succesfully.", controller: self) {
+                objAlert.showAlertCallBack(alertLeftBtn: "", alertRightBtn: "OK", title: "", message: message ?? "Su solicitud enviada con éxito.", controller: self) {
                     self.onBackPressed()
                 }
                 

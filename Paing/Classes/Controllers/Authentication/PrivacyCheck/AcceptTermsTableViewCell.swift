@@ -1,19 +1,15 @@
 //
-//  FavoriteTableViewCell.swift
+//  AcceptTermsTableViewCell.swift
 //  Paing
 //
-//  Created by Rohit Singh Dhakad on 05/06/21.
+//  Created by Rohit Singh Dhakad on 14/06/21.
 //
 
 import UIKit
 
-class FavoriteTableViewCell: UITableViewCell {
+class AcceptTermsTableViewCell: UITableViewCell {
     
-    @IBOutlet var imgVwUser: UIImageView!
-    @IBOutlet var lblUserName: UILabel!
-    @IBOutlet var lblAgeGender: UILabel!
-    @IBOutlet var btnDelete: UIButton!
-    @IBOutlet var btnGoToProfile: UIButton!
+    @IBOutlet var lblTitle: UILabel!
     
 
     override func awakeFromNib() {
