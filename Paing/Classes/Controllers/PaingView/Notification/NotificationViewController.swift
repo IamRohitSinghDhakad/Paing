@@ -98,7 +98,7 @@ extension NotificationViewController:UITableViewDelegate,UITableViewDataSource{
         }else if obj.strType == "blog_comment" {
             cell.lblMsg.text = obj.strName + " comentó en su blog"
         }else if obj.strType == "admin"{
-            cell.lblMsg.text = "Administración" + " \(obj.strNotificationTitle)."
+            cell.lblMsg.text =  obj.strNotificationTitle + " \(obj.strNotificationAdmin)."
         }else{
             cell.lblMsg.text = obj.strName + " te Agregó a favoritos."
         }

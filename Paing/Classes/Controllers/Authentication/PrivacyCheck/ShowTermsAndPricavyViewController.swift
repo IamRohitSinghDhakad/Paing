@@ -53,7 +53,6 @@ class ShowTermsAndPricavyViewController: UIViewController {
 extension ShowTermsAndPricavyViewController: WKNavigationDelegate{
     
     private func webView(webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: NSError) {
-        print(error.localizedDescription)
     }
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
         print("Strat to load")

@@ -113,13 +113,11 @@ class WelcomeViewController: UIViewController {
                     // Check for error
                     guard error == nil else {
                         // Error occurred
-                        print("Process error: \(error!.localizedDescription)")
                         return
                     }
                     
                     // Check for cancel
                     guard let result = result, !result.isCancelled else {
-                        print("User cancelled login")
                         return
                     }
                     

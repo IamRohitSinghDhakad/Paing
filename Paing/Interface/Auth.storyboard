@@ -2698,7 +2698,7 @@ un solo lugar.</string>
         <image name="like-of-filled-heart" width="128" height="128"/>
         <image name="loc" width="14.5" height="20.5"/>
         <image name="mail_white" width="15.5" height="11.5"/>
-        <image name="next" width="5.5" height="10"/>
+        <image name="next" width="20" height="13.5"/>
         <image name="one" width="375" height="675"/>
         <image name="pass" width="15.5" height="19"/>
         <image name="seen" width="20.5" height="12.5"/>

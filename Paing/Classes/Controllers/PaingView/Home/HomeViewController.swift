@@ -137,6 +137,7 @@ class HomeViewController: UIViewController {
     
     @IBAction func actionBtnGoToMembership(_ sender: Any) {
         self.subVwMemberShip.isHidden = true
+        
         self.pushVc(viewConterlerId: "SusbcriptionViewController")
     }
     
@@ -204,6 +205,7 @@ class HomeViewController: UIViewController {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             self.subVwFilter.isHidden = true
         }
+        self.offset = 0
         self.call_GetFilteredUsers(strOffset: 0, strUserID: objAppShareData.UserDetail.strUserId)
     }
     
@@ -215,6 +217,19 @@ class HomeViewController: UIViewController {
         self.vwPaisSubVw.borderColor = UIColor.lightGray
         self.vwProvinciaSubVw.borderColor = UIColor.lightGray
         self.vwMunicipioSubVw.borderColor = UIColor.lightGray
+    }
+    
+    func resetFilter(){
+        self.clearColorAndValues()
+        self.tfMinimuAgeSubVw.text = ""
+        self.tfMaximumAgeSubVw.text = ""
+        self.tfSelectGenderSubVw.text = ""
+        self.selectedGender = ""
+        self.strCountry = ""
+        self.strState = ""
+        self.strCity = ""
+        self.limit = 20
+        self.offset = 0
     }
     
     //MARK: - Action Methods
@@ -262,6 +277,7 @@ class HomeViewController: UIViewController {
     }
     
     @IBAction func actionBtnChatBox(_ sender: Any) {
+        self.resetFilter()
        print(swipeView.currentCardIndex)
         if self.arrUsers.count > 0{
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "ChatDetailViewController")as! ChatDetailViewController
@@ -274,6 +290,7 @@ class HomeViewController: UIViewController {
     }
     
     @IBAction func actionBtnProfile(_ sender: Any) {
+        self.resetFilter()
         print(swipeView.currentCardIndex)
         if self.arrUsers.count > 0{
             let userID = self.arrUsers[swipeView.currentCardIndex].strUserID
@@ -297,20 +314,38 @@ extension HomeViewController: KolodaViewDelegate {
     
     func kolodaDidRunOutOfCards(_ koloda: KolodaView) {
         
-        if isFilteredApply{
-            if self.arrUsers.count < self.totalRecord{
-                offset = offset + limit
+        print(self.totalRecord)
+        print(self.arrUsers.count)
+        if self.arrUsers.count < self.totalRecord{
+            offset = offset + limit
+            if isFilteredApply{
                 self.call_GetFilteredUsers(strOffset: offset, strUserID: objAppShareData.UserDetail.strUserId)
             }else{
-                self.vwNoMatchesFound.isHidden = false
-             // objAlert.showAlert(message: "Quedarse sin usuarias", title: "", controller: self)
-                self.arrUsers.removeAll()
+                self.call_GetUsers(strUserID: objAppShareData.UserDetail.strUserId)
             }
+            
         }else{
             self.vwNoMatchesFound.isHidden = false
-          //  objAlert.showAlert(message: "Quedarse sin usuarias", title: "", controller: self)
+            // objAlert.showAlert(message: "Quedarse sin usuarias", title: "", controller: self)
             self.arrUsers.removeAll()
         }
+        
+//        if isFilteredApply{
+//            print(self.totalRecord)
+//            print(self.arrUsers.count)
+//            if self.arrUsers.count < self.totalRecord{
+//                offset = offset + limit
+//                self.call_GetFilteredUsers(strOffset: offset, strUserID: objAppShareData.UserDetail.strUserId)
+//            }else{
+//                self.vwNoMatchesFound.isHidden = false
+//             // objAlert.showAlert(message: "Quedarse sin usuarias", title: "", controller: self)
+//                self.arrUsers.removeAll()
+//            }
+//        }else{
+//            self.vwNoMatchesFound.isHidden = false
+//          //  objAlert.showAlert(message: "Quedarse sin usuarias", title: "", controller: self)
+//            self.arrUsers.removeAll()
+//        }
     }
     
     func koloda(_ koloda: KolodaView, didSelectCardAt index: Int) {
@@ -442,8 +477,10 @@ extension HomeViewController{
         objWebServiceManager.showIndicator()
         
         let parameter = ["user_id":strUserID,
-                         "sex":objAppShareData.UserDetail.strGender,
+                         "sex":objAppShareData.UserDetail.strAllowSex,
                          "country":"",
+                         "state":"",
+                         "city":"",
                          "looking_for":"",
                          "limit":self.limit,
                          "offset":offset
@@ -550,21 +587,10 @@ extension HomeViewController{
                          "limit":self.limit,
                          "offset":offset]as [String:Any]
         
-        print(parameter)
-        
         objWebServiceManager.requestGet(strURL: WsUrl.url_GetUserList, params: parameter, queryParams: [:], strCustomValidation: "") { (response) in
             objWebServiceManager.hideIndicator()
             let status = (response["status"] as? Int)
             let message = (response["message"] as? String)
-            
-            print(response)
-            //total_rows
-            
-//            if self.isFilteredApply{
-//
-//            }else{
-//                self.arrUsers.removeAll()
-//            }
             
             
             if status == MessageConstant.k_StatusCode{

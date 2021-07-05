@@ -331,14 +331,17 @@ extension EditProfileViewController{
         }
         
         if objAppShareData.UserDetail.strAllowSex == "Male"{
+            self.strSelectedIWantToBeFound = "Male"
             self.vwHombre.borderColor = UIColor.init(named: "AppSkyBlue")
             self.isGenderSelected = true
         }
         if objAppShareData.UserDetail.strAllowSex == "Female"{
+            self.strSelectedIWantToBeFound = "Female"
             self.vwMujer.borderColor = UIColor.init(named: "AppSkyBlue")
             self.isGenderSelected = true
         }
         if objAppShareData.UserDetail.strAllowSex == ""{
+            self.strSelectedIWantToBeFound = ""
             self.vwHombreMujer.borderColor = UIColor.init(named: "AppSkyBlue")
             self.isGenderSelected = true
         }
@@ -701,7 +704,7 @@ extension EditProfileViewController{
             let status = (response["status"] as? Int)
             let message = (response["message"] as? String)
             
-            print(response)
+         //   print(response)
             
             if status == MessageConstant.k_StatusCode{
                 
@@ -747,7 +750,7 @@ extension EditProfileViewController{
             objWebServiceManager.hideIndicator()
             let status = (response["status"] as? Int)
             let message = (response["message"] as? String)
-            print(response)
+           // print(response)
             if status == MessageConstant.k_StatusCode{
                 
                 if let result = response["result"]as? [[String:Any]]{
@@ -787,7 +790,7 @@ extension EditProfileViewController{
             objWebServiceManager.hideIndicator()
             let status = (response["status"] as? Int)
             let message = (response["message"] as? String)
-            print(response)
+      //      print(response)
             if status == MessageConstant.k_StatusCode{
                 
                 if let result = response["result"]as? [[String:Any]]{
@@ -827,7 +830,7 @@ extension EditProfileViewController{
             objWebServiceManager.hideIndicator()
             let status = (response["status"] as? Int)
             let message = (response["message"] as? String)
-            print(response)
+         //   print(response)
             if status == MessageConstant.k_StatusCode{
                 
                 if let result = response["result"]as? [[String:Any]]{
@@ -932,6 +935,8 @@ extension EditProfileViewController{
                          "allow_country":self.strSelectedIWantToBeFoundInCountry,
                          "allow_state":self.strSelectedIWantToBeFoundInState,
                          "allow_city":self.strSelectedIWantToBeFoundInCity]as [String:Any]
+        
+        print(dicrParam)
         
         objWebServiceManager.uploadMultipartWithImagesData(strURL: WsUrl.url_completeProfile, params: dicrParam, showIndicator: true, customValidation: "", imageData: imgData, imageToUpload: imageData, imagesParam: imageParam, fileName: "user_image", mimeType: "image/jpeg") { (response) in
             objWebServiceManager.hideIndicator()

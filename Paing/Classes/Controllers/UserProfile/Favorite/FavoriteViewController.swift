@@ -67,8 +67,6 @@ extension FavoriteViewController:UITableViewDelegate,UITableViewDataSource{
     
     
     @objc func btnGoToProfile(sender: UIButton){
-        print(sender.tag)
-        
         let userID = self.arrFavList[sender.tag].strOpponentUserID
         if objAppShareData.UserDetail.strUserId == userID{
         }else{
@@ -79,7 +77,6 @@ extension FavoriteViewController:UITableViewDelegate,UITableViewDataSource{
     }
     
     @objc func btnDeleteAction(sender: UIButton){
-        print(sender.tag)
         let id = self.arrFavList[sender.tag].strOpponentUserID
         self.call_MarkUserFavorite(strMyUserID: objAppShareData.UserDetail.strUserId, strAnotherUserID: id)
        
@@ -112,9 +109,7 @@ extension FavoriteViewController{
             objWebServiceManager.hideIndicator()
             let status = (response["status"] as? Int)
             let message = (response["message"] as? String)
-            
-            print(response)
-            
+                        
             if status == MessageConstant.k_StatusCode{
                 if let arrData  = response["result"] as? [[String:Any]]{
                     self.arrFavList.removeAll()
@@ -136,7 +131,6 @@ extension FavoriteViewController{
                 }
             }
         } failure: { (Error) in
-            print(Error)
             objWebServiceManager.hideIndicator()
         }
     }
@@ -163,9 +157,7 @@ extension FavoriteViewController{
             objWebServiceManager.hideIndicator()
             let status = (response["status"] as? Int)
             let message = (response["message"] as? String)
-            
-            print(response)
-            
+                        
             if status == MessageConstant.k_StatusCode{
                 
                 self.call_GetFavoriteList(strUserID: strMyUserID)
@@ -178,7 +170,6 @@ extension FavoriteViewController{
             
             
         } failure: { (Error) in
-            print(Error)
             objWebServiceManager.hideIndicator()
         }
     }

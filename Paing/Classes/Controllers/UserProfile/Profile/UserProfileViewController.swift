@@ -227,7 +227,6 @@ class UserProfileViewController: UIViewController {
             if userProfile.strHeight != "" {
                 let x = userProfile.strHeight
                 let h = x.replacingOccurrences(of: ".", with: ",")
-                print(h)
                 finalText = finalText + ", mi altura es \(h) mts"
             }
             
@@ -367,7 +366,6 @@ extension UserProfileViewController {
             let status = (response["status"] as? Int)
             let message = (response["message"] as? String)
             objWebServiceManager.hideIndicator()
-            print(response)
             
             if status == MessageConstant.k_StatusCode{
                 
@@ -392,7 +390,6 @@ extension UserProfileViewController {
                 
             }
         } failure: { (Error) in
-            print(Error)
             objWebServiceManager.hideIndicator()
         }
     }
@@ -419,7 +416,6 @@ extension UserProfileViewController {
             let status = (response["status"] as? Int)
             let message = (response["message"] as? String)
             
-            print(response)
             
             if status == MessageConstant.k_StatusCode{
                 
@@ -438,7 +434,6 @@ extension UserProfileViewController {
             
             
         } failure: { (Error) in
-            print(Error)
             objWebServiceManager.hideIndicator()
         }
     }
@@ -461,12 +456,10 @@ extension UserProfileViewController {
             let status = (response["status"] as? Int)
             let message = (response["message"] as? String)
             
-            print(response)
             
             if status == MessageConstant.k_StatusCode{
                 
                 if let arrData  = response["result"] as? [[String:Any]] {
-                    print("User details: \(arrData)")
                     for dictdata in arrData {
                         let obj = UserImageModel.init(dict: dictdata)
                         if obj.strType == "image" {
@@ -487,7 +480,6 @@ extension UserProfileViewController {
             
             
         } failure: { (Error) in
-            print(Error)
             objWebServiceManager.hideIndicator()
         }
     }
@@ -512,7 +504,6 @@ extension UserProfileViewController {
             objWebServiceManager.hideIndicator()
             let status = (response["status"] as? Int)
             let message = (response["message"] as? String)
-            print(response)
             if status == MessageConstant.k_StatusCode {
                 if let user_details  = response["result"] as? [String:Any] {
                     if self.selectedSegmentIndx == 0 {
@@ -537,7 +528,6 @@ extension UserProfileViewController {
                 
             }
         } failure: { (Error) in
-            print(Error)
             objWebServiceManager.hideIndicator()
         }
     }
@@ -559,7 +549,6 @@ extension UserProfileViewController {
             objWebServiceManager.hideIndicator()
             let status = (response["status"] as? Int)
             let message = (response["message"] as? String)
-            print(response)
             
             self.strValueChanges = true
             
@@ -585,7 +574,6 @@ extension UserProfileViewController {
                 
             }
         } failure: { (Error) in
-            print(Error)
             objWebServiceManager.hideIndicator()
         }
     }

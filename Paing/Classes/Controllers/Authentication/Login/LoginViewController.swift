@@ -125,7 +125,7 @@ extension LoginViewController{
             
             let status = (response["status"] as? Int)
             let message = (response["message"] as? String)
-            print(response)
+         //   print(response)
             if status == MessageConstant.k_StatusCode{
                 if let user_details  = response["result"] as? [String:Any] {
                     let isEmailVerified = user_details["email_verified"] as! String
@@ -139,7 +139,7 @@ extension LoginViewController{
                         self.subVw.isHidden = false
                     }
                     else {
-                        print(user_details)
+                   //     print(user_details)
                         objAppShareData.SaveUpdateUserInfoFromAppshareData(userDetail: user_details)
                         objAppShareData.fetchUserInfoFromAppshareData()
                         self.pushVc(viewConterlerId: "DemoViewController")
@@ -161,7 +161,7 @@ extension LoginViewController{
             
             
         } failure: { (Error) in
-            print(Error)
+          //  print(Error)
             objWebServiceManager.hideIndicator()
         }
         

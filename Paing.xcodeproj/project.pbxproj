@@ -1267,14 +1267,14 @@
 				CODE_SIGN_ENTITLEMENTS = Paing/Paing.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Javier Verbo Ramirez (AML7MFR26Z)";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1.0.0;
+				CURRENT_PROJECT_VERSION = 2.2.0;
 				DEVELOPMENT_TEAM = AML7MFR26Z;
 				INFOPLIST_FILE = Paing/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0;
+				MARKETING_VERSION = 2.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ambitious.paing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = PaingProv_Distribution22062021;
@@ -1294,14 +1294,14 @@
 				CODE_SIGN_ENTITLEMENTS = Paing/Paing.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Javier Verbo Ramirez (AML7MFR26Z)";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1.0.0;
+				CURRENT_PROJECT_VERSION = 2.2.0;
 				DEVELOPMENT_TEAM = AML7MFR26Z;
 				INFOPLIST_FILE = Paing/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0;
+				MARKETING_VERSION = 2.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ambitious.paing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = PaingProv_Distribution22062021;

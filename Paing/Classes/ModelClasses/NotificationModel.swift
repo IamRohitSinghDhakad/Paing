@@ -17,6 +17,7 @@ class NotificationModel: NSObject {
     var strNotificationID :String = ""
     var strName :String = ""
     var isSelected: Bool = false
+    var strNotificationAdmin: String = ""
     
     init(dict : [String:Any]) {
         
@@ -47,6 +48,10 @@ class NotificationModel: NSObject {
         
         if let notification_title = dict["notification_title"] as? String{
             self.strNotificationTitle = notification_title
+        }
+        
+        if let notification = dict["notification"] as? String{
+            self.strNotificationAdmin = notification
         }
         
         if let time_ago = dict["time_ago"] as? String{

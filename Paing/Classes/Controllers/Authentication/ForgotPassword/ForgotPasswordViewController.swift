@@ -57,7 +57,6 @@ extension ForgotPasswordViewController{
             }
             
             let message = (response["message"] as? String)
-            print(response)
             if statusCode == MessageConstant.k_StatusCode{
                 
                 objAlert.showAlertCallBack(alertLeftBtn: "", alertRightBtn: "OK", title: "", message: message ?? "Su solicitud enviada con éxito.", controller: self) {
@@ -72,7 +71,6 @@ extension ForgotPasswordViewController{
            
             
         } failure: { (Error) in
-            print(Error)
             objWebServiceManager.hideIndicator()
         }
 

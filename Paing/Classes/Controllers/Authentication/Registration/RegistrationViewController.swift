@@ -268,13 +268,13 @@ extension RegistrationViewController:UITableViewDelegate,UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if self.strType == "Country"{
-            print(arrCountryFiltered.count)
+           
             return arrCountryFiltered.count
         }else if self.strType == "State"{
-            print(arrStateFiltered.count)
+            
             return arrStateFiltered.count
         }else if self.strType == "City"{
-            print(arrCityFiltered.count)
+          
             return arrCityFiltered.count
         }else{
          return 0
@@ -538,7 +538,7 @@ extension RegistrationViewController{
         
         let imageParam = ["user_image"]
         
-        print(imageData)
+       // print(imageData)
         
         if self.tfDOB.text != ""{
             self.strAge = Date().calculateAgeFromDate(strDate: self.tfDOB.text!, strFormatter: "yyyy-MM-dd")
@@ -556,11 +556,11 @@ extension RegistrationViewController{
                          "sex":self.strGender,
                          "ios_register_id":objAppShareData.strFirebaseToken]as [String:Any]
         
-        print(dicrParam)
+      //  print(dicrParam)
         
         objWebServiceManager.uploadMultipartWithImagesData(strURL: WsUrl.url_SignUp, params: dicrParam, showIndicator: true, customValidation: "", imageData: imgData, imageToUpload: imageData, imagesParam: imageParam, fileName: "user_image", mimeType: "image/jpeg") { (response) in
             objWebServiceManager.hideIndicator()
-            print(response)
+           // print(response)
             let status = (response["status"] as? Int)
             let message = (response["message"] as? String)
             
@@ -607,7 +607,7 @@ extension RegistrationViewController{
             objWebServiceManager.hideIndicator()
             let status = (response["status"] as? Int)
             let message = (response["message"] as? String)
-            print(response)
+          //  print(response)
             if status == MessageConstant.k_StatusCode{
                 
                 if let result = response["result"]as? [[String:Any]]{
@@ -652,7 +652,7 @@ extension RegistrationViewController{
             objWebServiceManager.hideIndicator()
             let status = (response["status"] as? Int)
             let message = (response["message"] as? String)
-            print(response)
+          //  print(response)
             if status == MessageConstant.k_StatusCode{
                 
                 self.arrState.removeAll()
@@ -702,7 +702,7 @@ extension RegistrationViewController{
             objWebServiceManager.hideIndicator()
             let status = (response["status"] as? Int)
             let message = (response["message"] as? String)
-            print(response)
+          //  print(response)
             if status == MessageConstant.k_StatusCode{
                 
                 self.arrCity.removeAll()
