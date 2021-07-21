@@ -260,6 +260,7 @@ class HomeViewController: UIViewController {
     @IBAction func actionBtnLeftSwipe(_ sender: Any) {
         swipeView.swipe(.left)
     }
+    
     @IBAction func actionBtnRightSwipe(_ sender: Any) {
         
         if self.arrUsers.count != 0{
