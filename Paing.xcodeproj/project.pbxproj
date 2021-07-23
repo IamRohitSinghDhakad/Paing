@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6A64C0B326AA91FF0010A597 /* VideoPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A64C0B226AA91FF0010A597 /* VideoPreviewViewController.swift */; };
+		6A64C0B626AA921E0010A597 /* VideoPreviewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A64C0B526AA921E0010A597 /* VideoPreviewCollectionViewCell.swift */; };
 		734E019F70F6ACEA4AE1BBE5 /* Pods_Paing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA208F8E3138D5B243E7AD6E /* Pods_Paing.framework */; };
 		8C0C2AAF266818D9005AC1C3 /* UserProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C0C2AAE266818D9005AC1C3 /* UserProfile.storyboard */; };
 		8C0C2AB326681E46005AC1C3 /* UserAssetsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0C2AB226681E46005AC1C3 /* UserAssetsCollectionViewCell.swift */; };
@@ -125,6 +127,8 @@
 
 /* Begin PBXFileReference section */
 		2262E74C98E4C3C6487D1989 /* Pods-Paing.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Paing.debug.xcconfig"; path = "Target Support Files/Pods-Paing/Pods-Paing.debug.xcconfig"; sourceTree = "<group>"; };
+		6A64C0B226AA91FF0010A597 /* VideoPreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPreviewViewController.swift; sourceTree = "<group>"; };
+		6A64C0B526AA921E0010A597 /* VideoPreviewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPreviewCollectionViewCell.swift; sourceTree = "<group>"; };
 		8C0C2AAE266818D9005AC1C3 /* UserProfile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UserProfile.storyboard; sourceTree = "<group>"; };
 		8C0C2AB226681E46005AC1C3 /* UserAssetsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAssetsCollectionViewCell.swift; sourceTree = "<group>"; };
 		8C4CFCF126691BAE004F15F3 /* UserImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserImageModel.swift; sourceTree = "<group>"; };
@@ -255,6 +259,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6A64C0B426AA92060010A597 /* CellClasses */ = {
+			isa = PBXGroup;
+			children = (
+				6A64C0B526AA921E0010A597 /* VideoPreviewCollectionViewCell.swift */,
+			);
+			path = CellClasses;
+			sourceTree = "<group>";
+		};
 		878F74F1FF2533603D7A8EA3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -710,7 +722,9 @@
 		F9C3154826A9E4870024484C /* VideoTop */ = {
 			isa = PBXGroup;
 			children = (
+				6A64C0B426AA92060010A597 /* CellClasses */,
 				F9C3154926A9E4A60024484C /* VideoTopViewController.swift */,
+				6A64C0B226AA91FF0010A597 /* VideoPreviewViewController.swift */,
 			);
 			path = VideoTop;
 			sourceTree = "<group>";
@@ -1035,6 +1049,7 @@
 				F902CCE82667B337007703FA /* BlogListModel.swift in Sources */,
 				F9F808C42656F1A000F320FF /* RDTextView.swift in Sources */,
 				F91BDECB26695580002B89CA /* ChatDetailModel.swift in Sources */,
+				6A64C0B626AA921E0010A597 /* VideoPreviewCollectionViewCell.swift in Sources */,
 				8C74AA1E265AB13A00FC9F9E /* ForgotPasswordViewController.swift in Sources */,
 				F9F808D72656F1EF00F320FF /* SearchHistoryManager.swift in Sources */,
 				F96BAA902668A11200D1C0C3 /* MyBlogViewController.swift in Sources */,
@@ -1089,6 +1104,7 @@
 				F9F808EE2656F46600F320FF /* SignUpModel.swift in Sources */,
 				8C897D07265818DA009B0677 /* PaingBlogViewController.swift in Sources */,
 				F97AB7CA266BACF6001A85E9 /* ShareAppViewController.swift in Sources */,
+				6A64C0B326AA91FF0010A597 /* VideoPreviewViewController.swift in Sources */,
 				8C5E2D2C2657F827004A7D92 /* UIViewController+SideMenu.swift in Sources */,
 				8C5E2D2E2657F827004A7D92 /* Preferences.swift in Sources */,
 				F9F808A42656CD8A00F320FF /* SceneDelegate.swift in Sources */,
@@ -1277,19 +1293,19 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Paing/Paing.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Javier Verbo Ramirez (AML7MFR26Z)";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2.2.0;
-				DEVELOPMENT_TEAM = AML7MFR26Z;
+				DEVELOPMENT_TEAM = 7E7WKW772Q;
 				INFOPLIST_FILE = Paing/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 2.2;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ambitious.paing;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ambitious.paingg;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = PaingProv_Distribution22062021;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "${SRCROOT}/Paing/BridgeHeader/BridgingHeader.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1304,19 +1320,19 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Paing/Paing.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Javier Verbo Ramirez (AML7MFR26Z)";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2.2.0;
-				DEVELOPMENT_TEAM = AML7MFR26Z;
+				DEVELOPMENT_TEAM = 7E7WKW772Q;
 				INFOPLIST_FILE = Paing/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 2.2;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ambitious.paing;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ambitious.paingg;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = PaingProv_Distribution22062021;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "${SRCROOT}/Paing/BridgeHeader/BridgingHeader.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
