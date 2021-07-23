@@ -39,6 +39,7 @@ class AppSideMenuViewController: UIViewController {
                                             SideMenuOptions(menuName: "Notificación", menuImageName: "noti", menuSelectedImageName: "noti_selected"),
                                             SideMenuOptions(menuName: "Ajustes", menuImageName: "setting", menuSelectedImageName: "setting_selected"),
                                             SideMenuOptions(menuName: "Paing Blog", menuImageName: "blog Side_menu", menuSelectedImageName: "blog_selected"),
+                                            SideMenuOptions(menuName: "Video Top", menuImageName: "top", menuSelectedImageName: "top2"),
                                             SideMenuOptions(menuName: "Cerrar Sesión", menuImageName: "logout", menuSelectedImageName: "logout_selected")]
     
     
@@ -116,6 +117,10 @@ class AppSideMenuViewController: UIViewController {
         sideMenuController?.cache(viewControllerGenerator: {
             self.storyboard?.instantiateViewController(withIdentifier: "PaingBlogViewController")
         }, with: "7")
+        
+        sideMenuController?.cache(viewControllerGenerator: {
+            self.storyboard?.instantiateViewController(withIdentifier: "VideoTopNaviagttion")
+        }, with: "8")
         
     }
     
@@ -211,7 +216,7 @@ extension AppSideMenuViewController: UITableViewDelegate, UITableViewDataSource 
         
         self.selectedIndexpath = row
         
-        if row == 8 {
+        if row == 9 {
             sideMenuController?.hideMenu()
             
             objAlert.showAlertCallBack(alertLeftBtn: "No", alertRightBtn: "si", title: "Cerrar Sesión", message: "¿Quieres cerrar sesión??", controller: self) {

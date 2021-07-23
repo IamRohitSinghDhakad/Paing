@@ -76,6 +76,7 @@
 		F99DF1FE26594F8E006734BF /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99DF1FD26594F8E006734BF /* UserProfileViewController.swift */; };
 		F9B3B02A2662034F008178CB /* DemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B3B0292662034F008178CB /* DemoViewController.swift */; };
 		F9B3B02E26623135008178CB /* PrivacyPolicyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B3B02D26623135008178CB /* PrivacyPolicyViewController.swift */; };
+		F9C3154A26A9E4A60024484C /* VideoTopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C3154926A9E4A60024484C /* VideoTopViewController.swift */; };
 		F9CB4911265D8584004E4788 /* NotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9CB4910265D8584004E4788 /* NotificationTableViewCell.swift */; };
 		F9EEB14E266029890010AF1F /* OptionsRegistrationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9EEB14D266029890010AF1F /* OptionsRegistrationTableViewCell.swift */; };
 		F9F808A22656CD8A00F320FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F808A12656CD8A00F320FF /* AppDelegate.swift */; };
@@ -203,6 +204,7 @@
 		F9A77ECB266BE08A00830D47 /* Paing.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Paing.entitlements; sourceTree = "<group>"; };
 		F9B3B0292662034F008178CB /* DemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoViewController.swift; sourceTree = "<group>"; };
 		F9B3B02D26623135008178CB /* PrivacyPolicyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyViewController.swift; sourceTree = "<group>"; };
+		F9C3154926A9E4A60024484C /* VideoTopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoTopViewController.swift; sourceTree = "<group>"; };
 		F9CB4910265D8584004E4788 /* NotificationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTableViewCell.swift; sourceTree = "<group>"; };
 		F9EEB14D266029890010AF1F /* OptionsRegistrationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsRegistrationTableViewCell.swift; sourceTree = "<group>"; };
 		F9F8089E2656CD8A00F320FF /* Paing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Paing.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -490,6 +492,7 @@
 		8C897CF32658179C009B0677 /* PaingView */ = {
 			isa = PBXGroup;
 			children = (
+				F9C3154826A9E4870024484C /* VideoTop */,
 				8C5E2D3B2657F8A2004A7D92 /* SideMenu */,
 				8C5E2D172657F66C004A7D92 /* Home */,
 				8C5E2D382657F880004A7D92 /* Profile */,
@@ -702,6 +705,14 @@
 				F9B3B02D26623135008178CB /* PrivacyPolicyViewController.swift */,
 			);
 			path = PrivacyPolicyAndLegalsDoc;
+			sourceTree = "<group>";
+		};
+		F9C3154826A9E4870024484C /* VideoTop */ = {
+			isa = PBXGroup;
+			children = (
+				F9C3154926A9E4A60024484C /* VideoTopViewController.swift */,
+			);
+			path = VideoTop;
 			sourceTree = "<group>";
 		};
 		F9CB490F265D856F004E4788 /* CellClasses */ = {
@@ -1085,6 +1096,7 @@
 				F950BC302658D5C500D844AD /* OverlayViewCard.swift in Sources */,
 				8C4CFCF226691BAE004F15F3 /* UserImageModel.swift in Sources */,
 				F9F808E42656F26400F320FF /* AppSharedData.swift in Sources */,
+				F9C3154A26A9E4A60024484C /* VideoTopViewController.swift in Sources */,
 				F9835B6A266412AF00FE9582 /* ConversationListModel.swift in Sources */,
 				F9705A61266B6C78008E6C4F /* ChatStickerCollectionViewCell.swift in Sources */,
 				F950BC332658DC2600D844AD /* HomeModel.swift in Sources */,
