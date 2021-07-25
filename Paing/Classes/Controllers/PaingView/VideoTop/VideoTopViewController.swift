@@ -11,19 +11,22 @@ import AVKit
 class VideoTopViewController: UIViewController {
 
     var imagePicker = UIImagePickerController()
-    var arrayVideoCollection: [UserImageModel] = []
+    var arrayVideoCollection: [BlogListModel] = []
     var controller = UIImagePickerController()
     let videoFileName = "/video.mp4"
    
     var videoUrl = ""
     var videoData = Data()
-  
+    var assetURL: URL?
+    var type: AssetType?
+    
+   // var arrVideo[]
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.imagePicker.delegate = self
-       
+        self.call_GetVideoBlogList(strUserID: objAppShareData.UserDetail.strUserId)
         
     }
     
@@ -118,14 +121,14 @@ extension VideoTopViewController: UINavigationControllerDelegate, UIImagePickerC
         return
     }
     
-    @objc func videoSaved(_ video: String, didFinishSavingWithError error: NSError!, context: UnsafeMutableRawPointer){
-        if let theError = error {
-            print("error saving the video = \(theError)")
-        } else {
-            DispatchQueue.main.async(execute: { () -> Void in
-            })
-        }
-    }
+//    @objc func videoSaved(_ video: String, didFinishSavingWithError error: NSError!, context: UnsafeMutableRawPointer){
+//        if let theError = error {
+//            print("error saving the video = \(theError)")
+//        } else {
+//            DispatchQueue.main.async(execute: { () -> Void in
+//            })
+//        }
+//    }
     
     //MARK: - image picker delegates
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
@@ -134,16 +137,29 @@ extension VideoTopViewController: UINavigationControllerDelegate, UIImagePickerC
             // 1
             if let selectedVideo:URL = (info[UIImagePickerController.InfoKey.mediaURL] as? URL) {
                 // Save video to the main photo album
-                let selectorToCall = #selector(self.videoSaved(_:didFinishSavingWithError:context:))
+               // let selectorToCall = #selector(self.videoSaved(_:didFinishSavingWithError:context:))
                 
                 // 2
-                UISaveVideoAtPathToSavedPhotosAlbum(selectedVideo.relativePath, self, selectorToCall, nil)
+              //  UISaveVideoAtPathToSavedPhotosAlbum(selectedVideo.relativePath, self, selectorToCall, nil)
                 // Save the video to the app directory
-                let videoData = try? Data(contentsOf: selectedVideo)
-                if videoData != nil{
-                    self.videoData = videoData ?? Data()
-                  //  self.callwebServicceApi()
-                }
+//                let videoData = try? Data(contentsOf: selectedVideo)
+//                if videoData != nil{
+//                    self.videoData = videoData ?? Data()
+//                    self.assetURL = selectedVideo
+//                  //  self.callwebServicceApi()
+//                }
+                
+                    
+                    let duration = AVURLAsset(url: selectedVideo).duration.seconds
+                        print(duration)
+                    
+                    // Do something with the URL
+                    let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "EditImageVideoViewController") as? EditImageVideoViewController
+                    vc?.type = .video
+                    vc?.assetURL = selectedVideo
+                    vc?.isComingFrom = "VidoBlog"
+                    self.navigationController?.pushViewController(vc!, animated: true)
+                
                 
                 //self.uploadVideoUrl(uploadUrl:] as! String)
                 // print(self.videoUrl)
@@ -349,3 +365,150 @@ extension VideoTopViewController: UINavigationControllerDelegate, UIImagePickerC
 //
 //
 //}
+
+
+extension VideoTopViewController{
+    
+    func call_GetVideoBlogList(strUserID:String){
+        
+        if !objWebServiceManager.isNetworkAvailable(){
+            objWebServiceManager.hideIndicator()
+            objAlert.showAlert(message: "No Internet Connection", title: "Alert", controller: self)
+            return
+        }
+        
+        objWebServiceManager.showIndicator()
+        
+        let parameter = ["my_id":strUserID]as [String:Any]
+        
+        
+        objWebServiceManager.requestGet(strURL: WsUrl.url_getVideos, params: parameter, queryParams: [:], strCustomValidation: "") { (response) in
+            
+            objWebServiceManager.hideIndicator()
+            
+            let status = (response["status"] as? Int)
+            let message = (response["message"] as? String)
+            
+            print(response)
+            
+            if status == MessageConstant.k_StatusCode{
+                if let arrData  = response["result"] as? [[String:Any]]{
+                  //  self.arrBlogList.removeAll()
+                    for dictdata in arrData{
+                        let obj = BlogListModel.init(dict: dictdata)
+                        if objAppShareData.UserDetail.strUserId == obj.strBlogUserID{
+                            self.arrayVideoCollection.append(obj)
+                        }else{
+                            //Do Nothing
+                        }
+                        
+                    }
+                    
+                    if self.arrayVideoCollection.count == 0{
+                        objAlert.showAlert(message: "No se encontró ningún video", title: "", controller: self)
+                      //  self.cvVideo.displayBackgroundText(text: "Aún no publicas ningún blog")
+                    }else{
+                        let vc = self.storyboard?.instantiateViewController(withIdentifier: "VideoPreviewViewController")as! VideoPreviewViewController
+                        vc.arrayVideoCollection = self.arrayVideoCollection
+                        self.navigationController?.pushViewController(vc, animated: true)
+                        
+                       // self.cvVideo.displayBackgroundText(text: "")
+                    }
+//
+//                    self.cvVideo.reloadData()
+                }
+            }else{
+                objWebServiceManager.hideIndicator()
+                
+                if (response["result"]as? String) != nil{
+                   // self.tblBLogs.displayBackgroundText(text: "Aún no publicas ningún blog")
+                }else{
+                    objAlert.showAlert(message: message ?? "", title: "", controller: self)
+                }
+            }
+        } failure: { (Error) in
+            print(Error)
+            objWebServiceManager.hideIndicator()
+        }
+    }
+    
+}
+
+
+
+//Upload Video
+extension VideoTopViewController {
+    // MARK:- Get Profile
+    
+    func call_UploadImageVideo() {
+        
+        if !objWebServiceManager.isNetworkAvailable(){
+            objWebServiceManager.hideIndicator()
+            objAlert.showAlert(message: "No Internet Connection", title: "Alert", controller: self)
+            return
+        }
+        
+        objWebServiceManager.showIndicator()
+        
+        
+        var assetData: [Data] = []
+        if self.type! == .video {
+            do {
+                let data = try Data(contentsOf: self.assetURL!, options: Data.ReadingOptions.alwaysMapped)
+                assetData.append(data)
+            } catch {
+                print(error)
+                objWebServiceManager.hideIndicator()
+                objAlert.showAlert(message: error.localizedDescription, title: "Alert", controller: self)
+                return
+            }
+        }
+        else if self.type! == .image {
+            do {
+                let data = try Data(contentsOf: self.assetURL!, options: Data.ReadingOptions.alwaysMapped)
+                assetData.append(data)
+            } catch {
+                print(error)
+                objWebServiceManager.hideIndicator()
+                objAlert.showAlert(message: error.localizedDescription, title: "Alert", controller: self)
+                return
+            }
+        }
+        
+        if assetData.count > 0 {
+            let parameter = ["user_id" : objAppShareData.UserDetail.strUserId, "type" : self.type!.rawValue] as [String:Any]
+//            let fileName = "File\(objAppShareData.UserDetail.strUserId)_\(Date().toMillis())"
+            let fileName = "file"
+            objWebServiceManager.uploadMultipartWithImagesData(strURL: WsUrl.url_AddUserImage, params: parameter, showIndicator: true, customValidation: "", imageData: nil, imageToUpload: assetData, imagesParam: [fileName], fileName: fileName, mimeType: (self.type! == .video) ? "video/mp4" : "image/jpeg") { (response) in
+                objWebServiceManager.hideIndicator()
+                let status = (response["status"] as? Int)
+                let message = (response["message"] as? String)
+                if status == MessageConstant.k_StatusCode {
+                    if let userData  = response["result"] as? [[String:Any]] {
+                        DispatchQueue.main.async {
+                            self.navigationController?.popViewController(animated: true)
+                        }
+                    }
+                    else {
+                        objWebServiceManager.hideIndicator()
+                    }
+                    
+                }else{
+                    objWebServiceManager.hideIndicator()
+                    objAlert.showAlert(message: message ?? "", title: "Alert", controller: self)
+                    
+                }
+                
+            } failure: { (Error) in
+                print(Error)
+                objWebServiceManager.hideIndicator()
+            }
+
+        }
+        else {
+            objWebServiceManager.hideIndicator()
+            objAlert.showAlert(message: "Something went wrong!", title: "Alert", controller: self)
+            return
+        }
+    }
+}

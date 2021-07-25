@@ -482,6 +482,7 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
                 let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "EditImageVideoViewController") as? EditImageVideoViewController
                 vc?.type = .image
                 vc?.assetURL = url
+                vc?.isComingFrom = ""
                 self.navigationController?.pushViewController(vc!, animated: true)
             }
             
@@ -506,6 +507,7 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
                 let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "EditImageVideoViewController") as? EditImageVideoViewController
                 vc?.type = .video
                 vc?.assetURL = url
+                vc?.isComingFrom = ""
                 self.navigationController?.pushViewController(vc!, animated: true)
             }
 

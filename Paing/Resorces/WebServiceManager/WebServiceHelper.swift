@@ -10,8 +10,8 @@ import UIKit
 
 
 //http://ambitious.in.net/Shubham/paing/index.php/api/get_profile?user_id=2
-//let BASE_URL = "http://ambitious.in.net/Shubham/paing/index.php/api/"//Local
-let BASE_URL = "https://paing-spain.com/admin/index.php/api/"//Live
+let BASE_URL = "http://ambitious.in.net/Shubham/paing/index.php/api/"//Local
+//let BASE_URL = "https://paing-spain.com/admin/index.php/api/"//Live
 
 struct WsUrl{
     
@@ -33,6 +33,9 @@ struct WsUrl{
     static let url_getBlockList = BASE_URL + "blocked_list"
     static let url_getBlockUnblock = BASE_URL + "block_in_user"
     static let url_getBlogList = BASE_URL + "get_blog?"
+    
+    static let url_getVideos = BASE_URL + "get_video"
+    
     static let url_AddBlogInList = BASE_URL + "add_blog"
     static let url_DeleteBlogInList = BASE_URL + "delete_blog"
     static let url_addBlogComment = BASE_URL + "blog_comment"
@@ -49,6 +52,7 @@ struct WsUrl{
     static let url_BlockInUser = BASE_URL + "block_in_user"
     static let url_FavoriteList = BASE_URL + "favorite_list"
     static let url_AddUserImage = BASE_URL + "add_user_image"
+    static let url_AddVideoBlog = BASE_URL + "add_video"
     static let url_DeleteUserImage = BASE_URL + "delete_user_image"
     static let url_Logout = BASE_URL + "logout?"
     static let url_notificationSend = BASE_URL + "send_notification?"

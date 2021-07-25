@@ -35,6 +35,10 @@ class BlogListModel: NSObject {
     var arrLikedList = [LikedDataModel]()
     var arrCommentList = [CommentDataModel]()
     
+    //Video Model
+    var strVideoUrl : String = ""
+    var strVideoID : String = ""
+    
     
     init(dict : [String:Any]) {
         
@@ -56,7 +60,6 @@ class BlogListModel: NSObject {
         }
         
         
-        
         if let age = dict["age"] as? String{
             self.strAge = age
         }
@@ -64,6 +67,21 @@ class BlogListModel: NSObject {
         if let dob = dict["dob"] as? String{
             self.strDob = dob
         }
+        
+        
+        //========XXX==========//
+        
+        if let video_id = dict["video_id"] as? String{
+            self.strVideoID = video_id
+        }else  if let video_id = dict["video_id"] as? Int{
+            self.strVideoID = "\(video_id)"
+        }
+        
+        if let video = dict["video"] as? String{
+            self.strVideoUrl = "http://ambitious.in.net/Shubham/paing/" + video
+        }
+        
+        //=======XXX===========//
         
         if let notification_id = dict["blog_id"] as? String{
             self.strBlogId = notification_id

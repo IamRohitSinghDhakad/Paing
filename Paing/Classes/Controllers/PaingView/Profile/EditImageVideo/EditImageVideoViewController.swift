@@ -25,6 +25,7 @@ class EditImageVideoViewController: UIViewController,UIScrollViewDelegate {
     
     var assetURL: URL?
     var type: AssetType?
+    var isComingFrom:String?
     
     //MARK: - Override Methods
     
@@ -141,14 +142,38 @@ extension EditImageVideoViewController {
         }
         
         if assetData.count > 0 {
-            let parameter = ["user_id" : objAppShareData.UserDetail.strUserId, "type" : self.type!.rawValue] as [String:Any]
+            var parameter = [String:Any]()
 //            let fileName = "File\(objAppShareData.UserDetail.strUserId)_\(Date().toMillis())"
-            let fileName = "file"
-            objWebServiceManager.uploadMultipartWithImagesData(strURL: WsUrl.url_AddUserImage, params: parameter, showIndicator: true, customValidation: "", imageData: nil, imageToUpload: assetData, imagesParam: [fileName], fileName: fileName, mimeType: (self.type! == .video) ? "video/mp4" : "image/jpeg") { (response) in
+            var fileName = ""
+            
+            
+            var strUrl = ""
+            if self.isComingFrom == "VidoBlog"{
+                fileName = "video"
+                strUrl = WsUrl.url_AddVideoBlog
+                parameter = ["user_id" : objAppShareData.UserDetail.strUserId] as [String:Any]
+            }else{
+                fileName = "file"
+                strUrl = WsUrl.url_AddUserImage
+                parameter = ["user_id" : objAppShareData.UserDetail.strUserId, "type" : self.type!.rawValue] as [String:Any]
+            }
+            
+            print(assetData)
+            
+            objWebServiceManager.uploadMultipartWithImagesData(strURL: strUrl, params: parameter, showIndicator: true, customValidation: "", imageData: nil, imageToUpload: assetData, imagesParam: [fileName], fileName: fileName, mimeType: (self.type! == .video) ? "video/mp4" : "image/jpeg") { (response) in
                 objWebServiceManager.hideIndicator()
                 let status = (response["status"] as? Int)
                 let message = (response["message"] as? String)
                 if status == MessageConstant.k_StatusCode {
+                    
+                    print(response)
+                    
+                    if let videoData = response["result"]as? [String:Any]{
+                        DispatchQueue.main.async {
+                            self.navigationController?.popViewController(animated: true)
+                        }
+                    }
+                    
                     if let userData  = response["result"] as? [[String:Any]] {
                         DispatchQueue.main.async {
                             self.navigationController?.popViewController(animated: true)
