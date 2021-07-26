@@ -92,6 +92,7 @@ PODS:
   - nanopb/decode (1.30906.0)
   - nanopb/encode (1.30906.0)
   - pop (1.0.12)
+  - ProgressHUD (2.70)
   - PromisesObjC (1.2.12)
   - Protobuf (3.17.0)
   - SDWebImage/Core (5.8.4)
@@ -109,6 +110,7 @@ DEPENDENCIES:
   - iOSDropDown
   - IQKeyboardManagerSwift
   - Koloda
+  - ProgressHUD
   - SDWebImage/MapKit
   - SVProgressHUD
 
@@ -135,6 +137,7 @@ SPEC REPOS:
     - Koloda
     - nanopb
     - pop
+    - ProgressHUD
     - PromisesObjC
     - Protobuf
     - SDWebImage
@@ -162,11 +165,12 @@ SPEC CHECKSUMS:
   Koloda: d07b9199a383abc5898b62aa945a599f5e7c0c4b
   nanopb: 59317e09cf1f1a0af72f12af412d54edf52603fc
   pop: d582054913807fd11fd50bfe6a539d91c7e1a55a
+  ProgressHUD: e603e8b8622c47d8818b9fb38b3cfe9d3e7ca421
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
   Protobuf: 7327d4444215b5f18e560a97f879ff5503c4581c
   SDWebImage: cf6922231e95550934da2ada0f20f2becf2ceba9
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
-PODFILE CHECKSUM: aaf1cfa7f958aaff81a99a43797349a3eec65c7b
+PODFILE CHECKSUM: 425e8ec891725d3749855034b158df8205f9a5da
 
 COCOAPODS: 1.10.1

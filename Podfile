@@ -20,6 +20,6 @@ target 'Paing' do
   pod 'FBSDKLoginKit'
   
   pod 'FBSDKShareKit'
-  
+  pod 'ProgressHUD'
   
 end

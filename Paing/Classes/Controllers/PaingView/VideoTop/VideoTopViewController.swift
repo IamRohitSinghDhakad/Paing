@@ -380,6 +380,7 @@ extension VideoTopViewController{
         objWebServiceManager.showIndicator()
         
         let parameter = ["my_id":strUserID]as [String:Any]
+        print(parameter)
         
         
         objWebServiceManager.requestGet(strURL: WsUrl.url_getVideos, params: parameter, queryParams: [:], strCustomValidation: "") { (response) in
@@ -408,8 +409,8 @@ extension VideoTopViewController{
                         objAlert.showAlert(message: "No se encontró ningún video", title: "", controller: self)
                       //  self.cvVideo.displayBackgroundText(text: "Aún no publicas ningún blog")
                     }else{
-                        let vc = self.storyboard?.instantiateViewController(withIdentifier: "VideoPreviewViewController")as! VideoPreviewViewController
-                        vc.arrayVideoCollection = self.arrayVideoCollection
+                        let vc = self.storyboard?.instantiateViewController(withIdentifier: "FeedPageViewController")as! FeedPageViewController
+                        //vc.arrayVideoCollection = self.arrayVideoCollection
                         self.navigationController?.pushViewController(vc, animated: true)
                         
                        // self.cvVideo.displayBackgroundText(text: "")
