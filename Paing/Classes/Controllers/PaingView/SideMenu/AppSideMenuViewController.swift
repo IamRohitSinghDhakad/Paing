@@ -39,7 +39,7 @@ class AppSideMenuViewController: UIViewController {
                                             SideMenuOptions(menuName: "Notificación", menuImageName: "noti", menuSelectedImageName: "noti_selected"),
                                             SideMenuOptions(menuName: "Ajustes", menuImageName: "setting", menuSelectedImageName: "setting_selected"),
                                             SideMenuOptions(menuName: "Paing Blog", menuImageName: "blog Side_menu", menuSelectedImageName: "blog_selected"),
-                                            SideMenuOptions(menuName: "Video Top", menuImageName: "top", menuSelectedImageName: "top2"),
+                                            SideMenuOptions(menuName: "Video Top", menuImageName: "top2t", menuSelectedImageName: "top2"),
                                             SideMenuOptions(menuName: "Cerrar Sesión", menuImageName: "logout", menuSelectedImageName: "logout_selected")]
     
     

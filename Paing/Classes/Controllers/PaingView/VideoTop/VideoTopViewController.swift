@@ -37,12 +37,17 @@ class VideoTopViewController: UIViewController {
     
     @IBAction func btnOpenCamera(_ sender: Any) {
        // self.selectImageVideo()
-        self.takeVideo()
+        if self.arrayVideoCollection.count >= 3{
+            objAlert.showAlert(message: "solo puedes publicar 3 videos en 24 horas.", title: "", controller: self)
+        }else{
+            self.takeVideo()
+        }
+        
     }
     
     @IBAction func btnShowVideos(_ sender: Any) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "FeedPageViewController")as! FeedPageViewController
-        vc.isComingFrom = "MyVideos"
+        vc.isComingFrom = "AllVideos"
         self.navigationController?.pushViewController(vc, animated: true)
         
         //pushVc(viewConterlerId: "FeedPageViewController")
@@ -51,7 +56,7 @@ class VideoTopViewController: UIViewController {
     
     @IBAction func btnMyVideos(_ sender: Any) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "FeedPageViewController")as! FeedPageViewController
-        vc.isComingFrom = "AllVideos"
+        vc.isComingFrom = "MyVideos"
         self.navigationController?.pushViewController(vc, animated: true)
         //pushVc(viewConterlerId: "FeedPageViewController")
     }
@@ -64,7 +69,7 @@ extension VideoTopViewController: UINavigationControllerDelegate, UIImagePickerC
     
     func takeVideo(){
         let alert = UIAlertController(title: "Choose Video", message: nil, preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: "Camera", style: .default, handler: { _ in
+        alert.addAction(UIAlertAction(title: "Cámara", style: .default, handler: { _ in
             if AVCaptureDevice.authorizationStatus(for: .video) ==  .authorized {
                 //already authorized
                 DispatchQueue.main.async {
@@ -85,13 +90,13 @@ extension VideoTopViewController: UINavigationControllerDelegate, UIImagePickerC
             }
         }))
         
-        alert.addAction(UIAlertAction(title: "Gallery", style: .default, handler: { _ in
+        alert.addAction(UIAlertAction(title: "Galería", style: .default, handler: { _ in
             DispatchQueue.main.async {
                 self.openVideoGallery()
             }
         }))
         
-        alert.addAction(UIAlertAction.init(title: "Cancel", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction.init(title: "Cancelar", style: .cancel, handler: nil))
         imagePicker.delegate = self
         alert.popoverPresentationController?.sourceView = self.view // works for both iPhone & iPad
         present(alert, animated: true) {

@@ -103,7 +103,14 @@ class NewFeedViewController: UIViewController,StoryboardScene,FeedFetchProtocol 
         }
         
         self.lblUserName.text = feed.strName
-        self.lblAgeGender.text = feed.strGender + "," + feed.strAge
+        
+        if feed.strGender == "Male"{
+            self.lblAgeGender.text = "Hombre, " + feed.strAge
+        }else{
+            self.lblAgeGender.text = "Mujer, " + feed.strAge
+        }
+        
+        
         self.lblLikeCount.text = feed.strLikeCount
         self.lblCommentCount.text = feed.strCommentCount
         
