@@ -15,9 +15,13 @@ protocol FeedFetchDelegate: AnyObject {
 protocol FeedFetchProtocol: AnyObject {
     var delegate: FeedFetchDelegate? { get set }
     func fetchFeeds()
+    var isComingFrom:String? { get set }
 }
 
 class FeedFetcher: FeedFetchProtocol {
+    
+    var isComingFrom: String?
+    
     
     func fetchFeeds() {
         if !objWebServiceManager.isNetworkAvailable(){
@@ -26,7 +30,7 @@ class FeedFetcher: FeedFetchProtocol {
             return
         }
         
-        objWebServiceManager.showIndicator()
+       // objWebServiceManager.showIndicator()
         
         let parameter = ["my_id":objAppShareData.UserDetail.strUserId]as [String:Any]
         
@@ -45,12 +49,15 @@ class FeedFetcher: FeedFetchProtocol {
                  //   self.arrBlogList.removeAll()
                    var arrBlogList = [BlogListModel]()
                     for dictdata in arrData{
-                        
                         let obj = BlogListModel.init(dict: dictdata)
-                        if objAppShareData.UserDetail.strUserId == obj.strBlogUserID{
-                            arrBlogList.append(obj)
+                        if self.isComingFrom == "MyVideos"{
+                            if objAppShareData.UserDetail.strUserId == obj.strBlogUserID{
+                                arrBlogList.append(obj)
+                            }else{
+                                //Do Nothing
+                            }
                         }else{
-                            //Do Nothing
+                            arrBlogList.append(obj)
                         }
                         
                     }

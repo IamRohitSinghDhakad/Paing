@@ -31,8 +31,6 @@ class FeedViewController: AVPlayerViewController, StoryboardScene {
         super.viewDidLoad()
         initializeFeed()
 
-       
-        
         NotificationCenter.default.addObserver(forName: .AVPlayerItemDidPlayToEndTime, object: player?.currentItem, queue: .main) { [weak self] _ in
             self?.player?.seek(to: CMTime.zero)
             self?.player?.play()

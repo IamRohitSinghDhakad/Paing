@@ -35,10 +35,13 @@ struct WsUrl{
     static let url_getBlogList = BASE_URL + "get_blog?"
     
     static let url_getVideos = BASE_URL + "get_video"
+    static let url_likeVideo = BASE_URL + "video_like"
+    static let url_deleteVideo = BASE_URL + "delete_video"
     
     static let url_AddBlogInList = BASE_URL + "add_blog"
     static let url_DeleteBlogInList = BASE_URL + "delete_blog"
     static let url_addBlogComment = BASE_URL + "blog_comment"
+    static let url_addVideoComment = BASE_URL + "video_comment"
     static let url_likeBlog = BASE_URL + "blog_like"
     static let url_getChatList = BASE_URL + "get_chat"
     static let url_insertChat = BASE_URL + "insert_chat"
@@ -47,6 +50,7 @@ struct WsUrl{
     static let url_deleteChatSingleMessage = BASE_URL + "delete_chat_message?"
     static let url_clearConversation = BASE_URL + "clear_conversation"
     static let url_DeleteBlogComment = BASE_URL + "blog_comment_delete?"
+    static let url_deleteVideoComment = BASE_URL + "video_comment_delete"
     static let url_SaveInFavorite = BASE_URL + "save_in_favorite"
     static let url_LikeUserImage = BASE_URL + "like_user_image"
     static let url_BlockInUser = BASE_URL + "block_in_user"

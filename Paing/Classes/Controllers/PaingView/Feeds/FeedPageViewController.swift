@@ -18,11 +18,14 @@ class FeedPageViewController: UIPageViewController, FeedPageView {
     fileprivate var presenter: FeedPagePresenterProtocol!
     
     var customView = UIView()
+    var isComingFrom = ""
     
     func presentInitialFeed(_ feed: BlogListModel) {
 //        let viewController = FeedViewController.instantiate(feed: feed, andIndex: 0, isPlaying: true) as! FeedViewController
 //        setViewControllers([viewController], direction: .forward, animated: false, completion: nil)
         let viewController = NewFeedViewController.instantiate(feed: feed, andIndex: 0, isPlaying: true) as! NewFeedViewController
+        viewController.isComingFrom = self.isComingFrom
+        viewController.objVC = presenter as? FeedFetchDelegate
         setViewControllers([viewController], direction: .forward, animated: false, completion: nil)
     }
     
@@ -31,7 +34,10 @@ class FeedPageViewController: UIPageViewController, FeedPageView {
         self.dataSource = self
         self.delegate = self
         presenter = FeedPagePresenter(view: self)
+        presenter.setIsComingFromPreference(strIsComingFrom: self.isComingFrom)
         presenter.viewDidLoad()
+       
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {

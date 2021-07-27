@@ -10,8 +10,7 @@ import UIKit
 import AVKit
 import AVFoundation
 
-class NewFeedViewController: UIViewController,StoryboardScene {
-
+class NewFeedViewController: UIViewController,StoryboardScene,FeedFetchProtocol {
     static var sceneStoryboard = UIStoryboard(name: "Main", bundle: nil)
     var index: Int!
     fileprivate var feed: BlogListModel!
@@ -24,11 +23,17 @@ class NewFeedViewController: UIViewController,StoryboardScene {
     @IBOutlet weak var IMGVWLIKE: UIImageView!
     @IBOutlet weak var lblLikeCount: UILabel!
     @IBOutlet weak var lblCommentCount: UILabel!
+    @IBOutlet weak var vwDelete: UIView!
     
     
     var player:AVPlayer?
     var playerViewController: AVPlayerViewController!
     var playerLayer : AVPlayerLayer!
+    
+    var objVC:FeedFetchDelegate?
+    var isComingFrom: String?
+   // var isComingFrom = ""
+    var delegate: FeedFetchDelegate?
     
     private var playerItemBufferEmptyObserver: NSKeyValueObservation?
     private var playerItemBufferKeepUpObserver: NSKeyValueObservation?
@@ -46,22 +51,27 @@ class NewFeedViewController: UIViewController,StoryboardScene {
     }
     
     @IBAction func btnDeleteVideo(_ sender: Any) {
-        
+        self.call_wsDeleteFeeds(strVideoID: feed.strVideoID, strUserID: feed.strBlogUserID)
     }
+    @IBAction func btnLikeVideo(_ sender: Any) {
+        self.call_wsLikeFeeds(strVideoID: feed.strVideoID, strUserID: feed.strBlogUserID)
+    }
+    
+    @IBAction func btnCommentVideo(_ sender: Any) {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "CommentVideoViewController")as! CommentVideoViewController
+        vc.objUserData = feed
+        vc.arrComment = feed.arrCommentList
+        vc.objVC = self.objVC
+        vc.index = self.index
+        vc.isComingFrom = self.isComingFrom ?? ""
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let profilePic = feed.strUserImage
-        if profilePic != "" {
-            let url = URL(string: profilePic)
-            self.imgVwUser.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "splashLogo"))
-        }
-        
-        self.lblUserName.text = feed.strName
-        self.lblAgeGender.text = feed.strGender + "," + feed.strAge
-        self.lblLikeCount.text = feed.strLikeCount
-        self.lblCommentCount.text = feed.strCommentCount
+        print(self.isComingFrom ?? "")
+       
         
         DispatchQueue.main.async {
             self.initializeFeed()
@@ -81,10 +91,34 @@ class NewFeedViewController: UIViewController,StoryboardScene {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        print(feed!, index!)
+        self.setUserData()
         player?.play()
     }
     
+    func setUserData(){
+        let profilePic = feed.strUserImage
+        if profilePic != "" {
+            let url = URL(string: profilePic)
+            self.imgVwUser.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "splashLogo"))
+        }
+        
+        self.lblUserName.text = feed.strName
+        self.lblAgeGender.text = feed.strGender + "," + feed.strAge
+        self.lblLikeCount.text = feed.strLikeCount
+        self.lblCommentCount.text = feed.strCommentCount
+        
+        if feed.strLikeStatus == "1"{
+            self.IMGVWLIKE.image = #imageLiteral(resourceName: "like")
+        }else{
+            self.IMGVWLIKE.image = #imageLiteral(resourceName: "like_white")
+        }
+        
+        if feed.strBlogUserID == objAppShareData.UserDetail.strUserId{
+            self.vwDelete.isHidden = false
+        }else{
+            self.vwDelete.isHidden = true
+        }
+    }
     
     func play() {
         player?.play()
@@ -120,4 +154,144 @@ class NewFeedViewController: UIViewController,StoryboardScene {
     
     }
 
+}
+
+
+
+extension NewFeedViewController{
+    
+    func call_wsLikeFeeds(strVideoID:String,strUserID:String) {
+        if !objWebServiceManager.isNetworkAvailable(){
+            objWebServiceManager.hideIndicator()
+            objAlert.showAlert(message: "No Internet Connection", title: "Alert", controller: self)
+            return
+        }
+        
+        objWebServiceManager.showIndicator()
+        
+        let parameter = ["user_id":strUserID,"video_id":strVideoID]as [String:Any]
+        print(parameter)
+        
+        objWebServiceManager.requestGet(strURL: WsUrl.url_likeVideo, params: parameter, queryParams: [:], strCustomValidation: "") { (response) in
+            
+            objWebServiceManager.hideIndicator()
+            
+            let status = (response["status"] as? Int)
+            let message = (response["message"] as? String)
+            
+            print(response)
+            
+            if status == MessageConstant.k_StatusCode{
+                self.fetchFeeds()
+            }else{
+                objWebServiceManager.hideIndicator()
+                
+                if (response["result"]as? String) != nil{
+                  //  self.tblBLogs.displayBackgroundText(text: "Aún no publicas ningún blog")
+                }else{
+                    objAlert.showAlert(message: message ?? "", title: "Alert", controller: self)
+                }
+            }
+        } failure: { (Error) in
+            print(Error)
+            objWebServiceManager.hideIndicator()
+        }
+    }
+    
+    
+    //=================== Delete Video API ======>
+    func call_wsDeleteFeeds(strVideoID:String,strUserID:String) {
+        if !objWebServiceManager.isNetworkAvailable(){
+            objWebServiceManager.hideIndicator()
+            objAlert.showAlert(message: "No Internet Connection", title: "Alert", controller: self)
+            return
+        }
+        
+        objWebServiceManager.showIndicator()
+        
+        let parameter = ["user_id":strUserID,"video_id":strVideoID]as [String:Any]
+        print(parameter)
+        
+        objWebServiceManager.requestGet(strURL: WsUrl.url_deleteVideo, params: parameter, queryParams: [:], strCustomValidation: "") { (response) in
+            
+            objWebServiceManager.hideIndicator()
+            
+            let status = (response["status"] as? Int)
+            let message = (response["message"] as? String)
+            
+            print(response)
+            
+            if status == MessageConstant.k_StatusCode{
+                
+                self.navigationController?.popViewController(animated: true)
+            }else{
+                objWebServiceManager.hideIndicator()
+                
+                if (response["result"]as? String) != nil{
+                  //  self.tblBLogs.displayBackgroundText(text: "Aún no publicas ningún blog")
+                }else{
+                    objAlert.showAlert(message: message ?? "", title: "Alert", controller: self)
+                }
+            }
+        } failure: { (Error) in
+            print(Error)
+            objWebServiceManager.hideIndicator()
+        }
+    }
+    
+    //================== Update Feeds =======>>
+    
+    
+    func fetchFeeds() {
+        if !objWebServiceManager.isNetworkAvailable(){
+            objWebServiceManager.hideIndicator()
+          //  objAlert.showAlert(message: "No Internet Connection", title: "Alert", controller: self)
+            return
+        }
+        
+       // objWebServiceManager.showIndicator()
+        
+        let parameter = ["my_id":objAppShareData.UserDetail.strUserId]as [String:Any]
+        
+        
+        objWebServiceManager.requestGet(strURL: WsUrl.url_getVideos, params: parameter, queryParams: [:], strCustomValidation: "") { (response) in
+            
+            objWebServiceManager.hideIndicator()
+            
+            let status = (response["status"] as? Int)
+            let message = (response["message"] as? String)
+            
+            print(response)
+            
+            if status == MessageConstant.k_StatusCode{
+                if let arrData  = response["result"] as? [[String:Any]]{
+                   var arrBlogList = [BlogListModel]()
+                    for dictdata in arrData{
+                        let obj = BlogListModel.init(dict: dictdata)
+                        if self.isComingFrom == "MyVideos"{
+                            if objAppShareData.UserDetail.strUserId == obj.strBlogUserID{
+                                arrBlogList.append(obj)
+                            }else{
+                                //Do Nothing
+                            }
+                        }else{
+                            arrBlogList.append(obj)
+                        }
+                    }
+                    self.objVC?.feedFetchService(self, didFetchFeeds: arrBlogList, withError: nil)
+                }
+            }else{
+                objWebServiceManager.hideIndicator()
+                
+                if (response["result"]as? String) != nil{
+                  //  self.tblBLogs.displayBackgroundText(text: "Aún no publicas ningún blog")
+                }else{
+                   // objAlert.showAlert(message: message ?? "", title: "Alert", controller: self)
+                }
+            }
+        } failure: { (Error) in
+            print(Error)
+            objWebServiceManager.hideIndicator()
+        }
+    }
 }

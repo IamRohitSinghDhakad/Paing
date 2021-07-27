@@ -41,12 +41,19 @@ class VideoTopViewController: UIViewController {
     }
     
     @IBAction func btnShowVideos(_ sender: Any) {
-        pushVc(viewConterlerId: "VideoPreviewViewController")
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "FeedPageViewController")as! FeedPageViewController
+        vc.isComingFrom = "MyVideos"
+        self.navigationController?.pushViewController(vc, animated: true)
+        
+        //pushVc(viewConterlerId: "FeedPageViewController")
         
     }
     
     @IBAction func btnMyVideos(_ sender: Any) {
-        
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "FeedPageViewController")as! FeedPageViewController
+        vc.isComingFrom = "AllVideos"
+        self.navigationController?.pushViewController(vc, animated: true)
+        //pushVc(viewConterlerId: "FeedPageViewController")
     }
     
 }
@@ -238,7 +245,6 @@ extension VideoTopViewController: UINavigationControllerDelegate, UIImagePickerC
                     DispatchQueue.main.async {
                         self.recordVid()
                     }
-                    
                 }
             }
             
@@ -273,98 +279,8 @@ extension VideoTopViewController: UINavigationControllerDelegate, UIImagePickerC
             present(controller, animated: true, completion: nil)
         }
     }
-  
-    
 }
 
-
-//// MARK:- UIImage Picker Delegate
-//
-//extension VideoTopViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-//
-//    func selectImageVideo(){
-//        imagePicker.allowsEditing = true
-//        imagePicker.sourceType = UIImagePickerController.SourceType.photoLibrary
-//        let alert:UIAlertController = UIAlertController(title: "Seleccion", message: nil, preferredStyle: UIAlertController.Style.actionSheet)
-//
-//        let cameraAction = UIAlertAction(title: "Foto", style: UIAlertAction.Style.default)
-//        {
-//            UIAlertAction in
-//
-//            if self.arrayVideoCollection.count > 11{
-//                objAlert.showAlert(message: "Puede cargar un máximo de 12 fotos.", title: "Alert", controller: self)
-//            }else{
-//             //   self.openGallery()
-//            }
-//        }
-//
-//        let galleryAction = UIAlertAction(title: "Video", style: UIAlertAction.Style.default) {
-//            UIAlertAction in
-//
-//            if self.arrayVideoCollection.count > 2{
-//                objAlert.showAlert(message: "Puede cargar un máximo de 3 videos.", title: "Alert", controller: self)
-//            }else{
-//                self.openVideoGallery()
-//            }
-//
-//        }
-//
-//        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel) {
-//            UIAlertAction in
-//        }
-//        alert.addAction(cameraAction)
-//        alert.addAction(galleryAction)
-//        alert.addAction(cancelAction)
-//        alert.popoverPresentationController?.sourceView = self.view
-//        self.present(alert, animated: true, completion: nil)
-//    }
-//
-//    // Open Video Gallery
-//    func openVideoGallery() {
-//        imagePicker.sourceType = .savedPhotosAlbum
-//        imagePicker.mediaTypes = ["public.movie"]
-//        imagePicker.allowsEditing = true
-//        imagePicker.videoMaximumDuration = 60
-//        self.present(imagePicker, animated: true, completion: nil)
-//    }
-//
-//
-//    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-//        self.dismiss(animated: true, completion: nil)
-//    }
-//
-//    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-//        picker.dismiss(animated: true, completion: nil)
-//        guard let mediaType = info[UIImagePickerController.InfoKey.mediaType] as? String else { return }
-//
-//        if mediaType == "public.movie" {
-//            print("Video Selected")
-//            // Using the full key
-//            if let url = info[UIImagePickerController.InfoKey.mediaURL] as? URL {
-//
-//                let duration = AVURLAsset(url: url).duration.seconds
-//                    print(duration)
-//
-//                // Do something with the URL
-//                let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "EditImageVideoViewController") as? EditImageVideoViewController
-//                vc?.type = .video
-//                vc?.assetURL = url
-//                self.navigationController?.pushViewController(vc!, animated: true)
-//            }
-//        }
-//    }
-//
-//    func cornerImage(image: UIImageView, color: UIColor ,width: CGFloat){
-//        image.layer.cornerRadius = image.layer.frame.size.height / 2
-//        image.layer.masksToBounds = false
-//        image.layer.borderColor = color.cgColor
-//        image.layer.borderWidth = width
-//
-//    }
-//
-//
-//
-//}
 
 
 extension VideoTopViewController{
@@ -409,9 +325,9 @@ extension VideoTopViewController{
                         objAlert.showAlert(message: "No se encontró ningún video", title: "", controller: self)
                       //  self.cvVideo.displayBackgroundText(text: "Aún no publicas ningún blog")
                     }else{
-                        let vc = self.storyboard?.instantiateViewController(withIdentifier: "FeedPageViewController")as! FeedPageViewController
-                        //vc.arrayVideoCollection = self.arrayVideoCollection
-                        self.navigationController?.pushViewController(vc, animated: true)
+//                        let vc = self.storyboard?.instantiateViewController(withIdentifier: "FeedPageViewController")as! FeedPageViewController
+//                        //vc.arrayVideoCollection = self.arrayVideoCollection
+//                        self.navigationController?.pushViewController(vc, animated: true)
                         
                        // self.cvVideo.displayBackgroundText(text: "")
                     }

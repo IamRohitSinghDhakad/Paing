@@ -15,6 +15,7 @@ protocol FeedPagePresenterProtocol: AnyObject {
     func fetchNextFeed() -> IndexedFeed?
     func fetchPreviousFeed() -> IndexedFeed?
     func updateFeedIndex(fromIndex index: Int)
+    func setIsComingFromPreference(strIsComingFrom:String)
 }
 
 class FeedPagePresenter: FeedPagePresenterProtocol {
@@ -22,6 +23,7 @@ class FeedPagePresenter: FeedPagePresenterProtocol {
     fileprivate var fetcher: FeedFetchProtocol
     fileprivate var feeds: [BlogListModel] = []
     fileprivate var currentFeedIndex = 0
+    var isComingFromFeedPage = ""
     
     init(view: FeedPageView, fetcher: FeedFetchProtocol = FeedFetcher()) {
         self.view = view
@@ -30,8 +32,13 @@ class FeedPagePresenter: FeedPagePresenterProtocol {
     
     func viewDidLoad() {
         fetcher.delegate = self
+        fetcher.isComingFrom = isComingFromFeedPage
         configureAudioSession()
         fetchFeeds()
+    }
+    
+    func setIsComingFromPreference(strIsComingFrom:String){
+        self.isComingFromFeedPage = strIsComingFrom
     }
     
     func fetchNextFeed() -> IndexedFeed? {

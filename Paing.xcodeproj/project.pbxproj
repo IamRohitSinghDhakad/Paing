@@ -19,6 +19,7 @@
 		6A7B1E6826AE99E40030A727 /* InteractionUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7B1E6726AE99E40030A727 /* InteractionUtil.swift */; };
 		6A7B1E6B26AE9A2C0030A727 /* FeedFetchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7B1E6A26AE9A2C0030A727 /* FeedFetchService.swift */; };
 		6A7B1E7226AED4C10030A727 /* NewFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7B1E7126AED4C10030A727 /* NewFeedViewController.swift */; };
+		6AAF377126B00ADF00473DA6 /* CommentVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AAF377026B00ADF00473DA6 /* CommentVideoViewController.swift */; };
 		734E019F70F6ACEA4AE1BBE5 /* Pods_Paing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA208F8E3138D5B243E7AD6E /* Pods_Paing.framework */; };
 		8C0C2AAF266818D9005AC1C3 /* UserProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C0C2AAE266818D9005AC1C3 /* UserProfile.storyboard */; };
 		8C0C2AB326681E46005AC1C3 /* UserAssetsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0C2AB226681E46005AC1C3 /* UserAssetsCollectionViewCell.swift */; };
@@ -149,6 +150,7 @@
 		6A7B1E6726AE99E40030A727 /* InteractionUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InteractionUtil.swift; sourceTree = "<group>"; };
 		6A7B1E6A26AE9A2C0030A727 /* FeedFetchService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedFetchService.swift; sourceTree = "<group>"; };
 		6A7B1E7126AED4C10030A727 /* NewFeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFeedViewController.swift; sourceTree = "<group>"; };
+		6AAF377026B00ADF00473DA6 /* CommentVideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentVideoViewController.swift; sourceTree = "<group>"; };
 		8C0C2AAE266818D9005AC1C3 /* UserProfile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UserProfile.storyboard; sourceTree = "<group>"; };
 		8C0C2AB226681E46005AC1C3 /* UserAssetsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAssetsCollectionViewCell.swift; sourceTree = "<group>"; };
 		8C4CFCF126691BAE004F15F3 /* UserImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserImageModel.swift; sourceTree = "<group>"; };
@@ -295,6 +297,7 @@
 				6A7B1E5726AE929D0030A727 /* FeedViewController.swift */,
 				6A7B1E5C26AE93940030A727 /* FeedPageViewController.swift */,
 				6A7B1E7126AED4C10030A727 /* NewFeedViewController.swift */,
+				6AAF377026B00ADF00473DA6 /* CommentVideoViewController.swift */,
 			);
 			path = Feeds;
 			sourceTree = "<group>";
@@ -1107,6 +1110,7 @@
 				F928C7FE26777DB40004BF5C /* AcceptTermsViewController.swift in Sources */,
 				8C0C2AB326681E46005AC1C3 /* UserAssetsCollectionViewCell.swift in Sources */,
 				F9F808D52656F1EF00F320FF /* Location.swift in Sources */,
+				6AAF377126B00ADF00473DA6 /* CommentVideoViewController.swift in Sources */,
 				F91BDEC92668DB0A002B89CA /* LikesTableViewCell.swift in Sources */,
 				F928C80026777DCC0004BF5C /* ShowTermsAndPricavyViewController.swift in Sources */,
 				F9F808C22656F1A000F320FF /* WebServiceManager.swift in Sources */,
@@ -1370,16 +1374,16 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Paing/Paing.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 2.2.0;
-				DEVELOPMENT_TEAM = 7E7WKW772Q;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Paing/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 2.2;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ambitious.paingg;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ambitious.paing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "${SRCROOT}/Paing/BridgeHeader/BridgingHeader.h";
@@ -1397,16 +1401,16 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Paing/Paing.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 2.2.0;
-				DEVELOPMENT_TEAM = 7E7WKW772Q;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Paing/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 2.2;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ambitious.paingg;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ambitious.paing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "${SRCROOT}/Paing/BridgeHeader/BridgingHeader.h";
