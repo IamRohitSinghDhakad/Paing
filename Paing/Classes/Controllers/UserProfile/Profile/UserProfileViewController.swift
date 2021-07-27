@@ -209,6 +209,7 @@ class UserProfileViewController: UIViewController {
             }
             
             if userProfile.strAboutMe != ""{
+                
                 finalText = finalText + ", \(userProfile.strAboutMe)"
             }
             

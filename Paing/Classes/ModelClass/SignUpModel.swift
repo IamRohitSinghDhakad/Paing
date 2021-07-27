@@ -84,7 +84,7 @@ class userDetailModel: NSObject {
         }
         
         if let username = dict["name"] as? String{
-            self.strUserName = username
+            self.strUserName = username.decodeEmoji
         }
         
         if let strMembership = dict["has_membership"] as? String{
@@ -100,28 +100,28 @@ class userDetailModel: NSObject {
         }
         
         if let short_bio = dict["short_bio"] as? String{
-            self.strAboutMe = short_bio
+            self.strAboutMe = short_bio.decodeEmoji
         }
       
         
         if let hairColor = dict["hair"] as? String{
-            self.strHairColor = hairColor
+            self.strHairColor = hairColor.decodeEmoji
         }
         
         if let skin = dict["skin"] as? String{
-            self.strSkinTone = skin
+            self.strSkinTone = skin.decodeEmoji
         }
         
         if let sport = dict["sport"] as? String{
-            self.strSport = sport
+            self.strSport = sport.decodeEmoji
         }
         
         if let music = dict["music"] as? String{
-            self.strMusic = music
+            self.strMusic = music.decodeEmoji
         }
         
         if let name = dict["name"] as? String{
-            self.strName = name
+            self.strName = name.decodeEmoji
         }
         
         if let email = dict["email"] as? String{
@@ -129,7 +129,7 @@ class userDetailModel: NSObject {
         }
         
         if let address = dict["address"] as? String{
-            self.strAddress = address
+            self.strAddress = address.decodeEmoji
         }
         
         if let allow_sex = dict["allow_sex"] as? String{

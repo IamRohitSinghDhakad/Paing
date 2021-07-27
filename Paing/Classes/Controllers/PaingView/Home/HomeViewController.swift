@@ -112,6 +112,7 @@ class HomeViewController: UIViewController {
                     })
                 }
             }else{
+                self.offset = 0
                 self.call_GetUsers(strUserID: objAppShareData.UserDetail.strUserId)
                 self.modalTransitionStyle = UIModalTransitionStyle.flipHorizontal
             }
@@ -292,7 +293,7 @@ class HomeViewController: UIViewController {
     
     @IBAction func actionBtnProfile(_ sender: Any) {
         self.resetFilter()
-        print(swipeView.currentCardIndex)
+       // print(swipeView.currentCardIndex)
         if self.arrUsers.count > 0{
             let userID = self.arrUsers[swipeView.currentCardIndex].strUserID
             let vc = UIStoryboard(name: "UserProfile", bundle: nil).instantiateViewController(withIdentifier: "UserProfileViewController") as? UserProfileViewController
