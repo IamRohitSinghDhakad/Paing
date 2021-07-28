@@ -8,10 +8,6 @@
 import UIKit
 
 class CommentVideoViewController: UIViewController,FeedFetchProtocol {
-   
-    
-   
-    
 
     //MARK:- IBOutlets
     @IBOutlet var tblComments: UITableView!
@@ -274,7 +270,7 @@ extension CommentVideoViewController{
         
         
         objWebServiceManager.requestGet(strURL: WsUrl.url_addVideoComment, params: parameter, queryParams: [:], strCustomValidation: "") { (response) in
-            objWebServiceManager.hideIndicator()
+          //  objWebServiceManager.hideIndicator()
             let status = (response["status"] as? Int)
             let message = (response["message"] as? String)
             
@@ -286,12 +282,13 @@ extension CommentVideoViewController{
                     self.fetchFeeds()
                   //  self.call_GetBlogList(strUserID: strUserID)
                 }else{
-                    objAlert.showAlert(message: "Something went Wrong", title: "Alert", controller: self)
+                    
+                    objAlert.showAlert(message: "Something went Wrong", title: "", controller: self)
                 }
                 
             }else{
                 objWebServiceManager.hideIndicator()
-                objAlert.showAlert(message: message ?? "", title: "Alert", controller: self)
+                objAlert.showAlert(message: message ?? "", title: "", controller: self)
                 
             }
             
@@ -317,7 +314,7 @@ extension CommentVideoViewController{
         
         
         objWebServiceManager.requestGet(strURL: WsUrl.url_deleteVideoComment, params: parameter, queryParams: [:], strCustomValidation: "") { (response) in
-            objWebServiceManager.hideIndicator()
+         //   objWebServiceManager.hideIndicator()
             let status = (response["status"] as? Int)
             let message = (response["message"] as? String)
             
@@ -330,7 +327,7 @@ extension CommentVideoViewController{
                 
             }else{
                 objWebServiceManager.hideIndicator()
-                objAlert.showAlert(message: message ?? "", title: "Alert", controller: self)
+                objAlert.showAlert(message: message ?? "", title: "", controller: self)
                 
             }
             
@@ -349,14 +346,14 @@ extension CommentVideoViewController{
             return
         }
         
-        objWebServiceManager.showIndicator()
+      //  objWebServiceManager.showIndicator()
         
         let parameter = ["my_id":objAppShareData.UserDetail.strUserId]as [String:Any]
         
         
         objWebServiceManager.requestGet(strURL: WsUrl.url_getVideos, params: parameter, queryParams: [:], strCustomValidation: "") { (response) in
             
-            objWebServiceManager.hideIndicator()
+          //  objWebServiceManager.hideIndicator()
             
             let status = (response["status"] as? Int)
             let message = (response["message"] as? String)

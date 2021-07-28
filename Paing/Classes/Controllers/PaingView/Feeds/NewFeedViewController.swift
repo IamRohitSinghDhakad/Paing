@@ -33,7 +33,10 @@ class NewFeedViewController: UIViewController,StoryboardScene,FeedFetchProtocol 
     var objVC:FeedFetchDelegate?
     var isComingFrom: String?
    // var isComingFrom = ""
+    var notifObservers = [NSObjectProtocol]()
     var delegate: FeedFetchDelegate?
+    
+    var createLayerSwitch = true
     
     private var playerItemBufferEmptyObserver: NSKeyValueObservation?
     private var playerItemBufferKeepUpObserver: NSKeyValueObservation?
@@ -58,6 +61,7 @@ class NewFeedViewController: UIViewController,StoryboardScene,FeedFetchProtocol 
     }
     
     @IBAction func btnCommentVideo(_ sender: Any) {
+        player?.pause()
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "CommentVideoViewController")as! CommentVideoViewController
         vc.objUserData = feed
         vc.arrComment = feed.arrCommentList
@@ -70,29 +74,45 @@ class NewFeedViewController: UIViewController,StoryboardScene,FeedFetchProtocol 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(self.isComingFrom ?? "")
-       
-        
-        DispatchQueue.main.async {
-            self.initializeFeed()
-        }
-        
-//        NotificationCenter.default.addObserver(forName: .AVPlayerItemDidPlayToEndTime, object: player?.currentItem, queue: .main) { [weak self] _ in
-//            self?.player?.seek(to: CMTime.zero)
-//            self?.player?.play()
-//        }
+        playInLoop()
     }
     
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
+        
+        for observer in notifObservers {
+            NotificationCenter.default.removeObserver(observer)
+        }
+        notifObservers.removeAll()
          player?.pause()
+        self.closePlayer()
+       
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         self.setUserData()
-        player?.play()
+        DispatchQueue.main.async {
+            self.initializeFeed()
+        }
+       
+        
+    }
+    
+    func playInLoop(){
+        NotificationCenter.default.addObserver(forName: .AVPlayerItemDidPlayToEndTime, object: player?.currentItem, queue: .main) { [weak self] _ in
+            self?.player?.seek(to: CMTime.zero)
+            self?.player?.play()
+        }
+    }
+    
+    func closePlayer(){
+     if (createLayerSwitch == false) {
+        self.player?.pause()
+        self.player = nil
+        self.playerLayer.removeFromSuperlayer()
+     }
     }
     
     func setUserData(){
@@ -139,10 +159,12 @@ class NewFeedViewController: UIViewController,StoryboardScene,FeedFetchProtocol 
     fileprivate func initializeFeed() {
         let url = URL(string:feed.strVideoUrl)
         player = AVPlayer(url: url!)
-        let playerLayer = AVPlayerLayer(player: player)
+        self.playerLayer = AVPlayerLayer(player: player)
         playerLayer.frame = self.vwPlayerContainer.bounds
         self.vwPlayerContainer.layer.addSublayer(playerLayer)
+        player?.play()
         isPlaying ? play() : nil
+        createLayerSwitch = false
         
         playerItemBufferEmptyObserver = self.player?.currentItem?.observe(\AVPlayerItem.isPlaybackBufferEmpty, options: [.new]) { [weak self] (_, _) in
             guard self != nil else { return }
