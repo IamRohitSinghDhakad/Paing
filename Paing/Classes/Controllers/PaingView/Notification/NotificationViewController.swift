@@ -99,6 +99,10 @@ extension NotificationViewController:UITableViewDelegate,UITableViewDataSource{
             cell.lblMsg.text = obj.strName + " comentó en su blog"
         }else if obj.strType == "admin"{
             cell.lblMsg.text =  obj.strNotificationTitle + " \(obj.strNotificationAdmin)."
+        }else if obj.strType == "video_like"{
+            cell.lblMsg.text = obj.strName + " le gustó tu VideoTop"
+        }else if obj.strType == "video_comment"{
+            cell.lblMsg.text = obj.strName  + " comentó en su VideoTop"
         }else{
             cell.lblMsg.text = obj.strName + " te Agregó a favoritos."
         }
@@ -232,7 +236,7 @@ extension NotificationViewController{
         
         objWebServiceManager.showIndicator()
         
-        let parameter = ["notification_id":strNotificationID]as [String:Any]
+        let parameter = ["notification_id":strNotificationID,"user_id":objAppShareData.UserDetail.strUserId]as [String:Any]
         
         print(parameter)
         objWebServiceManager.requestGet(strURL: WsUrl.url_DeleteNotification, params: parameter, queryParams: [:], strCustomValidation: "") { (response) in

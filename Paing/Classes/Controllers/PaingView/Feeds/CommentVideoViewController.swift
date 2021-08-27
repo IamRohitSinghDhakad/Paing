@@ -212,13 +212,13 @@ extension CommentVideoViewController: UITableViewDelegate,UITableViewDataSource{
     @objc func btnGoToProfile(sender: UIButton){
         print(sender.tag)
         
-//        let userID = self.arrComment[sender.tag].strCommentUserID
-//        if objAppShareData.UserDetail.strUserId == userID{
-//        }else{
-//            let vc = UIStoryboard(name: "UserProfile", bundle: nil).instantiateViewController(withIdentifier: "UserProfileViewController") as? UserProfileViewController
-//            vc?.userID = userID
-//            self.navigationController?.pushViewController(vc!, animated: true)
-//        }
+        let userID = self.arrComment[sender.tag].strCommentUserID
+        if objAppShareData.UserDetail.strUserId == userID{
+        }else{
+            let vc = UIStoryboard(name: "UserProfile", bundle: nil).instantiateViewController(withIdentifier: "UserProfileViewController") as? UserProfileViewController
+            vc?.userID = userID
+            self.navigationController?.pushViewController(vc!, animated: true)
+        }
     }
     
     

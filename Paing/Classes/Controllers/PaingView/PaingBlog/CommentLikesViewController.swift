@@ -84,6 +84,13 @@ class CommentLikesViewController: UIViewController {
             self.lblAgeGender.text = "Mujer, \(objUserData.strAge)"
         }
         
+        
+        if objUserData.strLikeStatus == "1"{
+            self.imgVwLike.image = #imageLiteral(resourceName: "like")
+        }else{
+            self.imgVwLike.image = #imageLiteral(resourceName: "emptyHeart")
+        }
+        
         if objUserData.strLikeCount == ""{
             self.lblLikeCount.text = "(0)"
         }else{
@@ -294,8 +301,6 @@ extension CommentLikesViewController: UITableViewDelegate,UITableViewDataSource{
             
             cell.lblName.text = obj.strLikedName
             
-            
-            
             return cell
         }
     }
@@ -336,6 +341,15 @@ extension CommentLikesViewController: UITableViewDelegate,UITableViewDataSource{
             }
         }
         self.tblComments.reloadData()
+        }else if tableView == self.tblLikes{
+            
+            let userID = self.arrLike[indexPath.row].strLikedID
+            if objAppShareData.UserDetail.strUserId == userID{
+            }else{
+                let vc = UIStoryboard(name: "UserProfile", bundle: nil).instantiateViewController(withIdentifier: "UserProfileViewController") as? UserProfileViewController
+                vc?.userID = userID
+                self.navigationController?.pushViewController(vc!, animated: true)
+            }
         }
     }
     

@@ -78,8 +78,8 @@
             filePath = "Paing/Classes/Controllers/PaingView/Notification/NotificationViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "190"
-            endingLineNumber = "190"
+            startingLineNumber = "194"
+            endingLineNumber = "194"
             landmarkName = "call_GetNotification(strUserId:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -94,8 +94,8 @@
             filePath = "Paing/Classes/Controllers/PaingView/Notification/NotificationViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "182"
-            endingLineNumber = "182"
+            startingLineNumber = "186"
+            endingLineNumber = "186"
             landmarkName = "call_GetNotification(strUserId:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -167,48 +167,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "9B9DD187-CB4E-47B8-854E-C598F6E62617"
+            uuid = "766B53A6-B85B-4833-9ADC-D545E32F9746"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Paing/Classes/Controllers/PaingView/Profile/EditImageVideo/EditImageVideoViewController.swift"
+            filePath = "Paing/Classes/Controllers/PaingView/PaingBlog/CommentLikesViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "183"
-            endingLineNumber = "183"
-            landmarkName = "call_UploadImageVideo()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "40879D33-3446-4187-9D71-8E5F178D828C"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Paing/Classes/Controllers/PaingView/Profile/EditImageVideo/EditImageVideoViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "188"
-            endingLineNumber = "188"
-            landmarkName = "call_UploadImageVideo()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "D431F3DD-9C2D-4AC3-82DF-40F888B67FFB"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Paing/Classes/Controllers/PaingView/Feeds/NewFeedViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "84"
-            endingLineNumber = "84"
-            landmarkName = "viewWillDisappear(_:)"
+            startingLineNumber = "469"
+            endingLineNumber = "469"
+            landmarkName = "call_GetBlogList(strUserID:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

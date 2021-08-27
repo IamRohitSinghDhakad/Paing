@@ -11,7 +11,8 @@ import AVKit
 class VideoTopViewController: UIViewController {
 
     var imagePicker = UIImagePickerController()
-    var arrayVideoCollection: [BlogListModel] = []
+    var arrayMyVideoCollection: [BlogListModel] = []
+    var arrayOtherVideoCollection: [BlogListModel] = []
     var controller = UIImagePickerController()
     let videoFileName = "/video.mp4"
    
@@ -26,6 +27,10 @@ class VideoTopViewController: UIViewController {
         super.viewDidLoad()
 
         self.imagePicker.delegate = self
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         self.call_GetVideoBlogList(strUserID: objAppShareData.UserDetail.strUserId)
         
     }
@@ -37,7 +42,7 @@ class VideoTopViewController: UIViewController {
     
     @IBAction func btnOpenCamera(_ sender: Any) {
        // self.selectImageVideo()
-        if self.arrayVideoCollection.count >= 3{
+        if self.arrayMyVideoCollection.count >= 3{
             objAlert.showAlert(message: "solo puedes publicar 3 videos en 24 horas.", title: "", controller: self)
         }else{
             self.takeVideo()
@@ -46,21 +51,25 @@ class VideoTopViewController: UIViewController {
     }
     
     @IBAction func btnShowVideos(_ sender: Any) {
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "FeedPageViewController")as! FeedPageViewController
-        vc.isComingFrom = "AllVideos"
-        self.navigationController?.pushViewController(vc, animated: true)
-        
-        //pushVc(viewConterlerId: "FeedPageViewController")
-        
+        if self.arrayOtherVideoCollection.count != 0 || self.arrayMyVideoCollection.count != 0{
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "FeedPageViewController")as! FeedPageViewController
+            vc.isComingFrom = "AllVideos"
+            self.navigationController?.pushViewController(vc, animated: true)
+        }else{
+            objAlert.showAlert(message: "No se encontró ningún video", title: "", controller: self)
+        }
+       
     }
     
     @IBAction func btnMyVideos(_ sender: Any) {
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "FeedPageViewController")as! FeedPageViewController
-        vc.isComingFrom = "MyVideos"
-        self.navigationController?.pushViewController(vc, animated: true)
-        //pushVc(viewConterlerId: "FeedPageViewController")
+        if self.arrayMyVideoCollection.count != 0{
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "FeedPageViewController")as! FeedPageViewController
+            vc.isComingFrom = "MyVideos"
+            self.navigationController?.pushViewController(vc, animated: true)
+        }else{
+            objAlert.showAlert(message: "No se encontró ningún video", title: "", controller: self)
+        }
     }
-    
 }
 
 
@@ -313,13 +322,16 @@ extension VideoTopViewController{
             
             if status == MessageConstant.k_StatusCode{
                 if let arrData  = response["result"] as? [[String:Any]]{
+                    self.arrayMyVideoCollection.removeAll()
+                    self.arrayOtherVideoCollection.removeAll()
                   //  self.arrBlogList.removeAll()
                     for dictdata in arrData{
                         let obj = BlogListModel.init(dict: dictdata)
                         if objAppShareData.UserDetail.strUserId == obj.strBlogUserID{
-                            self.arrayVideoCollection.append(obj)
+                            self.arrayMyVideoCollection.append(obj)
                         }else{
                             //Do Nothing
+                            self.arrayOtherVideoCollection.append(obj)
                         }
                     }
                 }

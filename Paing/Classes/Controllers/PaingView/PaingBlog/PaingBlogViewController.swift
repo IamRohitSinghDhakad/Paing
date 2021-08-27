@@ -202,9 +202,9 @@ extension PaingBlogViewController:UITableViewDelegate,UITableViewDataSource{
         }
         print(obj.strLikeStatus)
         if obj.strLikeStatus == "0"{
-            cell.imgVwLike.image = #imageLiteral(resourceName: "heart")
+            cell.imgVwLike.image = #imageLiteral(resourceName: "emptyHeart")
         }else{
-            cell.imgVwLike.image = #imageLiteral(resourceName: "fav")
+            cell.imgVwLike.image = #imageLiteral(resourceName: "like")
         }
         
         cell.btnMenuDot.tag = indexPath.row

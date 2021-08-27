@@ -24,7 +24,8 @@ class NewFeedViewController: UIViewController,StoryboardScene,FeedFetchProtocol 
     @IBOutlet weak var lblLikeCount: UILabel!
     @IBOutlet weak var lblCommentCount: UILabel!
     @IBOutlet weak var vwDelete: UIView!
-    
+    @IBOutlet var subVwLikes: UIView!
+    @IBOutlet var tblLikes: UITableView!
     
     var player:AVPlayer?
     var playerViewController: AVPlayerViewController!
@@ -35,8 +36,10 @@ class NewFeedViewController: UIViewController,StoryboardScene,FeedFetchProtocol 
    // var isComingFrom = ""
     var notifObservers = [NSObjectProtocol]()
     var delegate: FeedFetchDelegate?
+    var arrLike = [LikedDataModel]()
     
     var createLayerSwitch = true
+    var isComingFromLike:Bool?
     
     private var playerItemBufferEmptyObserver: NSKeyValueObservation?
     private var playerItemBufferKeepUpObserver: NSKeyValueObservation?
@@ -49,16 +52,44 @@ class NewFeedViewController: UIViewController,StoryboardScene,FeedFetchProtocol 
         viewController.isPlaying = isPlaying
         return viewController
     }
+    
+    @IBAction func btnCloseLikeVw(_ sender: Any) {
+        self.subVwLikes.isHidden = true
+    }
+    
+    
     @IBAction func btnBackOnHeader(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
     
     @IBAction func btnDeleteVideo(_ sender: Any) {
-        self.call_wsDeleteFeeds(strVideoID: feed.strVideoID, strUserID: feed.strBlogUserID)
+       // objAlert.showAlert(message: "¿Estás seguro de que deseas eliminar este video?", title: "", controller: self)
+        objAlert.showAlertCallBack(alertLeftBtn: "", alertRightBtn: "OK", title: "", message: "¿Estás seguro de que deseas eliminar este video?", controller: self) {
+            self.call_wsDeleteFeeds(strVideoID: self.feed.strVideoID, strUserID: objAppShareData.UserDetail.strUserId)
+        }
+        
     }
     @IBAction func btnLikeVideo(_ sender: Any) {
-        self.call_wsLikeFeeds(strVideoID: feed.strVideoID, strUserID: feed.strBlogUserID)
+        print(feed.strLikeStatus)
+        if feed.strLikeStatus == "1"{
+            self.subVwLikes.isHidden = false
+        }else{
+            self.isComingFromLike = true
+            self.call_wsLikeFeeds(strVideoID: feed.strVideoID, strUserID: objAppShareData.UserDetail.strUserId)
+        }
+        
     }
+    
+    @IBAction func btnUserProfile(_ sender: Any) {
+        
+        if objAppShareData.UserDetail.strUserId == feed.strBlogUserID{
+        }else{
+            let vc = UIStoryboard(name: "UserProfile", bundle: nil).instantiateViewController(withIdentifier: "UserProfileViewController") as? UserProfileViewController
+            vc?.userID = feed.strBlogUserID
+            self.navigationController?.pushViewController(vc!, animated: true)
+        }
+    }
+    
     
     @IBAction func btnCommentVideo(_ sender: Any) {
         player?.pause()
@@ -74,7 +105,11 @@ class NewFeedViewController: UIViewController,StoryboardScene,FeedFetchProtocol 
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.subVwLikes.isHidden = true
         playInLoop()
+        self.arrLike = feed.arrLikedList
+        self.tblLikes.delegate = self
+        self.tblLikes.dataSource = self
     }
     
     
@@ -93,11 +128,18 @@ class NewFeedViewController: UIViewController,StoryboardScene,FeedFetchProtocol 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         self.setUserData()
-        DispatchQueue.main.async {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
             self.initializeFeed()
         }
        
-        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        DispatchQueue.main.async {
+           
+        }
+       
     }
     
     func playInLoop(){
@@ -157,7 +199,8 @@ class NewFeedViewController: UIViewController,StoryboardScene,FeedFetchProtocol 
     
     
     fileprivate func initializeFeed() {
-        let url = URL(string:feed.strVideoUrl)
+        let encodedStr = feed.strVideoUrl.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)!
+        let url = URL(string:encodedStr)
         player = AVPlayer(url: url!)
         self.playerLayer = AVPlayerLayer(player: player)
         playerLayer.frame = self.vwPlayerContainer.bounds
@@ -186,6 +229,44 @@ class NewFeedViewController: UIViewController,StoryboardScene,FeedFetchProtocol 
 }
 
 
+//MARK:- UITablewVie Delegate and DataSource
+extension NewFeedViewController: UITableViewDelegate,UITableViewDataSource{
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+            return self.arrLike.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+            
+            let cell = tableView.dequeueReusableCell(withIdentifier: "LikesTableViewCell")as! LikesTableViewCell
+            
+            let obj = self.arrLike[indexPath.row]
+            
+            let profilePic = obj.strLikedUserImage
+            if profilePic != "" {
+                let url = URL(string: profilePic)
+                cell.imgVwUser.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "splashLogo"))
+            }
+            
+            cell.lblName.text = obj.strLikedName
+            
+            return cell
+    }
+    
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+            
+            let userID = self.arrLike[indexPath.row].strLikedID
+            if objAppShareData.UserDetail.strUserId == userID{
+            }else{
+                let vc = UIStoryboard(name: "UserProfile", bundle: nil).instantiateViewController(withIdentifier: "UserProfileViewController") as? UserProfileViewController
+                vc?.userID = userID
+                self.navigationController?.pushViewController(vc!, animated: true)
+            }
+        }
+}
+
 
 extension NewFeedViewController{
     
@@ -199,7 +280,7 @@ extension NewFeedViewController{
         objWebServiceManager.showIndicator()
         
         let parameter = ["user_id":strUserID,"video_id":strVideoID]as [String:Any]
-        print(parameter)
+       
         
         objWebServiceManager.requestGet(strURL: WsUrl.url_likeVideo, params: parameter, queryParams: [:], strCustomValidation: "") { (response) in
             
@@ -211,7 +292,13 @@ extension NewFeedViewController{
             print(response)
             
             if status == MessageConstant.k_StatusCode{
+                //
                 self.fetchFeeds()
+                if self.isComingFromLike == true{
+                    self.isComingFromLike = false
+                    objAlert.showAlert(message: "¡Me gustó con éxito!", title: "", controller: self)
+                }
+                
             }else{
                 objWebServiceManager.hideIndicator()
                 
@@ -309,6 +396,8 @@ extension NewFeedViewController{
                     }
                     self.objVC?.feedFetchService(self, didFetchFeeds: arrBlogList, withError: nil)
                 }
+                
+               
             }else{
                 objWebServiceManager.hideIndicator()
                 

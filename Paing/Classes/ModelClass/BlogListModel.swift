@@ -78,7 +78,9 @@ class BlogListModel: NSObject {
         }
         
         if let video = dict["video"] as? String{
-            self.strVideoUrl = "http://ambitious.in.net/Shubham/paing/" + video
+            print(video)
+            self.strVideoUrl = "https://paing-spain.com/admin/" + video//.replacingOccurrences(of: " ", with: "%20")
+            print(self.strVideoUrl)
         }
         
         //=======XXX===========//
@@ -164,8 +166,8 @@ class LikedDataModel : NSObject{
             self.strLikedUserImage = user_image
         }
         
-        if let blog_comment_id = dict["blog_like_id"] as? String{
-            self.strLikedID = blog_comment_id
+        if let user_id = dict["user_id"] as? String{
+            self.strLikedID = user_id
         }
     
     
