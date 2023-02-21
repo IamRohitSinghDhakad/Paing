@@ -20,8 +20,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var navController: UINavigationController?
     
-    
-    
     private static var AppDelegateManager: AppDelegate = {
         let manager = UIApplication.shared.delegate as! AppDelegate
         return manager
@@ -37,7 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let deviceID = UIDevice.current.identifierForVendor!.uuidString
         UserDefaults.standard.setValue(deviceID, forKey: UserDefaults.Keys.strVenderId)
-         print(deviceID)
+        print(deviceID)
         
         IQKeyboardManager.shared.enable = true
         IQKeyboardManager.shared.enableAutoToolbar = true

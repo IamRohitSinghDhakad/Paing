@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -171,7 +171,7 @@
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <prototypes>
                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="NotificationTableViewCell" rowHeight="80" id="23N-i1-Up0" customClass="NotificationTableViewCell" customModule="Paing" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="24.5" width="375" height="80"/>
+                                                        <rect key="frame" x="0.0" y="44.5" width="375" height="80"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="23N-i1-Up0" id="boh-DW-kst">
                                                             <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
@@ -547,7 +547,7 @@
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <prototypes>
                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PaingBlogTableViewCell" id="na8-YM-YND" customClass="PaingBlogTableViewCell" customModule="Paing" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="24.5" width="375" height="154"/>
+                                                        <rect key="frame" x="0.0" y="44.5" width="375" height="154"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="na8-YM-YND" id="sbR-3F-4eY">
                                                             <rect key="frame" x="0.0" y="0.0" width="375" height="154"/>
@@ -1205,7 +1205,7 @@
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <prototypes>
                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PaingBlogTableViewCell" id="xng-8u-fxE" customClass="PaingBlogTableViewCell" customModule="Paing" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="24.5" width="375" height="154"/>
+                                                        <rect key="frame" x="0.0" y="44.5" width="375" height="154"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="xng-8u-fxE" id="14f-l1-g6i">
                                                             <rect key="frame" x="0.0" y="0.0" width="375" height="154"/>
@@ -2108,7 +2108,7 @@
                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                 <prototypes>
                                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CommentLikesTableViewCell" id="Ge6-ca-HKL" customClass="CommentLikesTableViewCell" customModule="Paing" customModuleProvider="target">
-                                                                        <rect key="frame" x="0.0" y="24.5" width="375" height="62"/>
+                                                                        <rect key="frame" x="0.0" y="44.5" width="375" height="62"/>
                                                                         <autoresizingMask key="autoresizingMask"/>
                                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ge6-ca-HKL" id="bIL-CH-98e">
                                                                             <rect key="frame" x="0.0" y="0.0" width="375" height="62"/>
@@ -2397,7 +2397,7 @@
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <prototypes>
                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="LikesTableViewCell" rowHeight="64" id="j80-hA-7Q1" customClass="LikesTableViewCell" customModule="Paing" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="24.5" width="375" height="64"/>
+                                                        <rect key="frame" x="0.0" y="44.5" width="375" height="64"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="j80-hA-7Q1" id="op0-bE-GJ1">
                                                             <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
@@ -2633,7 +2633,7 @@
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <prototypes>
                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="MessageTableViewCell" rowHeight="82" id="8sg-5W-9Ba" customClass="MessageTableViewCell" customModule="Paing" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="24.5" width="375" height="82"/>
+                                                        <rect key="frame" x="0.0" y="44.5" width="375" height="82"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8sg-5W-9Ba" id="A6a-Hu-SQz">
                                                             <rect key="frame" x="0.0" y="0.0" width="375" height="82"/>
@@ -4664,7 +4664,7 @@ favor</string>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="AppSideMenuTableViewCell" rowHeight="67" id="HjL-41-DuP" customClass="AppSideMenuTableViewCell" customModule="Paing" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="24.5" width="150" height="67"/>
+                                                <rect key="frame" x="0.0" y="44.5" width="150" height="67"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="HjL-41-DuP" id="WMZ-2y-TfO">
                                                     <rect key="frame" x="0.0" y="0.0" width="150" height="67"/>
@@ -5567,7 +5567,7 @@ entre lo verá.</string>
                                                                 <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <prototypes>
                                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ChatDetailTVCell" rowHeight="476" id="vxu-Ur-xup" customClass="ChatDetailTVCell" customModule="Paing" customModuleProvider="target">
-                                                                        <rect key="frame" x="0.0" y="24.5" width="375" height="476"/>
+                                                                        <rect key="frame" x="0.0" y="44.5" width="375" height="476"/>
                                                                         <autoresizingMask key="autoresizingMask"/>
                                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="vxu-Ur-xup" id="jre-hN-1Oe">
                                                                             <rect key="frame" x="0.0" y="0.0" width="375" height="476"/>
@@ -6795,7 +6795,7 @@ entre lo verá.</string>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <prototypes>
                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SettingsTableViewCell" id="3Rp-4a-8CT" customClass="SettingsTableViewCell" customModule="Paing" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="24.5" width="375" height="52.5"/>
+                                                        <rect key="frame" x="0.0" y="44.5" width="375" height="52.5"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3Rp-4a-8CT" id="wA2-Sd-ihP">
                                                             <rect key="frame" x="0.0" y="0.0" width="375" height="52.5"/>
@@ -6982,7 +6982,7 @@ entre lo verá.</string>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <prototypes>
                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SettingsTableViewCell" id="Pyr-dX-f1U" customClass="SettingsTableViewCell" customModule="Paing" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="24.5" width="375" height="52.5"/>
+                                                        <rect key="frame" x="0.0" y="44.5" width="375" height="52.5"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Pyr-dX-f1U" id="DUz-Jv-ZL0">
                                                             <rect key="frame" x="0.0" y="0.0" width="375" height="52.5"/>
@@ -7182,7 +7182,7 @@ entre lo verá.</string>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <prototypes>
                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="BlockListTableViewCell" rowHeight="82" id="f8Y-eK-0Bc" customClass="BlockListTableViewCell" customModule="Paing" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="24.5" width="375" height="82"/>
+                                                        <rect key="frame" x="0.0" y="44.5" width="375" height="82"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="f8Y-eK-0Bc" id="cRg-YK-w9d">
                                                             <rect key="frame" x="0.0" y="0.0" width="375" height="82"/>
@@ -7496,7 +7496,7 @@ entre lo verá.</string>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <prototypes>
                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="FavoriteTableViewCell" id="iuJ-P6-2Hq" customClass="FavoriteTableViewCell" customModule="Paing" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="24.5" width="375" height="80"/>
+                                                        <rect key="frame" x="0.0" y="44.5" width="375" height="80"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="iuJ-P6-2Hq" id="soF-gR-sKy">
                                                             <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
@@ -10311,7 +10311,7 @@ entre lo verá.</string>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <prototypes>
                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="OptionsRegistrationTableViewCell" id="CpL-Cl-Lzn" customClass="OptionsRegistrationTableViewCell" customModule="Paing" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="24.5" width="281" height="41"/>
+                                                        <rect key="frame" x="0.0" y="44.5" width="281" height="41"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="CpL-Cl-Lzn" id="syr-9j-kRx">
                                                             <rect key="frame" x="0.0" y="0.0" width="281" height="41"/>
@@ -11150,7 +11150,7 @@ entre lo verá.</string>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <prototypes>
                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="LikesTableViewCell" rowHeight="64" id="pe0-15-isM" customClass="LikesTableViewCell" customModule="Paing" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="24.5" width="375" height="64"/>
+                                                        <rect key="frame" x="0.0" y="44.5" width="375" height="64"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="pe0-15-isM" id="O28-i0-VVT">
                                                             <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
@@ -11393,7 +11393,7 @@ entre lo verá.</string>
                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                 <prototypes>
                                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CommentLikesTableViewCell" id="ljv-Kt-qFo" customClass="CommentLikesTableViewCell" customModule="Paing" customModuleProvider="target">
-                                                                        <rect key="frame" x="0.0" y="24.5" width="375" height="62"/>
+                                                                        <rect key="frame" x="0.0" y="44.5" width="375" height="62"/>
                                                                         <autoresizingMask key="autoresizingMask"/>
                                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ljv-Kt-qFo" id="mrl-d9-NPt">
                                                                             <rect key="frame" x="0.0" y="0.0" width="375" height="62"/>
@@ -11664,6 +11664,23 @@ entre lo verá.</string>
             <point key="canvasLocation" x="8287" y="1127"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="74p-1I-CaK">
+            <size key="intrinsicContentSize" width="71" height="18.5"/>
+        </designable>
+        <designable name="9Zs-vc-K6p">
+            <size key="intrinsicContentSize" width="10" height="36.5"/>
+        </designable>
+        <designable name="UxO-ak-TUZ">
+            <size key="intrinsicContentSize" width="10" height="36.5"/>
+        </designable>
+        <designable name="Vo9-9V-rPL">
+            <size key="intrinsicContentSize" width="119.5" height="18.5"/>
+        </designable>
+        <designable name="lRL-kH-p8P">
+            <size key="intrinsicContentSize" width="10" height="36.5"/>
+        </designable>
+    </designables>
     <resources>
         <image name="add" width="18.5" height="18"/>
         <image name="add_circle" width="17" height="17"/>

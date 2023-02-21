@@ -78,7 +78,7 @@ extension VideoTopViewController: UINavigationControllerDelegate, UIImagePickerC
     
     func takeVideo(){
         let alert = UIAlertController(title: "Choose Video", message: nil, preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: "Cámara", style: .default, handler: { _ in
+        alert.addAction(UIAlertAction(title: "Camera", style: .default, handler: { _ in
             if AVCaptureDevice.authorizationStatus(for: .video) ==  .authorized {
                 //already authorized
                 DispatchQueue.main.async {
@@ -99,13 +99,13 @@ extension VideoTopViewController: UINavigationControllerDelegate, UIImagePickerC
             }
         }))
         
-        alert.addAction(UIAlertAction(title: "Galería", style: .default, handler: { _ in
+        alert.addAction(UIAlertAction(title: "Gallery", style: .default, handler: { _ in
             DispatchQueue.main.async {
                 self.openVideoGallery()
             }
         }))
         
-        alert.addAction(UIAlertAction.init(title: "Cancelar", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction.init(title: "Cancel", style: .cancel, handler: nil))
         imagePicker.delegate = self
         alert.popoverPresentationController?.sourceView = self.view // works for both iPhone & iPad
         present(alert, animated: true) {
@@ -137,8 +137,6 @@ extension VideoTopViewController: UINavigationControllerDelegate, UIImagePickerC
             captureOutput.stopRecording()
             // Put your code which should be executed with a delay here
         }
-        
-        
         return
     }
     

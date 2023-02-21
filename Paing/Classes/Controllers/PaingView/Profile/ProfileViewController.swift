@@ -474,6 +474,7 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         picker.dismiss(animated: true, completion: nil)
+        
         guard let mediaType = info[UIImagePickerController.InfoKey.mediaType] as? String else { return }
 
         if mediaType  == "public.image" {
@@ -486,13 +487,7 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
                 self.navigationController?.pushViewController(vc!, animated: true)
             }
             
-//            if let editedImage = info[.editedImage] as? UIImage {
-//
-//            } else if let originalImage = info[.originalImage] as? UIImage {
-//                let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "EditImageVideoViewController") as? EditImageVideoViewController
-//                vc?.type = .image
-//                self.navigationController?.pushViewController(vc!, animated: true)
-//            }
+
         }
         
         if mediaType == "public.movie" {
